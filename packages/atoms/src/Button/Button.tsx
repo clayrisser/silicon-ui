@@ -1,3 +1,4 @@
+import React, { FC, DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   BackgroundProps,
@@ -19,7 +20,12 @@ import {
   typography
 } from 'styled-system';
 
-export interface ButtonProps
+export type DetailedHTMLButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
+
+export interface HTMLButtonProps
   extends ColorProps,
     BackgroundProps,
     BorderProps,
@@ -29,7 +35,15 @@ export interface ButtonProps
     SpaceProps,
     TypographyProps {}
 
-const Button: StyledComponent<ButtonProps, ButtonProps, any> = styled.button(
+export interface ButtonProps extends HTMLButtonProps {
+  onClick: () => any;
+}
+
+const HTMLButton: StyledComponent<
+  DetailedHTMLButtonProps,
+  HTMLButtonProps,
+  object
+> = styled.button(
   compose(
     background,
     border,
@@ -41,6 +55,23 @@ const Button: StyledComponent<ButtonProps, ButtonProps, any> = styled.button(
     typography
   )
 );
+
+const Button: FC<ButtonProps> = (props: ButtonProps) => {
+  const clonedProps = { ...props };
+  delete clonedProps.onClick;
+  delete clonedProps.color;
+
+  function handleClick(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    return props.onClick();
+  }
+
+  return (
+    <HTMLButton
+      {...(clonedProps as DetailedHTMLButtonProps)}
+      onClick={handleClick}
+    />
+  );
+};
 
 Button.defaultProps = {};
 
