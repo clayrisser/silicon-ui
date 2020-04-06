@@ -37,6 +37,9 @@ export interface HTMLButtonProps
 
 export interface ButtonProps extends HTMLButtonProps {
   onClick: () => any;
+  onMouseEnter: () => any;
+  onMouseLeave: () => any;
+  onMouseOver: () => any;
 }
 
 const HTMLButton: StyledComponent<
@@ -60,18 +63,14 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const clonedProps = { ...props };
   delete clonedProps.onClick;
 
-  function handleClick(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    return props.onClick();
-  }
-
-  return (
-    <HTMLButton
-      {...(clonedProps as DetailedHTMLButtonProps)}
-      onClick={handleClick}
-    />
-  );
+  return <HTMLButton {...(clonedProps as DetailedHTMLButtonProps)} />;
 };
 
-Button.defaultProps = {};
+Button.defaultProps = {
+  onClick: () => {},
+  onMouseEnter: () => {},
+  onMouseLeave: () => {},
+  onMouseOver: () => {}
+};
 
 export default Button;

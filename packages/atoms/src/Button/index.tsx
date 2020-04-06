@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import ButtonPrimary from './ButtonPrimary';
-import ButtonSecondary, { ButtonProps as BaseButtonProps } from './Button';
+import ButtonSecondary from './ButtonSecondary';
+import { ButtonProps as BaseButtonProps } from './Button';
 
 export interface ButtonProps extends BaseButtonProps {
   secondary?: boolean;
