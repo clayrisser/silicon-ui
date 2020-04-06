@@ -61,8 +61,6 @@ const HTMLButton: StyledComponent<
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const clonedProps = { ...props };
-  delete clonedProps.onClick;
-
   return <HTMLButton {...(clonedProps as DetailedHTMLButtonProps)} />;
 };
 
