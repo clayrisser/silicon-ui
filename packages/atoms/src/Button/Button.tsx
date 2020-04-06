@@ -59,7 +59,6 @@ const HTMLButton: StyledComponent<
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const clonedProps = { ...props };
   delete clonedProps.onClick;
-  delete clonedProps.color;
 
   function handleClick(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     return props.onClick();
