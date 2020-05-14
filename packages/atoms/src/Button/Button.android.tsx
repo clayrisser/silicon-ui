@@ -16,7 +16,7 @@ import {
   position,
   shadow,
   space,
-  typography,
+  typography
 } from 'styled-system';
 
 export interface ButtonProps

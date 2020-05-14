@@ -19,5 +19,11 @@
   "license": "MIT",
   "devDependencies": {
     "pnpm": "^4.14.2"
-  }
+  },
+  "eslint.workingDirectories": [
+    {
+      "directory": "packages/atoms",
+      "changeProcessCWD": true
+    }
+  ]
 }

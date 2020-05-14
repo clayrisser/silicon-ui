@@ -17,10 +17,10 @@ module.exports = {
       options: {
         rule: { include: [path.resolve(__dirname, '../src')] },
         loaderOptions: {
-          prettierConfig: { singleQuote: true },
-        },
-      },
-    },
+          prettierConfig: { singleQuote: true }
+        }
+      }
+    }
   ],
 
   webpackFinal: async (config) => {
@@ -34,34 +34,34 @@ module.exports = {
       test: /\.(j|t)sx?$/,
       include: [
         path.resolve(rootPath, 'src'),
-        path.resolve(rootPath, 'storybook'),
+        path.resolve(rootPath, 'storybook')
       ],
       use: [
         {
           loader: require.resolve('babel-loader'),
-          options: { babelrc: true },
+          options: { babelrc: true }
         },
         {
-          loader: require.resolve('react-docgen-typescript-loader'),
-        },
-      ],
+          loader: require.resolve('react-docgen-typescript-loader')
+        }
+      ]
     });
     config.module.rules.push({
       test: /\.story\.tsx?$/,
       loaders: [
         {
           loader: require.resolve('@storybook/source-loader'),
-          options: { parser: 'typescript' },
-        },
+          options: { parser: 'typescript' }
+        }
       ],
-      enforce: 'pre',
+      enforce: 'pre'
     });
     config.resolve.extensions.push('.jsx', '.ts', '.tsx');
     config.node = {
       child_process: 'empty',
       fs: 'empty',
-      ...config.node,
+      ...config.node
     };
     return config;
-  },
+  }
 };

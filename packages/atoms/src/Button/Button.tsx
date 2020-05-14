@@ -17,7 +17,7 @@ import {
   position,
   shadow,
   space,
-  typography,
+  typography
 } from 'styled-system';
 
 export type DetailedHTMLButtonProps = DetailedHTMLProps<
@@ -68,7 +68,7 @@ Button.defaultProps = {
   onClick: () => {},
   onMouseEnter: () => {},
   onMouseLeave: () => {},
-  onMouseOver: () => {},
+  onMouseOver: () => {}
 };
 
 export default Button;
