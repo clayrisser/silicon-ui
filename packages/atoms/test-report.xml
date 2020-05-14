@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="/home/codejamninja/Projects/silicon-ui/packages/atoms/tests/index.ts">
-    <testCase name="atoms should work" duration="4"/>
+    <testCase name="atoms should work" duration="2"/>
   </file>
 </testExecutions>

@@ -40,7 +40,7 @@ ButtonPrimary.defaultProps = {
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   pl: 3,
-  pr: 3
+  pr: 3,
 };
 
 export default styled(ButtonPrimary)`

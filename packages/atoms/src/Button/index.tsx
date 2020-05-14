@@ -13,7 +13,7 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
 };
 
 Button.defaultProps = {
-  secondary: false
+  secondary: false,
 };
 
 export default Button;

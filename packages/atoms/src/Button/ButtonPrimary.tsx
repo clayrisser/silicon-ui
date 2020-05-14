@@ -18,7 +18,7 @@ ButtonPrimary.defaultProps = {
   minHeight: 32,
   minWidth: 112,
   pl: 3,
-  pr: 3
+  pr: 3,
 };
 
 export default styled(ButtonPrimary)`

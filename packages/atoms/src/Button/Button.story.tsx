@@ -18,16 +18,16 @@ export interface StoryMetadata {
 
 export default {
   component: Button,
-  decorators: [storyFn => storyFn(), withDesign],
+  decorators: [(storyFn) => storyFn(), withDesign],
   title: 'Atoms|Button',
   parameters: {
     docs: { page: docs },
     design: config({
       type: 'image',
-      url: buttonPrimarySvg
+      url: buttonPrimarySvg,
     }),
-    jest: ['Button.test.tsx']
-  }
+    jest: ['Button.test.tsx'],
+  },
 } as StoryMetadata;
 
 export const KnobsButton = () => (
@@ -37,5 +37,5 @@ export const KnobsButton = () => (
 );
 
 KnobsButton.story = {
-  decorators: [withKnobs]
+  decorators: [withKnobs],
 };

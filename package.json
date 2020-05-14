@@ -18,6 +18,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "pnpm": "^4.12.0"
+    "pnpm": "^4.14.2"
   }
 }
