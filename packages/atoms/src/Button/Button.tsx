@@ -36,10 +36,10 @@ export interface HTMLButtonProps
     TypographyProps {}
 
 export interface ButtonProps extends HTMLButtonProps {
-  onClick: () => any;
-  onMouseEnter: () => any;
-  onMouseLeave: () => any;
-  onMouseOver: () => any;
+  onClick?: () => any;
+  onMouseEnter?: () => any;
+  onMouseLeave?: () => any;
+  onMouseOver?: () => any;
 }
 
 const HTMLButton: StyledComponent<

@@ -76,18 +76,22 @@ lib: node_modules/.tmp/coverage/lcov.info $(shell $(GIT) ls-files)
 	@tsc -d --emitDeclarationOnly
 	@$(CP) -r node_modules/.tmp/lib/src/. lib
 
-.PHONY: start
-start: storybook
-
-.PHONY: storybook
-storybook: node_modules node_modules/.tmp/coverage/lcov.info
+.PHONY: web
+web: node_modules node_modules/.tmp/coverage/lcov.info
+	$(RM) -rf node_modules/.tmp/action
+	$(MKDIRP) -p node_modules/.tmp/action
+	$(TOUCH) -m node_modules/.tmp/action/web
 	@node ./node_modules/@storybook/react/bin --ci -c storybook -p 3000 -s public
-	# @start-storybook --ci -c storybook -p 3000
+	$(RM) node_modules/.tmp/action/web
 
 .PHONY: expo
 expo:
+	$(RM) -rf node_modules/.tmp/action
+	$(MKDIRP) node_modules/.tmp/action
+	$(TOUCH) -m node_modules/.tmp/action/expo
 	@rnstl --pattern **/*.story.tsx
-	@expo start
+	@expo start -c
+	$(RM) node_modules/.tmp/action/expo
 
 .PHONY: purge
 purge: clean

@@ -1,4 +1,6 @@
+import React, { FC, ReactNode } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
+import { Button as ReactButton } from 'react-native';
 import {
   BackgroundProps,
   BorderProps,
@@ -19,7 +21,7 @@ import {
   typography
 } from 'styled-system';
 
-export interface ButtonProps
+export interface NativeButtonProps
   extends ColorProps,
     BackgroundProps,
     BorderProps,
@@ -29,7 +31,11 @@ export interface ButtonProps
     SpaceProps,
     TypographyProps {}
 
-const Button: StyledComponent<ButtonProps, ButtonProps, any> = styled.View(
+const NativeView: StyledComponent<
+  NativeButtonProps,
+  NativeButtonProps,
+  any
+> = styled.View(
   compose(
     background,
     border,
@@ -42,6 +48,22 @@ const Button: StyledComponent<ButtonProps, ButtonProps, any> = styled.View(
   )
 );
 
-Button.defaultProps = {};
+export interface ButtonProps extends NativeButtonProps {
+  children?: string;
+  onPress?: () => any;
+}
+
+const Button: FC<ButtonProps> = (props: ButtonProps) => {
+  const clonedProps = { ...props };
+  return (
+    <NativeView {...clonedProps}>
+      <ReactButton onPress={props.onPress!} title={props.children || ''} />
+    </NativeView>
+  );
+};
+
+Button.defaultProps = {
+  onPress: () => {}
+};
 
 export default Button;

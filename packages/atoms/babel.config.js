@@ -1,5 +1,14 @@
+const fs = require('fs');
+const path = require('path');
+
 module.exports = (api) => {
   api.cache(true);
+  let result = {};
+  if (fs.existsSync(path.resolve(__dirname, 'node_modules/.tmp/action/expo'))) {
+    return {
+      presets: ['babel-preset-expo']
+    };
+  }
   return {
     presets: [
       [
@@ -13,8 +22,7 @@ module.exports = (api) => {
         }
       ],
       '@babel/preset-typescript',
-      '@babel/preset-react',
-      'babel-preset-expo'
+      '@babel/preset-react'
     ],
     plugins: [
       ['@babel/plugin-proposal-decorators', { legacy: true }],

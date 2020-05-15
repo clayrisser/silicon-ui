@@ -37,12 +37,11 @@
 
 import React from 'react';
 // import Button from './Button';
-import { Button } from 'react-native';
+// import { Button } from 'react-native';
+import Button from './Button';
 
-import { storiesOf } from '@storybook/react-native';
+import storiesOf from '../../storybook/storiesOf';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-storiesOf('Button', module).add('with text', () => (
-  <Button title="Hello"></Button>
-));
+storiesOf('Button', module).add('with text', () => <Button>Hello</Button>);

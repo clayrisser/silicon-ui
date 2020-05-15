@@ -24,3 +24,4 @@ package-lock.json
 pids
 pnpm-lock.yaml
 yarn.lock
+test-report.xml
