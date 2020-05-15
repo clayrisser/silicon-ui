@@ -50,13 +50,13 @@ const StyledText: StyledComponent<
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const clonedProps = { ...props };
-  if (props.native) {
+  if (!props.styled) {
     return (
       <NativeButton
         color={(props.color as unknown) as any}
         disabled={false}
         onPress={props.onPress!}
-        title={props.children}
+        title={props.children!}
       />
     );
   }
@@ -67,10 +67,13 @@ Button.defaultProps = {
   backgroundColor: '#888888',
   borderColor: '#999999',
   borderWidth: 4,
-  fontSize: 18,
-  native: true,
+  children: '',
+  fontSize: 16,
   onPress: () => {},
-  padding: 2
+  padding: 2,
+  paddingTop: 3,
+  styled: false,
+  textAlign: 'center'
 };
 
 export default Button;

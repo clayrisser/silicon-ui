@@ -20,11 +20,11 @@ export interface StyledButtonProps
     TypographyProps {}
 
 export default interface ButtonProps extends StyledButtonProps {
-  children: string;
-  native?: boolean;
+  children?: string;
   onClick?: () => any;
   onMouseEnter?: () => any;
   onMouseLeave?: () => any;
   onMouseOver?: () => any;
   onPress?: () => any;
+  styled?: boolean;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import Button from './Button';
 // import docs from './Button.docs.mdx';
 
@@ -14,7 +14,11 @@ storiesOf('Button', module)
   })
   .add('with knobs', () => (
     <>
-      <Button onClick={action('onClick')} onPress={action('onPress')}>
+      <Button
+        onClick={action('onClick')}
+        onPress={action('onPress')}
+        styled={boolean('styled', false)}
+      >
         {text('children', 'click me')}
       </Button>
     </>

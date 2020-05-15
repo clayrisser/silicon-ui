@@ -55,12 +55,12 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
 
 Button.defaultProps = {
   children: '',
-  native: true,
   onClick: () => {},
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   onMouseOver: () => {},
-  onPress: () => {}
+  onPress: () => {},
+  styled: false
 };
 
 export default Button;
