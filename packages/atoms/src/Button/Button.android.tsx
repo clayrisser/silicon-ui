@@ -1,15 +1,7 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, Children } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
-import { Button as ReactButton } from 'react-native';
+import { Button as NativeButton } from 'react-native';
 import {
-  BackgroundProps,
-  BorderProps,
-  ColorProps,
-  LayoutProps,
-  PositionProps,
-  ShadowProps,
-  SpaceProps,
-  TypographyProps,
   background,
   border,
   color,
@@ -20,20 +12,11 @@ import {
   space,
   typography
 } from 'styled-system';
+import ButtonProps, { StyledButtonProps } from './buttonProps';
 
-export interface NativeButtonProps
-  extends ColorProps,
-    BackgroundProps,
-    BorderProps,
-    LayoutProps,
-    PositionProps,
-    ShadowProps,
-    SpaceProps,
-    TypographyProps {}
-
-const NativeView: StyledComponent<
-  NativeButtonProps,
-  NativeButtonProps,
+const StyledView: StyledComponent<
+  StyledButtonProps,
+  StyledButtonProps,
   any
 > = styled.View(
   compose(
@@ -48,22 +31,46 @@ const NativeView: StyledComponent<
   )
 );
 
-export interface ButtonProps extends NativeButtonProps {
-  children?: string;
-  onPress?: () => any;
-}
+const StyledText: StyledComponent<
+  StyledButtonProps,
+  StyledButtonProps,
+  any
+> = styled.Text(
+  compose(
+    background,
+    border,
+    color,
+    layout,
+    position,
+    shadow,
+    space,
+    typography
+  )
+);
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const clonedProps = { ...props };
-  return (
-    <NativeView {...clonedProps}>
-      <ReactButton onPress={props.onPress!} title={props.children || ''} />
-    </NativeView>
-  );
+  if (props.native) {
+    return (
+      <NativeButton
+        color={(props.color as unknown) as any}
+        disabled={false}
+        onPress={props.onPress!}
+        title={props.children}
+      />
+    );
+  }
+  return <StyledText {...clonedProps}>{props.children}</StyledText>;
 };
 
 Button.defaultProps = {
-  onPress: () => {}
+  backgroundColor: '#888888',
+  borderColor: '#999999',
+  borderWidth: 4,
+  fontSize: 18,
+  native: true,
+  onPress: () => {},
+  padding: 2
 };
 
 export default Button;

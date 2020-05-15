@@ -46,6 +46,8 @@
     "@emotion/primitives": "^10.0.30",
     "@emotion/styled": "^10.0.27",
     "@emotion/styled-base": "^10.0.31",
+    "@storybook/addon-ondevice-actions": "^5.3.18",
+    "@storybook/addon-ondevice-knobs": "^5.3.18",
     "@storybook/react-native": "^5.3.18",
     "expo": "~37.0.3",
     "react": "~16.9.0",
