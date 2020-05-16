@@ -23,13 +23,17 @@ export function contrast(
 export function autoContrast(
   color: string,
   origionalColor: string,
-  level: 'A' | 'AA' | 'AAA' = 'AA',
+  level: boolean | 'A' | 'AA' | 'AAA' = 'AA',
   minimumRatio = 21,
   hue?: number,
   brighterFirst?: boolean
 ): string {
+  if (!level) return origionalColor;
   const scoreResult = score(hex(toHex(color), toHex(origionalColor)));
-  if (scoreResult !== 'Fail' && scoreResult.length > level.length) {
+  if (
+    scoreResult !== 'Fail' &&
+    scoreResult.length > (level === true ? 2 : level.length)
+  ) {
     return origionalColor;
   }
   try {

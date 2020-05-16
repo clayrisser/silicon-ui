@@ -54,9 +54,13 @@ const StyledText: StyledComponent<
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const theme: Theme = useTheme();
   const clonedProps = {
-    color: props.autoContrast
-      ? autoContrast(theme.colors.backgroundColor, theme.colors.text)
-      : theme.colors.text,
+    color: autoContrast(
+      theme.colors.primary,
+      theme.colors.inverseText || theme.colors.text,
+      typeof props.autoContrast === 'undefined'
+        ? theme.autoContrast
+        : props.autoContrast
+    ),
     ...props
   };
   if (!props.styled) {
@@ -73,7 +77,6 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
 };
 
 Button.defaultProps = {
-  autoContrast: true,
   backgroundColor: '#888888',
   borderColor: '#999999',
   borderWidth: 4,

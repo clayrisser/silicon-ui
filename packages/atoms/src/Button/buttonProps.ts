@@ -20,7 +20,7 @@ export interface StyledButtonProps
     TypographyProps {}
 
 export default interface ButtonProps extends StyledButtonProps {
-  autoContrast?: boolean;
+  autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: string;
   onClick?: () => any;
   onMouseEnter?: () => any;

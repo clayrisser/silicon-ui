@@ -41,10 +41,13 @@ const HTMLButton: StyledComponent<
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const theme: Theme = useTheme();
   const clonedProps: ButtonProps = {
-    backgroundColor: theme.colors.primary,
-    color: props.autoContrast
-      ? autoContrast(theme.colors.primary, theme.colors.text)
-      : theme.colors.text,
+    color: autoContrast(
+      theme.colors.primary,
+      theme.colors.inverseText || theme.colors.text,
+      typeof props.autoContrast === 'undefined'
+        ? theme.autoContrast
+        : props.autoContrast
+    ),
     ...props
   };
   delete clonedProps.onPress;
@@ -57,24 +60,34 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
   }
 
   return (
-    <div>
-      color: {props.color}
-      <HTMLButton
-        onClick={handleOnClick}
-        {...(clonedProps as DetailedHTMLButtonProps)}
-      />
-    </div>
+    <HTMLButton
+      style={{
+        cursor: 'pointer'
+      }}
+      onClick={handleOnClick}
+      {...(clonedProps as DetailedHTMLButtonProps)}
+    />
   );
 };
 
 Button.defaultProps = {
-  autoContrast: true,
+  backgroundColor: 'primary',
   children: '',
+  fontFamily: 'body',
+  fontSize: 0,
+  fontWeight: 'body',
+  lineHeight: 'body',
+  marginBottom: 1,
+  marginRight: 1,
   onClick: () => {},
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   onMouseOver: () => {},
   onPress: () => {},
+  paddingBottom: 1,
+  paddingLeft: 2,
+  paddingRight: 2,
+  paddingTop: 1,
   styled: false
 };
 
