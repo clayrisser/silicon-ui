@@ -1,8 +1,5 @@
-import React, { FC } from 'react';
-import Button, { ButtonProps as BaseButtonProps } from './Button';
+import Button from './Button';
+import { ButtonProps } from './buttonProps';
 
-export interface ButtonProps extends BaseButtonProps {
-  secondary?: boolean;
-}
-
+export { ButtonProps };
 export default Button;

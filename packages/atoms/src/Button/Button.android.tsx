@@ -13,7 +13,7 @@ import {
   space,
   typography
 } from 'styled-system';
-import ButtonProps, { StyledButtonProps } from './buttonProps';
+import { ButtonProps, StyledButtonProps } from './buttonProps';
 import { Theme } from '../themes';
 import { autoContrast } from '../color';
 

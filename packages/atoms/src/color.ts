@@ -7,7 +7,7 @@ import { score, hex } from 'wcag-contrast';
 
 export function contrast(
   color: string,
-  minimumRatio = 10,
+  minimumRatio = 21,
   hue = 180,
   brighterFirst = true
 ): string {
@@ -23,8 +23,8 @@ export function contrast(
 export function autoContrast(
   color: string,
   origionalColor: string,
-  level: boolean | 'A' | 'AA' | 'AAA' = 'AA',
-  minimumRatio = 21,
+  level: boolean | 'A' | 'AA' | 'AAA' = false,
+  minimumRatio = 10,
   hue?: number,
   brighterFirst?: boolean
 ): string {

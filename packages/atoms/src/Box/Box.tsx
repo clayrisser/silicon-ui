@@ -1,4 +1,4 @@
-import React, { FC, DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
+import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import { useTheme } from 'emotion-theming';
 import {
@@ -12,20 +12,20 @@ import {
   space,
   typography
 } from 'styled-system';
-import { ButtonProps, StyledButtonProps } from './buttonProps';
+import { BoxProps, StyledBoxProps } from './boxProps';
 import { Theme } from '../themes';
 import { autoContrast } from '../color';
 
-export type DetailedHTMLButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
+export type DetailedHTMLDivProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
 >;
 
-const HTMLButton: StyledComponent<
-  DetailedHTMLButtonProps,
-  StyledButtonProps,
+const HTMLDiv: StyledComponent<
+  DetailedHTMLDivProps,
+  StyledBoxProps,
   object
-> = styled.button(
+> = styled.div(
   compose(
     background,
     border,
@@ -38,11 +38,11 @@ const HTMLButton: StyledComponent<
   )
 );
 
-const Button: FC<ButtonProps> = (props: ButtonProps) => {
+const Box: FC<BoxProps> = (props: BoxProps) => {
   const theme: Theme = useTheme();
-  const clonedProps: ButtonProps = {
+  const clonedProps: BoxProps = {
     color: autoContrast(
-      theme.colors.primary,
+      theme.colors.background,
       theme.colors.inverseText || theme.colors.text,
       typeof props.autoContrast === 'undefined'
         ? theme.autoContrast
@@ -50,46 +50,36 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     ),
     ...props
   };
+  console.log(theme.colors.text, clonedProps.color);
   delete clonedProps.autoContrast;
   delete clonedProps.onPress;
-  delete clonedProps.styled;
 
-  function handleOnClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleOnClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     props.onPress!();
     const _props: any = props;
     _props.onClick(e);
   }
 
   return (
-    <HTMLButton
-      style={{
-        cursor: 'pointer'
-      }}
+    <HTMLDiv
       onClick={handleOnClick}
-      {...(clonedProps as DetailedHTMLButtonProps)}
+      {...(clonedProps as DetailedHTMLDivProps)}
     />
   );
 };
 
-Button.defaultProps = {
-  backgroundColor: 'primary',
+Box.defaultProps = {
+  backgroundColor: 'background',
   children: '',
   fontFamily: 'body',
   fontSize: 0,
   fontWeight: 'body',
   lineHeight: 'body',
-  marginBottom: 1,
-  marginRight: 1,
   onClick: () => {},
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   onMouseOver: () => {},
-  onPress: () => {},
-  paddingBottom: 1,
-  paddingLeft: 2,
-  paddingRight: 2,
-  paddingTop: 1,
-  styled: false
+  onPress: () => {}
 };
 
-export default Button;
+export default Box;

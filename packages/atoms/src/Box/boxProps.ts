@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import {
   BackgroundProps,
   BorderProps,
@@ -9,7 +10,7 @@ import {
   TypographyProps
 } from 'styled-system';
 
-export interface StyledButtonProps
+export interface StyledBoxProps
   extends ColorProps,
     BackgroundProps,
     BorderProps,
@@ -19,13 +20,12 @@ export interface StyledButtonProps
     SpaceProps,
     TypographyProps {}
 
-export interface ButtonProps extends StyledButtonProps {
+export interface BoxProps extends StyledBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
-  children?: string;
+  children?: ReactNode;
   onClick?: () => any;
   onMouseEnter?: () => any;
   onMouseLeave?: () => any;
   onMouseOver?: () => any;
   onPress?: () => any;
-  styled?: boolean;
 }

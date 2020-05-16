@@ -1,8 +1,9 @@
 import React from 'react';
 import { withKnobs, text, boolean, optionsKnob } from '@storybook/addon-knobs';
+import { withThemesProvider } from 'storybook-addon-emotion-theme';
+import Box from '../Box';
 import Button from './Button';
 import themes from '../themes';
-import { withThemesProvider } from 'storybook-addon-emotion-theme';
 // import docs from './Button.docs.mdx';
 
 import storiesOf from '../../storybook/storiesOf';
@@ -16,7 +17,8 @@ storiesOf('Button', module)
     // jest: ['Button.test.tsx']
   })
   .add('with knobs', () => (
-    <>
+    <Box minHeight="400px">
+      hello
       <Button
         onClick={action('onClick')}
         onPress={action('onPress')}
@@ -35,5 +37,5 @@ storiesOf('Button', module)
       >
         {text('children', 'click me')}
       </Button>
-    </>
+    </Box>
   ));
