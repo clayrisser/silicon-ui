@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, Children } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
 import { Button as NativeButton } from 'react-native';
+import { useTheme } from 'emotion-theming';
 import {
   background,
   border,
@@ -13,6 +14,8 @@ import {
   typography
 } from 'styled-system';
 import ButtonProps, { StyledButtonProps } from './buttonProps';
+import { Theme } from '../themes';
+import { autoContrast } from '../color';
 
 const StyledView: StyledComponent<
   StyledButtonProps,
@@ -49,7 +52,13 @@ const StyledText: StyledComponent<
 );
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const clonedProps = { ...props };
+  const theme: Theme = useTheme();
+  const clonedProps = {
+    color: props.autoContrast
+      ? autoContrast(theme.colors.backgroundColor, theme.colors.text)
+      : theme.colors.text,
+    ...props
+  };
   if (!props.styled) {
     return (
       <NativeButton
@@ -64,6 +73,7 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
 };
 
 Button.defaultProps = {
+  autoContrast: true,
   backgroundColor: '#888888',
   borderColor: '#999999',
   borderWidth: 4,

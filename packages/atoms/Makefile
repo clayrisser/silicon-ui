@@ -76,6 +76,9 @@ lib: node_modules/.tmp/coverage/lcov.info $(shell $(GIT) ls-files)
 	@tsc -d --emitDeclarationOnly
 	@$(CP) -r node_modules/.tmp/lib/src/. lib
 
+.PHONY: start
+start: web
+
 .PHONY: web
 web: node_modules node_modules/.tmp/coverage/lcov.info
 	$(RM) -rf node_modules/.tmp/action
