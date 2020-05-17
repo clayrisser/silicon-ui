@@ -42,7 +42,10 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const theme: Theme = useTheme();
   const clonedProps: ButtonProps = {
     color: autoContrast(
-      theme.colors.primary,
+      props.backgroundColor
+        ? theme.colors[props.backgroundColor as string] ||
+            (props.backgroundColor as string)
+        : theme.colors.primary,
       theme.colors.inverseText || theme.colors.text,
       typeof props.autoContrast === 'undefined'
         ? theme.autoContrast
@@ -81,6 +84,7 @@ Button.defaultProps = {
   marginBottom: 1,
   marginRight: 1,
   onClick: () => {},
+  onFocus: () => {},
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   onMouseOver: () => {},

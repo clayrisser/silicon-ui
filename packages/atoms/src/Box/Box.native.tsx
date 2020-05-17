@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
-import { Button as NativeButton } from 'react-native';
 import { useTheme } from 'emotion-theming';
 import {
   background,
@@ -13,15 +12,15 @@ import {
   space,
   typography
 } from 'styled-system';
-import { ButtonProps, StyledButtonProps } from './buttonProps';
+import { BoxProps, StyledBoxProps } from './boxProps';
 import { Theme } from '../themes';
 import { autoContrast } from '../color';
 
 const StyledText: StyledComponent<
-  StyledButtonProps,
-  StyledButtonProps,
+  StyledBoxProps,
+  StyledBoxProps,
   any
-> = styled.Text(
+> = styled.View(
   compose(
     background,
     border,
@@ -34,11 +33,12 @@ const StyledText: StyledComponent<
   )
 );
 
-const Button: FC<ButtonProps> = (props: ButtonProps) => {
+const Box: FC<BoxProps> = (props: BoxProps) => {
   const theme: Theme = useTheme();
   const clonedProps = {
     color: autoContrast(
-      theme.colors.primary,
+      theme.colors[props.backgroundColor as string] ||
+        (props.backgroundColor as string),
       theme.colors.inverseText || theme.colors.text,
       typeof props.autoContrast === 'undefined'
         ? theme.autoContrast
@@ -46,30 +46,21 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     ),
     ...props
   };
-  if (!props.styled) {
-    return (
-      <NativeButton
-        color={(props.color as unknown) as any}
-        disabled={false}
-        onPress={props.onPress!}
-        title={props.children!}
-      />
-    );
-  }
   return <StyledText {...clonedProps}>{props.children}</StyledText>;
 };
 
-Button.defaultProps = {
-  backgroundColor: '#888888',
-  borderColor: '#999999',
-  borderWidth: 4,
+Box.defaultProps = {
+  backgroundColor: 'background',
   children: '',
-  fontSize: 16,
-  onPress: () => {},
-  padding: 2,
-  paddingTop: 3,
-  styled: false,
-  textAlign: 'center'
+  // fontFamily: 'body',
+  fontSize: 0,
+  // fontWeight: 'body',
+  lineHeight: 'body',
+  onClick: () => {},
+  onMouseEnter: () => {},
+  onMouseLeave: () => {},
+  onMouseOver: () => {},
+  onPress: () => {}
 };
 
-export default Button;
+export default Box;

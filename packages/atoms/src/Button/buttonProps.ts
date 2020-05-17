@@ -23,6 +23,7 @@ export interface ButtonProps extends StyledButtonProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: string;
   onClick?: () => any;
+  onFocus?: () => any;
   onMouseEnter?: () => any;
   onMouseLeave?: () => any;
   onMouseOver?: () => any;

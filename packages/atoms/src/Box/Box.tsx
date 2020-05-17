@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import { useTheme } from 'emotion-theming';

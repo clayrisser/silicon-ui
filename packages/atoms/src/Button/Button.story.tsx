@@ -1,10 +1,16 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, optionsKnob } from '@storybook/addon-knobs';
-import { withThemesProvider } from 'storybook-addon-emotion-theme';
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  select
+} from '@storybook/addon-knobs';
 import Button from './Button';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
+import withThemesProvider from '../../storybook/withThemesProvider';
 import themes from '../themes';
 // import docs from './Button.docs.mdx';
 
@@ -18,10 +24,16 @@ storiesOf('Button', module)
   .add('with knobs', () => (
     <Wrapper>
       <Button
+        backgroundColor={text('backgroundColor', 'primary')}
+        borderRadius={number('borderRadius', 0)}
         onClick={action('onClick')}
+        onFocus={action('onFocus')}
+        onMouseEnter={action('onMouseEnter')}
+        onMouseLeave={action('onMouseLeave')}
+        onMouseOver={action('onMouseOver')}
         onPress={action('onPress')}
         styled={boolean('styled', false)}
-        autoContrast={optionsKnob<'A' | 'AA' | 'AAA'>(
+        autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
             false: '' as 'A',
@@ -29,8 +41,7 @@ storiesOf('Button', module)
             AA: 'AA',
             AAA: 'AAA'
           },
-          'AA',
-          { display: 'inline-radio' }
+          'AA'
         )}
       >
         {text('children', 'click me')}
