@@ -16,7 +16,7 @@
     "purge": "git clean -fXd",
     "update": "pnpm -r update -L"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "pnpm": "^4.14.2"
   },

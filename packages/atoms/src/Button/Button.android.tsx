@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, Children } from 'react';
+import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
 import { Button as NativeButton } from 'react-native';
 import { useTheme } from 'emotion-theming';
@@ -16,23 +16,6 @@ import {
 import { ButtonProps, StyledButtonProps } from './buttonProps';
 import { Theme } from '../themes';
 import { autoContrast } from '../color';
-
-const StyledView: StyledComponent<
-  StyledButtonProps,
-  StyledButtonProps,
-  any
-> = styled.View(
-  compose(
-    background,
-    border,
-    color,
-    layout,
-    position,
-    shadow,
-    space,
-    typography
-  )
-);
 
 const StyledText: StyledComponent<
   StyledButtonProps,
