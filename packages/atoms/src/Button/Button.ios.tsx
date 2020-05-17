@@ -12,7 +12,7 @@ import {
   space,
   typography
 } from 'styled-system';
-import ButtonProps, { StyledButtonProps } from './buttonProps';
+import { ButtonProps, StyledButtonProps } from './buttonProps';
 
 const StyledView: StyledComponent<
   StyledButtonProps,
@@ -50,17 +50,17 @@ const StyledText: StyledComponent<
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const clonedProps = { ...props };
-  if (props.native) {
-    return (
-      <NativeButton
-        color={(props.color as unknown) as any}
-        disabled={false}
-        onPress={props.onPress!}
-        title={props.children}
-      />
-    );
+  if (props.styled) {
+    return <StyledText {...clonedProps}>{props.children}</StyledText>;
   }
-  return <StyledText {...clonedProps}>{props.children}</StyledText>;
+  return (
+    <NativeButton
+      color={(props.color as unknown) as any}
+      disabled={false}
+      onPress={props.onPress!}
+      title={props.children || ''}
+    />
+  );
 };
 
 Button.defaultProps = {

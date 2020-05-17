@@ -50,7 +50,6 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
     ),
     ...props
   };
-  console.log(theme.colors.text, clonedProps.color);
   delete clonedProps.autoContrast;
   delete clonedProps.onPress;
 

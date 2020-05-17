@@ -1,13 +1,12 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean, optionsKnob } from '@storybook/addon-knobs';
 import { withThemesProvider } from 'storybook-addon-emotion-theme';
 import Box from '../Box';
 import Button from './Button';
+import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 // import docs from './Button.docs.mdx';
-
-import storiesOf from '../../storybook/storiesOf';
-import { action } from '@storybook/addon-actions';
 
 storiesOf('Button', module)
   .addDecorator(withKnobs)

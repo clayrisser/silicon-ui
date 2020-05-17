@@ -89,6 +89,4 @@ export interface Theme {
   space: number[];
 }
 
-console.log(themes);
-
 export default themes;

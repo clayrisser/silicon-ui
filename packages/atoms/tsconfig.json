@@ -17,5 +17,5 @@
     "strictPropertyInitialization": false,
     "target": "esnext"
   },
-  "include": ["expo", "src", "tests"]
+  "include": ["expo", "storybook", "src", "tests"]
 }
