@@ -1,4 +1,10 @@
-import React, { FC, DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
+import React, {
+  FC,
+  DetailedHTMLProps,
+  ButtonHTMLAttributes,
+  useEffect,
+  useState
+} from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import { useTheme } from 'emotion-theming';
 import {
@@ -40,60 +46,85 @@ const HTMLButton: StyledComponent<
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const theme: Theme = useTheme();
+  const [color, setColor] = useState(props.color as string);
+
+  useEffect(() => {
+    setColor(
+      autoContrast(
+        props.backgroundColor
+          ? theme.colors[props.backgroundColor as string] ||
+              (props.backgroundColor as string)
+          : theme.colors.primary,
+        theme.colors.inverseText || theme.colors.text,
+        typeof props.autoContrast === 'undefined'
+          ? theme.autoContrast
+          : props.autoContrast
+      )
+    );
+  }, []);
+
   const clonedProps: ButtonProps = {
-    color: autoContrast(
-      props.backgroundColor
-        ? theme.colors[props.backgroundColor as string] ||
-            (props.backgroundColor as string)
-        : theme.colors.primary,
-      theme.colors.inverseText || theme.colors.text,
-      typeof props.autoContrast === 'undefined'
-        ? theme.autoContrast
-        : props.autoContrast
-    ),
+    color,
     ...props
   };
   delete clonedProps.autoContrast;
   delete clonedProps.onPress;
+  delete clonedProps.onPressIn;
+  delete clonedProps.onPressOut;
   delete clonedProps.styled;
+  delete clonedProps.theme;
+  delete clonedProps.uppercase;
 
-  function handleOnClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    props.onPress!();
-    const _props: any = props;
-    _props.onClick(e);
+  function handleClick(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    if (props.onPress) props.onPress();
+  }
+
+  function handleMouseDown(
+    _e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    if (props.onPressIn) props.onPressIn();
+  }
+
+  function handleMouseUp(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    if (props.onPressOut) props.onPressOut();
   }
 
   return (
     <HTMLButton
-      style={{
-        cursor: 'pointer'
-      }}
-      onClick={handleOnClick}
       {...(clonedProps as DetailedHTMLButtonProps)}
+      onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
     />
   );
 };
 
 Button.defaultProps = {
   backgroundColor: 'primary',
+  borderRadius: 2,
+  borderWidth: 0,
   children: '',
   fontFamily: 'body',
-  fontSize: 0,
+  fontSize: 2,
   fontWeight: 'body',
   lineHeight: 'body',
-  marginBottom: 1,
-  marginRight: 1,
-  onClick: () => {},
-  onFocus: () => {},
-  onMouseEnter: () => {},
-  onMouseLeave: () => {},
-  onMouseOver: () => {},
-  onPress: () => {},
-  paddingBottom: 1,
+  paddingBottom: 2,
   paddingLeft: 2,
   paddingRight: 2,
-  paddingTop: 1,
-  styled: false
+  paddingTop: 2,
+  styled: false,
+  uppercase: true,
+  width: '100%'
 };
 
-export default Button;
+export default styled(Button)`
+  cursor: pointer;
+  font-weight: 500;
+  transition-duration: 0.25s;
+  transition-property: opacity;
+  :active {
+    opacity: 0.8;
+  }
+  text-transform: ${({ uppercase }: ButtonProps) =>
+    uppercase ? 'uppercase' : 'none'};
+`;

@@ -9,6 +9,7 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
+import { Theme } from '../themes';
 
 export interface StyledBoxProps
   extends ColorProps,
@@ -23,9 +24,12 @@ export interface StyledBoxProps
 export interface BoxProps extends StyledBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
-  onClick?: () => any;
+  onFocus?: () => any;
   onMouseEnter?: () => any;
   onMouseLeave?: () => any;
   onMouseOver?: () => any;
   onPress?: () => any;
+  onPressIn?: () => any;
+  onPressOut?: () => any;
+  theme?: Theme;
 }

@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
+import { TouchableOpacity } from 'react-native';
 import { useTheme } from 'emotion-theming';
 import {
   background,
@@ -15,8 +16,9 @@ import {
 import { BoxProps, StyledBoxProps } from './boxProps';
 import { Theme } from '../themes';
 import { autoContrast } from '../color';
+import { splitTouchableProps } from '../util';
 
-const StyledText: StyledComponent<
+const StyledView: StyledComponent<
   StyledBoxProps,
   StyledBoxProps,
   any
@@ -35,32 +37,50 @@ const StyledText: StyledComponent<
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
   const theme: Theme = useTheme();
-  const clonedProps = {
-    color: autoContrast(
-      theme.colors[props.backgroundColor as string] ||
-        (props.backgroundColor as string),
-      theme.colors.inverseText || theme.colors.text,
-      typeof props.autoContrast === 'undefined'
-        ? theme.autoContrast
-        : props.autoContrast
-    ),
+  const [color, setColor] = useState(props.color as string);
+
+  useEffect(() => {
+    setColor(
+      autoContrast(
+        props.backgroundColor
+          ? theme.colors[props.backgroundColor as string] ||
+              (props.backgroundColor as string)
+          : theme.colors.primary,
+        theme.colors.inverseText || theme.colors.text,
+        typeof props.autoContrast === 'undefined'
+          ? theme.autoContrast
+          : props.autoContrast
+      )
+    );
+  }, []);
+
+  const [clonedProps, touchableProps] = splitTouchableProps<BoxProps>({
+    color,
     ...props
-  };
-  return <StyledText {...clonedProps}>{props.children}</StyledText>;
+  });
+  delete clonedProps.autoContrast;
+  delete clonedProps.theme;
+  delete touchableProps.onMouseEnter;
+  delete touchableProps.onMouseLeave;
+  delete touchableProps.onMouseOver;
+
+  if (Object.keys(touchableProps).length) {
+    return (
+      <TouchableOpacity {...touchableProps}>
+        <StyledView {...clonedProps}>{props.children}</StyledView>
+      </TouchableOpacity>
+    );
+  }
+  return <StyledView {...clonedProps}>{props.children}</StyledView>;
 };
 
 Box.defaultProps = {
+  // fontFamily: 'body',
+  // fontWeight: 'body',
   backgroundColor: 'background',
   children: '',
-  // fontFamily: 'body',
   fontSize: 0,
-  // fontWeight: 'body',
-  lineHeight: 'body',
-  onClick: () => {},
-  onMouseEnter: () => {},
-  onMouseLeave: () => {},
-  onMouseOver: () => {},
-  onPress: () => {}
+  lineHeight: 'body'
 };
 
 export default Box;

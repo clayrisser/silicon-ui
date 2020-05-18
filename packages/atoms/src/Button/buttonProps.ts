@@ -8,6 +8,7 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
+import { Theme } from '../themes';
 
 export interface StyledButtonProps
   extends ColorProps,
@@ -22,11 +23,14 @@ export interface StyledButtonProps
 export interface ButtonProps extends StyledButtonProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: string;
-  onClick?: () => any;
   onFocus?: () => any;
   onMouseEnter?: () => any;
   onMouseLeave?: () => any;
   onMouseOver?: () => any;
   onPress?: () => any;
+  onPressIn?: () => any;
+  onPressOut?: () => any;
   styled?: boolean;
+  theme?: Theme;
+  uppercase?: boolean;
 }

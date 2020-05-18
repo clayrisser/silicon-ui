@@ -21,6 +21,7 @@ module.exports = {
     if (!config.module) config.module = {};
     if (!config.node) config.node = {};
     if (!config.resolve) config.resolve = {};
+    if (!config.resolve.alias) config.resolve.alias = {};
     if (!config.module.rules) config.module.rules = [];
     if (!config.resolve.extensions) config.resolve.extensions = [];
     config.module.rules.push({
@@ -50,6 +51,7 @@ module.exports = {
       enforce: 'pre'
     });
     config.resolve.extensions.push('.jsx', '.ts', '.tsx');
+    config.resolve.alias['react-native'] = 'react-native-web';
     config.node = {
       child_process: 'empty',
       fs: 'empty',

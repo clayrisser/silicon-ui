@@ -1,6 +1,12 @@
-import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import { useTheme } from 'emotion-theming';
+import React, {
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  useEffect,
+  useState
+} from 'react';
 import {
   background,
   border,
@@ -40,30 +46,39 @@ const HTMLDiv: StyledComponent<
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
   const theme: Theme = useTheme();
+  const [color, setColor] = useState(props.color as string);
+
+  useEffect(() => {
+    setColor(
+      autoContrast(
+        props.backgroundColor
+          ? theme.colors[props.backgroundColor as string] ||
+              (props.backgroundColor as string)
+          : theme.colors.primary,
+        theme.colors.inverseText || theme.colors.text,
+        typeof props.autoContrast === 'undefined'
+          ? theme.autoContrast
+          : props.autoContrast
+      )
+    );
+  }, []);
+
   const clonedProps: BoxProps = {
-    color: autoContrast(
-      theme.colors.background,
-      theme.colors.inverseText || theme.colors.text,
-      typeof props.autoContrast === 'undefined'
-        ? theme.autoContrast
-        : props.autoContrast
-    ),
+    color,
     ...props
   };
   delete clonedProps.autoContrast;
   delete clonedProps.onPress;
+  delete clonedProps.onPressIn;
+  delete clonedProps.onPressOut;
+  delete clonedProps.theme;
 
-  function handleOnClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    props.onPress!();
-    const _props: any = props;
-    _props.onClick(e);
+  function handleClick(_e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    if (props.onPress) props.onPress();
   }
 
   return (
-    <HTMLDiv
-      onClick={handleOnClick}
-      {...(clonedProps as DetailedHTMLDivProps)}
-    />
+    <HTMLDiv {...(clonedProps as DetailedHTMLDivProps)} onClick={handleClick} />
   );
 };
 
@@ -73,12 +88,7 @@ Box.defaultProps = {
   fontFamily: 'body',
   fontSize: 0,
   fontWeight: 'body',
-  lineHeight: 'body',
-  onClick: () => {},
-  onMouseEnter: () => {},
-  onMouseLeave: () => {},
-  onMouseOver: () => {},
-  onPress: () => {}
+  lineHeight: 'body'
 };
 
 export default Box;

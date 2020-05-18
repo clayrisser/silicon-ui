@@ -25,13 +25,14 @@ storiesOf('Button', module)
     <Wrapper>
       <Button
         backgroundColor={text('backgroundColor', 'primary')}
-        borderRadius={number('borderRadius', 0)}
-        onClick={action('onClick')}
+        borderRadius={number('borderRadius', 2)}
         onFocus={action('onFocus')}
         onMouseEnter={action('onMouseEnter')}
         onMouseLeave={action('onMouseLeave')}
         onMouseOver={action('onMouseOver')}
         onPress={action('onPress')}
+        onPressIn={action('onPressIn')}
+        onPressOut={action('onPressOut')}
         styled={boolean('styled', false)}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
