@@ -11,8 +11,7 @@ import {
   position,
   shadow,
   space,
-  typography,
-  opacity
+  typography
 } from 'styled-system';
 import { BoxProps, StyledBoxProps } from './boxProps';
 import { Theme } from '../themes';
