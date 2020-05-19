@@ -11,7 +11,8 @@ import {
   position,
   shadow,
   space,
-  typography
+  typography,
+  opacity
 } from 'styled-system';
 import { BoxProps, StyledBoxProps } from './boxProps';
 import { Theme } from '../themes';
@@ -58,6 +59,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
     color,
     ...props
   });
+  delete clonedProps.activeOpacity;
   delete clonedProps.autoContrast;
   delete clonedProps.theme;
   delete touchableProps.onMouseEnter;
@@ -66,7 +68,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
 
   if (Object.keys(touchableProps).length) {
     return (
-      <TouchableOpacity {...touchableProps}>
+      <TouchableOpacity {...touchableProps} activeOpacity={props.activeOpacity}>
         <StyledView {...clonedProps}>{props.children}</StyledView>
       </TouchableOpacity>
     );
@@ -77,6 +79,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
 Box.defaultProps = {
   // fontFamily: 'body',
   // fontWeight: 'body',
+  activeOpacity: 1,
   backgroundColor: 'background',
   children: '',
   fontSize: 0,

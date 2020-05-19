@@ -22,6 +22,7 @@ export interface StyledBoxProps
     TypographyProps {}
 
 export interface BoxProps extends StyledBoxProps {
+  activeOpacity?: number;
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
   onFocus?: () => any;

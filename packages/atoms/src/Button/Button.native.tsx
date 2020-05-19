@@ -39,7 +39,6 @@ const StyledText: StyledComponent<
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const [color, setColor] = useState(props.color as string);
-  const [opacity, setOpacity] = useState(1);
   const theme: Theme = useTheme();
 
   useEffect(() => {
@@ -69,16 +68,6 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
   delete touchableProps.onMouseLeave;
   delete touchableProps.onMouseOver;
 
-  function handlePressIn() {
-    setOpacity(0.8);
-    if (props.onPressIn) props.onPressIn();
-  }
-
-  function handlePressOut() {
-    setOpacity(props.opacity! as number);
-    if (props.onPressOut) props.onPressOut();
-  }
-
   if (!props.styled) {
     return (
       <Box
@@ -103,12 +92,8 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     );
   }
   return (
-    <Box
-      {...touchableProps}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-    >
-      <StyledText {...clonedProps} opacity={opacity}>
+    <Box {...touchableProps} activeOpacity={0.8}>
+      <StyledText {...clonedProps}>
         {props.uppercase ? props.children?.toUpperCase() : props.children}
       </StyledText>
     </Box>

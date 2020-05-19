@@ -67,6 +67,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
     color,
     ...props
   };
+  delete clonedProps.activeOpacity;
   delete clonedProps.autoContrast;
   delete clonedProps.onPress;
   delete clonedProps.onPressIn;
@@ -83,6 +84,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
 };
 
 Box.defaultProps = {
+  activeOpacity: 1,
   backgroundColor: 'background',
   children: '',
   fontFamily: 'body',
@@ -91,4 +93,8 @@ Box.defaultProps = {
   lineHeight: 'body'
 };
 
-export default Box;
+export default styled(Box)`
+  :active {
+    opacity: ${({ activeOpacity }: BoxProps) => activeOpacity};
+  }
+`;
