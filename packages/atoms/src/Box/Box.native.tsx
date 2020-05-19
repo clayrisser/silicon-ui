@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text as NativeText } from 'react-native';
 import {
   background,
   border,
@@ -38,7 +38,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
 
   const children =
     typeof props.children === 'string' ? (
-      <Text>{props.children}</Text>
+      <NativeText>{props.children}</NativeText>
     ) : (
       props.children
     );
