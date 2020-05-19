@@ -1,12 +1,5 @@
+import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
-import { useTheme } from 'emotion-theming';
-import React, {
-  DetailedHTMLProps,
-  FC,
-  HTMLAttributes,
-  useEffect,
-  useState
-} from 'react';
 import {
   background,
   border,
@@ -18,9 +11,8 @@ import {
   space,
   typography
 } from 'styled-system';
+import useColor from '../hooks/useColor';
 import { BoxProps, StyledBoxProps } from './boxProps';
-import { Theme } from '../themes';
-import { autoContrast } from '../color';
 
 export type DetailedHTMLDivProps = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
@@ -45,23 +37,7 @@ const HTMLDiv: StyledComponent<
 );
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
-  const theme: Theme = useTheme();
-  const [color, setColor] = useState(props.color as string);
-
-  useEffect(() => {
-    setColor(
-      autoContrast(
-        props.backgroundColor
-          ? theme.colors[props.backgroundColor as string] ||
-              (props.backgroundColor as string)
-          : theme.colors.primary,
-        theme.colors.inverseText || theme.colors.text,
-        typeof props.autoContrast === 'undefined'
-          ? theme.autoContrast
-          : props.autoContrast
-      )
-    );
-  }, []);
+  const color = useColor(props);
 
   const clonedProps: BoxProps = {
     color,
@@ -86,7 +62,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
 Box.defaultProps = {
   activeOpacity: 1,
   backgroundColor: 'background',
-  children: '',
+  children: <></>,
   fontFamily: 'body',
   fontSize: 0,
   fontWeight: 'body',

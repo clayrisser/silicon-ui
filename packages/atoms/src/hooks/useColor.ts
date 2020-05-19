@@ -1,9 +1,34 @@
 import colorString from 'color-string';
+import { score, hex } from 'wcag-contrast';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'emotion-theming';
 import {
   Generator as ColorGenerator,
   Generator
 } from 'contrast-color-generator';
-import { score, hex } from 'wcag-contrast';
+import { Theme } from '../themes';
+
+export default function useColor(props: any): string {
+  const theme: Theme = useTheme();
+  const [color, setColor] = useState(props.color as string);
+
+  useEffect(() => {
+    setColor(
+      autoContrast(
+        props.backgroundColor
+          ? theme.colors[props.backgroundColor as string] ||
+              (props.backgroundColor as string)
+          : theme.colors.primary,
+        theme.colors.inverseText || theme.colors.text,
+        typeof props.autoContrast === 'undefined'
+          ? theme.autoContrast
+          : props.autoContrast
+      )
+    );
+  }, []);
+
+  return color;
+}
 
 export function contrast(
   color: string,

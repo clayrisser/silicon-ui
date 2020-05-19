@@ -1,7 +1,6 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
-import { TouchableOpacity } from 'react-native';
-import { useTheme } from 'emotion-theming';
+import { TouchableOpacity, Text } from 'react-native';
 import {
   background,
   border,
@@ -13,9 +12,8 @@ import {
   space,
   typography
 } from 'styled-system';
+import useColor from '../hooks/useColor';
 import { BoxProps, StyledBoxProps } from './boxProps';
-import { Theme } from '../themes';
-import { autoContrast } from '../color';
 import { splitTouchableProps } from '../util';
 
 const StyledView: StyledComponent<
@@ -36,24 +34,14 @@ const StyledView: StyledComponent<
 );
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
-  const theme: Theme = useTheme();
-  const [color, setColor] = useState(props.color as string);
+  const color = useColor(props);
 
-  useEffect(() => {
-    setColor(
-      autoContrast(
-        props.backgroundColor
-          ? theme.colors[props.backgroundColor as string] ||
-              (props.backgroundColor as string)
-          : theme.colors.primary,
-        theme.colors.inverseText || theme.colors.text,
-        typeof props.autoContrast === 'undefined'
-          ? theme.autoContrast
-          : props.autoContrast
-      )
+  const children =
+    typeof props.children === 'string' ? (
+      <Text>{props.children}</Text>
+    ) : (
+      props.children
     );
-  }, []);
-
   const [clonedProps, touchableProps] = splitTouchableProps<BoxProps>({
     color,
     ...props
@@ -68,11 +56,11 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
   if (Object.keys(touchableProps).length) {
     return (
       <TouchableOpacity {...touchableProps} activeOpacity={props.activeOpacity}>
-        <StyledView {...clonedProps}>{props.children}</StyledView>
+        <StyledView {...clonedProps}>{children}</StyledView>
       </TouchableOpacity>
     );
   }
-  return <StyledView {...clonedProps}>{props.children}</StyledView>;
+  return <StyledView {...clonedProps}>{children}</StyledView>;
 };
 
 Box.defaultProps = {
@@ -80,7 +68,7 @@ Box.defaultProps = {
   // fontWeight: 'body',
   activeOpacity: 1,
   backgroundColor: 'background',
-  children: '',
+  children: <></>,
   fontSize: 0,
   lineHeight: 'body'
 };

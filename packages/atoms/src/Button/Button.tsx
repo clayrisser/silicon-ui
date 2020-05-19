@@ -1,12 +1,5 @@
-import React, {
-  FC,
-  DetailedHTMLProps,
-  ButtonHTMLAttributes,
-  useEffect,
-  useState
-} from 'react';
+import React, { FC, DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
-import { useTheme } from 'emotion-theming';
 import {
   background,
   border,
@@ -18,9 +11,8 @@ import {
   space,
   typography
 } from 'styled-system';
+import useColor from '../hooks/useColor';
 import { ButtonProps, StyledButtonProps } from './buttonProps';
-import { Theme } from '../themes';
-import { autoContrast } from '../color';
 
 export type DetailedHTMLButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -45,23 +37,7 @@ const HTMLButton: StyledComponent<
 );
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const theme: Theme = useTheme();
-  const [color, setColor] = useState(props.color as string);
-
-  useEffect(() => {
-    setColor(
-      autoContrast(
-        props.backgroundColor
-          ? theme.colors[props.backgroundColor as string] ||
-              (props.backgroundColor as string)
-          : theme.colors.primary,
-        theme.colors.inverseText || theme.colors.text,
-        typeof props.autoContrast === 'undefined'
-          ? theme.autoContrast
-          : props.autoContrast
-      )
-    );
-  }, []);
+  const color = useColor(props);
 
   const clonedProps: ButtonProps = {
     color,

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
 import { Button as NativeButton } from 'react-native';
 import { useTheme } from 'emotion-theming';
@@ -15,9 +15,9 @@ import {
 } from 'styled-system';
 import Box from '../Box';
 import platform, { IOS } from '../platform';
+import useColor from '../hooks/useColor';
 import { ButtonProps, StyledButtonProps } from './buttonProps';
 import { Theme } from '../themes';
-import { autoContrast } from '../color';
 import { splitTouchableProps } from '../util';
 
 const StyledText: StyledComponent<
@@ -38,23 +38,8 @@ const StyledText: StyledComponent<
 );
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const [color, setColor] = useState(props.color as string);
+  const color = useColor(props);
   const theme: Theme = useTheme();
-
-  useEffect(() => {
-    setColor(
-      autoContrast(
-        props.backgroundColor
-          ? theme.colors[props.backgroundColor as string] ||
-              (props.backgroundColor as string)
-          : theme.colors.primary,
-        theme.colors.inverseText || theme.colors.text,
-        typeof props.autoContrast === 'undefined'
-          ? theme.autoContrast
-          : props.autoContrast
-      )
-    );
-  }, []);
 
   const [clonedProps, touchableProps] = splitTouchableProps<ButtonProps>({
     color,
