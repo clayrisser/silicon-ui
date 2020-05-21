@@ -15,7 +15,6 @@ module.exports = {
       }
     }
   ],
-
   webpackFinal: async (config) => {
     if (!config) config = {};
     if (!config.module) config.module = {};
@@ -29,7 +28,19 @@ module.exports = {
       include: [
         path.resolve(rootPath, 'src'),
         path.resolve(rootPath, 'storybook'),
-        path.resolve(rootPath, 'node_modules/react-native-vector-icons')
+        path.resolve(rootPath, 'node_modules/native-base-shoutem-theme'),
+        path.resolve(rootPath, 'node_modules/react-native-drawer'),
+        path.resolve(rootPath, 'node_modules/react-native-easy-grid'),
+        path.resolve(rootPath, 'node_modules/react-native-safe-area-view'),
+        path.resolve(rootPath, 'node_modules/react-native-tab-view'),
+        path.resolve(rootPath, 'node_modules/react-native-vector-icons'),
+        path.resolve(rootPath, 'node_modules/react-native-web'),
+        path.resolve(rootPath, 'node_modules/react-navigation'),
+        path.resolve(rootPath, 'node_modules/static-container'),
+        path.resolve(
+          rootPath,
+          'node_modules/react-native-keyboard-aware-scroll-view'
+        )
       ],
       use: [
         {
@@ -58,6 +69,9 @@ module.exports = {
     });
     config.resolve.extensions.push('.jsx', '.ts', '.tsx');
     config.resolve.alias['react-native'] = 'react-native-web';
+    config.resolve.alias[
+      'react-native/Libraries/Renderer/shims/ReactNativePropRegistry'
+    ] = 'react-native-web/dist/modules/ReactNativePropRegistry';
     config.node = {
       child_process: 'empty',
       fs: 'empty',

@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
-import styled, { StyledComponent } from '@emotion/primitives';
-import { TouchableOpacity, Text as NativeText } from 'react-native';
+import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
   border,
@@ -13,13 +12,18 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
+import { BoxProps, StyledBoxProps } from './boxProps';
 
-const StyledView: StyledComponent<
+export type DetailedHTMLDivProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
+
+const HTMLDiv: StyledComponent<
+  DetailedHTMLDivProps,
   StyledBoxProps,
-  StyledBoxProps,
-  any
-> = styled.View(
+  object
+> = styled.div(
   compose(
     background,
     border,
@@ -34,35 +38,37 @@ const StyledView: StyledComponent<
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
   const color = useColor(props);
-  const [styledBoxProps, customBoxProps, touchableOpacityProps] = splitProps({
+
+  const clonedProps: BoxProps = {
     color,
     ...props
-  });
-  const children =
-    typeof customBoxProps.children === 'string' ? (
-      <NativeText>{customBoxProps.children}</NativeText>
-    ) : (
-      props.children
-    );
-  if (Object.keys(touchableOpacityProps).length) {
-    return (
-      <TouchableOpacity {...touchableOpacityProps}>
-        <StyledView {...styledBoxProps}>{children}</StyledView>
-      </TouchableOpacity>
-    );
+  };
+  delete clonedProps.activeOpacity;
+  delete clonedProps.autoContrast;
+  delete clonedProps.onPress;
+  delete clonedProps.onPressIn;
+  delete clonedProps.onPressOut;
+  delete clonedProps.theme;
+
+  function handleClick(e: any) {
+    if (props.onPress) props.onPress(e);
   }
-  return <StyledView {...styledBoxProps}>{children}</StyledView>;
+
+  return <HTMLDiv {...(clonedProps as any)} onClick={handleClick} />;
 };
 
 Box.defaultProps = {
-  // fontFamily: 'body',
-  // fontWeight: 'body',
   activeOpacity: 1,
-  autoContrast: false,
   backgroundColor: 'background',
   children: <></>,
+  fontFamily: 'body',
   fontSize: 0,
+  fontWeight: 'body',
   lineHeight: 'body'
 };
 
-export default Box;
+export default styled(Box)`
+  :active {
+    opacity: ${({ activeOpacity }: BoxProps) => activeOpacity};
+  }
+`;

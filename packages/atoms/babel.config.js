@@ -15,12 +15,14 @@ module.exports = (api) => {
         '@babel/preset-env',
         {
           corejs: 3,
+          modules: 'commonjs',
           useBuiltIns: 'usage',
           targets: {
             node: '6'
           }
         }
       ],
+      '@babel/preset-flow',
       '@babel/preset-typescript',
       '@babel/preset-react'
     ],
