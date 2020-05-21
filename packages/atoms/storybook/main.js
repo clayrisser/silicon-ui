@@ -28,7 +28,8 @@ module.exports = {
       test: /\.(j|t)sx?$/,
       include: [
         path.resolve(rootPath, 'src'),
-        path.resolve(rootPath, 'storybook')
+        path.resolve(rootPath, 'storybook'),
+        path.resolve(rootPath, 'node_modules/react-native-vector-icons')
       ],
       use: [
         {
@@ -39,6 +40,11 @@ module.exports = {
           loader: require.resolve('react-docgen-typescript-loader')
         }
       ]
+    });
+    config.module.rules.push({
+      test: /\.ttf$/,
+      loader: 'url-loader', // or directly file-loader
+      include: path.resolve(rootPath, 'node_modules/react-native-vector-icons')
     });
     config.module.rules.push({
       test: /\.story\.tsx?$/,

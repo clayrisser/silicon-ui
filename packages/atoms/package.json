@@ -53,12 +53,15 @@
     "react-primitives": "^0.8.1"
   },
   "dependencies": {
+    "@emotion/primitives-core": "^10.0.27",
     "@theme-ui/presets": "^0.3.0",
     "color-contrast-calc": "^0.4.1",
     "color-string": "^1.5.3",
     "contrast-color-generator": "^0.1.1",
     "emotion-theming": "^10.0.27",
+    "native-base": "^2.13.12",
     "react": "~16.9.0",
+    "react-native-vector-icons": "^6.6.0",
     "styled-system": "^5.1.5",
     "wcag-contrast": "^3.0.0"
   },
@@ -132,7 +135,8 @@
     "storybook-addon-designs": "^5.2.1",
     "storybook-addon-emotion-theme": "^2.1.1",
     "storybook-addon-specifications": "^2.1.5",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "url-loader": "^4.1.0"
   },
   "resolutions": {
     "@types/react": "~16.9.23",

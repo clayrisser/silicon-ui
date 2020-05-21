@@ -1,27 +1,30 @@
-import { ReactNode } from 'react';
+import { TextInputProps as NativeTextInputProps } from 'react-native';
 import {
+  BackgroundProps,
+  BorderProps,
   ColorProps,
   LayoutProps,
   PositionProps,
   ShadowProps,
   SpaceProps,
-  BorderProps,
   TypographyProps
 } from 'styled-system';
-import { ButtonProps } from 'react-native';
 import { Theme } from '../themes';
 
-export interface StyledTextProps
+export interface StyledTextInputProps
   extends ColorProps,
+    BackgroundProps,
+    BorderProps,
     LayoutProps,
     PositionProps,
     ShadowProps,
-    BorderProps,
     SpaceProps,
     TypographyProps {}
 
-export interface TextProps extends StyledTextProps {
-  children?: ReactNode;
+export interface TextInputProps
+  extends StyledTextInputProps,
+    NativeTextInputProps {
+  autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   onFocus?: () => any;
   onMouseEnter?: () => any;
   onMouseLeave?: () => any;
@@ -31,3 +34,5 @@ export interface TextProps extends StyledTextProps {
   onPressOut?: () => any;
   theme?: Theme;
 }
+
+export { NativeTextInputProps };

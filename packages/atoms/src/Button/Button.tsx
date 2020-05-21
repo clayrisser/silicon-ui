@@ -1,6 +1,10 @@
-import React, { FC, DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
-import styled, { StyledComponent } from '@emotion/styled';
+import React, { FC } from 'react';
+import styled, { StyledComponent } from '@emotion/primitives';
+import { Button as NativeBaseButton } from 'native-base';
+import { TextProps } from 'react-native';
+import { useTheme } from 'emotion-theming';
 import {
+  LayoutProps,
   background,
   border,
   color,
@@ -12,95 +16,71 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { ButtonProps, StyledButtonProps } from './buttonProps';
-
-export type DetailedHTMLButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
-
-const HTMLButton: StyledComponent<
-  DetailedHTMLButtonProps,
+import { Theme } from '../themes';
+import { createStyled } from '../styled';
+import {
+  ButtonProps,
   StyledButtonProps,
-  object
-> = styled.button(
-  compose(
-    background,
-    border,
-    color,
-    layout,
-    position,
-    shadow,
-    space,
-    typography
-  )
+  StyledTextProps,
+  antiForwardButtonPropsKeys,
+  splitProps
+} from './buttonProps';
+
+const StyledText: StyledComponent<
+  StyledTextProps,
+  TextProps & LayoutProps,
+  any
+> = styled.Text(compose(color, typography, layout));
+
+const StyledNativeBaseButton = createStyled<StyledButtonProps>(
+  NativeBaseButton,
+  [background, border, layout, position, shadow, space],
+  antiForwardButtonPropsKeys
 );
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const color = useColor(props);
-
-  const clonedProps: ButtonProps = {
+  const theme: Theme = useTheme();
+  const [styledButtonProps, customButtonProps, styledTextProps] = splitProps({
     color,
-    ...props
-  };
-  delete clonedProps.autoContrast;
-  delete clonedProps.onPress;
-  delete clonedProps.onPressIn;
-  delete clonedProps.onPressOut;
-  delete clonedProps.styled;
-  delete clonedProps.theme;
-  delete clonedProps.uppercase;
-
-  function handleClick(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    if (props.onPress) props.onPress();
-  }
-
-  function handleMouseDown(
-    _e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
-    if (props.onPressIn) props.onPressIn();
-  }
-
-  function handleMouseUp(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    if (props.onPressOut) props.onPressOut();
-  }
-
+    ...props,
+    ...(props.backgroundColor !== 'undefined'
+      ? {
+          backgroundColor:
+            theme.colors[props.backgroundColor as string] ||
+            props.backgroundColor
+        }
+      : {})
+  });
+  const children =
+    typeof customButtonProps.children === 'string' ? (
+      <StyledText {...styledTextProps} width="100%">
+        {customButtonProps.children}
+      </StyledText>
+    ) : (
+      props.children
+    );
   return (
-    <HTMLButton
-      {...(clonedProps as DetailedHTMLButtonProps)}
-      onClick={handleClick}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-    />
+    <StyledNativeBaseButton {...styledButtonProps}>
+      {children}
+    </StyledNativeBaseButton>
   );
 };
 
 Button.defaultProps = {
+  // fontFamily: 'body',
+  // fontWeight: 'body',
+  // lineHeight: 'body',
+  autoContrast: false,
   backgroundColor: 'primary',
-  borderRadius: 2,
-  borderWidth: 0,
   children: '',
-  fontFamily: 'body',
   fontSize: 2,
-  fontWeight: 'body',
-  lineHeight: 'body',
   paddingBottom: 2,
   paddingLeft: 2,
   paddingRight: 2,
   paddingTop: 2,
-  styled: false,
-  uppercase: true,
+  textAlign: 'center',
   width: '100%'
 };
 
-export default styled(Button)`
-  cursor: pointer;
-  font-weight: 500;
-  transition-duration: 0.25s;
-  transition-property: opacity;
-  :active {
-    opacity: 0.8;
-  }
-  text-transform: ${({ uppercase }: ButtonProps) =>
-    uppercase ? 'uppercase' : 'none'};
-`;
+export default Button;

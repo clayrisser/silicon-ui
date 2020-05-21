@@ -15,10 +15,10 @@ export default function useColor(props: any): string {
   useEffect(() => {
     setColor(
       autoContrast(
-        props.backgroundColor
+        typeof props.backgroundColor !== 'undefined'
           ? theme.colors[props.backgroundColor as string] ||
               (props.backgroundColor as string)
-          : theme.colors.primary,
+          : null,
         theme.colors.inverseText || theme.colors.text,
         typeof props.autoContrast === 'undefined'
           ? theme.autoContrast
@@ -46,14 +46,14 @@ export function contrast(
 }
 
 export function autoContrast(
-  color: string,
+  color: string | null,
   origionalColor: string,
   level: boolean | 'A' | 'AA' | 'AAA' = false,
   minimumRatio = 10,
   hue?: number,
   brighterFirst?: boolean
 ): string {
-  if (!level) return origionalColor;
+  if (!level || !color) return origionalColor;
   const scoreResult = score(hex(toHex(color), toHex(origionalColor)));
   if (
     scoreResult !== 'Fail' &&
