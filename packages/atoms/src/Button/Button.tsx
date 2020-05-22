@@ -12,7 +12,7 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { ButtonProps, StyledButtonProps } from './buttonProps';
+import { ButtonProps, StyledButtonProps, splitProps } from './buttonProps';
 
 export type DetailedHTMLButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -38,15 +38,10 @@ const HTMLButton: StyledComponent<
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const color = useColor(props);
-  const clonedProps: ButtonProps = {
+  const { customButtonProps, styledButtonProps, styledTextProps } = splitProps({
     color,
     ...props
-  };
-  delete clonedProps.autoContrast;
-  delete clonedProps.onPress;
-  delete clonedProps.onPressIn;
-  delete clonedProps.onPressOut;
-  delete clonedProps.theme;
+  });
 
   function handleClick(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (props.onPress) props.onPress();
@@ -62,15 +57,20 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
 
   return (
     <HTMLButton
-      {...(clonedProps as any)}
+      {...(styledButtonProps as any)}
+      {...(styledTextProps as any)}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-    />
+    >
+      {customButtonProps.children}
+    </HTMLButton>
   );
 };
 
 Button.defaultProps = {
+  activeOpacity: 0.8,
+  autoContrast: false,
   backgroundColor: 'primary',
   borderRadius: 2,
   borderWidth: 0,
@@ -92,6 +92,6 @@ export default styled(Button)`
   transition-duration: 0.25s;
   transition-property: opacity;
   :active {
-    opacity: 0.8;
+    opacity: ${({ activeOpacity }: ButtonProps) => activeOpacity};
   }
 `;

@@ -41,7 +41,12 @@ const StyledNativeBaseButton = createStyled<StyledButtonProps>(
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const color = useColor(props);
   const theme: Theme = useTheme();
-  const [styledButtonProps, customButtonProps, styledTextProps] = splitProps({
+  const {
+    styledButtonProps,
+    customButtonProps,
+    styledTextProps,
+    nativeButtonProps
+  } = splitProps({
     color,
     ...props,
     ...(props.backgroundColor !== 'undefined'
@@ -61,7 +66,7 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
       props.children
     );
   return (
-    <StyledNativeBaseButton {...styledButtonProps}>
+    <StyledNativeBaseButton {...styledButtonProps} {...nativeButtonProps}>
       {children}
     </StyledNativeBaseButton>
   );

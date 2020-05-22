@@ -12,7 +12,7 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { BoxProps, StyledBoxProps } from './boxProps';
+import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
 
 export type DetailedHTMLDivProps = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
@@ -38,23 +38,24 @@ const HTMLDiv: StyledComponent<
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
   const color = useColor(props);
-
-  const clonedProps: BoxProps = {
+  const { styledBoxProps, customBoxProps, touchableOpacityProps } = splitProps({
     color,
     ...props
-  };
-  delete clonedProps.activeOpacity;
-  delete clonedProps.autoContrast;
-  delete clonedProps.onPress;
-  delete clonedProps.onPressIn;
-  delete clonedProps.onPressOut;
-  delete clonedProps.theme;
+  });
 
   function handleClick(e: any) {
     if (props.onPress) props.onPress(e);
   }
 
-  return <HTMLDiv {...(clonedProps as any)} onClick={handleClick} />;
+  return (
+    <HTMLDiv
+      {...(styledBoxProps as any)}
+      {...touchableOpacityProps}
+      onClick={handleClick}
+    >
+      {customBoxProps.children}
+    </HTMLDiv>
+  );
 };
 
 Box.defaultProps = {

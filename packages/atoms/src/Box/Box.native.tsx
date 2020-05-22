@@ -34,7 +34,12 @@ const StyledView: StyledComponent<
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
   const color = useColor(props);
-  const [styledBoxProps, customBoxProps, touchableOpacityProps] = splitProps({
+  const {
+    customBoxProps,
+    nativeBoxProps,
+    styledBoxProps,
+    touchableOpacityProps
+  } = splitProps({
     color,
     ...props
   });
@@ -47,11 +52,17 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
   if (Object.keys(touchableOpacityProps).length) {
     return (
       <TouchableOpacity {...touchableOpacityProps}>
-        <StyledView {...styledBoxProps}>{children}</StyledView>
+        <StyledView {...styledBoxProps} {...nativeBoxProps}>
+          {children}
+        </StyledView>
       </TouchableOpacity>
     );
   }
-  return <StyledView {...styledBoxProps}>{children}</StyledView>;
+  return (
+    <StyledView {...styledBoxProps} {...nativeBoxProps}>
+      {children}
+    </StyledView>
+  );
 };
 
 Box.defaultProps = {

@@ -25,7 +25,7 @@ export default function useColor(props: any): string {
           : props.autoContrast
       )
     );
-  }, []);
+  }, [props]);
 
   return color;
 }

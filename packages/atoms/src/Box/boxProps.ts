@@ -25,8 +25,9 @@ export interface StyledBoxProps
     PositionProps,
     ShadowProps,
     SpaceProps,
-    TypographyProps,
-    ViewProps {}
+    TypographyProps {}
+
+export interface NativeBoxProps extends ViewProps {}
 
 export interface CustomBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
@@ -36,10 +37,15 @@ export interface CustomBoxProps {
 
 export interface BoxProps
   extends CustomBoxProps,
+    NativeBoxProps,
     StyledBoxProps,
     TouchableOpacityProps {}
 
-export const customBoxPropsKeys = new Set(['autoContrast', 'theme']);
+export const customBoxPropsKeys = new Set([
+  'autoContrast',
+  'children',
+  'theme'
+]);
 
 export const touchableOpacityPropsKeys = new Set([
   'activeOpacity',
@@ -60,20 +66,39 @@ export const touchableOpacityPropsKeys = new Set([
   'testID'
 ]);
 
-export function splitProps(
-  props: BoxProps
-): [StyledBoxProps, CustomBoxProps, TouchableOpacityProps] {
+export const nativeBoxPropsKeys = new Set([
+  'onPress',
+  'onPressIn',
+  'onPressOut'
+]);
+
+export interface SplitProps {
+  customBoxProps: CustomBoxProps;
+  nativeBoxProps: NativeBoxProps;
+  styledBoxProps: StyledBoxProps;
+  touchableOpacityProps: TouchableOpacityProps;
+}
+
+export function splitProps(props: BoxProps): SplitProps {
   const styledBoxProps: { [key: string]: any } = {};
   const customBoxProps: { [key: string]: any } = {};
   const touchableOpacityProps: { [key: string]: any } = {};
+  const nativeBoxProps: { [key: string]: any } = {};
   Object.entries({ ...props }).forEach(([key, prop]: [string, any]) => {
     if (customBoxPropsKeys.has(key)) {
       customBoxProps[key] = prop;
     } else if (touchableOpacityPropsKeys.has(key)) {
       touchableOpacityProps[key] = prop;
+    } else if (nativeBoxPropsKeys.has(key)) {
+      nativeBoxProps[key] = prop;
     } else {
       styledBoxProps[key] = prop;
     }
   });
-  return [styledBoxProps, customBoxProps, touchableOpacityProps];
+  return {
+    customBoxProps,
+    nativeBoxProps,
+    styledBoxProps,
+    touchableOpacityProps
+  };
 }

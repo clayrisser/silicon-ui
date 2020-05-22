@@ -18,22 +18,22 @@ storiesOf('Button', module)
   .add('with knobs', () => (
     <Wrapper>
       <Button
-      // backgroundColor={text('backgroundColor', 'primary')}
-      // borderRadius={number('borderRadius', 2)}
-      // onFocus={action('onFocus')}
-      // onPress={action('onPress')}
-      // onPressIn={action('onPressIn')}
-      // onPressOut={action('onPressOut')}
-      // autoContrast={select<'A' | 'AA' | 'AAA'>(
-      //   'autoContrast',
-      //   {
-      //     false: '' as 'A',
-      //     A: 'A',
-      //     AA: 'AA',
-      //     AAA: 'AAA'
-      //   },
-      //   'AA'
-      // )}
+        backgroundColor={text('backgroundColor', 'primary')}
+        borderRadius={number('borderRadius', 2)}
+        onFocus={action('onFocus')}
+        onPress={action('onPress')}
+        onPressIn={action('onPressIn')}
+        onPressOut={action('onPressOut')}
+        autoContrast={select<'A' | 'AA' | 'AAA'>(
+          'autoContrast',
+          {
+            false: '' as 'A',
+            A: 'A',
+            AA: 'AA',
+            AAA: 'AAA'
+          },
+          'AA'
+        )}
       >
         {text('children', 'click me')}
       </Button>
