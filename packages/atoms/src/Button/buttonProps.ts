@@ -82,7 +82,7 @@ export function splitProps(props: ButtonProps): SplitProps {
     } else if (styledTextPropsKeys.has(key)) {
       styledTextProps[key] = prop;
     } else if (nativeButtonPropsKeys.has(key)) {
-      nativeButtonProps[key] = props;
+      nativeButtonProps[key] = prop;
     } else {
       styledButtonProps[key] = prop;
     }
