@@ -11,10 +11,12 @@
     "build": "pnpm run exec -- build",
     "clean": "pnpm run exec -- clean",
     "exec": "pnpm recursive --workspace-concurrency=Infinity run --filter={packages}",
+    "expo": "cd packages/atoms && pnpm run expo",
     "inc": "pnpm run exec -- inc",
     "publish": "pnpm -r publish --filter={packages} --access=public",
     "purge": "git clean -fXd",
-    "update": "pnpm -r update -L"
+    "update": "pnpm -r update -L",
+    "web": "cd packages/atoms && pnpm run web"
   },
   "license": "Apache-2.0",
   "devDependencies": {

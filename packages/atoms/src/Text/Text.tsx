@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   color,
@@ -9,12 +9,12 @@ import {
   space,
   typography
 } from 'styled-system';
-import { TextProps, StyledTextProps } from './textProps';
-
-export type DetailedHTMLDivProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->;
+import {
+  DetailedHTMLDivProps,
+  StyledTextProps,
+  TextProps,
+  splitProps
+} from './textProps';
 
 const HTMLDiv: StyledComponent<
   DetailedHTMLDivProps,
@@ -23,18 +23,25 @@ const HTMLDiv: StyledComponent<
 > = styled.div(compose(color, layout, position, shadow, space, typography));
 
 const Text: FC<TextProps> = (props: TextProps) => {
-  const clonedProps: TextProps = { ...props };
-  delete clonedProps.onPress;
-  delete clonedProps.onPressIn;
-  delete clonedProps.onPressOut;
-  delete clonedProps.theme;
+  const {
+    customTextProps,
+    styledTextProps,
+    styledViewProps,
+    touchableOpacityProps
+  } = splitProps(props);
 
-  function handleClick(_e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    if (props.onPress) props.onPress();
+  function handleClick(e: any) {
+    if (props.onPress) props.onPress(e);
   }
 
   return (
-    <HTMLDiv {...(clonedProps as DetailedHTMLDivProps)} onClick={handleClick} />
+    <HTMLDiv
+      {...customTextProps}
+      {...touchableOpacityProps}
+      {...(styledTextProps as any)}
+      {...(styledViewProps as any)}
+      onClick={handleClick}
+    />
   );
 };
 

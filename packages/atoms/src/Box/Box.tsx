@@ -49,12 +49,11 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
 
   return (
     <HTMLDiv
-      {...(styledBoxProps as any)}
+      {...customBoxProps}
       {...touchableOpacityProps}
+      {...(styledBoxProps as any)}
       onClick={handleClick}
-    >
-      {customBoxProps.children}
-    </HTMLDiv>
+    />
   );
 };
 

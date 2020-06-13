@@ -16,6 +16,8 @@ storiesOf('Text', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <Text>{text('children', 'Hello, world!')}</Text>
+      <Text color={text('color', 'text')}>
+        {text('children', 'Hello, world!')}
+      </Text>
     </Wrapper>
   ));
