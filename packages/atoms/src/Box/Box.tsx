@@ -12,7 +12,7 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
+import { BoxProps, splitProps } from './boxProps';
 
 export type DetailedHTMLDivProps = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
@@ -21,7 +21,7 @@ export type DetailedHTMLDivProps = DetailedHTMLProps<
 
 const HTMLDiv: StyledComponent<
   DetailedHTMLDivProps,
-  StyledBoxProps,
+  BoxProps,
   object
 > = styled.div(
   compose(

@@ -11,21 +11,22 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { InputProps } from './inputProps';
+import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
-  StyledInputProps,
+  InputProps,
   antiForwardInputPropsKeys,
   splitProps
 } from './inputProps';
 
-const StyledNativeBaseInput = createStyled<StyledInputProps>(
+const StyledNativeBaseInput = createStyled<InputProps>(
   NativeBaseInput,
   [background, border, color, layout, position, shadow, space, typography],
   antiForwardInputPropsKeys
 );
 
 const Input: FC<InputProps> = (props: InputProps) => {
+  const item = useItem();
   const color = useColor(props);
   const {
     customInputProps,
@@ -36,13 +37,17 @@ const Input: FC<InputProps> = (props: InputProps) => {
     ...props,
     color
   });
+  const styledNativeBaseInput = (
+    <StyledNativeBaseInput
+      {...customInputProps}
+      {...nativeInputProps}
+      {...styledInputProps}
+    />
+  );
+  if (item.hasItemParent) return styledNativeBaseInput;
   return (
     <NativeBaseItem {...nativeItemProps}>
-      <StyledNativeBaseInput
-        {...customInputProps}
-        {...nativeInputProps}
-        {...styledInputProps}
-      />
+      {styledNativeBaseInput}
     </NativeBaseItem>
   );
 };
