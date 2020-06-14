@@ -47,8 +47,8 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     styledTextProps,
     nativeButtonProps
   } = splitProps({
-    color,
     ...props,
+    color,
     ...(props.backgroundColor !== 'undefined'
       ? {
           backgroundColor:

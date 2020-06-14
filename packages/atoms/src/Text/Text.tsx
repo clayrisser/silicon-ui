@@ -34,6 +34,14 @@ const Text: FC<TextProps> = (props: TextProps) => {
     if (props.onPress) props.onPress(e);
   }
 
+  function handleMouseDown(e: any) {
+    if (props.onPressIn) props.onPressIn(e);
+  }
+
+  function handleMouseUp(e: any) {
+    if (props.onPressOut) props.onPressOut(e);
+  }
+
   return (
     <HTMLDiv
       {...customTextProps}
@@ -41,6 +49,8 @@ const Text: FC<TextProps> = (props: TextProps) => {
       {...(styledTextProps as any)}
       {...(styledViewProps as any)}
       onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
     />
   );
 };

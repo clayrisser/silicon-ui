@@ -1,3 +1,4 @@
+import { DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
 import {
   BackgroundColorProps,
   BackgroundProps,
@@ -12,6 +13,11 @@ import {
 } from 'styled-system';
 import { NativeBase } from 'native-base';
 import { Theme } from '../themes';
+
+export type DetailedHTMLButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
 
 export interface StyledButtonProps
   extends BackgroundProps,

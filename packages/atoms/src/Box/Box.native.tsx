@@ -40,8 +40,8 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
     styledBoxProps,
     touchableOpacityProps
   } = splitProps({
-    color,
-    ...props
+    ...props,
+    color
   });
   const children =
     typeof customBoxProps.children === 'string' ? (

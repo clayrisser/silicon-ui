@@ -1,4 +1,4 @@
-import React, { FC, DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
+import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -12,16 +12,15 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { ButtonProps, StyledButtonProps, splitProps } from './buttonProps';
-
-export type DetailedHTMLButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
+import {
+  ButtonProps,
+  DetailedHTMLButtonProps,
+  splitProps
+} from './buttonProps';
 
 const HTMLButton: StyledComponent<
   DetailedHTMLButtonProps,
-  StyledButtonProps,
+  ButtonProps,
   object
 > = styled.button(
   compose(
@@ -39,8 +38,8 @@ const HTMLButton: StyledComponent<
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const color = useColor(props);
   const { customButtonProps, styledButtonProps, styledTextProps } = splitProps({
-    color,
-    ...props
+    ...props,
+    color
   });
 
   function handleClick(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -57,14 +56,13 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
 
   return (
     <HTMLButton
-      {...(styledButtonProps as any)}
-      {...(styledTextProps as any)}
+      {...styledButtonProps}
+      {...styledTextProps}
+      {...(customButtonProps as any)}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-    >
-      {customButtonProps.children}
-    </HTMLButton>
+    />
   );
 };
 

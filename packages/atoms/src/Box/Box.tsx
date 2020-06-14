@@ -47,12 +47,22 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
     if (props.onPress) props.onPress(e);
   }
 
+  function handleMouseDown(e: any) {
+    if (props.onPressIn) props.onPressIn(e);
+  }
+
+  function handleMouseUp(e: any) {
+    if (props.onPressOut) props.onPressOut(e);
+  }
+
   return (
     <HTMLDiv
       {...customBoxProps}
       {...touchableOpacityProps}
       {...(styledBoxProps as any)}
       onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
     />
   );
 };
