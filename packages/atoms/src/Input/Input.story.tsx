@@ -5,14 +5,14 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-// import docs from './Button.docs.mdx';
+// import docs from './Input.docs.mdx';
 
 storiesOf('Input', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemesProvider(themes))
   .addParameters({
     // docs: { page: docs },
-    // jest: ['Button.spec.tsx']
+    // jest: ['Input.spec.tsx']
   })
   .add('with knobs', () => (
     <Wrapper>

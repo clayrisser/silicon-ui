@@ -1,4 +1,4 @@
 declare module '*.svg' {
-  const svgComponent: string;
-  export default svgComponent;
+  const svg: string;
+  export default svg;
 }

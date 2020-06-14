@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
+import { DetailedHTMLProps, ButtonHTMLAttributes, ReactNode } from 'react';
 import {
   BackgroundColorProps,
   BackgroundProps,
@@ -35,7 +35,7 @@ export interface StyledTextProps extends TypographyProps, TextColorProps {}
 
 export interface CustomButtonProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
-  children?: string;
+  children?: ReactNode;
   theme?: Theme;
 }
 

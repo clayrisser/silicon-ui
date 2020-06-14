@@ -39,8 +39,8 @@ const HTMLDiv: StyledComponent<
 const Box: FC<BoxProps> = (props: BoxProps) => {
   const color = useColor(props);
   const { styledBoxProps, customBoxProps, touchableOpacityProps } = splitProps({
-    color,
-    ...props
+    ...props,
+    color
   });
 
   function handleClick(e: any) {

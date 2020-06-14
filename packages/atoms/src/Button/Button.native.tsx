@@ -20,7 +20,6 @@ import { Theme } from '../themes';
 import { createStyled } from '../styled';
 import {
   ButtonProps,
-  StyledButtonProps,
   StyledTextProps,
   antiForwardButtonPropsKeys,
   splitProps
@@ -32,7 +31,7 @@ const StyledText: StyledComponent<
   any
 > = styled.Text(compose(color, typography, layout));
 
-const StyledNativeBaseButton = createStyled<StyledButtonProps>(
+const StyledNativeBaseButton = createStyled<ButtonProps>(
   NativeBaseButton,
   [background, border, layout, position, shadow, space],
   antiForwardButtonPropsKeys
@@ -63,7 +62,7 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
         {customButtonProps.children}
       </StyledText>
     ) : (
-      props.children
+      customButtonProps.children
     );
   return (
     <StyledNativeBaseButton {...styledButtonProps} {...nativeButtonProps}>

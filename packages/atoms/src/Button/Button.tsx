@@ -42,7 +42,7 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     color
   });
 
-  function handleClick(_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleClick(_e: any) {
     if (props.onPress) props.onPress();
   }
 

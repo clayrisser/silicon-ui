@@ -47,7 +47,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
     typeof customBoxProps.children === 'string' ? (
       <NativeText>{customBoxProps.children}</NativeText>
     ) : (
-      props.children
+      customBoxProps.children
     );
   if (Object.keys(touchableOpacityProps).length) {
     return (
