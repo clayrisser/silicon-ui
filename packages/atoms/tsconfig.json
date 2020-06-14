@@ -10,7 +10,7 @@
     "lib": ["esnext"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "lib",
+    "outDir": "node_modules/.tmp/lib",
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,

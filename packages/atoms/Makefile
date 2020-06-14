@@ -11,7 +11,7 @@ node_modules: package.json
 
 .PHONY: prepare
 prepare:
-	# @$(SED) -i "s/Window\['location'\]/any/g" node_modules/@types/reach__router/index.d.ts
+	@$(SED) -i "s/Window\['location'\]/any/g" node_modules/@types/reach__router/index.d.ts
 
 .PHONY: format
 format: node_modules
