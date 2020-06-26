@@ -58,15 +58,15 @@ export const touchableOpacityPropsKeys = new Set([
   'onFocus',
   'onLayout',
   'onLongPress',
-  'onPress',
-  'onPressIn',
-  'onPressOut',
-  'style',
   'pressRetentionOffset',
   'testID'
 ]);
 
-export const nativeBoxPropsKeys = new Set<string>([]);
+export const nativeBoxPropsKeys = new Set<string>([
+  'onPress',
+  'onPressIn',
+  'onPressOut'
+]);
 
 export interface SplitProps {
   customBoxProps: CustomBoxProps;
