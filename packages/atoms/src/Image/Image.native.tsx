@@ -16,7 +16,7 @@ import {
 } from 'styled-system';
 import {
   ImageProps,
-  antiForwardButtonPropsKeys,
+  antiForwardImagePropsKeys,
   splitProps
 } from './imageProps';
 import { createStyled } from '../styled';
@@ -24,7 +24,7 @@ import { createStyled } from '../styled';
 const StyledImageBackground = createStyled<ImageProps>(
   ImageBackground,
   [background, border, color, layout, position, shadow, space, typography],
-  antiForwardButtonPropsKeys
+  antiForwardImagePropsKeys
 );
 
 const Image: FC<ImageProps> = (props: ImageProps) => {

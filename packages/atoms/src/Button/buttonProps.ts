@@ -47,11 +47,7 @@ export interface ButtonProps
 
 export const antiForwardButtonPropsKeys = new Set(['borderColor']);
 
-export const customButtonPropsKeys = new Set([
-  'autoContrast',
-  'children',
-  'theme'
-]);
+export const customButtonPropsKeys = new Set(['autoContrast', 'children']);
 
 export const styledTextPropsKeys = new Set([
   'color',
@@ -65,9 +61,30 @@ export const styledTextPropsKeys = new Set([
 ]);
 
 export const nativeButtonPropsKeys = new Set([
+  'androidRippleColor',
+  'badge',
+  'dark',
+  'disabled',
+  'first',
+  'full',
+  'hasText',
+  'icon',
+  'iconLeft',
+  'iconRight',
+  'inputButton',
+  'large',
+  'last',
+  'light',
   'onPress',
   'onPressIn',
-  'onPressOut'
+  'onPressOut',
+  'rounded',
+  'small',
+  'textStyle',
+  'transparent',
+  'vertical',
+  'block',
+  'bordered'
 ]);
 
 interface SplitProps {
