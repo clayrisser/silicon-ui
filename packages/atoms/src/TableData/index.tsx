@@ -1,5 +1,5 @@
 import TableData from './TableData';
-import { TableDataProps } from './tableDataProps';
+import { TableRowProps } from './tableDataProps';
 
-export { TableDataProps };
+export { TableRowProps };
 export default TableData;
