@@ -3,4 +3,5 @@ declare module 'react-native-table-component' {
   export class TableWrapper {}
   export class Row {}
   export class Cell {}
+  export class Rows {}
 }

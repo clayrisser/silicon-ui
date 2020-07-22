@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Table as NativeTable } from 'react-native-table-component';
+import { Row as NativeTableRow } from 'react-native-table-component';
 import {
   background,
   border,
@@ -14,20 +14,24 @@ import useColor from '../hooks/useColor';
 import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
-  TableProps,
-  antiForwardTablePropsKeys,
+  TableRowProps,
+  antiForwardTableRowPropsKeys,
   splitProps
-} from './tableProps';
+} from './tableRowProps';
 
-const StyledTable = createStyled<TableProps>(
+const StyledTableRow = createStyled<TableRowProps>(
   //@ts-ignore
-  NativeTable,
+  NativeTableRow,
   [background, border, color, layout, position, shadow, space, typography],
-  antiForwardTablePropsKeys
+  antiForwardTableRowPropsKeys
 );
 
-const Table: FC<TableProps> = (props: TableProps) => {
-  const { customTableProps, nativeTableProps, styledTableProps } = splitProps({
+const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
+  const {
+    customTableRowProps,
+    nativeTableRowProps,
+    styledTableRowProps
+  } = splitProps({
     ...props
   });
   // const styledTable = (
@@ -46,14 +50,14 @@ const Table: FC<TableProps> = (props: TableProps) => {
   //     customTableProps.children
   //   );
   return (
-    <StyledTable
-      {...styledTableProps}
-      {...nativeTableProps}
-      {...customTableProps}
+    <StyledTableRow
+      {...styledTableRowProps}
+      {...nativeTableRowProps}
+      {...customTableRowProps}
     />
   );
 };
 
-Table.defaultProps = {};
+TableRow.defaultProps = {};
 
-export default Table;
+export default TableRow;
