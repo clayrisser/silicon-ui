@@ -35,6 +35,7 @@ export interface NativeItemProps extends Omit<Table, 'style'> {}
 export interface CustomTableProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   theme?: Theme;
+  style?: any;
 }
 
 export interface TableProps
@@ -43,9 +44,9 @@ export interface TableProps
     NativeItemProps,
     StyledTableProps {}
 
-export const customTablePropsKeys = new Set(['autoContrast', 'theme']);
+export const customTablePropsKeys = new Set(['autoContrast', 'theme', 'style']);
 
-export const nativeTablePropsKeys = new Set<string>(['borderStyle']);
+export const nativeTablePropsKeys = new Set<string>(['borderStyle', 'style']);
 
 export const nativeItemPropKeys = new Set([
   'bordered',

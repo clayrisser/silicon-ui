@@ -13,7 +13,6 @@ import {
 } from 'styled-system';
 import useColor from '../hooks/useColor';
 import { TableProps, DetailedHTMLTableProps, splitProps } from './tableProps';
-import { Tab } from 'native-base';
 
 const HTMLTable: StyledComponent<
   DetailedHTMLTableProps,
