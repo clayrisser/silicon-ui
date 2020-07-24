@@ -1,6 +1,6 @@
 {
   "name": "@silicon-ui/atoms",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "atomic building blocks for silicon ui",
   "keywords": [
     "atoms"
@@ -19,7 +19,7 @@
   "files": [
     "lib"
   ],
-  "main": "expo/index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/codejamninja/silicon-ui"
