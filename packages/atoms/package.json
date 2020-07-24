@@ -1,6 +1,6 @@
 {
   "name": "@silicon-ui/atoms",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "atomic building blocks for silicon ui",
   "keywords": [
     "atoms"
@@ -30,6 +30,7 @@
     "coverage": "make -s coverage",
     "expo": "make -s expo",
     "format": "make -s format",
+    "inc": "npm version patch --git=false 2>/dev/null || true",
     "lint": "make -s lint",
     "make": "make --version",
     "prepare": "make -s prepare",
@@ -40,8 +41,8 @@
     "storybook": "make -s storybook",
     "test": "make -s test",
     "test:ui": "make -s test-ui",
-    "web": "make -s web",
-    "test:watch": "make -s test-watch"
+    "test:watch": "make -s test-watch",
+    "web": "make -s web"
   },
   "peerDependencies": {
     "@emotion/primitives": "^10.0.30",
