@@ -47,6 +47,7 @@ const Table: FC<TableProps> = (props: TableProps) => {
 };
 
 Table.defaultProps = {
+  backgroundColor: 'transparent',
   autoContrast: false,
   fontSize: 2,
   fontWeight: 'body',

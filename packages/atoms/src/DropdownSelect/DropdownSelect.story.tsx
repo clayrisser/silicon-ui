@@ -10,7 +10,7 @@ import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
 import { Alert } from 'react-native';
 
-storiesOf('DropdownSelect', module)
+storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemesProvider(themes))
   .addParameters({
