@@ -5,6 +5,11 @@ import Image, { ImageProps } from './Image';
 import Input, { InputProps } from './Input';
 import Item, { ItemProps } from './Item';
 import Text, { TextProps } from './Text';
+import DropdownSelect, { DropdownSelectProps } from './DropdownSelect';
+import DropdownOption, { DropdownOptionProps } from './DropdownOption';
+import Table, { TableProps } from './Table';
+import TableRow, { TableRowProps } from './TableRow';
+import TableData from './TableData';
 
 export {
   Box,
@@ -20,5 +25,14 @@ export {
   Item,
   ItemProps,
   Text,
-  TextProps
+  TextProps,
+  DropdownSelect,
+  DropdownSelectProps,
+  DropdownOption,
+  DropdownOptionProps,
+  Table,
+  TableProps,
+  TableData,
+  TableRow,
+  TableRowProps
 };
