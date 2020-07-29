@@ -10,12 +10,15 @@ import DropdownOption, { DropdownOptionProps } from './DropdownOption';
 import Table, { TableProps } from './Table';
 import TableRow, { TableRowProps } from './TableRow';
 import TableData from './TableData';
+import Datepicker, { DatepickerProps } from './Datepicker';
 
 export {
   Box,
   BoxProps,
   Button,
   ButtonProps,
+  Datepicker,
+  DatepickerProps,
   Form,
   FormProps,
   Image,
