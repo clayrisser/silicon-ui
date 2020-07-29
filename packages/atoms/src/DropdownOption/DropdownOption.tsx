@@ -39,7 +39,6 @@ const DropdownOption: FC<DropdownOptionProps> = (
   props: DropdownOptionProps
 ) => {
   const color = useColor(props);
-  console.log(props, 'option props');
   const {
     styledDropdownOptionProps,
     customDropdownOptionProps,

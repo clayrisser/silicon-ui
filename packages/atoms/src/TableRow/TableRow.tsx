@@ -52,7 +52,11 @@ const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
       {...(customTableRowProps as any)}
     >
       {props?.data.map((th: string, index: number) => {
-        return <th key={index}>{th}</th>;
+        return (
+          <th key={index} style={props.thStyles}>
+            {th}
+          </th>
+        );
       })}
     </HTMLTableRow>
   );
@@ -64,7 +68,9 @@ TableRow.defaultProps = {
   fontWeight: 'body',
   lineHeight: 'body',
   width: '100%',
-  data: ['']
+  data: [''],
+  textAlign: 'left',
+  thStyles: {}
 };
 
 export default TableRow;

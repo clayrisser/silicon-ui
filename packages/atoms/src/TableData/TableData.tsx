@@ -12,12 +12,12 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
+import Data from '../Data/Data';
 import {
   TableRowProps,
   DetailedHTMLTableRowsProps,
   splitProps
 } from './tableDataProps';
-import { info } from 'console';
 
 const HTMLTableData: StyledComponent<
   DetailedHTMLTableRowsProps,
@@ -52,7 +52,11 @@ const TableData: FC<TableRowProps> = (props: TableRowProps) => {
             {...(customTableRowProps as any)}
           >
             {info.map((infos: string, index: number) => {
-              return <td key={index}>{infos}</td>;
+              return (
+                <Data key={index} style={props.tdStyles}>
+                  {infos}
+                </Data>
+              );
             })}
           </tr>
         );
@@ -66,7 +70,8 @@ TableData.defaultProps = {
   fontSize: 2,
   fontWeight: 'body',
   lineHeight: 'body',
-  width: '100%'
+  width: '100%',
+  tdStyles: {}
 };
 
 export default TableData;

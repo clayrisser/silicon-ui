@@ -54,16 +54,14 @@ storiesOf('Table', module)
       >
         <TableRow
           data={tableHead}
-          style={styles.head}
-          textStyle={styles.text}
+          thStyles={{ border: '1px solid #dddddd', padding: '8px' }}
         />
-        <TableData data={tableData} textStyle={styles.text} />
+        <TableData
+          data={tableData}
+          tdStyles={{ border: '1px solid #dddddd', padding: '8px' }}
+        />
       </Table>
     </Wrapper>
   ));
 
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  head: { height: 40, backgroundColor: '#fff' },
-  text: { margin: 6, backgroundColor: '#fff' }
-});
+const styles = StyleSheet.create({});
