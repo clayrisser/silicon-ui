@@ -39,6 +39,7 @@ export interface CustomTableRowProps {
   data?: any;
   style?: object;
   textStyle?: object;
+  tdStyles?: object;
 }
 
 export interface TableRowProps

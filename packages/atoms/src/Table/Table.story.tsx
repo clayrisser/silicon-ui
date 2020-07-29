@@ -14,6 +14,12 @@ import withThemesProvider from '../../storybook/withThemesProvider';
 // import docs from './Table.docs.mdx';
 
 const tableHead = ['Head', 'Head2', 'Head3', 'Head4'];
+
+// const tableData = [
+//   { id: '256', name: 'kiran', test: 'test', etc: 'etc' },
+//   { id: '256', name: 'kiran', test: 'test', etc: 'etc' },
+//   { id: '256', name: 'kiran', test: 'test', etc: 'etc' }
+// ];
 const tableData = [
   ['1', '2', '3', '4'],
   ['a', 'b', 'c', 'd'],
@@ -30,19 +36,32 @@ storiesOf('Table', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <Table style={{ backgroundColor: '#fff', top: 100 }}>
+      <Table
+        backgroundColor={text('backgroundColor', 'secondary')}
+        // borderRadius={number('borderRadius', 0)}
+        // height={200}
+        // width={200}
+        autoContrast={select<'A' | 'AA' | 'AAA'>(
+          'autoContrast',
+          {
+            false: '' as 'A',
+            A: 'A',
+            AA: 'AA',
+            AAA: 'AAA'
+          },
+          'A'
+        )}
+      >
         <TableRow
           data={tableHead}
-          style={styles.head}
-          textStyle={styles.text}
+          thStyles={{ border: '1px solid #dddddd', padding: '8px' }}
         />
-        <TableData data={tableData} textStyle={styles.text} />
+        <TableData
+          data={tableData}
+          tdStyles={{ border: '1px solid #dddddd', padding: '8px' }}
+        />
       </Table>
     </Wrapper>
   ));
 
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  head: { height: 40, backgroundColor: '#fff' },
-  text: { margin: 6, backgroundColor: '#fff' }
-});
+const styles = StyleSheet.create({});

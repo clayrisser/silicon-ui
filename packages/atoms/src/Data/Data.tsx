@@ -12,13 +12,13 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { TableProps, DetailedHTMLTableProps, splitProps } from './tableProps';
+import { TdProps, DetailedHTMLTdProps, splitProps } from './dataProps';
 
-const HTMLTable: StyledComponent<
-  DetailedHTMLTableProps,
-  TableProps,
+const HTMLTableData: StyledComponent<
+  DetailedHTMLTdProps,
+  TdProps,
   object
-> = styled.table(
+> = styled.td(
   compose(
     background,
     border,
@@ -31,29 +31,27 @@ const HTMLTable: StyledComponent<
   )
 );
 
-const Table: FC<TableProps> = (props: TableProps) => {
+const Td: FC<TdProps> = (props: TdProps) => {
   const color = useColor(props);
-  const { customTableProps, styledTableProps, nativeItemProps } = splitProps({
+  const { customTdProps, styledTdProps, nativeItemProps } = splitProps({
     ...props,
     color
   });
   return (
-    <HTMLTable
-      {...styledTableProps}
+    <HTMLTableData
+      {...styledTdProps}
       {...nativeItemProps}
-      {...(customTableProps as any)}
-      style={{ borderCollapse: 'collapse' }}
+      {...(customTdProps as any)}
     />
   );
 };
 
-Table.defaultProps = {
+Td.defaultProps = {
   backgroundColor: 'transparent',
   autoContrast: false,
   fontSize: 2,
   fontWeight: 'body',
-  lineHeight: 'body',
-  width: '100%'
+  lineHeight: 'body'
 };
 
-export default Table;
+export default Td;
