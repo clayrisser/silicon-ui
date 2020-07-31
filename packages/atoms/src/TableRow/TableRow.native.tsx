@@ -34,21 +34,7 @@ const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
   } = splitProps({
     ...props
   });
-  // const styledTable = (
-  //   <StyledTable
-  //     {...customTableProps}
-  //     {...nativeTableProps}
-  //     {...styledTableProps}
-  //   />
-  // );
-  // const children =
-  //   typeof customTableProps.children === 'string' ? (
-  //     <StyledText {...styledTextProps} width="100%">
-  //       {customTableProps.children}
-  //     </StyledText>
-  //   ) : (
-  //     customTableProps.children
-  //   );
+
   return (
     <StyledTableRow
       {...styledTableRowProps}

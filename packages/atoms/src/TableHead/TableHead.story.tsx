@@ -1,27 +1,26 @@
 import React from 'react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
-import Input from './Input';
+import TableHead from './TableHead';
+import { StyleSheet, View } from 'react-native';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-// import docs from './Input.docs.mdx';
 
-storiesOf('Input', module)
+storiesOf('TableHead', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemesProvider(themes))
   .addParameters({
     // docs: { page: docs },
-    // jest: ['Input.spec.tsx']
+    // jest: ['TableHead.spec.tsx']
   })
   .add('with knobs', () => (
     <Wrapper>
-      <Input
-        backgroundColor={text('backgroundColor', '#FFFFFF00')}
-        color={text('color', 'text')}
-        ml={0}
-        pl={0}
-        placeholder="User name"
+      <TableHead
+        backgroundColor={text('backgroundColor', 'secondary')}
+        // borderRadius={number('borderRadius', 0)}
+        // height={200}
+        // width={200}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -30,8 +29,10 @@ storiesOf('Input', module)
             AA: 'AA',
             AAA: 'AAA'
           },
-          'AA'
+          'A'
         )}
-      />
+      >
+        data
+      </TableHead>
     </Wrapper>
   ));
