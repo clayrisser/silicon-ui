@@ -36,6 +36,8 @@ export interface StyledTextProps extends TypographyProps, TextColorProps {}
 export interface CustomButtonProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
+  disabled?: boolean;
+  value?: string;
   theme?: Theme;
 }
 

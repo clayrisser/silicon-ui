@@ -1,5 +1,11 @@
 import React from 'react';
-import { withKnobs, text, number, select } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  number,
+  select,
+  boolean
+} from '@storybook/addon-knobs';
 import { Container, Header, Content, Form, Item, Picker } from 'native-base';
 
 import DropdownSelect from './DropdownSelect';
@@ -20,7 +26,13 @@ storiesOf('Dropdown', module)
   .add('with knobs', () => (
     <Wrapper>
       <DropdownSelect
-        backgroundColor={text('backgroundColor', 'secondary')}
+        multiple={boolean('multiple', false)}
+        disabled={boolean('disabled', false)}
+        backgroundColor={select(
+          'backgroundColor',
+          ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],
+          ''
+        )}
         // borderRadius={number('borderRadius', 0)}
         // height={200}
         // width={200}

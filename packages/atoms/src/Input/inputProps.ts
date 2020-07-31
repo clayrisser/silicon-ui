@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 import { NativeBase } from 'native-base';
 import {
   BackgroundProps,
@@ -34,6 +34,12 @@ export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {}
 export interface CustomInputProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   theme?: Theme;
+  type?: string;
+  disabled?: boolean;
+  maxlength?: number;
+  minLength?: number;
+  value?: string;
+  children?: ReactNode;
 }
 
 export interface InputProps
@@ -50,6 +56,7 @@ export const nativeItemPropKeys = new Set([
   'bordered',
   'disabled',
   'error',
+  'type',
   'fixedLabel',
   'floatingLabel',
   'inlineLabel',

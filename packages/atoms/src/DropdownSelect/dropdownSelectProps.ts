@@ -36,6 +36,8 @@ export interface CustomDropdownSelectProps {
   children?: ReactNode;
   theme?: Theme;
   value?: string;
+  disabled?: boolean;
+  multiple?: boolean;
 }
 
 export interface DropdownSelectProps

@@ -1,5 +1,11 @@
 import React from 'react';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  select,
+  boolean,
+  number
+} from '@storybook/addon-knobs';
 import Input from './Input';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -17,8 +23,19 @@ storiesOf('Input', module)
   .add('with knobs', () => (
     <Wrapper>
       <Input
-        backgroundColor={text('backgroundColor', '#FFFFFF00')}
+        type={text('type', 'text')}
+        backgroundColor={select(
+          'backgroundColor',
+          ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],
+          ''
+        )}
+        disabled={boolean('disabled', false)}
+        maxLength={number('maxLength', 10)}
+        minLength={number('minLength', 0)}
+        value={text('value', 'text')}
         color={text('color', 'text')}
+        borderWidth={text('borderWidth', '2px')}
+        width={text('width', '80%')}
         ml={0}
         pl={0}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
