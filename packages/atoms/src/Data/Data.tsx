@@ -54,4 +54,8 @@ Td.defaultProps = {
   lineHeight: 'body'
 };
 
-export default Td;
+export default styled(Td)`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`;

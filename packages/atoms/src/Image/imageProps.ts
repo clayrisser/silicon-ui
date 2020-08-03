@@ -84,7 +84,7 @@ export const touchableOpacityPropsKeys = new Set([
   'testID'
 ]);
 
-export const antiForwardImagePropsKeys = new Set(['borderColor']);
+// export const antiForwardImagePropsKeys = new Set(['borderColor']);
 
 interface SplitProps {
   customImageProps: CustomImageProps;

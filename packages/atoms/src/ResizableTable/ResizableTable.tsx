@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -11,65 +11,133 @@ import {
   space,
   typography
 } from 'styled-system';
-import ColumnResizer from 'react-column-resizer';
 import useColor from '../hooks/useColor';
 import Table from '../Table';
-import Data from '../Data';
+import TableCell from '../TableCell';
 import Box from '../Box';
 import TableHead from '../TableHead';
 // import { TableProps, DetailedHTMLTableProps, splitProps } from './tableProps';
 
-const ResizableTable: FC = (props) => {
+export interface ResizableTableProps {
+  resizableColumnStyles?: object;
+}
+
+let pageWidth: any,
+  curCol: any,
+  nxtCol: any,
+  curColWidth: any,
+  nxtColWidth: any;
+
+const ResizableTable: FC<ResizableTableProps> = (props) => {
+  const [down, setDown] = useState<boolean>(false);
+
+  async function handleMouseDown(e: any) {
+    setDown(true);
+    curCol = e.target.parentElement;
+    nxtCol = curCol.nextElementSibling;
+    pageWidth = e.pageX;
+    curColWidth = curCol.offsetWidth;
+    if (nxtCol) {
+      nxtColWidth = nxtCol.offsetWidth;
+    }
+  }
+
+  async function handleMouseMove(e: any) {
+    if (curCol && down) {
+      const diffX = e.pageX - pageWidth;
+      if (nxtCol) nxtCol.style.width = nxtColWidth - diffX + 'px';
+
+      curCol.style.width = curColWidth + diffX + 'px';
+    }
+  }
+
+  function handleMouseUp(e: any) {
+    setDown(false);
+    curCol = undefined;
+    nxtCol = undefined;
+    pageWidth = undefined;
+    nxtColWidth = undefined;
+    curColWidth = undefined;
+  }
   return (
     <Box>
       <Table>
-        <tr>
-          <TableHead>Company</TableHead>
-          <TableHead />
-          <TableHead>Contact</TableHead>
-          <TableHead />
-          <TableHead>Country</TableHead>
-        </tr>
-        <tr>
-          <Data>Alfreds Futterkiste</Data>
-          <ColumnResizer />
-          <Data>Maria Anders</Data>
-          <ColumnResizer />
-          <Data>Germany</Data>
-        </tr>
-        <tr>
-          <Data>Alfreds Futterkiste</Data>
-          <ColumnResizer />
-          <Data>Maria Anders</Data>
-          <ColumnResizer />
-          <Data>Germany</Data>
-        </tr>
-        <tr>
-          <Data>Alfreds Futterkiste</Data>
-          <ColumnResizer />
-          <Data>Maria Anders</Data>
-          <ColumnResizer />
-          <Data>Germany</Data>
-        </tr>
-        <tr>
-          <Data>Alfreds Futterkiste</Data>
-          <ColumnResizer />
-          <Data>Maria Anders</Data>
-          <ColumnResizer />
-          <Data>Germany</Data>
-        </tr>
+        <thead>
+          <tr>
+            <TableHead>
+              Company
+              <div
+                style={props.resizableColumnStyles}
+                onMouseDown={(e) => handleMouseDown(e)}
+                onMouseMove={(e) => handleMouseMove(e)}
+                onMouseLeave={(e) => handleMouseUp(e)}
+                onMouseUp={() => setDown(false)}
+              />
+            </TableHead>
+            <TableHead>
+              Contact
+              <div
+                style={props.resizableColumnStyles}
+                onMouseDown={(e) => handleMouseDown(e)}
+                onMouseMove={(e) => handleMouseMove(e)}
+                onMouseLeave={(e) => handleMouseUp(e)}
+                onMouseUp={() => setDown(false)}
+              />
+            </TableHead>
+            <TableHead>
+              Country
+              <div
+                style={props.resizableColumnStyles}
+                onMouseDown={(e) => handleMouseDown(e)}
+                onMouseMove={(e) => handleMouseMove(e)}
+                onMouseLeave={(e) => handleMouseUp(e)}
+                onMouseUp={() => setDown(false)}
+              />
+            </TableHead>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <TableCell>Alfreds Futterkiste</TableCell>
+            <TableCell>Maria Anders</TableCell>
+            <TableCell>Germany</TableCell>
+          </tr>
+          <tr>
+            <TableCell>Alfreds Futterkiste</TableCell>
+            <TableCell>Maria Anders</TableCell>
+            <TableCell>Germany</TableCell>
+          </tr>
+          <tr>
+            <TableCell>Alfreds Futterkiste</TableCell>
+            <TableCell>Maria Anders</TableCell>
+            <TableCell>Germany</TableCell>
+          </tr>
+          <tr>
+            <TableCell>Alfreds Futterkiste</TableCell>
+            <TableCell>Maria Anders</TableCell>
+            <TableCell>Germany</TableCell>
+          </tr>
+        </tbody>
       </Table>
     </Box>
   );
 };
 
 ResizableTable.defaultProps = {
-  backgroundColor: 'transparent',
-  autoContrast: false,
-  fontSize: 2,
-  fontWeight: 'body',
-  lineHeight: 'body',
-  width: '100%'
+  resizableColumnStyles: {
+    top: 0,
+    right: 0,
+    width: '5px',
+    position: 'absolute',
+    cursor: 'col-resize',
+    /* remove backGroundColor later */
+    backgroundColor: 'red',
+    userSelect: 'none',
+    /* table height */
+    height: '-webkit-fill-available',
+    paddingLeft: '20px',
+    paddingRight: '20px'
+  }
 };
 
-export default ResizableTable;
+export default styled(ResizableTable)``;

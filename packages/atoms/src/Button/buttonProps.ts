@@ -45,7 +45,7 @@ export interface ButtonProps
     StyledTextProps,
     NativeButtonProps {}
 
-export const antiForwardButtonPropsKeys = new Set(['borderColor']);
+// export const antiForwardButtonPropsKeys = new Set(['borderColor']);
 
 export const customButtonPropsKeys = new Set(['autoContrast', 'children']);
 
