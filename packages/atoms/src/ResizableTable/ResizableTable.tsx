@@ -34,7 +34,7 @@ const ResizableTable: FC<ResizableTableProps> = (props) => {
   async function handleMouseDown(e: any) {
     setDown(true);
     curCol = e.target.parentElement;
-    nxtCol = curCol.nextElementSibling;
+    // nxtCol = curCol.nextElementSibling;
     pageWidth = e.pageX;
     curColWidth = curCol.offsetWidth;
     if (nxtCol) {
@@ -45,7 +45,7 @@ const ResizableTable: FC<ResizableTableProps> = (props) => {
   async function handleMouseMove(e: any) {
     if (curCol && down) {
       const diffX = e.pageX - pageWidth;
-      if (nxtCol) nxtCol.style.width = nxtColWidth - diffX + 'px';
+      // if (nxtCol) nxtCol.style.width = nxtColWidth - diffX + 'px';
 
       curCol.style.width = curColWidth + diffX + 'px';
     }

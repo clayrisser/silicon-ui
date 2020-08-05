@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
 import Input from './Input';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -32,6 +32,7 @@ storiesOf('Input', module)
           },
           'AA'
         )}
+        disabled={boolean('disabled', false)}
       />
     </Wrapper>
   ));

@@ -1,6 +1,12 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text, number, select } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  number,
+  select,
+  boolean
+} from '@storybook/addon-knobs';
 import Button from './Button';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -24,6 +30,7 @@ storiesOf('Button', module)
         onPress={action('onPress')}
         onPressIn={action('onPressIn')}
         onPressOut={action('onPressOut')}
+        disabled={boolean('disabled', false)}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {

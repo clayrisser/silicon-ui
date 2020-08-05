@@ -1,22 +1,24 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
-import ResizableTable from './ResizableTable';
-import ResizableColumn from '../ResizableColumn';
+import { withKnobs, text, number, select } from '@storybook/addon-knobs';
+import ResizableCell from './ResizableCell';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
+import Box from '../Box/Box';
+import { relative } from 'path';
+import { Alert } from 'react-native';
+// import docs from './Button.docs.mdx';
 
-storiesOf('ResizableTable', module)
+storiesOf('ResizableCell', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemesProvider(themes))
   .addParameters({
     // docs: { page: docs },
-    // jest: ['Checkbox.spec.tsx']
+    // jest: ['Button.test.tsx']
   })
   .add('with knobs', () => (
     <Wrapper>
-      <ResizableTable />
+      <ResizableCell />
     </Wrapper>
   ));
