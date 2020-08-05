@@ -35,7 +35,7 @@ storiesOf('Input', module)
         value={text('value', 'text')}
         color={text('color', 'text')}
         borderWidth={text('borderWidth', '2px')}
-        width={text('width', '80%')}
+        width={text('width', '70%')}
         ml={0}
         pl={0}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
