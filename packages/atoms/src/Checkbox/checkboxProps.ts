@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 import { NativeBase } from 'native-base';
 import {
   BackgroundProps,
@@ -36,6 +36,11 @@ export interface CustomCheckBoxProps {
   type?: string;
   checked?: boolean;
   disabled?: boolean;
+  children?: string | ReactNode;
+  value?: string;
+  label?: string;
+  name?: string;
+  required?: boolean;
 }
 
 export interface CheckBoxProps
@@ -48,7 +53,9 @@ export const customCheckBoxPropsKeys = new Set([
   'theme',
   'type',
   'checked',
-  'disabled'
+  'disabled',
+  'value',
+  'label'
 ]);
 
 export const nativeCheckBoxPropsKeys = new Set<string>([

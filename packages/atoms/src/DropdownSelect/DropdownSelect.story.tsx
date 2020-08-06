@@ -15,6 +15,7 @@ import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
 import { Alert } from 'react-native';
+import { action } from '@storybook/addon-actions';
 
 storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
@@ -33,6 +34,11 @@ storiesOf('Dropdown', module)
           ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],
           ''
         )}
+        name={text('dropdown-name', '')}
+        required={boolean('required', false)}
+        autofocus={boolean('autofocus', false)}
+        label={text('dropdown-label', 'choose one')}
+        //  size={number('size', -8)}
         // borderRadius={number('borderRadius', 0)}
         // height={200}
         // width={200}

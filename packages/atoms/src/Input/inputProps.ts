@@ -40,6 +40,10 @@ export interface CustomInputProps {
   minLength?: number;
   value?: string;
   children?: ReactNode;
+  required?: boolean;
+  label?: string;
+  placeholder?: string;
+  id?: string;
 }
 
 export interface InputProps

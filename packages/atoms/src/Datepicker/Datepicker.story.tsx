@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import Datepicker from './Datepicker';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -24,6 +24,10 @@ storiesOf('Datepicker', module)
         pl={0}
         type="date"
         onPress={action('onPress')}
+        max={text('max', '')}
+        min={text('min', '')}
+        required={boolean('required', false)}
+        disabled={boolean('disabled', false)}
       />
     </Wrapper>
   ));

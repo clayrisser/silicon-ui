@@ -38,6 +38,12 @@ export interface CustomDropdownSelectProps {
   value?: string;
   disabled?: boolean;
   multiple?: boolean;
+  name?: string;
+  required?: boolean;
+  size?: number;
+  autofocus?: boolean;
+  label?: string;
+  // onChange?: (event: any) => void;
 }
 
 export interface DropdownSelectProps

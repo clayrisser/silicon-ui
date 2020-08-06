@@ -35,6 +35,10 @@ export interface CustomDatepickerProps {
   type?: string;
   disabled?: boolean;
   theme?: Theme;
+  value?: string;
+  max?: string;
+  min?: string;
+  required?: boolean;
 }
 
 export interface DatepickerProps

@@ -23,7 +23,7 @@ storiesOf('Input', module)
   .add('with knobs', () => (
     <Wrapper>
       <Input
-        type={text('type', 'text')}
+        type={select('type', ['text', 'password'], 'text')}
         backgroundColor={select(
           'backgroundColor',
           ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],
@@ -32,12 +32,15 @@ storiesOf('Input', module)
         disabled={boolean('disabled', false)}
         maxLength={number('maxLength', 10)}
         minLength={number('minLength', 0)}
-        value={text('value', 'text')}
+        required={boolean('required', false)}
+        label={text('input-label', 'input')}
         color={text('color', 'text')}
         borderWidth={text('borderWidth', '2px')}
+        id={text('input-id', '')}
         width={text('width', '70%')}
         ml={0}
         pl={0}
+        placeholder={text('placeholder', 'Sample Placeholder')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {

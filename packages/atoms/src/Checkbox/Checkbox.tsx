@@ -75,7 +75,10 @@ CheckBox.defaultProps = {
   width: '100%',
   type: 'checkbox',
   checked: false,
-  disabled: false
+  disabled: false,
+  value: 'first',
+  label: 'next',
+  name: 'other'
 };
 
 export default CheckBox;

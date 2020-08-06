@@ -1,12 +1,11 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import Checkbox from './Checkbox';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-// import docs from './Checkbox.docs.mdx';
 
 storiesOf('Checkbox', module)
   .addDecorator(withKnobs)
@@ -24,6 +23,12 @@ storiesOf('Checkbox', module)
         onPress={action('onPress')}
         // checked={boolean('checked', false)}
         disabled={boolean('disabled', false)}
+        autoFocus={boolean('autofocus', false)}
+        label={text('Label', '')}
+        value={text('value', '')}
+        onChange={action('changed')}
+        name={text('name', '')}
+        required={boolean('require', false)}
       />
     </Wrapper>
   ));

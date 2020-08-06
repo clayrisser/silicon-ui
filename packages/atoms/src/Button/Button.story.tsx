@@ -5,7 +5,8 @@ import {
   text,
   number,
   select,
-  boolean
+  boolean,
+  array
 } from '@storybook/addon-knobs';
 import Button from './Button';
 import Wrapper from '../../storybook/Wrapper';
@@ -25,11 +26,12 @@ storiesOf('Button', module)
     <Wrapper>
       <Button
         disabled={boolean('disabled', false)}
-        backgroundColor={select(
-          'backgroundColor',
-          ['primary', 'secondary'],
-          'primary'
-        )}
+        active={boolean('active', false)}
+        backgroundColor={select('backgroundColor', ['black', 'blue'], 'black')}
+        value={text('value', '')}
+        name={text('name', '')}
+        type={text('type', '')}
+        className={text('type', '')}
         borderRadius={number('borderRadius', 2)}
         onFocus={action('onFocus')}
         onPress={action('onPress')}
@@ -46,7 +48,7 @@ storiesOf('Button', module)
           'AA'
         )}
       >
-        {text('children', 'click me')}
+        {text('title', 'click me')}
       </Button>
     </Wrapper>
   ));

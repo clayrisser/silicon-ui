@@ -81,7 +81,10 @@ Button.defaultProps = {
   paddingLeft: 2,
   paddingRight: 2,
   paddingTop: 2,
-  width: '100%'
+  width: '100%',
+  name: 'first',
+  type: 'next',
+  className: 'className'
 };
 
 export default styled(Button)`

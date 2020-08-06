@@ -67,7 +67,8 @@ DropdownSelect.defaultProps = {
   fontSize: 0,
   fontWeight: 'body',
   lineHeight: 'body',
-  width: '100%'
+  width: '100%',
+  required: false
 };
 
 export default styled(DropdownSelect)`
