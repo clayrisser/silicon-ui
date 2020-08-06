@@ -1,13 +1,13 @@
 import React from 'react';
 import { withKnobs, text, number, select } from '@storybook/addon-knobs';
-import ResizableCell from './ResizableCell';
+import ResizableCell from './/ResizableCell';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
 import Box from '../Box/Box';
 import { relative } from 'path';
-import { Alert } from 'react-native';
+import { View } from 'react-native';
 // import docs from './Button.docs.mdx';
 
 storiesOf('ResizableCell', module)
@@ -19,6 +19,9 @@ storiesOf('ResizableCell', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <ResizableCell />
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
+        <ResizableCell />
+        {/* <ResizableCell /> */}
+      </View>
     </Wrapper>
   ));
