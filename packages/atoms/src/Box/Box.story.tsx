@@ -5,6 +5,7 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
+import { fontSize } from 'styled-system';
 // import docs from './Button.docs.mdx';
 
 storiesOf('Box', module)
@@ -18,9 +19,12 @@ storiesOf('Box', module)
     <Wrapper>
       <Box
         backgroundColor={text('backgroundColor', 'secondary')}
+        color={text('color', 'black')}
         borderRadius={number('borderRadius', 0)}
-        height={200}
-        width={200}
+        height={number('height', 300)}
+        padding={number('padding', 5)}
+        fontSize={number('fontSize', 20)}
+        width={number('width', 300)}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -31,6 +35,8 @@ storiesOf('Box', module)
           },
           'AA'
         )}
-      />
+      >
+        {text('label', 'hello boox')}
+      </Box>
     </Wrapper>
   ));
