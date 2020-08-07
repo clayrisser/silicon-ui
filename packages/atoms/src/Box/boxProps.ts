@@ -33,6 +33,7 @@ export interface CustomBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
   theme?: Theme;
+  color?: string;
 }
 
 export interface BoxProps

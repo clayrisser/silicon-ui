@@ -38,6 +38,14 @@ storiesOf('Dropdown', module)
         required={boolean('required', false)}
         autofocus={boolean('autofocus', false)}
         label={text('dropdown-label', 'choose one')}
+        fontFamily={select(
+          'font-family',
+          ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
+          'Times New Roman'
+        )}
+        fontWeight={text('font-weight', 'bold')}
+        fontSize={number('fon-size', 2)}
+        lineHeight={text('line-height', '')}
         //  size={number('size', -8)}
         // borderRadius={number('borderRadius', 0)}
         // height={200}

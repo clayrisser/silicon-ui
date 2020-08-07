@@ -39,6 +39,7 @@ export interface CustomDatepickerProps {
   max?: string;
   min?: string;
   required?: boolean;
+  fontSize?: number;
 }
 
 export interface DatepickerProps

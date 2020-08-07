@@ -44,6 +44,7 @@ export interface CustomButtonProps {
   className?: string;
   style?: string[];
   required?: boolean;
+  id?: string;
 }
 
 export interface ButtonProps

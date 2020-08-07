@@ -33,6 +33,10 @@ storiesOf('Input', module)
         maxLength={number('maxLength', 10)}
         minLength={number('minLength', 0)}
         required={boolean('required', false)}
+        paddingBottom={number('padding-bottom', 0)}
+        paddingTop={number('padding-top', 0)}
+        paddingLeft={number('padding-left', 0)}
+        paddingRight={number('padding-right', 0)}
         label={text('input-label', 'input')}
         color={text('color', 'text')}
         borderWidth={text('borderWidth', '2px')}

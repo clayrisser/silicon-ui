@@ -41,6 +41,7 @@ export interface CustomCheckBoxProps {
   label?: string;
   name?: string;
   required?: boolean;
+  borderWidth?: number;
 }
 
 export interface CheckBoxProps
@@ -55,7 +56,8 @@ export const customCheckBoxPropsKeys = new Set([
   'checked',
   'disabled',
   'value',
-  'label'
+  'label',
+  'borderWidth'
 ]);
 
 export const nativeCheckBoxPropsKeys = new Set<string>([

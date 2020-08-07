@@ -74,7 +74,8 @@ Box.defaultProps = {
   fontFamily: 'body',
   fontSize: 0,
   fontWeight: 'body',
-  lineHeight: 'body'
+  lineHeight: 'body',
+  color: 'red'
 };
 
 export default styled(Box)`

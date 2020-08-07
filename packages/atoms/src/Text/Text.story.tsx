@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, number, select } from '@storybook/addon-knobs';
 import Text from './Text';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -16,7 +16,18 @@ storiesOf('Text', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <Text color={text('color', 'text')}>
+      <Text
+        color={text('color', 'text')}
+        small={text('small-text', '')}
+        fontFamily={select(
+          'font-family',
+          ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
+          'Times New Roman'
+        )}
+        fontWeight={text('font-weight', 'bold')}
+        fontSize={number('fon-size', 2)}
+        lineHeight={text('line-height', '')}
+      >
         {text('children', 'Hello, world!')}
       </Text>
     </Wrapper>

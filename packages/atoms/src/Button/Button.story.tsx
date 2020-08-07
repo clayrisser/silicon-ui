@@ -13,6 +13,7 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
+import { marginTop } from 'styled-system';
 // import docs from './Button.docs.mdx';
 
 storiesOf('Button', module)
@@ -28,6 +29,17 @@ storiesOf('Button', module)
         disabled={boolean('disabled', false)}
         active={boolean('active', false)}
         backgroundColor={select('backgroundColor', ['black', 'blue'], 'black')}
+        padding={number('padding', 2)}
+        paddingTop={number('paddingTop', 0)}
+        paddingLeft={number('padding-left', 0)}
+        paddingRight={number('padding-right', 0)}
+        paddingBottom={number('padding-bottom', 0)}
+        margin={number('margin', 0)}
+        marginRight={number('margin-right', 0)}
+        marginLeft={number('margin-left', 0)}
+        marginTop={number('marginTop', 0)}
+        marginBottom={number('marginBottom', 0)}
+        width={number('width', 45)}
         value={text('value', '')}
         name={text('name', '')}
         type={text('type', '')}
@@ -37,6 +49,7 @@ storiesOf('Button', module)
         onPress={action('onPress')}
         onPressIn={action('onPressIn')}
         onPressOut={action('onPressOut')}
+        id={text('id', '')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {

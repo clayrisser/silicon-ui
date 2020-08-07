@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
 import Checkbox from './Checkbox';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -29,6 +29,8 @@ storiesOf('Checkbox', module)
         onChange={action('changed')}
         name={text('name', '')}
         required={boolean('require', false)}
+        checked={boolean('checked', false)}
+        borderWidth={number('border-width', 0)}
       />
     </Wrapper>
   ));

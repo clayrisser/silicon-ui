@@ -60,7 +60,8 @@ Text.defaultProps = {
   fontFamily: 'body',
   fontSize: 0,
   fontWeight: 'body',
-  lineHeight: 'body'
+  lineHeight: 'body',
+  small: 'first'
 };
 
 export default Text;
