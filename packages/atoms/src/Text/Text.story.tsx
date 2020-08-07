@@ -18,7 +18,6 @@ storiesOf('Text', module)
     <Wrapper>
       <Text
         color={text('color', 'text')}
-        small={text('small-text', '')}
         fontFamily={select(
           'font-family',
           ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],

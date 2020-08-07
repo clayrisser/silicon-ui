@@ -39,7 +39,6 @@ storiesOf('Button', module)
         marginLeft={number('margin-left', 0)}
         marginTop={number('marginTop', 0)}
         marginBottom={number('marginBottom', 0)}
-        width={number('width', 45)}
         value={text('value', '')}
         name={text('name', '')}
         type={text('type', '')}

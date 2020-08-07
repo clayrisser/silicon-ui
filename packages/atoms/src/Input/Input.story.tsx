@@ -39,7 +39,6 @@ storiesOf('Input', module)
         paddingRight={number('padding-right', 0)}
         label={text('input-label', 'input')}
         color={text('color', 'text')}
-        borderWidth={text('borderWidth', '2px')}
         id={text('input-id', '')}
         width={text('width', '70%')}
         ml={0}

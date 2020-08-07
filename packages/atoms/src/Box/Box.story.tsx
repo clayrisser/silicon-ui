@@ -22,7 +22,6 @@ storiesOf('Box', module)
         borderRadius={number('borderRadius', 0)}
         height={number('height', 50)}
         padding={number('padding', 25)}
-        width={number('width', 50)}
         fontWeight={text('font-weight', 'bold')}
         paddingLeft={number('padding-left', 0)}
         paddingRight={number('padding-right', 0)}
