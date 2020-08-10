@@ -1,5 +1,13 @@
-import React, { useRef, useState, useEffect, FC, ReactNode } from 'react';
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  FC,
+  ReactNode,
+  useContext
+} from 'react';
 import { Animated, View, PanResponder } from 'react-native';
+import ResizableWidthContext from '../contexts/resizableWidth';
 import Text from '../Text';
 
 export interface ResizableCellProps {
@@ -14,11 +22,16 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   const pan = useRef(new Animated.ValueXY()).current;
   const [width, setWidth] = useState<number>(150);
   const parentRef = useRef(null);
+  const [, setResizableWidth] = useContext(ResizableWidthContext);
+
+  useEffect(() => {
+    setResizableWidth({ width });
+  }, [width]);
 
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderGrant: (evt) => {
+      onPanResponderGrant: evt => {
         originalColWidth = evt.nativeEvent.pageX;
         const par: any = parentRef.current || null;
         if (par !== null) {
@@ -36,7 +49,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
           );
         }
       },
-      onPanResponderMove: async (evt) => {
+      onPanResponderMove: async evt => {
         const diff = originalColWidth - evt.nativeEvent.pageX;
         setWidth(colWidth - diff);
       },
