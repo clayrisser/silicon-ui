@@ -30,6 +30,7 @@ export interface StyledDropdownOptionProps
 export interface NativeDropdownOptionProps extends ViewProps {
   value?: string;
   label?: string;
+  disabled?: boolean;
 }
 
 export interface CustomDropdownOptionProps {

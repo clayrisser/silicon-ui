@@ -68,6 +68,10 @@ CheckBox.defaultProps = {
   backgroundColor: 'primary',
   borderRadius: 2,
   borderWidth: 0,
+  marginLeft: 0,
+  marginBottom: 0,
+  marginRight: 0,
+  marginTop: 0,
   paddingBottom: 2,
   paddingLeft: 2,
   paddingRight: 2,
@@ -75,7 +79,10 @@ CheckBox.defaultProps = {
   width: '100%',
   type: 'checkbox',
   checked: false,
-  disabled: false
+  disabled: false,
+  value: 'first',
+  label: 'next',
+  name: 'other'
 };
 
 export default CheckBox;

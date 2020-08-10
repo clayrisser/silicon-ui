@@ -84,7 +84,12 @@ Button.defaultProps = {
   paddingRight: 2,
   paddingTop: 2,
   textAlign: 'center',
-  width: '100%'
+  width: '100%',
+  name: 'first',
+  type: 'next',
+  className: 'className',
+  lineHeight: 'body',
+  active: false
 };
 
 export default Button;

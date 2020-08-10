@@ -1,5 +1,11 @@
 import React from 'react';
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  select,
+  boolean,
+  number
+} from '@storybook/addon-knobs';
 import Input from './Input';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -17,11 +23,25 @@ storiesOf('Input', module)
   .add('with knobs', () => (
     <Wrapper>
       <Input
-        backgroundColor={text('backgroundColor', '#FFFFFF00')}
+        type={select('type', ['text', 'password'], 'text')}
+        backgroundColor={select(
+          'backgroundColor',
+          ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],
+          ''
+        )}
+        disabled={boolean('disabled', false)}
+        maxLength={text('maxLength', '')}
+        minLength={text('minLength', '')}
+        required={boolean('required', false)}
+        padding={text('padding', '2')}
+        margin={text('margin', '2')}
+        label={text('input-label', 'input')}
         color={text('color', 'text')}
+        id={text('input-id', '')}
+        width={text('width', '70%')}
         ml={0}
         pl={0}
-        placeholder="User name"
+        placeholder={text('placeholder', 'user name')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -30,9 +50,8 @@ storiesOf('Input', module)
             AA: 'AA',
             AAA: 'AAA'
           },
-          'AA'
+          'A'
         )}
-        disabled={boolean('disabled', false)}
       />
     </Wrapper>
   ));

@@ -12,6 +12,7 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
+
 // import docs from './Button.docs.mdx';
 
 storiesOf('Button', module)
@@ -24,13 +25,24 @@ storiesOf('Button', module)
   .add('with knobs', () => (
     <Wrapper>
       <Button
-        backgroundColor={text('backgroundColor', 'primary')}
+        disabled={boolean('disabled', false)}
+        active={boolean('active', false)}
+        backgroundColor={select(
+          'backgroundColor',
+          ['primary', 'secondary'],
+          'primary'
+        )}
+        padding={text('padding', '2')}
+        margin={text('margin', '')}
+        value={text('value', '')}
+        name={text('name', '')}
+        type={text('type', '')}
+        className={text('type', '')}
         borderRadius={number('borderRadius', 2)}
         onFocus={action('onFocus')}
         onPress={action('onPress')}
         onPressIn={action('onPressIn')}
         onPressOut={action('onPressOut')}
-        disabled={boolean('disabled', false)}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -42,7 +54,7 @@ storiesOf('Button', module)
           'AA'
         )}
       >
-        {text('children', 'click me')}
+        {text('title', 'click me')}
       </Button>
     </Wrapper>
   ));

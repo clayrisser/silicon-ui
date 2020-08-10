@@ -17,10 +17,24 @@ storiesOf('Box', module)
   .add('with knobs', () => (
     <Wrapper>
       <Box
-        backgroundColor={text('backgroundColor', 'secondary')}
+        backgroundColor={select(
+          'backgroundColor',
+          ['primary', 'secondary'],
+          'primary'
+        )}
+        color={text('color', '')}
         borderRadius={number('borderRadius', 0)}
-        height={200}
-        width={200}
+        height={number('height', 200)}
+        padding={number('padding', 2)}
+        fontWeight={text('font-weight', 'body')}
+        margin={number('margin', 2)}
+        fontSize={number('font-size', 2)}
+        width={number('width', 200)}
+        fontFamily={select(
+          'font-family',
+          ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
+          'Times New Roman'
+        )}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -29,8 +43,10 @@ storiesOf('Box', module)
             AA: 'AA',
             AAA: 'AAA'
           },
-          'AA'
+          'A'
         )}
-      />
+      >
+        {text('label', 'its a Box')}
+      </Box>
     </Wrapper>
   ));
