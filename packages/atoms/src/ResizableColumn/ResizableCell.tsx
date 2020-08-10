@@ -1,9 +1,16 @@
-import React, { useRef, useState, useEffect, FC } from 'react';
+import React, { useRef, useState, useEffect, FC, ReactNode } from 'react';
 import { Animated, View, PanResponder } from 'react-native';
+import Text from '../Text';
+
+export interface ResizableCellProps {
+  children?: any;
+}
 
 let originalColWidth: number;
 let colWidth: number;
-const ResizableCell: FC = (props) => {
+
+const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
+  const { children } = props;
   const pan = useRef(new Animated.ValueXY()).current;
   const [width, setWidth] = useState<number>(150);
   const parentRef = useRef(null);
@@ -43,31 +50,35 @@ const ResizableCell: FC = (props) => {
     <View
       style={{
         width: width,
-        height: 80,
-        backgroundColor: 'red',
-        // borderWidth: 2,
-        margin: 20,
-        marginLeft: 50,
-        top: 20
+        top: 20,
+        maxWidth: '100%',
+        maxHeight: '100%',
+        borderWidth: 1
+        // backgroundColor: 'red'
       }}
       ref={parentRef}
-      // onLayout={(event: any) => doMeasure(event.nativeEvent.layout)}
     >
-      {/* <Text style={{ padding: 20 }}>welcome test</Text> */}
+      <Text style={{ padding: 20 }}>{children}</Text>
       <View
         {...panResponder.panHandlers}
-        // ref={childRef}
         style={{
-          height: 80,
+          // maxHeight: '100%',
           top: 0,
+          height: '100%',
           right: 0,
           width: 10,
+          backgroundColor: 'transparent',
           position: 'absolute',
-          backgroundColor: 'green'
+          //@ts-ignore
+          cursor: 'ew-resize'
         }}
       ></View>
     </View>
   );
+};
+
+ResizableCell.defaultProps = {
+  children: 'Test'
 };
 
 export default ResizableCell;
