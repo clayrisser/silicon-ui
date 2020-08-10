@@ -1,6 +1,6 @@
 import React from 'react';
 import { withKnobs, text, number, select } from '@storybook/addon-knobs';
-import ResizableCell from './/ResizableCell';
+import ResizableCell from './ResizableCell';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';

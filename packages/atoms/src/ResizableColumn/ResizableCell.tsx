@@ -1,11 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  FC,
-  ReactNode,
-  useContext
-} from 'react';
+import React, { useRef, useState, useEffect, FC, useContext } from 'react';
 import { Animated, View, PanResponder } from 'react-native';
 import ResizableWidthContext from '../contexts/resizableWidth';
 import Text from '../Text';
@@ -21,10 +14,11 @@ let colWidth: number;
 const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   const { children, position } = props;
 
-  const pan = useRef(new Animated.ValueXY()).current;
-  const [width, setWidth] = useState<number>(150);
-  const parentRef = useRef(null);
   const [, setResizableWidth] = useContext(ResizableWidthContext);
+  const [width, setWidth] = useState<number>(150);
+  const borderWidth = 10;
+  const pan = useRef(new Animated.ValueXY()).current;
+  const parentRef = useRef(null);
 
   useEffect(() => {
     setResizableWidth({ width: width, cellIndex: position });
@@ -39,12 +33,12 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
         if (par !== null) {
           par.measure(
             (
-              width: number,
-              height: number,
+              _width: number,
+              _height: number,
               fx: number,
-              fy: number,
-              px: number,
-              py: number
+              _fy: number,
+              _px: number,
+              _py: number
             ) => {
               colWidth = fx;
             }
@@ -68,8 +62,8 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
         top: 20,
         maxWidth: '100%',
         maxHeight: '100%',
-        borderWidth: 1
-        // backgroundColor: 'red'
+        borderTopWidth: 1,
+        borderBottomWidth: 1
       }}
       ref={parentRef}
     >
@@ -77,13 +71,26 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
       <View
         {...panResponder.panHandlers}
         style={{
-          // maxHeight: '100%',
-          top: 0,
+          backgroundColor: 'invisible',
           height: '100%',
-          right: 0,
-          width: 10,
-          backgroundColor: 'transparent',
           position: 'absolute',
+          right: borderWidth / 2,
+          top: 0,
+          width: borderWidth / 2,
+          //@ts-ignore
+          cursor: 'ew-resize'
+        }}
+      ></View>
+      <View
+        {...panResponder.panHandlers}
+        style={{
+          backgroundColor: 'invisible',
+          borderLeftWidth: 1,
+          height: '100%',
+          position: 'absolute',
+          right: 0,
+          top: 0,
+          width: borderWidth / 2,
           //@ts-ignore
           cursor: 'ew-resize'
         }}
