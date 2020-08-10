@@ -1,16 +1,13 @@
 import React from 'react';
 import { withKnobs, text, number, select } from '@storybook/addon-knobs';
-import ResizableCell from './/ResizableCell';
+import ResizableTableRow from './ResizableTableRow';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-import Box from '../Box/Box';
-import { relative } from 'path';
-import { View } from 'react-native';
 // import docs from './Button.docs.mdx';
 
-storiesOf('ResizableCell', module)
+storiesOf('Resizable Table Row', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemesProvider(themes))
   .addParameters({
@@ -19,9 +16,6 @@ storiesOf('ResizableCell', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <View style={{ display: 'flex', flexDirection: 'row' }}>
-        <ResizableCell>Header1</ResizableCell>
-        <ResizableCell>Header2</ResizableCell>
-      </View>
+      <ResizableTableRow />
     </Wrapper>
   ));
