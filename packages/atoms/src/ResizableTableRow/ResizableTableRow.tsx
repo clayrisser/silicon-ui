@@ -9,14 +9,18 @@ const ResizableTableRow: FC = (props) => {
   const headerData = ['test1', 'test2', 'test3'];
   const [resizableWidth, setResizableWidth] = useState<ResizableWidth>({});
   useEffect(() => {
-    console.log('hfdzxgf', resizableWidth);
+    console.log('cell details', resizableWidth);
   });
 
   return (
     <ResizableWidthContext.Provider value={[resizableWidth, setResizableWidth]}>
       <Box style={{ display: 'flex', flexDirection: 'row' }}>
-        {headerData.map((data) => {
-          return <ResizableCell>{data}</ResizableCell>;
+        {headerData.map((data, index) => {
+          return (
+            <ResizableCell key={index} position={index}>
+              {data}
+            </ResizableCell>
+          );
         })}
       </Box>
     </ResizableWidthContext.Provider>

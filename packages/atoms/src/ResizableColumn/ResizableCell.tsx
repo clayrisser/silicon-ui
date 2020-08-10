@@ -12,26 +12,28 @@ import Text from '../Text';
 
 export interface ResizableCellProps {
   children?: any;
+  position?: number;
 }
 
 let originalColWidth: number;
 let colWidth: number;
 
 const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
-  const { children } = props;
+  const { children, position } = props;
+
   const pan = useRef(new Animated.ValueXY()).current;
   const [width, setWidth] = useState<number>(150);
   const parentRef = useRef(null);
   const [, setResizableWidth] = useContext(ResizableWidthContext);
 
   useEffect(() => {
-    setResizableWidth({ width });
+    setResizableWidth({ width: width, cellIndex: position });
   }, [width]);
 
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderGrant: evt => {
+      onPanResponderGrant: (evt) => {
         originalColWidth = evt.nativeEvent.pageX;
         const par: any = parentRef.current || null;
         if (par !== null) {
@@ -49,7 +51,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
           );
         }
       },
-      onPanResponderMove: async evt => {
+      onPanResponderMove: async (evt) => {
         const diff = originalColWidth - evt.nativeEvent.pageX;
         setWidth(colWidth - diff);
       },
