@@ -30,20 +30,18 @@ storiesOf('Input', module)
           ''
         )}
         disabled={boolean('disabled', false)}
-        maxLength={number('maxLength', 10)}
-        minLength={number('minLength', 0)}
+        maxLength={text('maxLength', '')}
+        minLength={text('minLength', '')}
         required={boolean('required', false)}
-        paddingBottom={number('padding-bottom', 0)}
-        paddingTop={number('padding-top', 0)}
-        paddingLeft={number('padding-left', 0)}
-        paddingRight={number('padding-right', 0)}
+        padding={text('padding', '2')}
+        margin={text('margin', '2')}
         label={text('input-label', 'input')}
         color={text('color', 'text')}
         id={text('input-id', '')}
         width={text('width', '70%')}
         ml={0}
         pl={0}
-        placeholder={text('placeholder', 'Sample Placeholder')}
+        placeholder={text('placeholder', 'user name')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -52,7 +50,7 @@ storiesOf('Input', module)
             AA: 'AA',
             AAA: 'AAA'
           },
-          'AA'
+          'A'
         )}
       />
     </Wrapper>

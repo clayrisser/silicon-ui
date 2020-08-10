@@ -11,6 +11,7 @@ import {
   space,
   typography
 } from 'styled-system';
+import TableHead from '../TableHead/TableHead';
 import useColor from '../hooks/useColor';
 import {
   TableRowProps,
@@ -53,9 +54,9 @@ const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
     >
       {props?.data.map((th: string, index: number) => {
         return (
-          <th key={index} style={props.thStyles}>
+          <TableHead key={index} style={props.thStyles}>
             {th}
-          </th>
+          </TableHead>
         );
       })}
     </HTMLTableRow>

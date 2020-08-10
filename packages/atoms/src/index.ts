@@ -11,6 +11,8 @@ import Table, { TableProps } from './Table';
 import TableRow, { TableRowProps } from './TableRow';
 import TableData from './TableData';
 import Datepicker, { DatepickerProps } from './Datepicker';
+import Data, { TdProps } from './Data';
+import TableHead, { ThProps } from './TableHead';
 
 export {
   Box,
@@ -37,5 +39,9 @@ export {
   TableProps,
   TableData,
   TableRow,
-  TableRowProps
+  TableRowProps,
+  Data,
+  TdProps,
+  TableHead,
+  ThProps
 };

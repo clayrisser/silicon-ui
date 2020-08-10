@@ -45,6 +45,9 @@ export interface CustomButtonProps {
   style?: string[];
   required?: boolean;
   id?: string;
+  padding?: number;
+  margin?: number;
+  color?: string;
 }
 
 export interface ButtonProps
@@ -53,9 +56,13 @@ export interface ButtonProps
     StyledTextProps,
     NativeButtonProps {}
 
-export const antiForwardButtonPropsKeys = new Set(['borderColor']);
+// export const antiForwardButtonPropsKeys = new Set(['borderColor']);
 
-export const customButtonPropsKeys = new Set(['autoContrast', 'children']);
+export const customButtonPropsKeys = new Set([
+  'autoContrast',
+  'children',
+  'disabled'
+]);
 
 export const styledTextPropsKeys = new Set([
   'color',

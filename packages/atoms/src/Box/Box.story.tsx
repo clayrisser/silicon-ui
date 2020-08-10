@@ -17,22 +17,19 @@ storiesOf('Box', module)
   .add('with knobs', () => (
     <Wrapper>
       <Box
-        backgroundColor={text('backgroundColor', 'secondary')}
-        color={text('color', 'black')}
+        backgroundColor={select(
+          'backgroundColor',
+          ['primary', 'secondary'],
+          'primary'
+        )}
+        color={text('color', '')}
         borderRadius={number('borderRadius', 0)}
-        height={number('height', 50)}
-        padding={number('padding', 25)}
-        fontWeight={text('font-weight', 'bold')}
-        paddingLeft={number('padding-left', 0)}
-        paddingRight={number('padding-right', 0)}
-        paddingTop={number('padding-top', 0)}
-        paddingBottom={number('padding-bottom', 0)}
-        margin={number('margin', 0)}
-        marginBottom={number('margin-bottom', 0)}
-        marginLeft={number('margin-left', 0)}
-        marginRight={number('margin-right', 0)}
-        marginTop={number('margin-top', 0)}
-        fontSize={number('font-size', 4)}
+        height={number('height', 200)}
+        padding={number('padding', 2)}
+        fontWeight={text('font-weight', 'body')}
+        margin={number('margin', 2)}
+        fontSize={number('font-size', 2)}
+        width={number('width', 200)}
         fontFamily={select(
           'font-family',
           ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
@@ -46,10 +43,10 @@ storiesOf('Box', module)
             AA: 'AA',
             AAA: 'AAA'
           },
-          'AA'
+          'A'
         )}
       >
-        {text('label', 'hello boox')}
+        {text('label', 'its a Box')}
       </Box>
     </Wrapper>
   ));

@@ -36,9 +36,3 @@
 //       </Data>
 //     </Wrapper>
 //   ));
-
-// const styles = StyleSheet.create({
-//   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-//   head: { height: 40, backgroundColor: '#fff' },
-//   text: { margin: 6, backgroundColor: '#fff' }
-// });

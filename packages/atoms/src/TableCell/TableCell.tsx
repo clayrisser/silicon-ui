@@ -12,9 +12,9 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { TdProps, DetailedHTMLTdProps, splitProps } from './dataProps';
+import { TdProps, DetailedHTMLTdProps, splitProps } from './tableCellProps';
 
-const HTMLTableData: StyledComponent<
+const HTMLTableCell: StyledComponent<
   DetailedHTMLTdProps,
   TdProps,
   object
@@ -38,7 +38,7 @@ const Td: FC<TdProps> = (props: TdProps) => {
     color
   });
   return (
-    <HTMLTableData
+    <HTMLTableCell
       {...styledTdProps}
       {...nativeItemProps}
       {...(customTdProps as any)}

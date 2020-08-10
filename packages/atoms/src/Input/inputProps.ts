@@ -36,8 +36,8 @@ export interface CustomInputProps {
   theme?: Theme;
   type?: string;
   disabled?: boolean;
-  maxlength?: number;
-  minLength?: number;
+  maxLength?: string;
+  minLength?: string;
   value?: string;
   children?: ReactNode;
   required?: boolean;

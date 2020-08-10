@@ -60,8 +60,8 @@ Datepicker.defaultProps = {
   // fontWeight: 'body',
   // lineHeight: 'body',
   // autoContrast: false,
-  backgroundColor: '#FFFFFF00',
-  fontSize: 0
+  backgroundColor: 'green',
+  fontSize: 6
 };
 
 export default Datepicker;
