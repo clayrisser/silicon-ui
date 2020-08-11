@@ -7,7 +7,8 @@ import {
   position,
   shadow,
   space,
-  typography
+  typography,
+  opacity
 } from 'styled-system';
 import {
   DetailedHTMLDivProps,
@@ -61,7 +62,7 @@ Text.defaultProps = {
   fontSize: 0,
   fontWeight: 'body',
   lineHeight: 'body',
-  small: 'first'
+  opacity: 'body'
 };
 
 export default Text;

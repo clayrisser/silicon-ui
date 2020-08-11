@@ -26,6 +26,7 @@ storiesOf('Text', module)
         fontWeight={text('font-weight', 'bold')}
         fontSize={number('font-size', 2)}
         lineHeight={text('line-height', '')}
+        opacity={number('opacity', 1)}
         letterSpacing={number('letter-spacing', 0)}
       >
         {text('children', 'Hello, world!')}

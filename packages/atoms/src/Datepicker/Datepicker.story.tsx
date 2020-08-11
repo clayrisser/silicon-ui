@@ -34,13 +34,6 @@ storiesOf('Datepicker', module)
         onPress={action('onPress')}
         padding={text('padding', '2')}
         margin={text('margin', '2')}
-        // paddingLeft={number('padding-left', 0)}
-        // paddingRight={number('padding-right', 0)}
-        // paddingTop={number('padding-top', 0)}
-        // paddingBottom={number('padding-Bottom', 0)}
-        // marginLeft={number('margin-left', 0)}
-        // marginRight={number('margin-right', 0)}
-        // marginTop={number('margin-top', 0)}
         borderRadius={number('border-radius', 0)}
         marginBottom={number('margin-bottom', 0)}
         max={text('max', '')}

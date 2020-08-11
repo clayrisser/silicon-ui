@@ -28,6 +28,10 @@ storiesOf('Box', module)
         padding={number('padding', 2)}
         fontWeight={text('font-weight', 'body')}
         margin={number('margin', 2)}
+        marginTop={number('margin-top', 2)}
+        marginBottom={number('margin-bottom', 0)}
+        marginRight={number('margin-right', 0)}
+        marginLeft={number('margin-left', 2)}
         fontSize={number('font-size', 2)}
         letterSpacing={number('letter-spacing', 1)}
         width={number('width', 200)}
@@ -36,6 +40,10 @@ storiesOf('Box', module)
           ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
           'Times New Roman'
         )}
+        paddingTop={number('padding-top', 0)}
+        paddingBottom={number('padding-bottom', 0)}
+        paddingRight={number('padding-right', 2)}
+        paddingLeft={number('padding-left', 2)}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {

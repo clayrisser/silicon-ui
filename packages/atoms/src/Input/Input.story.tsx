@@ -39,8 +39,6 @@ storiesOf('Input', module)
         color={text('color', 'text')}
         id={text('input-id', '')}
         width={text('width', '70%')}
-        ml={0}
-        pl={0}
         placeholder={text('placeholder', 'user name')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
