@@ -72,9 +72,6 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
 };
 
 Button.defaultProps = {
-  // fontFamily: 'body',
-  // fontWeight: 'body',
-  // lineHeight: 'body',
   autoContrast: false,
   backgroundColor: 'primary',
   children: '',

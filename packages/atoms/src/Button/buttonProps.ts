@@ -42,12 +42,7 @@ export interface CustomButtonProps {
   name?: string;
   type?: string;
   className?: string;
-  style?: string[];
   required?: boolean;
-  id?: string;
-  padding?: number;
-  margin?: number;
-  color?: string;
 }
 
 export interface ButtonProps

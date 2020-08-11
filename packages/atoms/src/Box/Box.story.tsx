@@ -29,6 +29,7 @@ storiesOf('Box', module)
         fontWeight={text('font-weight', 'body')}
         margin={number('margin', 2)}
         fontSize={number('font-size', 2)}
+        letterSpacing={number('letter-spacing', 1)}
         width={number('width', 200)}
         fontFamily={select(
           'font-family',

@@ -72,7 +72,7 @@ Box.defaultProps = {
   backgroundColor: 'background',
   children: <></>,
   fontFamily: 'body',
-  fontSize: 0,
+  fontSize: 'body',
   fontWeight: 'body',
   lineHeight: 'body',
   color: 'red'

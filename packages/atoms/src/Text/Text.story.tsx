@@ -24,8 +24,9 @@ storiesOf('Text', module)
           'Times New Roman'
         )}
         fontWeight={text('font-weight', 'bold')}
-        fontSize={number('fon-size', 2)}
+        fontSize={number('font-size', 2)}
         lineHeight={text('line-height', '')}
+        letterSpacing={number('letter-spacing', 0)}
       >
         {text('children', 'Hello, world!')}
       </Text>

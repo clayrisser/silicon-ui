@@ -72,7 +72,7 @@ Box.defaultProps = {
   autoContrast: false,
   backgroundColor: 'background',
   children: <></>,
-  fontSize: 0,
+  fontSize: 'body',
   lineHeight: 'body'
 };
 
