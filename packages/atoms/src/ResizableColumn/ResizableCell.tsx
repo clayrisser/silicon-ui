@@ -1,27 +1,33 @@
 import React, { useRef, useState, useEffect, FC, useContext } from 'react';
-import { Animated, View, PanResponder } from 'react-native';
+import { Animated, View, PanResponder, Text } from 'react-native';
 import ResizableWidthContext from '../contexts/resizableWidth';
-import Text from '../Text';
+// import Text from '../Text';
 
 export interface ResizableCellProps {
   children?: any;
   position?: number;
+  resizable?: boolean;
 }
 
 let originalColWidth: number;
 let colWidth: number;
 
 const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
-  const { children, position } = props;
+  const { children, position, resizable } = props;
 
-  const [, setResizableWidth] = useContext(ResizableWidthContext);
+  const [resizableWidth, setResizableWidth] = useContext(ResizableWidthContext);
   const [width, setWidth] = useState<number>(150);
-  const borderWidth = 10;
+  const borderWidth = 20;
   const pan = useRef(new Animated.ValueXY()).current;
   const parentRef = useRef(null);
 
   useEffect(() => {
-    setResizableWidth({ width: width, cellIndex: position });
+    console.log('width', position, resizableWidth);
+    const widths: any = resizableWidth.width;
+    //@ts-ignore
+    widths[position] = width;
+    setResizableWidth({ width: widths });
+    console.log(resizableWidth, 'test consumer');
   }, [width]);
 
   const panResponder = useRef(
@@ -67,8 +73,8 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
       }}
       ref={parentRef}
     >
-      <Text style={{ padding: 20 }}>{children}</Text>
-      <View
+      <Text style={{ padding: 20, textAlign: 'center' }}>{children}</Text>
+      {/* <View
         {...panResponder.panHandlers}
         style={{
           backgroundColor: 'invisible',
@@ -80,27 +86,30 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
           //@ts-ignore
           cursor: 'ew-resize'
         }}
-      ></View>
-      <View
-        {...panResponder.panHandlers}
-        style={{
-          backgroundColor: 'invisible',
-          borderLeftWidth: 1,
-          height: '100%',
-          position: 'absolute',
-          right: 0,
-          top: 0,
-          width: borderWidth / 2,
-          //@ts-ignore
-          cursor: 'ew-resize'
-        }}
-      ></View>
+      ></View> */}
+      {resizable && (
+        <View
+          {...panResponder.panHandlers}
+          style={{
+            backgroundColor: 'red',
+            borderRightWidth: 1,
+            height: '100%',
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            width: borderWidth / 2,
+            //@ts-ignore
+            cursor: 'ew-resize'
+          }}
+        ></View>
+      )}
     </View>
   );
 };
 
 ResizableCell.defaultProps = {
-  children: 'Test'
+  children: 'Test',
+  resizable: false
 };
 
 export default ResizableCell;
