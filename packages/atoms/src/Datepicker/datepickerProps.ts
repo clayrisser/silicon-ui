@@ -39,7 +39,7 @@ export interface CustomDatepickerProps {
   max?: string;
   min?: string;
   required?: boolean;
-  fontSize?: number;
+  // onClickOutsile?: (event :any) => void;
 }
 
 export interface DatepickerProps
