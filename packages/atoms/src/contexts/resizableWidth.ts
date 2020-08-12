@@ -1,10 +1,10 @@
 import { createContext } from 'react';
 
 export interface ResizableWidth {
-  width?: string[];
+  widths?: string[];
 }
 
-export type SetResizableWidth = (width: ResizableWidth) => any;
+export type SetResizableWidth = (widths: ResizableWidth) => any;
 
 export type ResizableWidthContextType = [ResizableWidth, SetResizableWidth];
 

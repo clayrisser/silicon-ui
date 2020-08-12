@@ -8,10 +8,10 @@ import ResizableWidthContext, {
 const ResizableTableRow: FC = (props) => {
   const headerData = ['test1', 'test2', 'test3'];
   const [resizableWidth, setResizableWidth] = useState<ResizableWidth>({
-    width: []
+    widths: []
   });
   useEffect(() => {
-    console.log('cell details', resizableWidth.width);
+    console.log('cell details', resizableWidth.widths);
   });
 
   return (

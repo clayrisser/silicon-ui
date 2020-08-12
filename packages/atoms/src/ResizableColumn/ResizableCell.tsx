@@ -22,12 +22,12 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   const parentRef = useRef(null);
 
   useEffect(() => {
-    console.log('width', position, resizableWidth);
-    const widths: any = resizableWidth.width;
+    // console.log('width', position, resizableWidth);
+    const widthValues: any = resizableWidth.widths;
     //@ts-ignore
-    widths[position] = width;
-    setResizableWidth({ width: widths });
-    console.log(resizableWidth, 'test consumer');
+    widthValues[position] = width;
+    setResizableWidth({ widths: widthValues });
+    // console.log(resizableWidth, 'test consumer');
   }, [width]);
 
   const panResponder = useRef(
