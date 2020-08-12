@@ -39,6 +39,8 @@ export interface CustomDatepickerProps {
   max?: string;
   min?: string;
   required?: boolean;
+  onChange?: (event: any) => void;
+  onSelect?: (event: any) => void;
   // onClickOutsile?: (event :any) => void;
 }
 
