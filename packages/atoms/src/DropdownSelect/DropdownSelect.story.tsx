@@ -30,6 +30,7 @@ storiesOf('Dropdown', module)
         multiple={boolean('multiple', false)}
         disabled={boolean('disabled', false)}
         onChange={action('onChange')}
+        selectedValue={text('selectedValue', '')}
         onValueChange={action('onValueChange')}
         backgroundColor={select(
           'backgroundColor',
