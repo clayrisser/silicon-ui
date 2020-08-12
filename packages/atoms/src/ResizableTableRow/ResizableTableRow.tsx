@@ -6,7 +6,7 @@ import ResizableWidthContext, {
 } from '../contexts/resizableWidth';
 
 const ResizableTableRow: FC = (props) => {
-  const headerData = ['test1', 'test2', 'test3'];
+  // const headerData = ['test1', 'test2', 'test3'];
   const [resizableWidth, setResizableWidth] = useState<ResizableWidth>({
     widths: []
   });
@@ -16,14 +16,26 @@ const ResizableTableRow: FC = (props) => {
 
   return (
     <ResizableWidthContext.Provider value={[resizableWidth, setResizableWidth]}>
-      <Box style={{ display: 'flex', flexDirection: 'row' }}>
-        {headerData.map((data, index) => {
+      <Box style={{ display: 'flex', flexDirection: 'row', marginLeft: 100 }}>
+        <ResizableCell position={0} resizable={true}>
+          Head1
+        </ResizableCell>
+        <ResizableCell position={1} resizable={true}>
+          Head2
+        </ResizableCell>
+        <ResizableCell position={2} resizable={true}>
+          Head3
+        </ResizableCell>
+        {/* <ResizableCell position={3} resizable={true}>
+          Head4
+        </ResizableCell> */}
+        {/* {headerData.map((data, index) => {
           return (
             <ResizableCell key={index} position={index} resizable={true}>
               {data}
             </ResizableCell>
           );
-        })}
+        })} */}
       </Box>
     </ResizableWidthContext.Provider>
   );
