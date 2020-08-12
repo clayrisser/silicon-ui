@@ -68,7 +68,6 @@ const ResizableColumn: FC<ResizableColumnProps> = (
       left: x,
       top: y
     };
-    console.log(newLayout, 'new layout');
   }
 
   // function handleClick() {

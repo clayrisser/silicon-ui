@@ -23,7 +23,6 @@ const ResizableCell: FC<ResizableCellProps> = (props) => {
           px: number,
           py: number
         ) => {
-          console.log('X offset to frame: ' + fx, 'click');
           colWidth = fx;
         }
       );
