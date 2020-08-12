@@ -7,9 +7,11 @@ import ResizableWidthContext, {
 
 const ResizableTableRow: FC = (props) => {
   const headerData = ['test1', 'test2', 'test3'];
-  const [resizableWidth, setResizableWidth] = useState<ResizableWidth>({});
+  const [resizableWidth, setResizableWidth] = useState<ResizableWidth>({
+    widths: []
+  });
   useEffect(() => {
-    console.log('cell details', resizableWidth);
+    console.log('cell details', resizableWidth.widths);
   });
 
   return (
@@ -17,7 +19,7 @@ const ResizableTableRow: FC = (props) => {
       <Box style={{ display: 'flex', flexDirection: 'row' }}>
         {headerData.map((data, index) => {
           return (
-            <ResizableCell key={index} position={index}>
+            <ResizableCell key={index} position={index} resizable={true}>
               {data}
             </ResizableCell>
           );

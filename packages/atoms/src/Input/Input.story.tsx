@@ -6,6 +6,7 @@ import {
   boolean,
   number
 } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Input from './Input';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -29,8 +30,9 @@ storiesOf('Input', module)
           ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],
           ''
         )}
+        onInput={action('onInput')}
         disabled={boolean('disabled', false)}
-        maxLength={text('maxLength', '')}
+        // maxLength={text('maxLength', '')}
         minLength={text('minLength', '')}
         required={boolean('required', false)}
         padding={text('padding', '2')}
@@ -39,6 +41,7 @@ storiesOf('Input', module)
         color={text('color', 'text')}
         id={text('input-id', '')}
         width={text('width', '70%')}
+        // borderWidth={text('borderWidth', '7')}
         placeholder={text('placeholder', 'user name')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
