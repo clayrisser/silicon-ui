@@ -32,6 +32,7 @@ storiesOf('Datepicker', module)
         pl={0}
         type="date"
         onPress={action('onPress')}
+        onChange={action('onChange')}
         padding={text('padding', '2')}
         margin={text('margin', '2')}
         borderRadius={number('border-radius', 0)}
@@ -40,12 +41,13 @@ storiesOf('Datepicker', module)
         min={text('min', '')}
         required={boolean('required', false)}
         disabled={boolean('disabled', false)}
+        width={text('width', '70%')}
         fontFamily={select(
           'font-family',
           ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
           'Times New Roman'
         )}
-        fontWeight={text('font-weight', 'bold')}
+        fontWeight={text('font-weight', 'normal')}
         fontSize={number('fon-size', 2)}
         lineHeight={text('line-height', '')}
       />
