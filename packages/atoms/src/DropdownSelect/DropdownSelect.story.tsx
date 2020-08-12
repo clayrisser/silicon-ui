@@ -29,6 +29,8 @@ storiesOf('Dropdown', module)
       <DropdownSelect
         multiple={boolean('multiple', false)}
         disabled={boolean('disabled', false)}
+        onChange={action('onChange')}
+        onValueChange={action('onValueChange')}
         backgroundColor={select(
           'backgroundColor',
           ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],

@@ -44,7 +44,7 @@ export interface CustomInputProps {
   label?: string;
   placeholder?: string;
   id?: string;
-  onInput?: any;
+  onInput?: (event: any) => void;
 }
 
 export interface InputProps
