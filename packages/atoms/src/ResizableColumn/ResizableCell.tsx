@@ -22,9 +22,11 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
 
   useEffect(() => {
     const widthValues: any = resizableWidth.widths;
-    //@ts-ignore
-    widthValues[position] = width;
-    setResizableWidth({ widths: widthValues });
+    if (widthValues !== undefined) {
+      //@ts-ignore
+      widthValues[position] = width;
+      setResizableWidth({ widths: widthValues });
+    }
   }, [width]);
 
   const panResponder = useRef(
@@ -44,7 +46,6 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
               _py: number
             ) => {
               colWidth = fx;
-              console.log(fx, 'fx');
             }
           );
         }
@@ -76,7 +77,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
         <View
           {...panResponder.panHandlers}
           style={{
-            backgroundColor: 'red',
+            backgroundColor: 'invisible',
             borderRightWidth: 1,
             height: '100%',
             position: 'absolute',

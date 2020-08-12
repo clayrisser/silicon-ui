@@ -11,12 +11,12 @@ const ResizableTableRow: FC = (props) => {
     widths: []
   });
   useEffect(() => {
-    console.log('cell details', resizableWidth.widths);
+    // console.log('cell details', resizableWidth.widths);
   });
 
   return (
     <ResizableWidthContext.Provider value={[resizableWidth, setResizableWidth]}>
-      <Box style={{ display: 'flex', flexDirection: 'row', marginLeft: 100 }}>
+      <Box style={{ display: 'flex', flexDirection: 'row' }}>
         <ResizableCell position={0} resizable={true}>
           Head1
         </ResizableCell>

@@ -20,8 +20,15 @@ storiesOf('ResizableCell', module)
   .add('with knobs', () => (
     <Wrapper>
       <View style={{ display: 'flex', flexDirection: 'row' }}>
-        <ResizableCell>Header1</ResizableCell>
-        <ResizableCell>Header2</ResizableCell>
+        <ResizableCell position={0} resizable={true}>
+          Head1
+        </ResizableCell>
+        <ResizableCell position={1} resizable={true}>
+          Head2
+        </ResizableCell>
+        <ResizableCell position={2} resizable={true}>
+          Head3
+        </ResizableCell>
       </View>
     </Wrapper>
   ));
