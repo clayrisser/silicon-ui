@@ -36,7 +36,7 @@ export interface CustomInputProps {
   theme?: Theme;
   type?: string;
   disabled?: boolean;
-  maxLength?: string;
+  // maxLength?: string;
   minLength?: string;
   value?: string;
   children?: ReactNode;
@@ -44,6 +44,7 @@ export interface CustomInputProps {
   label?: string;
   placeholder?: string;
   id?: string;
+  onInput?: any;
 }
 
 export interface InputProps
