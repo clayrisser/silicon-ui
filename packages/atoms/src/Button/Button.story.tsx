@@ -32,21 +32,21 @@ storiesOf('Button', module)
           ['primary', 'secondary'],
           'primary'
         )}
-        padding={text('padding', '2')}
-        margin={text('margin', '')}
+        padding={number('padding', 2)}
+        margin={number('margin', 0)}
         value={text('value', '')}
         name={text('name', '')}
         type={text('type', '')}
         className={text('type', '')}
         borderRadius={number('borderRadius', 2)}
-        paddingTop={text('padding-top', '')}
-        paddingBottom={text('padding-bottom', '')}
-        paddingRight={text('padding-right', '')}
-        paddingLeft={text('padding-left', '')}
-        marginLeft={text('margin-left', '')}
-        marginRight={text('margin-right', '')}
-        marginTop={text('margin-top', '')}
-        marginBottom={text('margin-bottom', '')}
+        // paddingTop={text('padding-top', '')}
+        // paddingBottom={text('padding-bottom', '')}
+        // paddingRight={text('padding-right', '')}
+        // paddingLeft={text('padding-left', '')}
+        // marginLeft={text('margin-left', '')}
+        // marginRight={text('margin-right', '')}
+        // marginTop={text('margin-top', '')}
+        // marginBottom={text('margin-bottom', '')}
         onFocus={action('onFocus')}
         onPress={action('onPress')}
         onPressIn={action('onPressIn')}
