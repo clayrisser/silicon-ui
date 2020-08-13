@@ -48,7 +48,7 @@ const Input: FC<InputProps> = (props: InputProps) => {
 
 Input.defaultProps = {
   autoContrast: false,
-  backgroundColor: 'primary',
+  backgroundColor: 'inverseText',
   borderRadius: 2,
   borderWidth: 0,
   fontFamily: 'body',

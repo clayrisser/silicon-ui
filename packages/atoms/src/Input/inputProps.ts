@@ -29,7 +29,11 @@ export interface StyledInputProps
 
 export interface NativeInputProps extends NativeBase.Input {}
 
-export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {}
+export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {
+  disabled?: boolean;
+  secureTextEntry?: boolean;
+  placeholder?: string;
+}
 
 export interface CustomInputProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
@@ -53,7 +57,14 @@ export interface InputProps
     NativeItemProps,
     StyledInputProps {}
 
-export const customInputPropsKeys = new Set(['autoContrast', 'theme']);
+export const customInputPropsKeys = new Set([
+  'autoContrast',
+  'theme',
+  'disabled',
+  'placeholder',
+  'secureTextEntry',
+  'keyboardType'
+]);
 
 export const nativeInputPropsKeys = new Set<string>([]);
 

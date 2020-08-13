@@ -25,11 +25,26 @@ storiesOf('Input', module)
     <Wrapper>
       <Input
         type={select('type', ['text', 'password'], 'text')}
-        backgroundColor={select(
-          'backgroundColor',
-          ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],
-          ''
+        keyboardType={select(
+          'keyboardType',
+          [
+            'url',
+            'numeric',
+            'default',
+            'email-address',
+            'phone-pad',
+            'number-pad',
+            'decimal-pad',
+            'visible-password',
+            'ascii-capable',
+            'numbers-and-punctuation',
+            'name-phone-pad',
+            'twitter',
+            'web-search'
+          ],
+          'default'
         )}
+        secureTextEntry={boolean('secureTextEntry', false)}
         onInput={action('onInput')}
         disabled={boolean('disabled', false)}
         // maxLength={text('maxLength', '')}
@@ -38,7 +53,6 @@ storiesOf('Input', module)
         padding={text('padding', '2')}
         margin={text('margin', '2')}
         label={text('input-label', 'input')}
-        color={text('color', 'text')}
         id={text('input-id', '')}
         width={text('width', '70%')}
         // borderWidth={text('borderWidth', '7')}
