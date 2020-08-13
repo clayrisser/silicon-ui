@@ -26,7 +26,6 @@ storiesOf('Button', module)
     <Wrapper>
       <Button
         disabled={boolean('disabled', false)}
-        active={boolean('active', false)}
         backgroundColor={select(
           'backgroundColor',
           ['primary', 'secondary'],

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -37,8 +37,6 @@ const HTMLCheckBox: StyledComponent<
 
 const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   const color = useColor(props);
-  const [checked, setChecked] = useState<boolean>(false);
-
   const {
     customCheckBoxProps,
     styledCheckBoxProps,
@@ -47,42 +45,29 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
     ...props,
     color
   });
-
-  function handleClick(_e: any) {
-    if (props.onPress) props.onPress();
-    setChecked(!checked);
-  }
-
   return (
     <HTMLCheckBox
       {...styledCheckBoxProps}
       {...nativeItemProps}
       {...(customCheckBoxProps as any)}
-      onClick={handleClick}
-      checked={checked}
     />
   );
 };
 
 CheckBox.defaultProps = {
-  backgroundColor: 'primary',
-  borderRadius: 2,
-  borderWidth: 0,
-  marginLeft: 0,
-  marginBottom: 0,
-  marginRight: 0,
-  marginTop: 0,
-  paddingBottom: 2,
-  paddingLeft: 2,
-  paddingRight: 2,
-  paddingTop: 2,
-  width: '100%',
-  type: 'checkbox',
-  checked: false,
-  disabled: false,
-  value: 'first',
-  label: 'next',
-  name: 'other'
+  // backgroundColor: 'primary',
+  // borderRadius: 2,
+  // borderWidth: 0,
+  // fontFamily: 'body',
+  // fontSize: 2,
+  // fontWeight: 'body',
+  // lineHeight: 'body',
+  // paddingBottom: 2,
+  // paddingLeft: 2,
+  // paddingRight: 2,
+  // paddingTop: 2,
+  // width: '100%',
+  type: 'checkbox'
 };
 
 export default CheckBox;

@@ -27,21 +27,25 @@ export interface StyledCheckBoxProps
     SpaceProps,
     TypographyProps {}
 
-export interface NativeCheckBoxProps extends NativeBase.Input {}
+export interface NativeCheckBoxProps extends NativeBase.CheckBox {}
 
-export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {}
+export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {
+  disabled?: boolean;
+}
 
 export interface CustomCheckBoxProps {
+  autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   theme?: Theme;
   type?: string;
-  checked?: boolean;
   disabled?: boolean;
-  children?: string | ReactNode;
+  // maxLength?: string;
+  minLength?: string;
   value?: string;
-  label?: string;
-  name?: string;
+  children?: ReactNode;
   required?: boolean;
-  borderWidth?: number;
+  label?: string;
+  id?: string;
+  onCheckBox?: (event: any) => void;
 }
 
 export interface CheckBoxProps
@@ -51,19 +55,29 @@ export interface CheckBoxProps
     StyledCheckBoxProps {}
 
 export const customCheckBoxPropsKeys = new Set([
+  'autoContrast',
   'theme',
-  'type',
-  'checked',
-  'disabled',
-  'value',
-  'label',
-  'borderWidth'
+  'disabled'
 ]);
 
-export const nativeCheckBoxPropsKeys = new Set<string>([
-  'color',
+export const nativeCheckBoxPropsKeys = new Set<string>([]);
+
+export const nativeItemPropKeys = new Set([
+  'bordered',
+  'disabled',
+  'error',
+  'type',
+  'fixedLabel',
+  'floatingLabel',
+  'inlineLabel',
+  'last',
   'onPress',
-  'checked'
+  'picker',
+  'regular',
+  'rounded',
+  'stackedLabel',
+  'success',
+  'underline'
 ]);
 
 export interface SplitProps {
@@ -83,6 +97,8 @@ export function splitProps(props: CheckBoxProps): SplitProps {
       customCheckBoxProps[key] = prop;
     } else if (nativeCheckBoxPropsKeys.has(key)) {
       nativeCheckBoxProps[key] = prop;
+    } else if (nativeItemPropKeys.has(key)) {
+      nativeItemProps[key] = prop;
     } else {
       styledCheckBoxProps[key] = prop;
     }

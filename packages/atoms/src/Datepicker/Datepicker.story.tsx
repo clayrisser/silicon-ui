@@ -27,9 +27,6 @@ storiesOf('Datepicker', module)
     <Wrapper>
       <Datepicker
         backgroundColor={text('backgroundColor', '#FFFFFF00')}
-        color={text('color', 'text')}
-        ml={0}
-        pl={0}
         type="date"
         onPress={action('onPress')}
         onSelect={action('onSelect')}
