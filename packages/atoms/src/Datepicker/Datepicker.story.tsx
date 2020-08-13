@@ -33,6 +33,7 @@ storiesOf('Datepicker', module)
         type="date"
         onPress={action('onPress')}
         onSelect={action('onSelect')}
+        onChange={action('onChange')}
         padding={text('padding', '2')}
         margin={text('margin', '2')}
         borderRadius={number('border-radius', 0)}

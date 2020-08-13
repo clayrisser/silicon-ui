@@ -54,6 +54,9 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
   function handleMouseUp(e: any) {
     if (props.onPressOut) props.onPressOut(e);
   }
+  function handleBlur(e :any) {
+    if (props.onPress) props.onPress(e)
+  }
 
   return (
     <HTMLDiv
@@ -63,6 +66,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
       onClick={handleClick}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
+      onBlur={handleBlur}
     />
   );
 };

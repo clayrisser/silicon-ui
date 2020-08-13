@@ -5,7 +5,6 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-// import docs from './Button.docs.mdx';
 
 storiesOf('Text', module)
   .addDecorator(withKnobs)
