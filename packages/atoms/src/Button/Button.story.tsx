@@ -27,6 +27,7 @@ storiesOf('Button', module)
         backgroundColor={text('backgroundColor', 'primary')}
         padding={number('padding', 2)}
         margin={number('margin', 0)}
+        active={boolean('active', false)}
         value={text('value', 'button')}
         borderRadius={number('borderRadius', 2)}
         disabled={boolean('disabled', false)}
