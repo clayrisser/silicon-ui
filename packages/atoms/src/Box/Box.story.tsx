@@ -5,7 +5,7 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-import { action } from '@storybook/addon-actions';
+
 // import docs from './Button.docs.mdx';
 
 storiesOf('Box', module)
