@@ -17,14 +17,8 @@ storiesOf('Text', module)
     <Wrapper>
       <Text
         color={text('color', 'text')}
-        fontFamily={select(
-          'font-family',
-          ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
-          'Times New Roman'
-        )}
         fontWeight={text('font-weight', 'bold')}
         fontSize={number('font-size', 2)}
-        lineHeight={text('line-height', '')}
         opacity={number('opacity', 1)}
         letterSpacing={number('letter-spacing', 0)}
       >
