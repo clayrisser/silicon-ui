@@ -22,12 +22,18 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
 
   useEffect(() => {
     const widthValues: any = resizableWidth.widths;
-    if (widthValues !== undefined) {
+    if (widthValues !== undefined && position !== undefined) {
       //@ts-ignore
       widthValues[position] = width;
       setResizableWidth({ widths: widthValues });
     }
   }, [width]);
+
+  // useEffect(() => {
+  //   const widthValues: any = resizableWidth.widths;
+  //   if (widthValues !== undefined && position !== undefined)
+  //     setWidth(widthValues[position]);
+  // }, [resizableWidth]);
 
   const panResponder = useRef(
     PanResponder.create({
@@ -90,16 +96,17 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
       }
     })
   ).current;
-
   return (
     <View
       style={{
-        width: width,
+        //@ts-ignore
+        width: resizableWidth?.widths[position],
         maxWidth: '100%',
         maxHeight: '100%',
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderLeftWidth: 1
+        borderWidth: 1
+        // borderTopWidth: 1,
+        // borderBottomWidth: 1
+        // borderLeftWidth: 1
       }}
       ref={parentRef}
     >
@@ -109,7 +116,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
           {...panResponder.panHandlers}
           style={{
             backgroundColor: 'invisible',
-            borderRightWidth: 1,
+            // borderRightWidth: 1,
             height: '100%',
             position: 'absolute',
             right: 0,
@@ -141,7 +148,8 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
 
 ResizableCell.defaultProps = {
   children: 'Test',
-  resizable: false
+  resizable: false,
+  position: 0
 };
 
 export default ResizableCell;

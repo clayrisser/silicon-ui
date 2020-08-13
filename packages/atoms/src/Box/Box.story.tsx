@@ -27,7 +27,7 @@ storiesOf('Box', module)
         height={number('height', 200)}
         padding={number('padding', 2)}
         fontWeight={text('font-weight', 'body')}
-        margin={number('margin', 2)}
+        // margin={number('margin', 2)}
         marginTop={number('margin-top', 2)}
         marginBottom={number('margin-bottom', 0)}
         marginRight={number('margin-right', 0)}

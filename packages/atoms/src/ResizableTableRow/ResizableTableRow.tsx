@@ -26,16 +26,21 @@ const ResizableTableRow: FC = (props) => {
         <ResizableCell position={2} resizable={true}>
           Head3
         </ResizableCell>
-        {/* <ResizableCell position={3} resizable={true}>
-          Head4
-        </ResizableCell> */}
-        {/* {headerData.map((data, index) => {
-          return (
-            <ResizableCell key={index} position={index} resizable={true}>
-              {data}
-            </ResizableCell>
-          );
-        })} */}
+      </Box>
+      <Box style={{ display: 'flex', flexDirection: 'row' }}>
+        <ResizableCell position={0}>Head1</ResizableCell>
+        <ResizableCell position={1}>Head2</ResizableCell>
+        <ResizableCell position={2}>Head3</ResizableCell>
+      </Box>
+      <Box style={{ display: 'flex', flexDirection: 'row' }}>
+        <ResizableCell position={0}>Head1</ResizableCell>
+        <ResizableCell position={1}>Head2</ResizableCell>
+        <ResizableCell position={2}>Head3</ResizableCell>
+      </Box>
+      <Box style={{ display: 'flex', flexDirection: 'row' }}>
+        <ResizableCell position={0}>Head1</ResizableCell>
+        <ResizableCell position={1}>Head2</ResizableCell>
+        <ResizableCell position={2}>Head3</ResizableCell>
       </Box>
     </ResizableWidthContext.Provider>
   );
