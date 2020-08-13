@@ -37,6 +37,9 @@ export interface CustomButtonProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
   theme?: Theme;
+  disabled?: boolean;
+  value?: string;
+  
 }
 
 export interface ButtonProps

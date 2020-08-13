@@ -1,6 +1,12 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text, number, select } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  number,
+  select,
+  boolean
+} from '@storybook/addon-knobs';
 import Button from './Button';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -19,7 +25,11 @@ storiesOf('Button', module)
     <Wrapper>
       <Button
         backgroundColor={text('backgroundColor', 'primary')}
+        padding={number('padding', 2)}
+        margin={number('margin', 0)}
+        value={text('value', 'button')}
         borderRadius={number('borderRadius', 2)}
+        disabled={boolean('disabled', false)}
         onFocus={action('onFocus')}
         onPress={action('onPress')}
         onPressIn={action('onPressIn')}
