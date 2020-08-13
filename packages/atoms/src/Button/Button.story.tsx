@@ -1,18 +1,11 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  number,
-  select,
-  boolean
-} from '@storybook/addon-knobs';
+import { withKnobs, text, number, select } from '@storybook/addon-knobs';
 import Button from './Button';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-
 // import docs from './Button.docs.mdx';
 
 storiesOf('Button', module)
@@ -25,18 +18,7 @@ storiesOf('Button', module)
   .add('with knobs', () => (
     <Wrapper>
       <Button
-        disabled={boolean('disabled', false)}
-        backgroundColor={select(
-          'backgroundColor',
-          ['primary', 'secondary'],
-          'primary'
-        )}
-        padding={number('padding', 2)}
-        margin={number('margin', 0)}
-        value={text('value', '')}
-        name={text('name', '')}
-        type={text('type', '')}
-        className={text('type', '')}
+        backgroundColor={text('backgroundColor', 'primary')}
         borderRadius={number('borderRadius', 2)}
         onFocus={action('onFocus')}
         onPress={action('onPress')}
@@ -53,7 +35,7 @@ storiesOf('Button', module)
           'AA'
         )}
       >
-        {text('title', 'click me')}
+        {text('children', 'click me')}
       </Button>
     </Wrapper>
   ));

@@ -72,6 +72,9 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
 };
 
 Button.defaultProps = {
+  // fontFamily: 'body',
+  // fontWeight: 'body',
+  // lineHeight: 'body',
   autoContrast: false,
   backgroundColor: 'primary',
   children: '',
@@ -81,12 +84,7 @@ Button.defaultProps = {
   paddingRight: 2,
   paddingTop: 2,
   textAlign: 'center',
-  width: '100%',
-  name: 'first',
-  type: 'next',
-  className: 'className',
-  lineHeight: 'body',
-  active: false
+  width: '100%'
 };
 
 export default Button;
