@@ -36,13 +36,7 @@ export interface StyledTextProps extends TypographyProps, TextColorProps {}
 export interface CustomButtonProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
-  disabled?: boolean;
-  value?: string;
   theme?: Theme;
-  name?: string;
-  type?: string;
-  className?: string;
-  required?: boolean;
 }
 
 export interface ButtonProps
@@ -51,13 +45,9 @@ export interface ButtonProps
     StyledTextProps,
     NativeButtonProps {}
 
-// export const antiForwardButtonPropsKeys = new Set(['borderColor']);
+export const antiForwardButtonPropsKeys = new Set(['borderColor']);
 
-export const customButtonPropsKeys = new Set([
-  'autoContrast',
-  'children',
-  'disabled'
-]);
+export const customButtonPropsKeys = new Set(['autoContrast', 'children']);
 
 export const styledTextPropsKeys = new Set([
   'color',
