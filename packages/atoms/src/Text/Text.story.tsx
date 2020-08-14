@@ -18,6 +18,8 @@ storiesOf('Text', module)
       <Text
         color={text('color', 'text')}
         fontWeight={text('font-weight', 'bold')}
+        padding={number('padding', 1)}
+        margin={number('margin', 1)}
         fontSize={number('font-size', 2)}
         opacity={number('opacity', 1)}
         letterSpacing={number('letter-spacing', 0)}
