@@ -39,6 +39,8 @@ export interface CustomButtonProps {
   theme?: Theme;
   disabled?: boolean;
   value?: string;
+  name?: string;
+  type?: string;
 }
 
 export interface ButtonProps

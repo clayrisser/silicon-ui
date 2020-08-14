@@ -53,6 +53,8 @@ storiesOf('Box', module)
           },
           'A'
         )}
-      ></Box>
+      >
+        {text('label', 'its a Box')}
+      </Box>
     </Wrapper>
   ));
