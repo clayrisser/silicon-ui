@@ -38,7 +38,6 @@ export interface CustomCheckBoxProps {
   theme?: Theme;
   type?: string;
   disabled?: boolean;
-  // maxLength?: string;
   minLength?: string;
   value?: string;
   children?: ReactNode;

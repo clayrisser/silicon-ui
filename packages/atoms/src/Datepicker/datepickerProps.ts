@@ -41,8 +41,6 @@ export interface CustomDatepickerProps {
   required?: boolean;
   onChange?: (event: any) => void;
   onSelect?: (event: any) => void;
-  // onCalendarClose?: (event: any) => void;
-  // onClickOutsile?: (event :any) => void;
 }
 
 export interface DatepickerProps

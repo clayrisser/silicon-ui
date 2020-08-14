@@ -12,8 +12,6 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-import { paddingBottom } from 'styled-system';
-
 // import docs from './Input.docs.mdx';
 
 storiesOf('Datepicker', module)
@@ -31,7 +29,6 @@ storiesOf('Datepicker', module)
         onPress={action('onPress')}
         onSelect={action('onSelect')}
         onChange={action('onChange')}
-        //  onDateChange={action('onDateChange')}
         padding={text('padding', '2')}
         margin={text('margin', '2')}
         borderRadius={number('border-radius', 0)}

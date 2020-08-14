@@ -26,19 +26,11 @@ storiesOf('Box', module)
         borderRadius={number('borderRadius', 0)}
         height={number('height', 200)}
         padding={number('padding', 2)}
-        // fontWeight={text('font-weight', 'body')}
         marginTop={number('margin-top', 2)}
         marginBottom={number('margin-bottom', 0)}
         marginRight={number('margin-right', 0)}
         marginLeft={number('margin-left', 2)}
-        // fontSize={number('font-size', 2)}
-        // letterSpacing={number('letter-spacing', 1)}
         width={number('width', 200)}
-        // fontFamily={select(
-        //   'font-family',
-        //   ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
-        //   'Times New Roman'
-        // )}
         paddingTop={number('padding-top', 0)}
         paddingBottom={number('padding-bottom', 0)}
         paddingRight={number('padding-right', 2)}
@@ -53,8 +45,6 @@ storiesOf('Box', module)
           },
           'A'
         )}
-      >
-        {text('label', 'its a Box')}
-      </Box>
+      />
     </Wrapper>
   ));
