@@ -49,10 +49,6 @@ storiesOf('Dropdown', module)
         fontWeight={text('font-weight', 'bold')}
         fontSize={number('fon-size', 2)}
         lineHeight={text('line-height', '')}
-        //  size={number('size', -8)}
-        // borderRadius={number('borderRadius', 0)}
-        // height={200}
-        // width={200}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -80,11 +76,6 @@ storiesOf('Dropdown', module)
         <DropdownOption value="Audi" label="Audi">
           Audi
         </DropdownOption>
-        {/* <Picker.Item label="Wallet" value="key0" />
-        <Picker.Item label="ATM Card" value="key1" />
-        <Picker.Item label="Debit Card" value="key2" />
-        <Picker.Item label="Credit Card" value="key3" />
-        <Picker.Item label="Net Banking" value="key4" /> */}
       </DropdownSelect>
     </Wrapper>
   ));

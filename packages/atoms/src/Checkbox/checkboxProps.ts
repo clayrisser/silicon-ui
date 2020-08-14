@@ -38,7 +38,6 @@ export interface CustomCheckBoxProps {
   theme?: Theme;
   type?: string;
   disabled?: boolean;
-  // maxLength?: string;
   minLength?: string;
   value?: string;
   children?: ReactNode;
@@ -63,19 +62,12 @@ export const customCheckBoxPropsKeys = new Set([
 export const nativeCheckBoxPropsKeys = new Set<string>([]);
 
 export const nativeItemPropKeys = new Set([
-  'bordered',
   'disabled',
   'error',
   'type',
-  'fixedLabel',
-  'floatingLabel',
-  'inlineLabel',
   'last',
   'onPress',
-  'picker',
-  'regular',
   'rounded',
-  'stackedLabel',
   'success',
   'underline'
 ]);
