@@ -31,8 +31,8 @@ storiesOf('Box', module)
         marginBottom={number('margin-bottom', 0)}
         marginRight={number('margin-right', 0)}
         marginLeft={number('margin-left', 2)}
-        // fontSize={number('font-size', 2)}
-        // letterSpacing={number('letter-spacing', 1)}
+        fontSize={number('font-size', 2)}
+        letterSpacing={number('letter-spacing', 1)}
         width={number('width', 200)}
         // fontFamily={select(
         //   'font-family',
@@ -53,6 +53,8 @@ storiesOf('Box', module)
           },
           'A'
         )}
-      />
+      >
+        {text('label', 'its a Box')}
+      </Box>
     </Wrapper>
   ));
