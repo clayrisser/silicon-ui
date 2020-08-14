@@ -43,18 +43,18 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
     color
   });
 
-  function handlePress() {
-    if (props.onPress) props.onPress();
-    setChecked(!checked);
-  }
+  // function handlePress() {
+  //   if (props.onPress) props.onPress();
+  //   setChecked(!checked);
+  // }
 
   const styledNativeBaseCheckbox = (
     <StyledNativeBaseCheckbox
       {...customCheckBoxProps}
       {...nativeCheckBoxProps}
       {...styledCheckBoxProps}
-      onPress={() => handlePress()}
-      checked={checked}
+      // onPress={() => handlePress()}
+      // checked={checked}
     />
   );
   if (item.hasItemParent) return styledNativeBaseCheckbox;

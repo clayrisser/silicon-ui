@@ -20,7 +20,7 @@ storiesOf('Checkbox', module)
         onPress={action('onPress')}
         disabled={boolean('disabled', false)}
         value={text('value', '')}
-        // required={boolean('require', false)}
+        checked={boolean('checked', false)}
       />
     </Wrapper>
   ));

@@ -60,7 +60,7 @@ const DropdownSelect: FC<DropdownSelectProps> = (
 
 DropdownSelect.defaultProps = {
   activeOpacity: 1,
-  backgroundColor: 'background',
+  backgroundColor: 'inverseText',
   children: <></>,
   // value: '',
   fontFamily: 'body',

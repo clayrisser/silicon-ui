@@ -43,8 +43,6 @@ export interface CustomCheckBoxProps {
   children?: ReactNode;
   required?: boolean;
   label?: string;
-  id?: string;
-  onCheckBox?: (event: any) => void;
 }
 
 export interface CheckBoxProps

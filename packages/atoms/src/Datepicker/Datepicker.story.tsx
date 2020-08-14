@@ -12,7 +12,6 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-import { paddingBottom } from 'styled-system';
 
 // import docs from './Input.docs.mdx';
 
@@ -26,7 +25,7 @@ storiesOf('Datepicker', module)
   .add('with knobs', () => (
     <Wrapper>
       <Datepicker
-        backgroundColor={text('backgroundColor', '#FFFFFF00')}
+        backgroundColor={text('backgroundColor', '#FFFFFF')}
         type="date"
         onPress={action('onPress')}
         onSelect={action('onSelect')}

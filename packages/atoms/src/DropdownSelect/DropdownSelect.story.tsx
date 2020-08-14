@@ -27,15 +27,22 @@ storiesOf('Dropdown', module)
   .add('with knobs', () => (
     <Wrapper>
       <DropdownSelect
-        multiple={boolean('multiple', false)}
+        // multiple={boolean('multiple', false)}
         disabled={boolean('disabled', false)}
         onChange={action('onChange')}
         selectedValue={text('selectedValue', '')}
         onValueChange={action('onValueChange')}
         backgroundColor={select(
           'backgroundColor',
-          ['primary', 'secondary', '#ADFF2F', '#E5FFCC', '#CCFFE5'],
-          ''
+          [
+            'inverseText',
+            'primary',
+            'secondary',
+            '#ADFF2F',
+            '#E5FFCC',
+            '#CCFFE5'
+          ],
+          'inverseText'
         )}
         name={text('dropdown-name', '')}
         required={boolean('required', false)}
