@@ -53,6 +53,6 @@ storiesOf('Box', module)
           },
           'A'
         )}
-      ></Box>
+      />
     </Wrapper>
   ));

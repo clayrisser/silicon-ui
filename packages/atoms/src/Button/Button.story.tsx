@@ -31,6 +31,8 @@ storiesOf('Button', module)
         )}
         padding={number('padding', 2)}
         margin={number('margin', 0)}
+        name={text('name', 'button')}
+        type={text('type', 'first')}
         value={text('value', 'button')}
         borderRadius={number('borderRadius', 2)}
         disabled={boolean('disabled', false)}
