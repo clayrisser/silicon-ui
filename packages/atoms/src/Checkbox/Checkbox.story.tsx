@@ -17,10 +17,9 @@ storiesOf('Checkbox', module)
   .add('with knobs', () => (
     <Wrapper>
       <Checkbox
-        onPress={action('onPress')}
         disabled={boolean('disabled', false)}
-        value={text('value', '')}
-        checked={boolean('checked', false)}
-      />
+        // checked={boolean('checked', false)}
+        onPress={action('onPress')}
+      ></Checkbox>
     </Wrapper>
   ));
