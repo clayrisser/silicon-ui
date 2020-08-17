@@ -45,7 +45,7 @@ storiesOf('Input', module)
           'default'
         )}
         secureTextEntry={boolean('secureTextEntry', false)}
-        onInput={action('onInput')}
+        onFocus={action('onFocus')}
         disabled={boolean('disabled', false)}
         // maxLength={text('maxLength', '')}
         minLength={text('minLength', '')}

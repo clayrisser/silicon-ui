@@ -29,20 +29,14 @@ export interface StyledCheckBoxProps
 
 export interface NativeCheckBoxProps extends NativeBase.CheckBox {}
 
-export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {
-  disabled?: boolean;
-}
+export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {}
 
 export interface CustomCheckBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   theme?: Theme;
   type?: string;
-  disabled?: boolean;
-  minLength?: string;
-  value?: string;
-  children?: ReactNode;
-  required?: boolean;
-  label?: string;
+  children?: ReactNode | string;
+  checked?: boolean;
 }
 
 export interface CheckBoxProps
@@ -54,20 +48,24 @@ export interface CheckBoxProps
 export const customCheckBoxPropsKeys = new Set([
   'autoContrast',
   'theme',
-  'disabled'
+  'disabled',
+  'checked'
 ]);
 
 export const nativeCheckBoxPropsKeys = new Set<string>([]);
 
 export const nativeItemPropKeys = new Set([
-  'disabled',
   'error',
   'type',
   'last',
   'onPress',
+  'onPressIn',
+  'onPressOut',
   'rounded',
   'success',
-  'underline'
+  'underline',
+  'checked',
+  'disabled'
 ]);
 
 export interface SplitProps {

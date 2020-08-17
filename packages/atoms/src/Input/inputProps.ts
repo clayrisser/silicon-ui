@@ -48,7 +48,7 @@ export interface CustomInputProps {
   label?: string;
   placeholder?: string;
   id?: string;
-  onInput?: (event: any) => void;
+  // onInput?: (event: any) => void;
 }
 
 export interface InputProps
@@ -63,7 +63,8 @@ export const customInputPropsKeys = new Set([
   'disabled',
   'placeholder',
   'secureTextEntry',
-  'keyboardType'
+  'keyboardType',
+  'onFocus'
 ]);
 
 export const nativeInputPropsKeys = new Set<string>([]);

@@ -36,15 +36,11 @@ export interface CustomDropdownSelectProps {
   children?: ReactNode;
   theme?: Theme;
   value?: string;
-  disabled?: boolean;
   multiple?: boolean;
   name?: string;
   required?: boolean;
-  size?: number;
   autofocus?: boolean;
   label?: string;
-  onChange?: (event: any) => void;
-  onValueChange?: (event: any) => void;
 }
 
 export interface DropdownSelectProps
@@ -57,7 +53,8 @@ export const customDropdownSelectPropsKeys = new Set([
   'autoContrast',
   'children',
   'theme',
-  'value'
+  'value',
+  'disabled'
 ]);
 
 export const touchableOpacityPropsKeys = new Set([
@@ -69,6 +66,7 @@ export const touchableOpacityPropsKeys = new Set([
   'hitSlop',
   'onBlur',
   'onFocus',
+  'onPress',
   'onLayout',
   'onLongPress',
   'pressRetentionOffset',
@@ -76,8 +74,9 @@ export const touchableOpacityPropsKeys = new Set([
 ]);
 
 export const nativeDropdownSelectPropsKeys = new Set<string>([
-  'onValueChange'
-  // 'onPress',
+  'onValueChange',
+  'disabled',
+  'onPress'
   // 'onPressIn',
   // 'onPressOut'
 ]);
