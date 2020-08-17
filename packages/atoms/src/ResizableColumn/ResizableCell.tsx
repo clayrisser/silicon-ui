@@ -115,9 +115,8 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
         <View
           {...panResponder.panHandlers}
           style={{
-            backgroundColor: 'invisible',
-            // borderRightWidth: 1,
             height: '100%',
+            // backgroundColor: 'green',
             position: 'absolute',
             right: 0,
             top: 0,
@@ -125,6 +124,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
             //@ts-ignore
             cursor: 'ew-resize'
           }}
+          collapsable={false}
         ></View>
       )}
       {/* {resizable && (
