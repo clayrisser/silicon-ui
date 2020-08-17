@@ -15,7 +15,7 @@ let colWidth: number;
 const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   const { children, position, resizable } = props;
   const [resizableWidth, setResizableWidth] = useContext(ResizableWidthContext);
-  const [width, setWidth] = useState<number>(150);
+  const [width, setWidth] = useState<number>(100);
   const borderWidth = 20;
   const pan = useRef(new Animated.ValueXY()).current;
   const parentRef = useRef(null);
