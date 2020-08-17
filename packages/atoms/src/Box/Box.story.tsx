@@ -21,6 +21,7 @@ storiesOf('Box', module)
         backgroundColor={text('backgroundColor', 'blue')}
         borderRadius={number('borderRadius', 0)}
         borderColor={text('border-color', '')}
+        borderWidth={number('border-width', 2)}
         borderStyle={text('border-style', 'solid')}
         borderBottomWidth={number('border-bottom-width', 1)}
         borderBottomColor={text('border-bottom-color', '')}
