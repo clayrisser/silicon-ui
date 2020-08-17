@@ -4,9 +4,10 @@ import {
   text,
   number,
   select,
-  boolean
+  boolean,
+  action
 } from '@storybook/addon-knobs';
-import { Container, Header, Content, Form, Item, Picker } from 'native-base';
+// import { Container, Header, Content, Form, Item, Picker } from 'native-base';
 
 import DropdownSelect from './DropdownSelect';
 import DropdownOption from '../DropdownOption/DropdownOption';
@@ -14,8 +15,6 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-import { Alert } from 'react-native';
-import { action } from '@storybook/addon-actions';
 
 storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
@@ -27,32 +26,17 @@ storiesOf('Dropdown', module)
   .add('with knobs', () => (
     <Wrapper>
       <DropdownSelect
-        // multiple={boolean('multiple', false)}
+        multiple={boolean('multiple', false)}
         disabled={boolean('disabled', false)}
         onChange={action('onChange')}
         selectedValue={text('selectedValue', '')}
         onValueChange={action('onValueChange')}
-        backgroundColor={select(
-          'backgroundColor',
-          [
-            'inverseText',
-            'primary',
-            'secondary',
-            '#ADFF2F',
-            '#E5FFCC',
-            '#CCFFE5'
-          ],
-          'inverseText'
-        )}
+        backgroundColor={text('backgroundColor', 'primary')}
         name={text('dropdown-name', '')}
         required={boolean('required', false)}
         autofocus={boolean('autofocus', false)}
         label={text('dropdown-label', 'choose one')}
-        fontFamily={select(
-          'font-family',
-          ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
-          'Times New Roman'
-        )}
+        fontFamily={text('font-family', 'Times New Roman')}
         fontWeight={text('font-weight', 'bold')}
         fontSize={number('fon-size', 2)}
         lineHeight={text('line-height', '')}

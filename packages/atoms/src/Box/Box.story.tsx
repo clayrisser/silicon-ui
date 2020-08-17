@@ -18,11 +18,7 @@ storiesOf('Box', module)
   .add('with knobs', () => (
     <Wrapper>
       <Box
-        backgroundColor={select(
-          'backgroundColor',
-          ['primary', 'secondary'],
-          'primary'
-        )}
+        backgroundColor={text('backgroundColor', 'primary')}
         borderRadius={number('borderRadius', 0)}
         height={number('height', 200)}
         padding={number('padding', 2)}

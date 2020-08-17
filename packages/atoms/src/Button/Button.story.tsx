@@ -24,11 +24,7 @@ storiesOf('Button', module)
   .add('with knobs', () => (
     <Wrapper>
       <Button
-        backgroundColor={select(
-          'backgroundColor',
-          ['primary', 'secondary'],
-          'primary'
-        )}
+        backgroundColor={text('backgroundColor', 'primary')}
         padding={number('padding', 2)}
         margin={number('margin', 0)}
         name={text('name', 'button')}
