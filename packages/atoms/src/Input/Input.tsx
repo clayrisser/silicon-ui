@@ -37,11 +37,16 @@ const Input: FC<InputProps> = (props: InputProps) => {
     ...props,
     color
   });
+  function handleInput(e: any) {
+    if (props.onFocus) props.onFocus(e.target.value);
+  }
   return (
     <HTMLInput
       {...styledInputProps}
       {...nativeItemProps}
       {...(customInputProps as any)}
+      onInput={handleInput}
+      onChangeText={handleInput}
     />
   );
 };
