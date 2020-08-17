@@ -38,11 +38,7 @@ storiesOf('Datepicker', module)
         required={boolean('required', false)}
         disabled={boolean('disabled', false)}
         width={text('width', '70%')}
-        fontFamily={select(
-          'font-family',
-          ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
-          'Times New Roman'
-        )}
+        fontFamily={text('font-family', 'Times New Roman')}
         fontWeight={text('font-weight', 'normal')}
         fontSize={number('fon-size', 2)}
         lineHeight={text('line-height', '')}
