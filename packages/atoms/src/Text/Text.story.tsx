@@ -33,7 +33,7 @@ storiesOf('Text', module)
         marginTop={number('margin-top', 0)}
         marginLeft={number('margin-left', 0)}
         marginRight={number('margin-right', 0)}
-        fontFamily={text('font-family', '')}
+        fontFamily={text('font-family', 'Arial, Helvetica, sans-serif')}
       >
         {text('children', 'Hello, world!')}
       </Text>
