@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import Checkbox from './Checkbox';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -18,8 +18,7 @@ storiesOf('Checkbox', module)
     <Wrapper>
       <Checkbox
         disabled={boolean('disabled', false)}
-        // checked={boolean('checked', false)}
         onPress={action('onPress')}
-      ></Checkbox>
+      />
     </Wrapper>
   ));

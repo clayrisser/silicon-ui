@@ -19,14 +19,14 @@ storiesOf('Box', module)
     <Wrapper>
       <Box
         backgroundColor={text('backgroundColor', 'blue')}
-        borderRadius={number('borderRadius', 0)}
+        //    borderRadius={number('borderRadius', 0)}
         borderColor={text('border-color', '')}
         borderWidth={number('border-width', 2)}
         borderStyle={text('border-style', 'solid')}
         borderBottomWidth={number('border-bottom-width', 1)}
         borderBottomColor={text('border-bottom-color', '')}
-        borderBottomLeftRadius={number('borderleft-radius', 0)}
-        borderBottomRightRadius={number('borderright-radius', 0)}
+        borderBottomLeftRadius={number('border-left-radius', 0)}
+        borderBottomRightRadius={number('border-right-radius', 0)}
         borderLeftWidth={number('border-left-width', 1)}
         borderLeftColor={text('border-left-color', '')}
         borderRightWidth={number('border-right-width', 1)}
