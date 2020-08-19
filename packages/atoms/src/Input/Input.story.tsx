@@ -44,6 +44,7 @@ storiesOf('Input', module)
           ],
           'default'
         )}
+        backgroundColor={text('background-color', 'white')}
         secureTextEntry={boolean('secureTextEntry', false)}
         borderRadius={number('border-radius', 0)}
         borderColor={text('border-color', '')}
