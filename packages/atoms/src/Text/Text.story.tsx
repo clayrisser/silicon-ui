@@ -21,8 +21,11 @@ storiesOf('Text', module)
         padding={number('padding', 1)}
         margin={number('margin', 1)}
         fontSize={number('font-size', 2)}
+        textAlign={text('text-align', 'center')}
         opacity={number('opacity', 1)}
         letterSpacing={number('letter-spacing', 0)}
+        lineHeight={number('line-height', 2)}
+        fontFamily={text('font-family', '')}
       >
         {text('children', 'Hello, world!')}
       </Text>

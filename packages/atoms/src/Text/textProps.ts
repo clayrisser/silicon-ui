@@ -33,6 +33,8 @@ export interface NativeTextProps extends ReactNativeTextProps {}
 export interface CustomTextProps {
   children?: string;
   theme?: Theme;
+  textAlign?: string;
+  textTransform?: string;
 }
 
 export interface TextProps
