@@ -7,8 +7,7 @@ import {
   position,
   shadow,
   space,
-  typography,
-  opacity
+  typography
 } from 'styled-system';
 import {
   DetailedHTMLDivProps,

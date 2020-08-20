@@ -5,7 +5,7 @@ import ResizableWidthContext, {
   ResizableWidth
 } from '../contexts/resizableWidth';
 
-const ResizableTableRow: FC = (props) => {
+const ResizableTableRow: FC = () => {
   // const headerData = ['test1', 'test2', 'test3'];
   const [resizableWidth, setResizableWidth] = useState<ResizableWidth>({
     widths: []

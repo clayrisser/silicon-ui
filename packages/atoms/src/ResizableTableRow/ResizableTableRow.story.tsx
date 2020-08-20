@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text, number, select } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import ResizableTableRow from './ResizableTableRow';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
