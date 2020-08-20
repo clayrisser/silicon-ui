@@ -4,8 +4,7 @@ import {
   text,
   number,
   select,
-  boolean,
-  action
+  boolean
 } from '@storybook/addon-knobs';
 // import { Container, Header, Content, Form, Item, Picker } from 'native-base';
 
@@ -15,7 +14,6 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-import { string } from 'prop-types';
 
 storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
@@ -45,6 +43,9 @@ storiesOf('Dropdown', module)
         borderTopRightRadius={number('borderTop-RightRadius', 0)}
         borderTopColor={text('border-top-color', '')}
         disabled={boolean('disabled', false)}
+        fontFamily={text('font-family', 'Times New Roman')}
+        fontWeight={text('font-weight', 'bold')}
+        fontSize={number('fon-size', 2)}
         multiple={boolean('multiple', false)}
         marginBottom={number('margin-bottom', 0)}
         marginLeft={number('margin-left', 2)}
@@ -56,9 +57,6 @@ storiesOf('Dropdown', module)
         required={boolean('required', false)}
         autofocus={boolean('autofocus', false)}
         label={text('dropdown-label', 'choose one')}
-        fontFamily={text('font-family', 'Times New Roman')}
-        fontWeight={text('font-weight', 'bold')}
-        fontSize={number('fon-size', 2)}
         lineHeight={text('line-height', '')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
