@@ -1,11 +1,11 @@
-import React, { FC, useState, useRef, useEffect } from 'react';
+import React, { FC, useState, useRef } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 
 export interface ResizableCellProps {}
 
 let originalColWidth: number;
 let colWidth: number;
-const ResizableCell: FC<ResizableCellProps> = (props) => {
+const ResizableCell: FC<ResizableCellProps> = () => {
   const parentRef = useRef(null);
   const childRef = useRef(null);
   const [width, setWidth] = useState<number>(300);
@@ -18,10 +18,10 @@ const ResizableCell: FC<ResizableCellProps> = (props) => {
         (
           width: number,
           height: number,
-          fx: number,
-          fy: number,
-          px: number,
-          py: number
+          fx: number
+          // fy: number,
+          // px: number,
+          // py: number
         ) => {
           colWidth = fx;
         }
@@ -43,7 +43,7 @@ const ResizableCell: FC<ResizableCellProps> = (props) => {
   return (
     <View
       style={{
-        width: width,
+        width: 'width',
         height: 80,
         backgroundColor: 'red',
         borderWidth: 2,
