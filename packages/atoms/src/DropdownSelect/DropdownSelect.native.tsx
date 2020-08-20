@@ -53,14 +53,17 @@ const NativeBasePicker: FC<DropdownSelectProps> = (
   const {
     customDropdownSelectProps,
     nativeDropdownSelectProps,
-    styledDropdownSelectProps
+    styledDropdownSelectProps,
+    touchableOpacityProps
   } = splitProps({
     ...props,
     color
   });
   const children =
     typeof customDropdownSelectProps.children === 'string' ? (
-      <NativePicker>{customDropdownSelectProps.children}</NativePicker>
+      <NativePicker {...touchableOpacityProps}>
+        {customDropdownSelectProps.children}
+      </NativePicker>
     ) : (
       customDropdownSelectProps.children
     );

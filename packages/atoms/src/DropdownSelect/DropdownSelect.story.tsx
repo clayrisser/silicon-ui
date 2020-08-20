@@ -7,7 +7,7 @@ import {
   boolean
 } from '@storybook/addon-knobs';
 // import { Container, Header, Content, Form, Item, Picker } from 'native-base';
-
+import { action } from '@storybook/addon-actions';
 import DropdownSelect from './DropdownSelect';
 import DropdownOption from '../DropdownOption/DropdownOption';
 import Wrapper from '../../storybook/Wrapper';
@@ -25,6 +25,7 @@ storiesOf('Dropdown', module)
   .add('with knobs', () => (
     <Wrapper>
       <DropdownSelect
+        onPress={action('onPress')}
         backgroundColor={text('backgroundColor', 'primary')}
         borderRadius={number('border-radius', 0)}
         borderColor={text('border-color', '')}
