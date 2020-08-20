@@ -1,11 +1,6 @@
 import React, { FC, useRef } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
-import {
-  TouchableOpacity,
-  Text as NativeText,
-  View,
-  Alert
-} from 'react-native';
+import { TouchableOpacity, Text as NativeText, View } from 'react-native';
 import {
   background,
   border,
@@ -23,8 +18,8 @@ import {
   StyledResizableColumnProps,
   splitProps
 } from './resizableColumnProps';
-import Box from '../Box';
-import { number } from '@storybook/addon-knobs';
+// import Box from '../Box';
+// import { number } from '@storybook/addon-knobs';
 
 const StyledView: StyledComponent<
   StyledResizableColumnProps,
@@ -59,16 +54,16 @@ const ResizableColumn: FC<ResizableColumnProps> = (
     color
   });
 
-  function onLayout(event: any) {
-    const { x, y, height, width } = event.nativeEvent.layout;
-    //  const newHeight = this.state.view2LayoutProps.height + 1;
-    const newLayout = {
-      height: height,
-      width: width,
-      left: x,
-      top: y
-    };
-  }
+  // function onLayout(event: any) {
+  //   const { x, y, height, width } = event.nativeEvent.layout;
+  //   //  const newHeight = this.state.view2LayoutProps.height + 1;
+  //   const newLayout = {
+  //     height: height,
+  //     width: width,
+  //     left: x,
+  //     top: y
+  //   };
+  // }
 
   // function handleClick() {
   //   const measure = parentRef.current || undefined;
@@ -91,7 +86,7 @@ const ResizableColumn: FC<ResizableColumnProps> = (
         <StyledView
           {...styledResizableColumnProps}
           {...nativeResizableColumnProps}
-          //@ts-ignore
+          // @ts-ignore
           ref={parentRef}
           // onLayout={(event: any) => onLayout(event)}
         >

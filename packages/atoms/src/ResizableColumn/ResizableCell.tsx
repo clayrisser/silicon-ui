@@ -23,7 +23,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   useEffect(() => {
     const widthValues: any = resizableWidth.widths;
     if (widthValues !== undefined && position !== undefined) {
-      //@ts-ignore
+      // @ts-ignore
       widthValues[position] = width;
       setResizableWidth({ widths: widthValues });
     }
@@ -99,7 +99,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   return (
     <View
       style={{
-        //@ts-ignore
+        // @ts-ignore
         width: resizableWidth?.widths[position],
         maxWidth: '100%',
         maxHeight: '100%',
@@ -121,11 +121,11 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
             right: 0,
             top: 0,
             width: borderWidth / 2,
-            //@ts-ignore
+            // @ts-ignore
             cursor: 'ew-resize'
           }}
           collapsable={false}
-        ></View>
+        />
       )}
       {/* {resizable && (
         <View
