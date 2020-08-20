@@ -25,12 +25,7 @@ storiesOf('Button', module)
     <Wrapper>
       <Button
         backgroundColor={text('backgroundColor', 'primary')}
-        padding={number('padding', 2)}
-        margin={number('margin', 0)}
-        name={text('name', 'button')}
-        type={text('type', 'first')}
         borderRadius={number('border-radius', 0)}
-        value={text('value', 'button')}
         borderColor={text('border-color', '')}
         borderWidth={number('border-width', 2)}
         borderStyle={text('border-style', 'solid')}
@@ -47,10 +42,19 @@ storiesOf('Button', module)
         borderTopRightRadius={number('borderTop-RightRadius', 0)}
         borderTopColor={text('border-top-color', '')}
         disabled={boolean('disabled', false)}
+        margin={number('margin', 0)}
+        marginBottom={number('margin-bottom', 0)}
+        marginLeft={number('margin-left', 2)}
+        marginRight={number('margin-right', 0)}
+        marginTop={number('margin-top', 2)}
+        name={text('name', 'button')}
         onFocus={action('onFocus')}
         onPress={action('onPress')}
         onPressIn={action('onPressIn')}
         onPressOut={action('onPressOut')}
+        padding={number('padding', 2)}
+        type={text('type', 'first')}
+        value={text('value', 'button')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
