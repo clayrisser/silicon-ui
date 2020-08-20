@@ -15,6 +15,7 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
+import { string } from 'prop-types';
 
 storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
@@ -26,11 +27,31 @@ storiesOf('Dropdown', module)
   .add('with knobs', () => (
     <Wrapper>
       <DropdownSelect
-        multiple={boolean('multiple', false)}
-        disabled={boolean('disabled', false)}
-        onPress={action('onPress')}
-        selectedValue={text('selectedValue', '')}
         backgroundColor={text('backgroundColor', 'primary')}
+        borderRadius={number('border-radius', 0)}
+        borderColor={text('border-color', '')}
+        borderWidth={number('border-width', 2)}
+        borderStyle={text('border-style', 'solid')}
+        borderBottomWidth={number('border-bottom-width', 1)}
+        borderBottomColor={text('border-bottom-color', '')}
+        borderBottomLeftRadius={number('border-left-radius', 0)}
+        borderBottomRightRadius={number('border-right-radius', 0)}
+        borderLeftWidth={number('border-left-width', 1)}
+        borderLeftColor={text('border-left-color', '')}
+        borderRightWidth={number('border-right-width', 1)}
+        borderRightColor={text('border-right-color', '')}
+        borderTopWidth={number('border-top-width', 1)}
+        borderTopLeftRadius={number('borderTop-leftRadius', 0)}
+        borderTopRightRadius={number('borderTop-RightRadius', 0)}
+        borderTopColor={text('border-top-color', '')}
+        disabled={boolean('disabled', false)}
+        multiple={boolean('multiple', false)}
+        marginBottom={number('margin-bottom', 0)}
+        marginLeft={number('margin-left', 2)}
+        marginRight={number('margin-right', 0)}
+        marginTop={number('margin-top', 2)}
+        selectedValue={text('selectedValue', '')}
+        padding={text('padding', '2')}
         name={text('dropdown-name', '')}
         required={boolean('required', false)}
         autofocus={boolean('autofocus', false)}
