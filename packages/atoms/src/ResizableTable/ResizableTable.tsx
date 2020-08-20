@@ -1,17 +1,17 @@
 import React, { FC, useState } from 'react';
-import styled, { StyledComponent } from '@emotion/styled';
-import {
-  background,
-  border,
-  color,
-  compose,
-  layout,
-  position,
-  shadow,
-  space,
-  typography
-} from 'styled-system';
-import useColor from '../hooks/useColor';
+import styled from '@emotion/styled';
+// import {
+//   background,
+//   border,
+//   color,
+//   compose,
+//   layout,
+//   position,
+//   shadow,
+//   space,
+//   typography
+// } from 'styled-system';
+// import useColor from '../hooks/useColor';
 import Table from '../Table';
 import TableCell from '../TableCell';
 import Box from '../Box';
@@ -22,11 +22,11 @@ export interface ResizableTableProps {
   resizableColumnStyles?: object;
 }
 
-let pageWidth: any,
-  curCol: any,
-  nxtCol: any,
-  curColWidth: any,
-  nxtColWidth: any;
+let pageWidth: any;
+let curCol: any;
+let nxtCol: any;
+let curColWidth: any;
+let nxtColWidth: any;
 
 const ResizableTable: FC<ResizableTableProps> = (props) => {
   const [down, setDown] = useState<boolean>(false);

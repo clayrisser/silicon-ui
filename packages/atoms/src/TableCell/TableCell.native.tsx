@@ -11,7 +11,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   });
 
   function handleMouseDrag() {
-    console.log('dragging');
+    // console.log('dragging');
   }
 
   return (

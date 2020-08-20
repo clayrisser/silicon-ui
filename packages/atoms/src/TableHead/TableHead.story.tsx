@@ -1,7 +1,7 @@
 import React from 'react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
 import TableHead from './TableHead';
-import { StyleSheet, View } from 'react-native';
+// import { StyleSheet, View } from 'react-native';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';

@@ -10,8 +10,8 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
-import useItem from '../hooks/useItem';
+// import useColor from '../hooks/useColor';
+// import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
   TableProps,
@@ -20,7 +20,7 @@ import {
 } from './tableProps';
 
 const StyledTable = createStyled<TableProps>(
-  //@ts-ignore
+  // @ts-ignore
   NativeTable,
   [background, border, color, layout, position, shadow, space, typography],
   antiForwardTablePropsKeys
