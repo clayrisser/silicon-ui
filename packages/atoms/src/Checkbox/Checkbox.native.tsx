@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Item as NativeBaseItem,
   CheckBox as NativeBaseCheckbox
@@ -31,7 +31,7 @@ const StyledNativeBaseCheckbox = createStyled<CheckBoxProps>(
 const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   const item = useItem();
   const color = useColor(props);
-  const [checked, setChecked] = useState<boolean>(false);
+  //  const [checked, setChecked] = useState<boolean>(false);
 
   const {
     customCheckBoxProps,

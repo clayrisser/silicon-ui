@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
-import { TouchableOpacity, Picker as NativePicker } from 'react-native';
+import { Picker as NativePicker } from 'react-native';
 import { createStyled } from '../styled';
 import {
   background,
@@ -53,8 +53,7 @@ const NativeBasePicker: FC<DropdownOptionProps> = (
   const {
     customDropdownOptionProps,
     nativeDropdownOptionProps,
-    styledDropdownOptionProps,
-    touchableOpacityProps
+    styledDropdownOptionProps
   } = splitProps({
     ...props,
     color
