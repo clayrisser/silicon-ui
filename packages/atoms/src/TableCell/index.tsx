@@ -1,5 +1,5 @@
 import TableCell from './TableCell';
-import { TdProps } from './tableCellProps';
+import { TableCellProps } from './tableCellProps';
 
-export { TdProps };
+export { TableCellProps };
 export default TableCell;

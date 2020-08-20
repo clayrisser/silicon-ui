@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { withKnobs, text, number, select } from '@storybook/addon-knobs';
 import Box from './Box';
 import Wrapper from '../../storybook/Wrapper';
@@ -18,38 +19,42 @@ storiesOf('Box', module)
   .add('with knobs', () => (
     <Wrapper>
       <Box
-        backgroundColor={text('backgroundColor', 'blue')}
-        //    borderRadius={number('borderRadius', 0)}
-        borderColor={text('border-color', '')}
-        borderWidth={number('border-width', 2)}
-        borderStyle={text('border-style', 'solid')}
-        borderBottomWidth={number('border-bottom-width', 1)}
+        backgroundColor={text('backgroundColor', 'primary')}
         borderBottomColor={text('border-bottom-color', '')}
         borderBottomLeftRadius={number('border-left-radius', 0)}
         borderBottomRightRadius={number('border-right-radius', 0)}
-        borderLeftWidth={number('border-left-width', 1)}
+        borderBottomWidth={number('border-bottom-width', 0)}
+        borderColor={text('border-color', '')}
         borderLeftColor={text('border-left-color', '')}
-        borderRightWidth={number('border-right-width', 1)}
+        borderLeftWidth={number('border-left-width', 0)}
+        borderRadius={number('borderRadius', 0)}
         borderRightColor={text('border-right-color', '')}
-        borderTopWidth={number('border-top-width', 1)}
+        borderRightWidth={number('border-right-width', 0)}
+        borderStyle={text('border-style', 'solid')}
+        borderTopColor={text('border-top-color', '')}
         borderTopLeftRadius={number('borderTop-leftRadius', 0)}
         borderTopRightRadius={number('borderTop-RightRadius', 0)}
-        borderTopColor={text('border-top-color', '')}
+        borderTopWidth={number('border-top-width', 0)}
+        borderWidth={number('border-width', 0)}
         height={number('height', 200)}
+        marginBottom={number('margin-bottom', 0)}
+        marginLeft={number('margin-left', 2)}
+        marginRight={number('margin-right', 0)}
+        marginTop={number('margin-top', 2)}
         maxHeight={number('max-height', 400)}
         minHeight={number('min-height', 100)}
-        marginTop={number('margin-top', 2)}
-        marginBottom={number('margin-bottom', 0)}
-        marginRight={number('margin-right', 0)}
-        marginLeft={number('margin-left', 2)}
-        width={number('width', 200)}
-        padding={number('padding', 2)}
-        paddingTop={number('padding-top', 0)}
-        paddingBottom={number('padding-bottom', 0)}
-        paddingRight={number('padding-right', 2)}
-        paddingLeft={number('padding-left', 2)}
-        zIndex={number('z-index', 0)}
+        onDrag={action('onDrag')}
+        onPress={action('onPress')}
+        onPressIn={action('onPressIn')}
+        onPressOut={action('onPressOut')}
         opacity={number('opacity', 1)}
+        padding={number('padding', 2)}
+        paddingBottom={number('padding-bottom', 0)}
+        paddingLeft={number('padding-left', 2)}
+        paddingRight={number('padding-right', 2)}
+        paddingTop={number('padding-top', 0)}
+        width={number('width', 200)}
+        zIndex={number('z-index', 0)}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -60,6 +65,8 @@ storiesOf('Box', module)
           },
           'A'
         )}
-      />
+      >
+        {text('children', 'data')}
+      </Box>
     </Wrapper>
   ));

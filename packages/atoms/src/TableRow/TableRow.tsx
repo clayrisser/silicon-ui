@@ -11,8 +11,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import TableHead from '../TableHead/TableHead';
-import useColor from '../hooks/useColor';
 import {
   TableRowProps,
   DetailedHTMLTableRowProps,
@@ -37,41 +35,12 @@ const HTMLTableRow: StyledComponent<
 );
 
 const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
-  const color = useColor(props);
-  const {
-    customTableRowProps,
-    styledTableRowProps,
-    nativeItemProps
-  } = splitProps({
-    ...props,
-    color
-  });
+  const { customTableRowProps, styledTableRowProps } = splitProps({ ...props });
   return (
-    <HTMLTableRow
-      {...styledTableRowProps}
-      {...nativeItemProps}
-      {...(customTableRowProps as any)}
-    >
-      {props?.data.map((th: string, index: number) => {
-        return (
-          <TableHead key={index} style={props.thStyles}>
-            {th}
-          </TableHead>
-        );
-      })}
-    </HTMLTableRow>
+    <HTMLTableRow {...styledTableRowProps} {...(customTableRowProps as any)} />
   );
 };
 
-TableRow.defaultProps = {
-  autoContrast: false,
-  fontSize: 2,
-  fontWeight: 'body',
-  lineHeight: 'body',
-  width: '100%',
-  data: [''],
-  textAlign: 'left',
-  thStyles: {}
-};
+TableRow.defaultProps = {};
 
 export default TableRow;

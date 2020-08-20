@@ -1,5 +1,10 @@
 import { ReactNode, HTMLAttributes, DetailedHTMLProps } from 'react';
-import { TouchableOpacityProps, ViewProps } from 'react-native';
+import {
+  GestureResponderEvent,
+  PanResponderGestureState,
+  TouchableOpacityProps,
+  ViewProps
+} from 'react-native';
 import {
   BackgroundProps,
   BorderProps,
@@ -32,20 +37,35 @@ export interface NativeBoxProps extends ViewProps {}
 export interface CustomBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
+  onPress?: (
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    gestureState?: PanResponderGestureState
+  ) => void;
+  onPressOut?: (
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    gestureState?: PanResponderGestureState
+  ) => void;
+  onPressIn?: (
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    gestureState?: PanResponderGestureState
+  ) => void;
+  onDrag?: (
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    gestureState?: PanResponderGestureState
+  ) => void;
   theme?: Theme;
-  onClick?: (event: any) => void;
-  onBlur?: (event: any) => void;
 }
 
 export interface BoxProps
   extends CustomBoxProps,
     NativeBoxProps,
     StyledBoxProps,
-    TouchableOpacityProps {}
+    Omit<TouchableOpacityProps, 'onPress' | 'onPressIn' | 'onPressOut'> {}
 
 export const customBoxPropsKeys = new Set([
   'autoContrast',
   'children',
+  'onDrag',
   'theme'
 ]);
 

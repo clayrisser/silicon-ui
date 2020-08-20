@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { withKnobs, text, select, number } from '@storybook/addon-knobs';
 import TableCell from './TableCell';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -16,10 +16,28 @@ storiesOf('TableCell', module)
   .add('with knobs', () => (
     <Wrapper>
       <TableCell
-        backgroundColor={text('backgroundColor', 'secondary')}
-        // borderRadius={number('borderRadius', 0)}
-        // height={200}
-        // width={200}
+        borderColor={text('borderColor', 'primary')}
+        backgroundColor="blue"
+        height={400}
+        width={400}
+        borderStyle={select(
+          'borderStyle',
+
+          {
+            dashed: 'dashed',
+            dotted: 'dotted',
+            double: 'double',
+            groove: 'groove',
+            hidden: 'hidden',
+            inset: 'inset',
+            none: 'none',
+            outset: 'outset',
+            ridge: 'ridge',
+            solid: 'solid'
+          },
+          'solid'
+        )}
+        borderWidth={number('borderWidth', 0)}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -28,10 +46,11 @@ storiesOf('TableCell', module)
             AA: 'AA',
             AAA: 'AAA'
           },
-          'A'
+          // @ts-ignore
+          false
         )}
       >
-        data
+        {text('children', 'data')}
       </TableCell>
     </Wrapper>
   ));

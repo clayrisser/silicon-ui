@@ -12,11 +12,15 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { TdProps, DetailedHTMLTdProps, splitProps } from './tableCellProps';
+import {
+  TableCellProps,
+  DetailedHTMLTdProps,
+  splitProps
+} from './tableCellProps';
 
 const HTMLTableCell: StyledComponent<
   DetailedHTMLTdProps,
-  TdProps,
+  TableCellProps,
   object
 > = styled.td(
   compose(
@@ -31,31 +35,26 @@ const HTMLTableCell: StyledComponent<
   )
 );
 
-const Td: FC<TdProps> = (props: TdProps) => {
+const Td: FC<TableCellProps> = (props: TableCellProps) => {
   const color = useColor(props);
-  const { customTdProps, styledTdProps, nativeItemProps } = splitProps({
+  const { customTableCellProps, styledTableCellProps } = splitProps({
     ...props,
     color
   });
   return (
     <HTMLTableCell
-      {...styledTdProps}
-      {...nativeItemProps}
-      {...(customTdProps as any)}
+      {...customTableCellProps}
+      {...(styledTableCellProps as any)}
     />
   );
 };
 
 Td.defaultProps = {
-  backgroundColor: 'transparent',
   autoContrast: false,
+  borderStyle: 'solid',
   fontSize: 2,
   fontWeight: 'body',
   lineHeight: 'body'
 };
 
-export default styled(Td)`
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-`;
+export default Td;
