@@ -54,9 +54,7 @@ export const customCheckBoxPropsKeys = new Set([
   'checked'
 ]);
 
-export const nativeCheckBoxPropsKeys = new Set<string>([]);
-
-export const nativeItemPropKeys = new Set([
+export const nativeCheckBoxPropsKeys = new Set([
   'error',
   'type',
   'last',
@@ -69,6 +67,8 @@ export const nativeItemPropKeys = new Set([
   'checked',
   'disabled'
 ]);
+
+export const nativeItemPropKeys = new Set<string>([]);
 
 export interface SplitProps {
   customCheckBoxProps: CustomCheckBoxProps;
