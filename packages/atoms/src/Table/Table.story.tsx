@@ -37,11 +37,7 @@ storiesOf('Table', module)
   .add('with knobs', () => (
     <Wrapper>
       <Table
-        backgroundColor={select(
-          'backgroundColor',
-          ['primary', 'secondary', '#C0C0C0', '#A9A9A9'],
-          '#A9A9A9'
-        )}
+        backgroundColor={color('backgroundColor', '#A9A9A9')}
         // borderRadius={number('borderRadius', 0)}
         // height={200}
         // width={200}

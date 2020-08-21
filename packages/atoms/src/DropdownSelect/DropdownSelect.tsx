@@ -49,7 +49,7 @@ const DropdownSelect: FC<DropdownSelectProps> = (
     color
   });
   function handleChange(e: any) {
-    if (props.onPress) props.onPress(e.target.value);
+    if (props.onPress) props.onPress(e);
   }
 
   return (

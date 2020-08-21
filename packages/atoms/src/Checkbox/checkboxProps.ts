@@ -66,7 +66,8 @@ export const nativeCheckBoxPropsKeys = new Set([
   'underline',
   'checked',
   'disabled',
-  'onValueChange'
+  'onValueChange',
+  'value'
 ]);
 
 export const nativeItemPropKeys = new Set<string>([]);

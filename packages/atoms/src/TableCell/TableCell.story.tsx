@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text, select, number } from '@storybook/addon-knobs';
+import { withKnobs, text, select, number, color } from '@storybook/addon-knobs';
 import TableCell from './TableCell';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -16,7 +16,7 @@ storiesOf('TableCell', module)
   .add('with knobs', () => (
     <Wrapper>
       <TableCell
-        borderColor={text('borderColor', 'primary')}
+        borderColor={color('borderColor', 'primary')}
         backgroundColor="blue"
         height={400}
         width={400}
