@@ -7,10 +7,13 @@ import { TableCellProps, splitProps } from './tableCellProps';
 
 export type Position = [number, number];
 
+const width = 100;
+
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   const color = useColor(props);
   let [initialX, setInitialX] = useState(-1);
   let [relativeX, setRelativeX] = useState(0);
+  let [modifiedX, setModifiedX] = useState(0);
   const { customTableCellProps, styledTableCellProps } = splitProps({
     ...props,
     color
@@ -24,8 +27,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
     const x = pageX - initialX;
-    relativeX = x;
-    setRelativeX(x);
+    relativeX = modifiedX + x;
+    setRelativeX(relativeX);
   }
 
   function handlePressIn(
@@ -40,6 +43,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   }
 
   function handlePressOut() {
+    modifiedX = relativeX;
+    setModifiedX(modifiedX);
     setInitialX(-1);
   }
 
@@ -47,23 +52,29 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     <Box
       {...customTableCellProps}
       {...styledTableCellProps}
-      backgroundColor="green"
+      backgroundColor="red"
       width={cssCalc(`calc(${props.width?.toString()}px+${relativeX}px)`)}
     >
       <Box
         display="flex"
-        flexDirection="row"
         flex={1}
+        flexDirection="row"
+        height={styledTableCellProps.height}
         justifyContent="flex-end"
-        alignItems="flex-end"
+        position="absolute"
+        width={cssCalc(`calc(${props.width?.toString()}px+${relativeX}px)`)}
       >
         <Box
-          backgroundColor="red"
+          backgroundColor="green"
           height="100%"
-          onPressIn={handlePressIn}
           onDrag={handleDrag}
+          onPressIn={handlePressIn}
           onPressOut={handlePressOut}
-          width={100}
+          width={width / 2}
+          style={{
+            // @ts-ignore
+            cursor: 'ew-resize'
+          }}
         />
       </Box>
     </Box>

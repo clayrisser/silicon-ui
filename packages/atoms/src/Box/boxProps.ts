@@ -68,6 +68,7 @@ export interface NativeTouchableOpacityProps {
 export interface CustomBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
+  releasePressOnExit?: boolean;
   theme?: Theme;
 }
 
@@ -81,6 +82,7 @@ export interface BoxProps
 export const customBoxPropsKeys = new Set([
   'autoContrast',
   'children',
+  'releasePressOnExit',
   'theme'
 ]);
 

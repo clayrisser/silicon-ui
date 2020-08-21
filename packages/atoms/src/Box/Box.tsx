@@ -1,4 +1,11 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
+import React, {
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -39,33 +46,64 @@ const HTMLDiv: StyledComponent<
 );
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
+  const boxRef = useRef(null);
   const color = useColor(props);
-  const [pressed, setPressed] = useState(false);
+  let [entered, setEntered] = useState(true);
+  let [pressed, setPressed] = useState(false);
   const { styledBoxProps, customBoxProps, touchableOpacityProps } = splitProps({
     ...props,
     color
   });
 
+  useEffect(() => {
+    if (!props.onPressOut && !props.onDrag) return () => {};
+    function handleMouseUp(e: Event) {
+      if (pressed && props.onPressOut) props.onPressOut(bakeEvent(e));
+      pressed = false;
+      setPressed(false);
+    }
+    window.document.body.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.document.body.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [entered, pressed]);
+
+  function handleMouseEnter() {
+    entered = true;
+    setEntered(entered);
+  }
+
+  function handleMouseLeave() {
+    if (props.releasePressOnExit) {
+      pressed = false;
+      setPressed(false);
+    }
+    entered = false;
+    setEntered(entered);
+  }
+
   function handleClick(e: any) {
     if (props.onPress) props.onPress(e);
   }
 
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    if (pressed && props.onDrag) props.onDrag(e);
+  }
+
+  function handleMouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    if (props.onPressOut) props.onPressOut(e);
+    pressed = false;
+    setPressed(false);
+  }
+
   function handleMouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    pressed = true;
     setPressed(true);
     if (props.onPressIn) props.onPressIn(e);
   }
 
-  function handleMouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    setPressed(false);
-    if (props.onPressOut) props.onPressOut(e);
-  }
-
   function handleBlur(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (props.onPress) props.onPress(e);
-  }
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    if (props.onDrag && pressed) props.onDrag(e);
   }
 
   return (
@@ -75,14 +113,25 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
       onBlur={handleBlur}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
+      ref={boxRef}
       theme={customBoxProps.theme}
     >
       {customBoxProps.children}
     </HTMLDiv>
   );
 };
+
+function bakeEvent(e: any): React.MouseEvent<HTMLDivElement, MouseEvent> {
+  return {
+    pageX: e.pageX,
+    pageY: e.pageY,
+    target: e.target
+  } as React.MouseEvent<HTMLDivElement, MouseEvent>;
+}
 
 Box.defaultProps = {
   activeOpacity: 1,

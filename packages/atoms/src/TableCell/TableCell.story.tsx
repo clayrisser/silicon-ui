@@ -17,12 +17,10 @@ storiesOf('TableCell', module)
     <Wrapper>
       <TableCell
         borderColor={text('borderColor', 'primary')}
-        backgroundColor="blue"
         height={400}
         width={400}
         borderStyle={select(
           'borderStyle',
-
           {
             dashed: 'dashed',
             dotted: 'dotted',

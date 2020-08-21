@@ -104,7 +104,10 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
           ) => {
             if (!pressed) return;
             e.persist();
-            if (await exitedBox(e, gestureState)) {
+            if (
+              customBoxProps.releasePressOnExit &&
+              (await exitedBox(e, gestureState))
+            ) {
               pressed = false;
               setPressed(false);
               if (props.onPressOut) props.onPressOut(e, gestureState, boxRef);
