@@ -107,10 +107,10 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
             if (await exitedBox(e, gestureState)) {
               pressed = false;
               setPressed(false);
-              if (props.onPressOut) props.onPressOut(e, gestureState);
-              if (props.onPress) props.onPress(e, gestureState);
+              if (props.onPressOut) props.onPressOut(e, gestureState, boxRef);
+              if (props.onPress) props.onPress(e, gestureState, boxRef);
             } else if (nativeBoxProps.onDrag) {
-              nativeBoxProps.onDrag(e, gestureState);
+              nativeBoxProps.onDrag(e, gestureState, boxRef);
             }
           },
           onPanResponderGrant: (
@@ -122,7 +122,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
             setInitialPosition([locationX, locationY]);
             pressed = true;
             setPressed(true);
-            if (props.onPressIn) props.onPressIn(e, gestureState);
+            if (props.onPressIn) props.onPressIn(e, gestureState, boxRef);
           },
           onPanResponderRelease: (
             e: GestureResponderEvent,
@@ -131,8 +131,8 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
             initialPosition = [0, 0];
             setInitialPosition([0, 0]);
             if (pressed) {
-              if (props.onPressOut) props.onPressOut(e, gestureState);
-              if (props.onPress) props.onPress(e, gestureState);
+              if (props.onPressOut) props.onPressOut(e, gestureState, boxRef);
+              if (props.onPress) props.onPress(e, gestureState, boxRef);
             }
             pressed = false;
             setPressed(false);
