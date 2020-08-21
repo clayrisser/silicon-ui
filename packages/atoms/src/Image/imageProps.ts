@@ -23,8 +23,8 @@ export type DetailedHTMLImageProps = DetailedHTMLProps<
 export interface CustomImageProps {
   children?: ReactNode;
   theme?: Theme;
-  source?: String;
-  alt?: String;
+  source?: string;
+  alt?: string;
 }
 
 export interface NativeImageProps
