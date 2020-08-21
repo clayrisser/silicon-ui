@@ -19,6 +19,7 @@ storiesOf('Checkbox', module)
       <Checkbox
         disabled={boolean('disabled', false)}
         onPress={action('onPress')}
+        checked={boolean('checked', false)}
       />
     </Wrapper>
   ));

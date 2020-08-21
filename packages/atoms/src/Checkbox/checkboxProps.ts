@@ -20,7 +20,7 @@ export type DetailedHTMLCheckBoxProps = DetailedHTMLProps<
 export interface StyledCheckBoxProps
   extends BackgroundProps,
     BorderProps,
-    ColorProps,
+    // ColorProps,
     LayoutProps,
     PositionProps,
     ShadowProps,
@@ -36,7 +36,7 @@ export interface CustomCheckBoxProps {
   theme?: Theme;
   type?: string;
   children?: ReactNode | string;
-  checked?: boolean;
+  // checked?: boolean;
   autoFocus?: boolean;
   indeterminate?: boolean;
 }
@@ -51,7 +51,8 @@ export const customCheckBoxPropsKeys = new Set([
   'autoContrast',
   'theme',
   'disabled',
-  'checked'
+  'checked',
+  'onChange'
 ]);
 
 export const nativeCheckBoxPropsKeys = new Set([
@@ -65,7 +66,8 @@ export const nativeCheckBoxPropsKeys = new Set([
   'success',
   'underline',
   'checked',
-  'disabled'
+  'disabled',
+  'onValueChange'
 ]);
 
 export const nativeItemPropKeys = new Set<string>([]);
