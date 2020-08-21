@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
   border,
@@ -10,7 +11,6 @@ import {
 } from 'styled-system';
 import ItemContext from '../contexts/Item';
 import { ItemProps, DetailedHTMLDivProps, splitProps } from './itemProps';
-import styled, { StyledComponent } from '@emotion/styled';
 
 const HTMLDiv: StyledComponent<
   DetailedHTMLDivProps,

@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
 import { Picker as NativePicker } from 'react-native';
-import { createStyled } from '../styled';
 import {
   background,
   border,
@@ -13,6 +12,8 @@ import {
   space,
   typography
 } from 'styled-system';
+import { createStyled } from '../styled';
+
 import useColor from '../hooks/useColor';
 import {
   DropdownOptionProps,
