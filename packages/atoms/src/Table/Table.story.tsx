@@ -67,5 +67,3 @@ storiesOf('Table', module)
       </Table>
     </Wrapper>
   ));
-
-const styles = StyleSheet.create({});

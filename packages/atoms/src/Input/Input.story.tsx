@@ -25,6 +25,7 @@ storiesOf('Input', module)
     <Wrapper>
       <Input
         type={select('type', ['text', 'password'], 'text')}
+        onTextInput={action('onChange')}
         keyboardType={select(
           'keyboardType',
           [
@@ -44,7 +45,7 @@ storiesOf('Input', module)
           ],
           'default'
         )}
-        backgroundColor={text('background-color', '')}
+        // backgroundColor={text('background-color', 'inverseText')}
         secureTextEntry={boolean('secureTextEntry', false)}
         borderRadius={number('border-radius', 0)}
         borderColor={text('border-color', '')}
@@ -67,11 +68,11 @@ storiesOf('Input', module)
         // maxLength={text('maxLength', '')}
         minLength={text('minLength', '')}
         required={boolean('required', false)}
-        padding={text('padding', '2')}
-        margin={text('margin', '2')}
+        padding={text('padding', '0')}
+        margin={text('margin', '0')}
         label={text('input-label', 'input')}
         id={text('input-id', '')}
-        width={text('width', '70%')}
+        width={text('width', '50%')}
         placeholder={text('placeholder', 'user name')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
