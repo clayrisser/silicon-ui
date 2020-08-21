@@ -54,7 +54,7 @@ declare module '@emotion/primitives' {
 
     interface StyledComponentMethods<
       Props extends object,
-      _InnerProps extends object,
+      InnerProps extends object,
       Theme extends object
     > {
       withComponent<IP extends object>(

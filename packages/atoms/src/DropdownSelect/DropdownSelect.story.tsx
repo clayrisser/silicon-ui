@@ -4,7 +4,8 @@ import {
   text,
   number,
   select,
-  boolean
+  boolean,
+  color
 } from '@storybook/addon-knobs';
 // import { Container, Header, Content, Form, Item, Picker } from 'native-base';
 import { action } from '@storybook/addon-actions';
@@ -26,23 +27,23 @@ storiesOf('Dropdown', module)
     <Wrapper>
       <DropdownSelect
         onPress={action('onPress')}
-        backgroundColor={text('backgroundColor', 'primary')}
+        backgroundColor={color('backgroundColor', 'primary')}
         borderRadius={number('border-radius', 0)}
-        borderColor={text('border-color', '')}
+        borderColor={color('border-color', '')}
         borderWidth={number('border-width', 2)}
         borderStyle={text('border-style', 'solid')}
         borderBottomWidth={number('border-bottom-width', 1)}
-        borderBottomColor={text('border-bottom-color', '')}
+        borderBottomColor={color('border-bottom-color', '')}
         borderBottomLeftRadius={number('border-left-radius', 0)}
         borderBottomRightRadius={number('border-right-radius', 0)}
         borderLeftWidth={number('border-left-width', 1)}
-        borderLeftColor={text('border-left-color', '')}
+        borderLeftColor={color('border-left-color', '')}
         borderRightWidth={number('border-right-width', 1)}
-        borderRightColor={text('border-right-color', '')}
+        borderRightColor={color('border-right-color', '')}
         borderTopWidth={number('border-top-width', 1)}
         borderTopLeftRadius={number('borderTop-leftRadius', 0)}
         borderTopRightRadius={number('borderTop-RightRadius', 0)}
-        borderTopColor={text('border-top-color', '')}
+        borderTopColor={color('border-top-color', '')}
         disabled={boolean('disabled', false)}
         fontFamily={text('font-family', 'Times New Roman')}
         fontWeight={text('font-weight', 'bold')}

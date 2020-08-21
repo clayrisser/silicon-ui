@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -36,6 +36,7 @@ const HTMLDatepicker: StyledComponent<
 );
 
 const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
+  const [date, setDate] = useState<string>('');
   const color = useColor(props);
   const {
     customDatepickerProps,
@@ -46,8 +47,17 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
     ...props,
     color
   });
+
+  useEffect(() => {
+    if (customDatepickerProps.value !== undefined)
+      setDate(customDatepickerProps.value);
+  }, [customDatepickerProps.value]);
+
   function handleChange(e: any) {
-    if (props.onPress) props.onPress(e.target.value);
+    if (props.onPress) {
+      props.onPress(e);
+      setDate(e.target.value);
+    }
   }
   return (
     <HTMLDatepicker
@@ -55,6 +65,7 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
       {...nativeItemProps}
       {...nativeDatepickerProps}
       {...(customDatepickerProps as any)}
+      value={date}
       onChange={handleChange}
       onDateChange={handleChange}
     />

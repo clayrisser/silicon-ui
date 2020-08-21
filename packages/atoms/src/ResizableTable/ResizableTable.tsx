@@ -22,14 +22,25 @@ export interface ResizableTableProps {
   resizableColumnStyles?: object;
 }
 
+const { resizableColumnStyles }: any = props;
+
 let pageWidth: any;
 let curCol: any;
 let nxtCol: any;
 let curColWidth: any;
 let nxtColWidth: any;
 
-const ResizableTable: FC<ResizableTableProps> = (props) => {
+const ResizableTable: FC<ResizableTableProps> = () => {
   const [down, setDown] = useState<boolean>(false);
+
+  async function handleMouseUp(e: any) {
+    setDown(false);
+    curCol = undefined;
+    nxtCol = undefined;
+    pageWidth = undefined;
+    nxtColWidth = undefined;
+    curColWidth = undefined;
+  }
 
   async function handleMouseDown(e: any) {
     setDown(true);
@@ -47,18 +58,10 @@ const ResizableTable: FC<ResizableTableProps> = (props) => {
       const diffX = e.pageX - pageWidth;
       // if (nxtCol) nxtCol.style.width = nxtColWidth - diffX + 'px';
 
-      curCol.style.width = `${curColWidth + diffX}px`;
+      curCol.style.width = curColWidth + diffX + 'px';
     }
   }
 
-  function handleMouseUp(e: any) {
-    setDown(false);
-    curCol = undefined;
-    nxtCol = undefined;
-    pageWidth = undefined;
-    nxtColWidth = undefined;
-    curColWidth = undefined;
-  }
   return (
     <Box>
       <Table>
@@ -67,31 +70,34 @@ const ResizableTable: FC<ResizableTableProps> = (props) => {
             <TableHead>
               Company
               <div
-                style={props.resizableColumnStyles}
+                style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
                 onMouseLeave={(e) => handleMouseUp(e)}
                 onMouseUp={() => setDown(false)}
+                role="presentation"
               />
             </TableHead>
             <TableHead>
               Contact
               <div
-                style={props.resizableColumnStyles}
+                style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
                 onMouseLeave={(e) => handleMouseUp(e)}
                 onMouseUp={() => setDown(false)}
+                role="presentation"
               />
             </TableHead>
             <TableHead>
               Country
               <div
-                style={props.resizableColumnStyles}
+                style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
                 onMouseLeave={(e) => handleMouseUp(e)}
                 onMouseUp={() => setDown(false)}
+                role="presentation"
               />
             </TableHead>
           </tr>

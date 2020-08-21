@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
   border,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text, number, select } from '@storybook/addon-knobs';
+import { withKnobs, text, number, select, color } from '@storybook/addon-knobs';
 import Box from './Box';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -19,19 +19,19 @@ storiesOf('Box', module)
   .add('with knobs', () => (
     <Wrapper>
       <Box
-        backgroundColor={text('backgroundColor', 'primary')}
-        borderBottomColor={text('border-bottom-color', '')}
+        backgroundColor={color('backgroundColor', 'primary')}
+        borderBottomColor={color('border-bottom-color', '')}
         borderBottomLeftRadius={number('border-left-radius', 0)}
         borderBottomRightRadius={number('border-right-radius', 0)}
         borderBottomWidth={number('border-bottom-width', 0)}
-        borderColor={text('border-color', '')}
-        borderLeftColor={text('border-left-color', '')}
+        borderColor={color('border-color', '')}
+        borderLeftColor={color('border-left-color', '')}
         borderLeftWidth={number('border-left-width', 0)}
         borderRadius={number('borderRadius', 0)}
-        borderRightColor={text('border-right-color', '')}
+        borderRightColor={color('border-right-color', '')}
         borderRightWidth={number('border-right-width', 0)}
         borderStyle={text('border-style', 'solid')}
-        borderTopColor={text('border-top-color', '')}
+        borderTopColor={color('border-top-color', '')}
         borderTopLeftRadius={number('borderTop-leftRadius', 0)}
         borderTopRightRadius={number('borderTop-RightRadius', 0)}
         borderTopWidth={number('border-top-width', 0)}
@@ -43,8 +43,8 @@ storiesOf('Box', module)
         marginTop={number('margin-top', 2)}
         maxHeight={number('max-height', 400)}
         minHeight={number('min-height', 100)}
-        onDrag={() => console.log('drag')}
-        onPress={() => console.log('press')}
+        onDrag={action('onDrag')}
+        onPress={action('onPress')}
         onPressIn={action('onPressIn')}
         onPressOut={action('onPressOut')}
         opacity={number('opacity', 1)}

@@ -54,7 +54,8 @@ export const customDatepickerPropsKeys = new Set([
   'disabled',
   'theme',
   'min',
-  'max'
+  'max',
+  'value'
 ]);
 
 export const nativeDatepickerPropsKeys = new Set<string>([]);

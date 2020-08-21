@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -36,6 +36,7 @@ const HTMLCheckBox: StyledComponent<
 );
 
 const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
+  const [checked, setChecked] = useState<boolean>(false);
   const color = useColor(props);
   const {
     customCheckBoxProps,
@@ -46,8 +47,17 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
     ...props,
     color
   });
+
+  useEffect(() => {
+    if (customCheckBoxProps.checked !== undefined)
+      setChecked(customCheckBoxProps.checked);
+  }, [customCheckBoxProps.checked]);
+
   function handleChange(e: any) {
-    if (props.onPress) props.onPress(e);
+    if (props.onPress) {
+      props.onPress(e);
+      setChecked(!checked);
+    }
   }
   return (
     <HTMLCheckBox
@@ -55,6 +65,8 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
       {...nativeItemProps}
       {...nativeCheckBoxProps}
       {...(customCheckBoxProps as any)}
+      checked={checked}
+      value={checked}
       onChange={handleChange}
       onValueChange={handleChange}
     />
@@ -74,7 +86,8 @@ CheckBox.defaultProps = {
   // paddingRight: 2,
   // paddingTop: 2,
   // width: '100%',
-  type: 'checkbox'
+  type: 'checkbox',
+  checked: false
 };
 
 export default CheckBox;
