@@ -1,10 +1,11 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
   border,
   color,
   compose,
+  flexbox,
   layout,
   position,
   shadow,
@@ -28,6 +29,7 @@ const HTMLDiv: StyledComponent<
     background,
     border,
     color,
+    flexbox,
     layout,
     position,
     shadow,
@@ -38,6 +40,7 @@ const HTMLDiv: StyledComponent<
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
   const color = useColor(props);
+  const [pressed, setPressed] = useState(false);
   const { styledBoxProps, customBoxProps, touchableOpacityProps } = splitProps({
     ...props,
     color
@@ -47,39 +50,51 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
     if (props.onPress) props.onPress(e);
   }
 
-  function handleMouseDown(e: any) {
+  function handleMouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    setPressed(true);
     if (props.onPressIn) props.onPressIn(e);
   }
 
-  function handleMouseUp(e: any) {
+  function handleMouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    setPressed(false);
     if (props.onPressOut) props.onPressOut(e);
   }
-  function handleBlur(e :any) {
-    if (props.onPress) props.onPress(e)
+
+  function handleBlur(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    if (props.onPress) props.onPress(e);
+  }
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    if (props.onDrag && pressed) props.onDrag(e);
   }
 
   return (
     <HTMLDiv
-      {...customBoxProps}
       {...touchableOpacityProps}
       {...(styledBoxProps as any)}
+      onBlur={handleBlur}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
-      onBlur={handleBlur}
-    />
+      theme={customBoxProps.theme}
+    >
+      {customBoxProps.children}
+    </HTMLDiv>
   );
 };
 
 Box.defaultProps = {
   activeOpacity: 1,
-  backgroundColor: 'background',
+  backgroundColor: 'transparent',
   children: <></>,
+  color: 'red',
   fontFamily: 'body',
   fontSize: 'body',
   fontWeight: 'body',
+  height: '100%',
   lineHeight: 'body',
-  color: 'red'
+  width: '100%'
 };
 
 export default styled(Box)`

@@ -15,7 +15,7 @@ let colWidth: number;
 const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   const { children, position, resizable } = props;
   const [resizableWidth, setResizableWidth] = useContext(ResizableWidthContext);
-  const [width, setWidth] = useState<number>(150);
+  const [width, setWidth] = useState<number>(100);
   const borderWidth = 20;
   const pan = useRef(new Animated.ValueXY()).current;
   const parentRef = useRef(null);
@@ -23,7 +23,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   useEffect(() => {
     const widthValues: any = resizableWidth.widths;
     if (widthValues !== undefined && position !== undefined) {
-      //@ts-ignore
+      // @ts-ignore
       widthValues[position] = width;
       setResizableWidth({ widths: widthValues });
     }
@@ -99,7 +99,7 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
   return (
     <View
       style={{
-        //@ts-ignore
+        // @ts-ignore
         width: resizableWidth?.widths[position],
         maxWidth: '100%',
         maxHeight: '100%',
@@ -115,17 +115,17 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
         <View
           {...panResponder.panHandlers}
           style={{
-            backgroundColor: 'invisible',
-            // borderRightWidth: 1,
             height: '100%',
+            // backgroundColor: 'green',
             position: 'absolute',
             right: 0,
             top: 0,
             width: borderWidth / 2,
-            //@ts-ignore
+            // @ts-ignore
             cursor: 'ew-resize'
           }}
-        ></View>
+          collapsable={false}
+        />
       )}
       {/* {resizable && (
         <View

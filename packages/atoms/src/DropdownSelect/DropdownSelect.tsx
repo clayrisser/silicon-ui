@@ -42,18 +42,24 @@ const DropdownSelect: FC<DropdownSelectProps> = (
   const {
     styledDropdownSelectProps,
     customDropdownSelectProps,
+    nativeDropdownSelectProps,
     touchableOpacityProps
   } = splitProps({
     ...props,
     color
   });
+  function handleChange(e: any) {
+    if (props.onPress) props.onPress(e.target.value);
+  }
 
   return (
     <HTMLSelect
       {...customDropdownSelectProps}
       {...touchableOpacityProps}
+      {...nativeDropdownSelectProps}
       {...(styledDropdownSelectProps as any)}
-      // onChange={(e: any) => console.log(e.target, e.target.value, 'detail')}
+      onChange={handleChange}
+      onValueChange={handleChange}
     />
   );
 };

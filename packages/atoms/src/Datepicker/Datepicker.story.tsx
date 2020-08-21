@@ -1,12 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  select
-} from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import Datepicker from './Datepicker';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -27,25 +21,23 @@ storiesOf('Datepicker', module)
         backgroundColor={text('backgroundColor', '#FFFFFF')}
         type="date"
         onPress={action('onPress')}
-        onSelect={action('onSelect')}
-        onChange={action('onChange')}
+        // onSelect={action('onSelect')}
+        // onChange={action('onChange')}
         padding={text('padding', '2')}
         margin={text('margin', '2')}
         borderRadius={number('border-radius', 0)}
         marginBottom={number('margin-bottom', 0)}
-        max={text('max', '')}
+        max={text('max', '2020-08-14')}
         min={text('min', '')}
         required={boolean('required', false)}
         disabled={boolean('disabled', false)}
         width={text('width', '70%')}
-        fontFamily={select(
-          'font-family',
-          ['Times New Roman', 'Arial', 'Helvetica', ' sans-serif'],
-          'Times New Roman'
-        )}
+        fontFamily={text('font-family', 'Times New Roman')}
         fontWeight={text('font-weight', 'normal')}
         fontSize={number('fon-size', 2)}
         lineHeight={text('line-height', '')}
+        defaultDate={text('defaultDate', '')}
+        // minDate={text('minDate', '2020-08-14')}
       />
     </Wrapper>
   ));

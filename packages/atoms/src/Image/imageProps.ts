@@ -23,6 +23,8 @@ export type DetailedHTMLImageProps = DetailedHTMLProps<
 export interface CustomImageProps {
   children?: ReactNode;
   theme?: Theme;
+  source?: string;
+  alt?: string;
 }
 
 export interface NativeImageProps
@@ -56,7 +58,13 @@ export interface ImageProps
     StyledImageProps,
     TouchableOpacityProps {}
 
-export const customImagePropsKeys = new Set<string>(['children', 'theme']);
+export const customImagePropsKeys = new Set<string>([
+  'children',
+  'theme',
+  'alt',
+  'width',
+  'height'
+]);
 
 export const nativeImagePropsKeys = new Set<string>([
   'onPress',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import Checkbox from './Checkbox';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -17,10 +17,8 @@ storiesOf('Checkbox', module)
   .add('with knobs', () => (
     <Wrapper>
       <Checkbox
-        onPress={action('onPress')}
         disabled={boolean('disabled', false)}
-        value={text('value', '')}
-        checked={boolean('checked', false)}
+        onPress={action('onPress')}
       />
     </Wrapper>
   ));

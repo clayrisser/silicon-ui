@@ -76,7 +76,7 @@ const ResizableColumn: FC<ResizableColumnProps> = (
         height={100}
         width={30}
         right={0}
-        position={'absolute'}
+        position="absolute"
       />
     </HTMLDiv>
   );

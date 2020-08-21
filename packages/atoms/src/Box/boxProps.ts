@@ -1,9 +1,15 @@
 import { ReactNode, HTMLAttributes, DetailedHTMLProps } from 'react';
-import { TouchableOpacityProps, ViewProps } from 'react-native';
+import {
+  GestureResponderEvent,
+  PanResponderGestureState,
+  TouchableOpacityProps,
+  ViewProps
+} from 'react-native';
 import {
   BackgroundProps,
   BorderProps,
   ColorProps,
+  FlexboxProps,
   LayoutProps,
   PositionProps,
   ShadowProps,
@@ -21,32 +27,58 @@ export interface StyledBoxProps
   extends BackgroundProps,
     BorderProps,
     ColorProps,
+    FlexboxProps,
     LayoutProps,
     PositionProps,
     ShadowProps,
     SpaceProps,
     TypographyProps {}
 
-export interface NativeBoxProps extends ViewProps {}
+export interface NativeBoxProps extends ViewProps {
+  onDrag?: (
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    gestureState?: PanResponderGestureState
+  ) => void;
+}
+
+export interface NativeTouchableOpacityProps {
+  onPress?: (
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    gestureState?: PanResponderGestureState
+  ) => void;
+  onPressOut?: (
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    gestureState?: PanResponderGestureState
+  ) => void;
+  onPressIn?: (
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    gestureState?: PanResponderGestureState
+  ) => void;
+}
 
 export interface CustomBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
   theme?: Theme;
-  onClick?: (event: any) => void;
-  onBlur?: (event: any) => void;
 }
 
 export interface BoxProps
   extends CustomBoxProps,
     NativeBoxProps,
+    NativeTouchableOpacityProps,
     StyledBoxProps,
-    TouchableOpacityProps {}
+    Omit<TouchableOpacityProps, 'onPress' | 'onPressIn' | 'onPressOut'> {}
 
 export const customBoxPropsKeys = new Set([
   'autoContrast',
   'children',
   'theme'
+]);
+
+export const nativeTouchableOpacityPropsKeys = new Set([
+  'onPress',
+  'onPressIn',
+  'onPressOut'
 ]);
 
 export const touchableOpacityPropsKeys = new Set([
@@ -64,27 +96,27 @@ export const touchableOpacityPropsKeys = new Set([
   'testID'
 ]);
 
-export const nativeBoxPropsKeys = new Set<string>([
-  'onPress',
-  'onPressIn',
-  'onPressOut'
-]);
+export const nativeBoxPropsKeys = new Set<string>(['onDrag']);
 
 export interface SplitProps {
   customBoxProps: CustomBoxProps;
   nativeBoxProps: NativeBoxProps;
+  nativeTouchableOpacityProps: NativeTouchableOpacityProps;
   styledBoxProps: StyledBoxProps;
   touchableOpacityProps: TouchableOpacityProps;
 }
 
 export function splitProps(props: BoxProps): SplitProps {
-  const styledBoxProps: { [key: string]: any } = {};
   const customBoxProps: { [key: string]: any } = {};
-  const touchableOpacityProps: { [key: string]: any } = {};
   const nativeBoxProps: { [key: string]: any } = {};
+  const nativeTouchableOpacityProps: { [key: string]: any } = {};
+  const styledBoxProps: { [key: string]: any } = {};
+  const touchableOpacityProps: { [key: string]: any } = {};
   Object.entries({ ...props }).forEach(([key, prop]: [string, any]) => {
     if (customBoxPropsKeys.has(key)) {
       customBoxProps[key] = prop;
+    } else if (nativeTouchableOpacityPropsKeys.has(key)) {
+      nativeTouchableOpacityProps[key] = prop;
     } else if (touchableOpacityPropsKeys.has(key)) {
       touchableOpacityProps[key] = prop;
     } else if (nativeBoxPropsKeys.has(key)) {
@@ -96,6 +128,7 @@ export function splitProps(props: BoxProps): SplitProps {
   return {
     customBoxProps,
     nativeBoxProps,
+    nativeTouchableOpacityProps,
     styledBoxProps,
     touchableOpacityProps
   };

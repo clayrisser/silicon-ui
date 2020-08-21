@@ -1,5 +1,4 @@
 import { DetailedHTMLProps, TdHTMLAttributes } from 'react';
-import { Table } from 'react-native-table-component';
 import {
   BackgroundProps,
   BorderProps,
@@ -17,7 +16,7 @@ export type DetailedHTMLTdProps = DetailedHTMLProps<
   HTMLTableDataCellElement
 >;
 
-export interface StyledTdProps
+export interface StyledTableCellProps
   extends BackgroundProps,
     BorderProps,
     ColorProps,
@@ -27,61 +26,36 @@ export interface StyledTdProps
     SpaceProps,
     TypographyProps {}
 
-export interface NativeTdProps extends Table {}
-
-export interface NativeItemProps extends Omit<Table, 'style'> {}
-
-export interface CustomTdProps {
+export interface CustomTableCellProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   theme?: Theme;
   style?: any;
 }
 
-export interface TdProps
-  extends CustomTdProps,
-    NativeTdProps,
-    NativeItemProps,
-    StyledTdProps {}
-
-export const customTdPropsKeys = new Set(['autoContrast', 'theme', 'style']);
-
-export const nativeTdPropsKeys = new Set<string>(['borderStyle', 'style']);
-
-export const nativeItemPropKeys = new Set([
-  'bordered',
-  'disabled',
-  'error',
-  'underline'
-]);
+export interface TableCellProps
+  extends CustomTableCellProps,
+    StyledTableCellProps {}
 
 export interface SplitProps {
-  customTdProps: CustomTdProps;
-  nativeTdProps: NativeTdProps;
-  nativeItemProps: NativeItemProps;
-  styledTdProps: StyledTdProps;
+  customTableCellProps: CustomTableCellProps;
+  styledTableCellProps: StyledTableCellProps;
 }
 
-export function splitProps(props: TdProps): SplitProps {
-  const styledTdProps: { [key: string]: any } = {};
-  const customTdProps: { [key: string]: any } = {};
-  const nativeTdProps: { [key: string]: any } = {};
-  const nativeItemProps: { [key: string]: any } = {};
+export const customTableCellPropsKeys = new Set(['autoContrast', 'theme']);
+
+export function splitProps(props: TableCellProps): SplitProps {
+  const styledTableCellProps: { [key: string]: any } = {};
+  const customTableCellProps: { [key: string]: any } = {};
   Object.entries({ ...props }).forEach(([key, prop]: [string, any]) => {
-    if (customTdPropsKeys.has(key)) {
-      customTdProps[key] = prop;
-    } else if (nativeTdPropsKeys.has(key)) {
-      nativeTdProps[key] = prop;
-    } else if (nativeItemPropKeys.has(key)) {
-      nativeItemProps[key] = prop;
+    if (customTableCellPropsKeys.has(key)) {
+      customTableCellProps[key] = prop;
     } else {
-      styledTdProps[key] = prop;
+      styledTableCellProps[key] = prop;
     }
   });
   return {
-    customTdProps,
-    nativeTdProps,
-    nativeItemProps,
-    styledTdProps
+    customTableCellProps,
+    styledTableCellProps
   };
 }
 

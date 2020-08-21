@@ -40,16 +40,23 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   const {
     customCheckBoxProps,
     styledCheckBoxProps,
-    nativeItemProps
+    nativeItemProps,
+    nativeCheckBoxProps
   } = splitProps({
     ...props,
     color
   });
+  function handleChange(e: any) {
+    if (props.onPress) props.onPress(e);
+  }
   return (
     <HTMLCheckBox
       {...styledCheckBoxProps}
       {...nativeItemProps}
+      {...nativeCheckBoxProps}
       {...(customCheckBoxProps as any)}
+      onChange={handleChange}
+      onValueChange={handleChange}
     />
   );
 };

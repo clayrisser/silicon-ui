@@ -1,5 +1,6 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, text, number } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Image from './Image';
 import Wrapper from '../../storybook/Wrapper';
 import austinJpg from './austin.jpg';
@@ -17,6 +18,12 @@ storiesOf('Image', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <Image source={austinJpg} />
+      <Image
+        source={text('source', austinJpg)}
+        alt={text('alt', 'sample image')}
+        width={number('width', 400)}
+        height={number('height', 250)}
+        onPress={action('onPress')}
+      />
     </Wrapper>
   ));

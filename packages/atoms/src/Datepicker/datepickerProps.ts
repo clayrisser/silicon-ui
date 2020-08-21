@@ -39,8 +39,8 @@ export interface CustomDatepickerProps {
   max?: string;
   min?: string;
   required?: boolean;
-  onChange?: (event: any) => void;
-  onSelect?: (event: any) => void;
+  // onChange?: (event: any) => void;
+  // onSelect?: (event: any) => void;
 }
 
 export interface DatepickerProps
@@ -49,7 +49,13 @@ export interface DatepickerProps
     NativeItemProps,
     StyledDatepickerProps {}
 
-export const customDatepickerPropsKeys = new Set(['type', 'disabled', 'theme']);
+export const customDatepickerPropsKeys = new Set([
+  'type',
+  'disabled',
+  'theme',
+  'min',
+  'max'
+]);
 
 export const nativeDatepickerPropsKeys = new Set<string>([]);
 
@@ -59,6 +65,8 @@ export const nativeItemPropKeys = new Set([
   'error',
   'fixedLabel',
   'onPress',
+  'onPressIn',
+  'onPressOut',
   'picker'
 ]);
 

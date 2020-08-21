@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { withKnobs, text, number, select } from '@storybook/addon-knobs';
 import Box from './Box';
 import Wrapper from '../../storybook/Wrapper';
@@ -18,23 +19,42 @@ storiesOf('Box', module)
   .add('with knobs', () => (
     <Wrapper>
       <Box
-        backgroundColor={select(
-          'backgroundColor',
-          ['primary', 'secondary'],
-          'primary'
-        )}
+        backgroundColor={text('backgroundColor', 'primary')}
+        borderBottomColor={text('border-bottom-color', '')}
+        borderBottomLeftRadius={number('border-left-radius', 0)}
+        borderBottomRightRadius={number('border-right-radius', 0)}
+        borderBottomWidth={number('border-bottom-width', 0)}
+        borderColor={text('border-color', '')}
+        borderLeftColor={text('border-left-color', '')}
+        borderLeftWidth={number('border-left-width', 0)}
         borderRadius={number('borderRadius', 0)}
+        borderRightColor={text('border-right-color', '')}
+        borderRightWidth={number('border-right-width', 0)}
+        borderStyle={text('border-style', 'solid')}
+        borderTopColor={text('border-top-color', '')}
+        borderTopLeftRadius={number('borderTop-leftRadius', 0)}
+        borderTopRightRadius={number('borderTop-RightRadius', 0)}
+        borderTopWidth={number('border-top-width', 0)}
+        borderWidth={number('border-width', 0)}
         height={number('height', 200)}
-        padding={number('padding', 2)}
-        marginTop={number('margin-top', 2)}
         marginBottom={number('margin-bottom', 0)}
-        marginRight={number('margin-right', 0)}
         marginLeft={number('margin-left', 2)}
-        width={number('width', 200)}
-        paddingTop={number('padding-top', 0)}
+        marginRight={number('margin-right', 0)}
+        marginTop={number('margin-top', 2)}
+        maxHeight={number('max-height', 400)}
+        minHeight={number('min-height', 100)}
+        onDrag={() => console.log('drag')}
+        onPress={() => console.log('press')}
+        onPressIn={action('onPressIn')}
+        onPressOut={action('onPressOut')}
+        opacity={number('opacity', 1)}
+        padding={number('padding', 2)}
         paddingBottom={number('padding-bottom', 0)}
-        paddingRight={number('padding-right', 2)}
         paddingLeft={number('padding-left', 2)}
+        paddingRight={number('padding-right', 2)}
+        paddingTop={number('padding-top', 0)}
+        width={number('width', 200)}
+        zIndex={number('z-index', 0)}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -45,6 +65,8 @@ storiesOf('Box', module)
           },
           'A'
         )}
-      />
+      >
+        {text('children', 'data')}
+      </Box>
     </Wrapper>
   ));

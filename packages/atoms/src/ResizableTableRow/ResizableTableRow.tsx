@@ -5,7 +5,7 @@ import ResizableWidthContext, {
   ResizableWidth
 } from '../contexts/resizableWidth';
 
-const ResizableTableRow: FC = (props) => {
+const ResizableTableRow: FC = () => {
   // const headerData = ['test1', 'test2', 'test3'];
   const [resizableWidth, setResizableWidth] = useState<ResizableWidth>({
     widths: []
@@ -17,13 +17,13 @@ const ResizableTableRow: FC = (props) => {
   return (
     <ResizableWidthContext.Provider value={[resizableWidth, setResizableWidth]}>
       <Box style={{ display: 'flex', flexDirection: 'row' }}>
-        <ResizableCell position={0} resizable={true}>
+        <ResizableCell position={0} resizable>
           Head1
         </ResizableCell>
-        <ResizableCell position={1} resizable={true}>
+        <ResizableCell position={1} resizable>
           Head2
         </ResizableCell>
-        <ResizableCell position={2} resizable={true}>
+        <ResizableCell position={2} resizable>
           Head3
         </ResizableCell>
       </Box>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text, number, select } from '@storybook/addon-knobs';
+import { withKnobs, text, number } from '@storybook/addon-knobs';
 import Text from './Text';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -21,8 +21,19 @@ storiesOf('Text', module)
         padding={number('padding', 1)}
         margin={number('margin', 1)}
         fontSize={number('font-size', 2)}
+        textAlign={text('text-align', 'center')}
         opacity={number('opacity', 1)}
         letterSpacing={number('letter-spacing', 0)}
+        lineHeight={number('line-height', 2)}
+        paddingTop={number('padding-top', 2)}
+        paddingLeft={number('padding-left', 1)}
+        paddingBottom={number('padding-bottom', 1)}
+        paddingRight={number('padding-right', 2)}
+        marginBottom={number('margin-bottom', 0)}
+        marginTop={number('margin-top', 0)}
+        marginLeft={number('margin-left', 0)}
+        marginRight={number('margin-right', 0)}
+        fontFamily={text('font-family', 'Arial, Helvetica, sans-serif')}
       >
         {text('children', 'Hello, world!')}
       </Text>

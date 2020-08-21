@@ -1,21 +1,20 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
-import Form from './Form';
+import TableRow from './TableRow';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
 import withThemesProvider from '../../storybook/withThemesProvider';
-// import docs from './Form.docs.mdx';
 
-storiesOf('Form', module)
+storiesOf('TableRow', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemesProvider(themes))
   .addParameters({
     // docs: { page: docs },
-    // jest: ['Form.test.tsx']
+    // jest: ['TableHead.spec.tsx']
   })
   .add('with knobs', () => (
     <Wrapper>
-      <Form method="POST" action="/send" />
+      <TableRow />
     </Wrapper>
   ));

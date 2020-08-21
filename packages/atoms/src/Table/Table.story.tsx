@@ -1,11 +1,11 @@
 import React from 'react';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { withKnobs, select } from '@storybook/addon-knobs';
+import { StyleSheet } from 'react-native';
 import Table from './Table';
 import TableRow from '../TableRow';
 import TableData from '../TableData';
-import { StyleSheet, View } from 'react-native';
 
-import { Rows } from 'react-native-table-component';
+// import { Rows } from 'react-native-table-component';
 
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';

@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
-import { TouchableOpacity, Picker as NativePicker } from 'react-native';
-import { createStyled } from '../styled';
+import { Picker as NativePicker } from 'react-native';
 import {
   background,
   border,
@@ -13,6 +12,7 @@ import {
   space,
   typography
 } from 'styled-system';
+import { createStyled } from '../styled';
 import useColor from '../hooks/useColor';
 import {
   DropdownSelectProps,
@@ -61,7 +61,9 @@ const NativeBasePicker: FC<DropdownSelectProps> = (
   });
   const children =
     typeof customDropdownSelectProps.children === 'string' ? (
-      <NativePicker>{customDropdownSelectProps.children}</NativePicker>
+      <NativePicker {...touchableOpacityProps}>
+        {customDropdownSelectProps.children}
+      </NativePicker>
     ) : (
       customDropdownSelectProps.children
     );
