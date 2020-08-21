@@ -30,19 +30,19 @@ storiesOf('Button', module)
         borderWidth={number('border-width', 2)}
         borderStyle={text('border-style', 'solid')}
         borderBottomWidth={number('border-bottom-width', 1)}
-        borderBottomColor={text('border-bottom-color', '')}
-        borderBottomLeftRadius={number('border-left-radius', 0)}
-        borderBottomRightRadius={number('border-right-radius', 0)}
+        // borderBottomColor={text('border-bottom-color', '')}
+        // borderBottomLeftRadius={number('border-left-radius', 0)}
+        // borderBottomRightRadius={number('border-right-radius', 0)}
         borderLeftWidth={number('border-left-width', 1)}
-        borderLeftColor={text('border-left-color', '')}
+        // borderLeftColor={text('border-left-color', '')}
         borderRightWidth={number('border-right-width', 1)}
-        borderRightColor={text('border-right-color', '')}
+        // borderRightColor={text('border-right-color', '')}
         borderTopWidth={number('border-top-width', 1)}
-        borderTopLeftRadius={number('borderTop-leftRadius', 0)}
-        borderTopRightRadius={number('borderTop-RightRadius', 0)}
-        borderTopColor={text('border-top-color', '')}
+        // borderTopLeftRadius={number('borderTop-leftRadius', 0)}
+        // borderTopRightRadius={number('borderTop-RightRadius', 0)}
+        // borderTopColor={text('border-top-color', '')}
         disabled={boolean('disabled', false)}
-        margin={number('margin', 0)}
+        // margin={number('margin', 0)}
         marginBottom={number('margin-bottom', 0)}
         marginLeft={number('margin-left', 2)}
         marginRight={number('margin-right', 0)}
@@ -53,7 +53,7 @@ storiesOf('Button', module)
         onPressIn={action('onPressIn')}
         onPressOut={action('onPressOut')}
         padding={number('padding', 2)}
-        type={text('type', 'first')}
+        type={text('type', 'submit')}
         value={text('value', 'button')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
