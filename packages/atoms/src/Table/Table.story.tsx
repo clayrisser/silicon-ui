@@ -1,6 +1,6 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs';
-import { StyleSheet } from 'react-native';
+// import { StyleSheet } from 'react-native';
 import Table from './Table';
 import TableRow from '../TableRow';
 import TableData from '../TableData';
@@ -68,4 +68,4 @@ storiesOf('Table', module)
     </Wrapper>
   ));
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});

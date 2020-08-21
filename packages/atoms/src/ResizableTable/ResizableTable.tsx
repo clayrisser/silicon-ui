@@ -30,8 +30,17 @@ let nxtCol: any;
 let curColWidth: any;
 let nxtColWidth: any;
 
-const ResizableTable: FC<ResizableTableProps> = (props) => {
+const ResizableTable: FC<ResizableTableProps> = () => {
   const [down, setDown] = useState<boolean>(false);
+
+  async function handleMouseUp(e: any) {
+    setDown(false);
+    curCol = undefined;
+    nxtCol = undefined;
+    pageWidth = undefined;
+    nxtColWidth = undefined;
+    curColWidth = undefined;
+  }
 
   async function handleMouseDown(e: any) {
     setDown(true);
@@ -53,14 +62,6 @@ const ResizableTable: FC<ResizableTableProps> = (props) => {
     }
   }
 
-  function handleMouseUp(e: any) {
-    setDown(false);
-    curCol = undefined;
-    nxtCol = undefined;
-    pageWidth = undefined;
-    nxtColWidth = undefined;
-    curColWidth = undefined;
-  }
   return (
     <Box>
       <Table>

@@ -3,7 +3,6 @@ import { NativeBase } from 'native-base';
 import {
   BackgroundProps,
   BorderProps,
-  ColorProps,
   LayoutProps,
   PositionProps,
   ShadowProps,

@@ -82,7 +82,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
         })
       )
     : { current: { panHandlers: {} } };
-  const panHandlers = panResponder.current.panHandlers;
+  const { panHandlers } = panResponder.current;
 
   const children =
     typeof customBoxProps.children === 'string' ? (

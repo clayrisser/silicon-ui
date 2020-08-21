@@ -1,40 +1,40 @@
 import React, { FC } from 'react';
-import styled, { StyledComponent } from '@emotion/styled';
-import {
-  background,
-  border,
-  color,
-  compose,
-  layout,
-  position,
-  shadow,
-  space,
-  typography
-} from 'styled-system';
+// import styled, { StyledComponent } from '@emotion/styled';
+// import {
+//   background,
+//   border,
+//   color,
+//   compose,
+//   layout,
+//   position,
+//   shadow,
+//   space,
+//   typography
+// } from 'styled-system';
 import useColor from '../hooks/useColor';
 import Data from '../Data/Data';
 import {
   TableRowProps,
-  DetailedHTMLTableRowsProps,
+  //   DetailedHTMLTableRowsProps,
   splitProps
 } from './tableDataProps';
 
-const HTMLTableData: StyledComponent<
-  DetailedHTMLTableRowsProps,
-  TableRowProps,
-  object
-> = styled.div(
-  compose(
-    background,
-    border,
-    color,
-    layout,
-    position,
-    shadow,
-    space,
-    typography
-  )
-);
+// const HTMLTableData: StyledComponent<
+//   DetailedHTMLTableRowsProps,
+//   TableRowProps,
+//   object
+// > = styled.div(
+//   compose(
+//     background,
+//     border,
+//     color,
+//     layout,
+//     position,
+//     shadow,
+//     space,
+//     typography
+//   )
+// );
 
 const TableData: FC<TableRowProps> = (props: TableRowProps) => {
   const color = useColor(props);

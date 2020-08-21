@@ -1,42 +1,42 @@
 import React, { FC } from 'react';
-import styled, { StyledComponent } from '@emotion/primitives';
+// import styled, { StyledComponent } from '@emotion/primitives';
 import { Picker as NativePicker } from 'react-native';
 import {
   background,
   border,
-  color,
-  compose,
+  //  color,
+  // compose,
   layout,
   position,
   shadow,
-  space,
-  typography
+  space
+  //  typography
 } from 'styled-system';
 import { createStyled } from '../styled';
 
 import useColor from '../hooks/useColor';
 import {
   DropdownSelectProps,
-  StyledDropdownSelectProps,
+  // StyledDropdownSelectProps,
   splitProps
 } from './dropdownSelectProps';
 
-const StyledView: StyledComponent<
-  StyledDropdownSelectProps,
-  StyledDropdownSelectProps,
-  any
-> = styled.View(
-  compose(
-    background,
-    border,
-    color,
-    layout,
-    position,
-    shadow,
-    space,
-    typography
-  )
-);
+// const StyledView: StyledComponent<
+//   StyledDropdownSelectProps,
+//   StyledDropdownSelectProps,
+//   any
+// > = styled.View(
+//   compose(
+//     background,
+//     border,
+//     color,
+//     layout,
+//     position,
+//     shadow,
+//     space,
+//     typography
+//   )
+// );
 
 const StyledNativePicker = createStyled<DropdownSelectProps>(NativePicker, [
   background,
