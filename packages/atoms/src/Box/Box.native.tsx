@@ -40,7 +40,7 @@ const StyledView: StyledComponent<
 );
 
 const Box: FC<BoxProps> = (props: BoxProps) => {
-  const [pressed, setPressed] = useState(false);
+  let [pressed, setPressed] = useState(false);
   const color = useColor(props);
   const {
     customBoxProps,

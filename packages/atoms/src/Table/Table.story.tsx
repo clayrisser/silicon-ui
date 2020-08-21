@@ -1,9 +1,9 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs';
+import { StyleSheet } from 'react-native';
 import Table from './Table';
 import TableRow from '../TableRow';
 import TableData from '../TableData';
-import { StyleSheet } from 'react-native';
 
 // import { Rows } from 'react-native-table-component';
 

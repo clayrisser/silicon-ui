@@ -22,6 +22,8 @@ export interface ResizableTableProps {
   resizableColumnStyles?: object;
 }
 
+const { resizableColumnStyles }: any = props;
+
 let pageWidth: any;
 let curCol: any;
 let nxtCol: any;
@@ -67,31 +69,34 @@ const ResizableTable: FC<ResizableTableProps> = (props) => {
             <TableHead>
               Company
               <div
-                style={props.resizableColumnStyles}
+                style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
                 onMouseLeave={(e) => handleMouseUp(e)}
                 onMouseUp={() => setDown(false)}
+                role="presentation"
               />
             </TableHead>
             <TableHead>
               Contact
               <div
-                style={props.resizableColumnStyles}
+                style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
                 onMouseLeave={(e) => handleMouseUp(e)}
                 onMouseUp={() => setDown(false)}
+                role="presentation"
               />
             </TableHead>
             <TableHead>
               Country
               <div
-                style={props.resizableColumnStyles}
+                style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
                 onMouseLeave={(e) => handleMouseUp(e)}
                 onMouseUp={() => setDown(false)}
+                role="presentation"
               />
             </TableHead>
           </tr>
