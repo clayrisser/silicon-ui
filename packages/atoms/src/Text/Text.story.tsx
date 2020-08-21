@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text, number } from '@storybook/addon-knobs';
+import { withKnobs, text, number, color } from '@storybook/addon-knobs';
 import Text from './Text';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -16,7 +16,7 @@ storiesOf('Text', module)
   .add('with knobs', () => (
     <Wrapper>
       <Text
-        color={text('color', 'text')}
+        color={color('color', '')}
         fontWeight={text('font-weight', 'bold')}
         padding={number('padding', 1)}
         margin={number('margin', 1)}

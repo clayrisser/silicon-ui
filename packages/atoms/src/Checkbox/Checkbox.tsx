@@ -66,6 +66,7 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
       {...nativeCheckBoxProps}
       {...(customCheckBoxProps as any)}
       checked={checked}
+      value={checked}
       onChange={handleChange}
       onValueChange={handleChange}
     />

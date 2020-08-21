@@ -5,7 +5,8 @@ import {
   text,
   number,
   select,
-  boolean
+  boolean,
+  color
 } from '@storybook/addon-knobs';
 import Button from './Button';
 import Wrapper from '../../storybook/Wrapper';
@@ -24,9 +25,9 @@ storiesOf('Button', module)
   .add('with knobs', () => (
     <Wrapper>
       <Button
-        backgroundColor={text('backgroundColor', 'primary')}
+        backgroundColor={color('backgroundColor', 'primary')}
         borderRadius={number('border-radius', 0)}
-        borderColor={text('border-color', '')}
+        borderColor={color('border-color', '')}
         borderWidth={number('border-width', 2)}
         borderStyle={text('border-style', 'solid')}
         borderBottomWidth={number('border-bottom-width', 1)}
