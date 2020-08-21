@@ -9,7 +9,6 @@ import {
   shadow,
   space
 } from 'styled-system';
-import styled, { StyledComponent } from '@emotion/styled';
 import ItemContext from '../contexts/Item';
 import { ItemProps, DetailedHTMLDivProps, splitProps } from './itemProps';
 
