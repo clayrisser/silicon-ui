@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -47,6 +47,12 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
     ...props,
     color
   });
+
+  useEffect(() => {
+    if (customCheckBoxProps.checked !== undefined)
+      setChecked(customCheckBoxProps.checked);
+  }, [customCheckBoxProps.checked]);
+
   function handleChange(e: any) {
     if (props.onPress) {
       props.onPress(e);
@@ -59,7 +65,7 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
       {...nativeItemProps}
       {...nativeCheckBoxProps}
       {...(customCheckBoxProps as any)}
-      checked={checked || customCheckBoxProps.checked}
+      checked={checked}
       onChange={handleChange}
       onValueChange={handleChange}
     />

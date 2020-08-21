@@ -36,7 +36,7 @@ export interface CustomCheckBoxProps {
   theme?: Theme;
   type?: string;
   children?: ReactNode | string;
-  // checked?: boolean;
+  checked?: boolean;
   autoFocus?: boolean;
   indeterminate?: boolean;
 }
