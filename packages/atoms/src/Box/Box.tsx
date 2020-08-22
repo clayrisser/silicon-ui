@@ -55,15 +55,24 @@ const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
   });
 
   useEffect(() => {
-    if (!props.onPressOut && !props.onDrag) return () => {};
+    if (!props.onPressOut && !props.onPull) return () => {};
     function handleMouseUp(e: Event) {
-      if (pressed && props.onPressOut) props.onPressOut(bakeEvent(e));
+      if (!entered && pressed && props.onPressOut) {
+        props.onPressOut(bakeEvent(e));
+      }
       pressed = false;
       setPressed(false);
     }
+    function handleMouseMove(e: Event) {
+      if (!entered && pressed && props.onPull) {
+        props.onPull(bakeEvent(e));
+      }
+    }
     window.document.body.addEventListener('mouseup', handleMouseUp);
+    window.document.body.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.document.body.removeEventListener('mouseup', handleMouseUp);
+      window.document.body.removeEventListener('mousemove', handleMouseMove);
     };
   }, [entered, pressed]);
 
@@ -72,8 +81,9 @@ const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
     setEntered(entered);
   }
 
-  function handleMouseLeave() {
+  function handleMouseLeave(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (props.releasePressOnExit) {
+      if (pressed && props.onPressOut) props.onPressOut(e);
       pressed = false;
       setPressed(false);
     }
@@ -86,7 +96,7 @@ const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
   }
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    if (pressed && props.onDrag) props.onDrag(e);
+    if (pressed && props.onPull) props.onPull(e);
   }
 
   function handleMouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {

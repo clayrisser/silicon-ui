@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, LegacyRef, ReactNode } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 import {
   GestureResponderEvent,
   PanResponderGestureState,
@@ -35,7 +35,7 @@ export interface StyledBoxProps
     TypographyProps {}
 
 export interface NativeBoxProps extends ViewProps {
-  onDrag?: (
+  onPull?: (
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
     gestureState?: PanResponderGestureState
   ) => void;
@@ -98,7 +98,7 @@ export const touchableOpacityPropsKeys = new Set([
   'testID'
 ]);
 
-export const nativeBoxPropsKeys = new Set<string>(['onDrag']);
+export const nativeBoxPropsKeys = new Set<string>(['onPull']);
 
 export interface SplitProps {
   customBoxProps: CustomBoxProps;

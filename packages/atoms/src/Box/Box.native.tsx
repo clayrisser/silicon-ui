@@ -94,10 +94,10 @@ const Box = forwardRef<NativeMethods, BoxProps>(
       return x < 0 || y < 0 || x > width || y > height;
     }
 
-    const panResponder = nativeBoxProps.onDrag
+    const panResponder = nativeBoxProps.onPull
       ? useRef(
           PanResponder.create({
-            onMoveShouldSetPanResponder: () => {
+            onPullShouldSetPanResponder: () => {
               return pressed;
             },
             onStartShouldSetPanResponder: () => true,
@@ -115,8 +115,8 @@ const Box = forwardRef<NativeMethods, BoxProps>(
                 setPressed(false);
                 if (props.onPressOut) props.onPressOut(e, gestureState);
                 if (props.onPress) props.onPress(e, gestureState);
-              } else if (nativeBoxProps.onDrag) {
-                nativeBoxProps.onDrag(e, gestureState);
+              } else if (nativeBoxProps.onPull) {
+                nativeBoxProps.onPull(e, gestureState);
               }
             },
             onPanResponderGrant: (
@@ -163,7 +163,7 @@ const Box = forwardRef<NativeMethods, BoxProps>(
     }
 
     function renderTouchable() {
-      if (nativeBoxProps.onDrag) {
+      if (nativeBoxProps.onPull) {
         return (
           <>
             <Animated.View

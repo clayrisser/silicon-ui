@@ -19,6 +19,7 @@ storiesOf('TableCell', module)
         borderColor={text('borderColor', 'primary')}
         height={400}
         width="100%"
+        minWidth={200}
         borderStyle={select(
           'borderStyle',
           {

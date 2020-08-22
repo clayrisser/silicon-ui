@@ -43,7 +43,7 @@ storiesOf('Box', module)
         marginTop={number('margin-top', 2)}
         maxHeight={number('max-height', 400)}
         minHeight={number('min-height', 100)}
-        onDrag={action('onDrag')}
+        onPull={action('onPull')}
         onPress={action('onPress')}
         onPressIn={action('onPressIn')}
         onPressOut={action('onPressOut')}
