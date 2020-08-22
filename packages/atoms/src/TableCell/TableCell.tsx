@@ -23,7 +23,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
 
   const getWidth = useCallback(async () => {
     const [width] = await new Promise<Position>((resolve) => {
-      if (Platform.OS === 'web') {
+      if (Platform.OS !== 'web') {
         const nativeNode: NativeMethods = tableCellRef.current as NativeMethods;
         nativeNode.measure(
           (_width: number, _height: number, fx: number, fy: number) => {
@@ -95,12 +95,27 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     setInitialX(initialX);
   }
 
+  function cssCalc(left: string, right: number): string | number {
+    if (width.toString().indexOf('%') > -1 && Platform.OS !== 'web') {
+      if (right === 0) return width;
+      return initialWidth - right;
+    }
+    const reducedWidth = reduceCssCalc(`calc(${left}-${right}px)`);
+    if (reducedWidth.toString().indexOf('%') > -1) {
+      return reducedWidth;
+    }
+    if (reducedWidth.toString().indexOf('px') > -1) {
+      return parseInt(reducedWidth.toString());
+    }
+    return reducedWidth;
+  }
+
   return (
     <Box
       {...customTableCellProps}
       {...styledTableCellProps}
       backgroundColor="red"
-      width={cssCalc(normalizeWidth(props.width?.toString()), relativeX, '-')}
+      width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
       ref={tableCellRef}
     >
       <Box
@@ -112,7 +127,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
         maxWidth={props.maxWidth}
         minWidth={props.minWidth}
         position="absolute"
-        width={cssCalc(normalizeWidth(props.width?.toString()), relativeX, '-')}
+        width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
       >
         <Box
           backgroundColor="green"
@@ -148,24 +163,5 @@ TableCell.defaultProps = {
   lineHeight: 'body',
   width: '100%'
 };
-
-function cssCalc(
-  left: string,
-  right: number,
-  operator: string
-): string | number {
-  let reducedWidth: string | number = left;
-  if (right !== 0) {
-    const width = `calc(${left}${operator}${right}px)`;
-    reducedWidth = reduceCssCalc(width);
-  }
-  if (reducedWidth.toString().indexOf('%') > -1) {
-    return reducedWidth;
-  }
-  if (reducedWidth.toString().indexOf('px') > -1) {
-    return parseInt(reducedWidth.toString());
-  }
-  return reducedWidth;
-}
 
 export default TableCell;
