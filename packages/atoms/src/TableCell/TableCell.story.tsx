@@ -18,7 +18,7 @@ storiesOf('TableCell', module)
       <TableCell
         borderColor={text('borderColor', 'primary')}
         height={400}
-        width={400}
+        width="100%"
         borderStyle={select(
           'borderStyle',
           {

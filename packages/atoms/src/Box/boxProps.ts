@@ -1,9 +1,4 @@
-import {
-  ReactNode,
-  HTMLAttributes,
-  DetailedHTMLProps,
-  MutableRefObject
-} from 'react';
+import { DetailedHTMLProps, HTMLAttributes, LegacyRef, ReactNode } from 'react';
 import {
   GestureResponderEvent,
   PanResponderGestureState,
@@ -42,26 +37,22 @@ export interface StyledBoxProps
 export interface NativeBoxProps extends ViewProps {
   onDrag?: (
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
-    gestureState?: PanResponderGestureState,
-    ref?: MutableRefObject<any>
+    gestureState?: PanResponderGestureState
   ) => void;
 }
 
 export interface NativeTouchableOpacityProps {
   onPress?: (
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
-    gestureState?: PanResponderGestureState,
-    ref?: MutableRefObject<any>
+    gestureState?: PanResponderGestureState
   ) => void;
   onPressOut?: (
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
-    gestureState?: PanResponderGestureState,
-    ref?: MutableRefObject<any>
+    gestureState?: PanResponderGestureState
   ) => void;
   onPressIn?: (
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
-    gestureState?: PanResponderGestureState,
-    ref?: MutableRefObject<any>
+    gestureState?: PanResponderGestureState
   ) => void;
 }
 

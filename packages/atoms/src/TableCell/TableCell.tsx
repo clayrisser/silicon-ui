@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useRef, useCallback } from 'react';
 import reduceCssCalc from 'reduce-css-calc';
-import { GestureResponderEvent } from 'react-native';
+import { GestureResponderEvent, Platform, NativeMethods } from 'react-native';
 import Box from '../Box';
 import useColor from '../hooks/useColor';
 import { TableCellProps, splitProps } from './tableCellProps';
@@ -11,15 +11,46 @@ const width = 100;
 
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   const color = useColor(props);
+  const tableCellRef = useRef<NativeMethods>(null);
+  let [initialWidth, setInitialWidth] = useState(0);
   let [initialX, setInitialX] = useState(-1);
-  let [relativeX, setRelativeX] = useState(0);
   let [modifiedX, setModifiedX] = useState(0);
+  let [relativeX, setRelativeX] = useState(0);
   const { customTableCellProps, styledTableCellProps } = splitProps({
     ...props,
     color
   });
 
-  async function handleDrag(
+  const getWidth = useCallback(async () => {
+    const [width] = await new Promise<Position>((resolve) => {
+      tableCellRef.current?.measure(
+        (_width: number, _height: number, fx: number, fy: number) => {
+          resolve([fx, fy]);
+        }
+      );
+    });
+    return width;
+  }, [tableCellRef.current]);
+
+  function normalizeWidth(width?: number | string) {
+    if (!width) return '0px';
+    if (width && width.toString().indexOf('%') > -1) {
+      if (Platform.OS === 'web') {
+        return width.toString();
+      } else if (initialWidth) {
+        return `${initialWidth.toString()}px`;
+      }
+    }
+    if (
+      width.toString().indexOf('%') > -1 ||
+      width.toString().indexOf('px') > -1
+    ) {
+      return width.toString();
+    }
+    return `${width.toString()}px`;
+  }
+
+  async function handleLeftDrag(
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
     e.persist();
@@ -31,10 +62,28 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     setRelativeX(relativeX);
   }
 
-  function handlePressIn(
+  async function handleRightDrag(
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
     e.persist();
+    const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
+    const gestureEvent = e as GestureResponderEvent;
+    const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
+    const x = pageX - initialX;
+    relativeX = modifiedX - x;
+    setRelativeX(relativeX);
+  }
+
+  async function handlePressIn(
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) {
+    e.persist();
+    if (!initialWidth && Platform.OS !== 'web') {
+      initialWidth = await getWidth();
+      if (initialWidth) {
+        setInitialWidth(initialWidth);
+      }
+    }
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
@@ -53,21 +102,34 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
       {...customTableCellProps}
       {...styledTableCellProps}
       backgroundColor="red"
-      width={cssCalc(`calc(${props.width?.toString()}px+${relativeX}px)`)}
+      width={cssCalc(normalizeWidth(props.width?.toString()), relativeX, '-')}
+      ref={tableCellRef}
     >
       <Box
         display="flex"
         flex={1}
         flexDirection="row"
         height={styledTableCellProps.height}
-        justifyContent="flex-end"
+        justifyContent="space-between"
         position="absolute"
-        width={cssCalc(`calc(${props.width?.toString()}px+${relativeX}px)`)}
+        width={cssCalc(normalizeWidth(props.width?.toString()), relativeX, '-')}
       >
         <Box
           backgroundColor="green"
           height="100%"
-          onDrag={handleDrag}
+          onDrag={handleLeftDrag}
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+          width={width / 2}
+          style={{
+            // @ts-ignore
+            cursor: 'ew-resize'
+          }}
+        />
+        <Box
+          backgroundColor="green"
+          height="100%"
+          onDrag={handleRightDrag}
           onPressIn={handlePressIn}
           onPressOut={handlePressOut}
           width={width / 2}
@@ -86,11 +148,20 @@ TableCell.defaultProps = {
   borderStyle: 'solid',
   fontSize: 2,
   fontWeight: 'body',
-  lineHeight: 'body'
+  lineHeight: 'body',
+  width: '100%'
 };
 
-function cssCalc(width: string): string | number {
-  const reducedWidth = reduceCssCalc(width);
+function cssCalc(
+  left: string,
+  right: number,
+  operator: string
+): string | number {
+  let reducedWidth: string | number = left;
+  if (right !== 0) {
+    const width = `calc(${left}${operator}${right}px)`;
+    reducedWidth = reduceCssCalc(width);
+  }
   if (reducedWidth.toString().indexOf('%') > -1) return reducedWidth;
   if (reducedWidth.toString().indexOf('px') > -1) {
     return parseInt(reducedWidth.toString());

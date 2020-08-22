@@ -1,12 +1,12 @@
+import styled, { StyledComponent } from '@emotion/styled';
 import React, {
   DetailedHTMLProps,
-  FC,
   HTMLAttributes,
+  LegacyRef,
+  forwardRef,
   useEffect,
-  useRef,
   useState
 } from 'react';
-import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
   border,
@@ -45,8 +45,7 @@ const HTMLDiv: StyledComponent<
   )
 );
 
-const Box: FC<BoxProps> = (props: BoxProps) => {
-  const boxRef = useRef(null);
+const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
   const color = useColor(props);
   let [entered, setEntered] = useState(true);
   let [pressed, setPressed] = useState(false);
@@ -123,7 +122,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
       {customBoxProps.children}
     </HTMLDiv>
   );
-};
+});
 
 function bakeEvent(e: any): React.MouseEvent<HTMLDivElement, MouseEvent> {
   return {
