@@ -16,7 +16,7 @@ import {
 } from 'styled-system';
 import {
   ImageProps,
-  // antiForwardImagePropsKeys,
+  antiForwardImagePropsKeys,
   splitProps
 } from './imageProps';
 import { createStyled } from '../styled';
