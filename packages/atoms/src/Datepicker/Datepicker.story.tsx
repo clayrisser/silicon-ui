@@ -28,10 +28,10 @@ storiesOf('Datepicker', module)
         type="date"
         onPress={action('onPress')}
         // border={text('border', '1px solid')}
-        borderWidth={number('border-width', 1)}
+        borderWidth={number('borderWidth', 1)}
         padding={text('padding', '2')}
         margin={text('margin', '2')}
-        borderRadius={number('border-radius', 0)}
+        borderRadius={number('borderRadius', 0)}
         // marginBottom={number('margin-bottom', 0)}
         max={text('max', '2021-12-08')}
         min={text('min', '2020-07-18')}
@@ -39,10 +39,10 @@ storiesOf('Datepicker', module)
         // required={boolean('required', false)}
         disabled={boolean('disabled', false)}
         width={text('width', '')}
-        fontFamily={text('font-family', 'Times New Roman')}
-        fontWeight={text('font-weight', 'normal')}
-        fontSize={number('fon-size', 2)}
-        lineHeight={text('line-height', '')}
+        fontFamily={text('fontFamily', 'Times New Roman')}
+        fontWeight={text('fontWeight', 'normal')}
+        fontSize={number('fontSize', 2)}
+        lineHeight={text('lineHeight', '')}
       />
     </Wrapper>
   ));

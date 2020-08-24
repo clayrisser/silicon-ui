@@ -71,8 +71,8 @@ storiesOf('Input', module)
         required={boolean('required', false)}
         padding={text('padding', '0')}
         margin={text('margin', '0')}
-        label={text('input-label', 'input')}
-        id={text('input-id', '')}
+        label={text('inpsutLabel', 'input')}
+        id={text('inputId', '')}
         width={text('width', '50%')}
         placeholder={text('placeholder', 'user name')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
