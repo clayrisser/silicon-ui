@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import reduceCssCalc from 'reduce-css-calc';
+// import reduceCssCalc from 'reduce-css-calc';
 import { GestureResponderEvent } from 'react-native';
 import Box from '../Box';
 import useColor from '../hooks/useColor';
