@@ -24,7 +24,6 @@ storiesOf('Text', module)
         textAlign={text('text-align', 'center')}
         opacity={number('opacity', 1)}
         letterSpacing={number('letter-spacing', 0)}
-        lineHeight={number('line-height', 2)}
         paddingTop={number('padding-top', 2)}
         paddingLeft={number('padding-left', 1)}
         paddingBottom={number('padding-bottom', 1)}
@@ -33,7 +32,7 @@ storiesOf('Text', module)
         marginTop={number('margin-top', 0)}
         marginLeft={number('margin-left', 0)}
         marginRight={number('margin-right', 0)}
-        fontFamily={text('font-family', 'Arial, Helvetica, sans-serif')}
+        // fontFamily={text('font-family', 'Arial, Helvetica, sans-serif')}
       >
         {text('children', 'Hello, world!')}
       </Text>
