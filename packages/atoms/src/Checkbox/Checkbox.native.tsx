@@ -58,7 +58,6 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   const styledNativeBaseCheckbox = (
     <StyledNativeBaseCheckbox
       {...customCheckBoxProps}
-      {...nativeCheckBoxProps}
       {...styledCheckBoxProps}
       onPress={handleChange}
       checked={checked}
