@@ -59,7 +59,6 @@ const DropdownSelect: FC<DropdownSelectProps> = (
       {...nativeDropdownSelectProps}
       {...(styledDropdownSelectProps as any)}
       onChange={handleChange}
-      onValueChange={handleChange}
     />
   );
 };

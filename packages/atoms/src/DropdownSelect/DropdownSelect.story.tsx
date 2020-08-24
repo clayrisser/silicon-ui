@@ -59,7 +59,6 @@ storiesOf('Dropdown', module)
         onPress={action('onPress')}
         padding={text('padding', '2')}
         required={boolean('required', false)}
-        selectedValue={text('selectedValue', '')}
         autoContrast={select<'A' | 'AA' | 'AAA'>(
           'autoContrast',
           {
@@ -70,12 +69,11 @@ storiesOf('Dropdown', module)
           },
           'AA'
         )}
-        // selectedValue="Saab"
       >
         <DropdownOption value="Tesla" label="Tesla">
           Tesla
         </DropdownOption>
-        <DropdownOption value="Volvo" label="Volvo">
+        <DropdownOption value="Volvo" label="Volvo" disabled>
           Volvo
         </DropdownOption>
         <DropdownOption value="Saab" label="Saab">

@@ -30,7 +30,6 @@ export interface StyledInputProps
 export interface NativeInputProps extends NativeBase.Input {}
 
 export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {
-  disabled?: boolean;
   secureTextEntry?: boolean;
   placeholder?: string;
 }
@@ -71,7 +70,6 @@ export const nativeInputPropsKeys = new Set<string>([]);
 
 export const nativeItemPropKeys = new Set([
   'bordered',
-  'disabled',
   'error',
   'type',
   'fixedLabel',

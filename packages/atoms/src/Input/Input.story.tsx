@@ -49,7 +49,7 @@ storiesOf('Input', module)
         // backgroundColor={text('background-color', 'inverseText')}
         secureTextEntry={boolean('secureTextEntry', false)}
         borderRadius={number('border-radius', 0)}
-        borderColor={color('border-color', '')}
+        borderColor={color('border-color', '#fff')}
         borderWidth={number('border-width', 2)}
         borderStyle={text('border-style', 'solid')}
         borderBottomWidth={number('border-bottom-width', 1)}
