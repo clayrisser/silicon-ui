@@ -20,22 +20,22 @@ storiesOf('Box', module)
     <Wrapper>
       <Box
         backgroundColor={color('backgroundColor', 'primary')}
-        borderBottomColor={color('border-bottom-color', '')}
-        borderBottomLeftRadius={number('border-left-radius', 0)}
-        borderBottomRightRadius={number('border-right-radius', 0)}
-        borderBottomWidth={number('border-bottom-width', 0)}
-        borderColor={color('border-color', '')}
-        borderLeftColor={color('border-left-color', '')}
-        borderLeftWidth={number('border-left-width', 0)}
-        borderRadius={number('borderRadius', 0)}
-        borderRightColor={color('border-right-color', '')}
         borderRightWidth={number('border-right-width', 0)}
-        borderStyle={text('border-style', 'solid')}
+        borderLeftWidth={number('border-left-width', 0)}
+        borderBottomWidth={number('border-bottom-width', 0)}
+        borderTopWidth={number('border-top-width', 0)}
+        borderLeftColor={color('border-left-color', '')}
+        borderRightColor={color('border-right-color', '')}
         borderTopColor={color('border-top-color', '')}
+        borderBottomColor={color('border-bottom-color', '')}
         borderTopLeftRadius={number('borderTop-leftRadius', 0)}
         borderTopRightRadius={number('borderTop-RightRadius', 0)}
-        borderTopWidth={number('border-top-width', 0)}
-        borderWidth={number('border-width', 0)}
+        borderBottomLeftRadius={number('border-left-radius', 0)}
+        borderBottomRightRadius={number('border-right-radius', 0)}
+        borderColor={color('border-color', '')}
+        // borderRadius={number('borderRadius', 0)}
+        borderStyle={text('border-style', 'solid')}
+        //   borderWidth={number('border-width', 0)}
         height={number('height', 200)}
         marginBottom={number('margin-bottom', 0)}
         marginLeft={number('margin-left', 2)}
