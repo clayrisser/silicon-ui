@@ -93,7 +93,7 @@ function cssCalc(width: string): string | number {
   const reducedWidth = reduceCssCalc(width);
   if (reducedWidth.toString().indexOf('%') > -1) return reducedWidth;
   if (reducedWidth.toString().indexOf('px') > -1) {
-    return parseInt(reducedWidth.toString());
+    return parseInt(reducedWidth.toString(), 10);
   }
   return reducedWidth;
 }
