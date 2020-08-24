@@ -51,9 +51,9 @@ const TableData: FC<TableRowProps> = (props: TableRowProps) => {
             {...styledTableRowProps}
             {...(customTableRowProps as any)}
           >
-            {info.map((infos: string, index: number) => {
+            {info.map((infos: string, index: any) => {
               return (
-                <Data key={index} style={props.tdStyles}>
+                <Data key={index.id} style={props.tdStyles}>
                   {infos}
                 </Data>
               );
