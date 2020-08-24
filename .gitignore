@@ -25,3 +25,4 @@ pids
 pnpm-lock.yaml
 yarn.lock
 test-report.xml
+/.expo-shared

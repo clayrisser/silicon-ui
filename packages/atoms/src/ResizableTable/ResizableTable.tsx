@@ -28,17 +28,17 @@ let pageWidth: any;
 let curCol: any;
 let nxtCol: any;
 let curColWidth: any;
-let nxtColWidth: any;
+// let nxtColWidth: any;
 
 const ResizableTable: FC<ResizableTableProps> = () => {
   const [down, setDown] = useState<boolean>(false);
 
-  async function handleMouseUp(e: any) {
+  async function handleMouseUp() {
     setDown(false);
     curCol = undefined;
     nxtCol = undefined;
     pageWidth = undefined;
-    nxtColWidth = undefined;
+    // nxtColWidth = undefined;
     curColWidth = undefined;
   }
 
@@ -49,7 +49,7 @@ const ResizableTable: FC<ResizableTableProps> = () => {
     pageWidth = e.pageX;
     curColWidth = curCol.offsetWidth;
     if (nxtCol) {
-      nxtColWidth = nxtCol.offsetWidth;
+      //  nxtColWidth = nxtCol.offsetWidth;
     }
   }
 
@@ -73,7 +73,7 @@ const ResizableTable: FC<ResizableTableProps> = () => {
                 style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
-                onMouseLeave={(e) => handleMouseUp(e)}
+                onMouseLeave={() => handleMouseUp()}
                 onMouseUp={() => setDown(false)}
                 role="presentation"
               />
@@ -84,7 +84,7 @@ const ResizableTable: FC<ResizableTableProps> = () => {
                 style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
-                onMouseLeave={(e) => handleMouseUp(e)}
+                onMouseLeave={() => handleMouseUp()}
                 onMouseUp={() => setDown(false)}
                 role="presentation"
               />
@@ -95,7 +95,7 @@ const ResizableTable: FC<ResizableTableProps> = () => {
                 style={resizableColumnStyles}
                 onMouseDown={(e) => handleMouseDown(e)}
                 onMouseMove={(e) => handleMouseMove(e)}
-                onMouseLeave={(e) => handleMouseUp(e)}
+                onMouseLeave={() => handleMouseUp()}
                 onMouseUp={() => setDown(false)}
                 role="presentation"
               />

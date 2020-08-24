@@ -1,12 +1,10 @@
 import React from 'react';
-import { withKnobs, select } from '@storybook/addon-knobs';
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 // import { StyleSheet } from 'react-native';
 import Table from './Table';
 import TableRow from '../TableRow';
 import TableData from '../TableData';
-
 // import { Rows } from 'react-native-table-component';
-
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import themes from '../themes';
@@ -37,7 +35,7 @@ storiesOf('Table', module)
   .add('with knobs', () => (
     <Wrapper>
       <Table
-        backgroundColor={color('backgroundColor', '#A9A9A9')}
+        backgroundColor={text('backgroundColor', '#A9A9A9')}
         // borderRadius={number('borderRadius', 0)}
         // height={200}
         // width={200}

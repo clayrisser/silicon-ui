@@ -8,7 +8,7 @@ let colWidth: number;
 const ResizableCell: FC<ResizableCellProps> = () => {
   const parentRef = useRef(null);
   const childRef = useRef(null);
-  const [width, setWidth] = useState<number>(300);
+  const [, setWidth] = useState<number>(300);
 
   function measureMainComponent(event: any) {
     originalColWidth = event.nativeEvent.pageX;

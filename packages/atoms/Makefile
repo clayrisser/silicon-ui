@@ -17,7 +17,7 @@ prepare:
 .PHONY: format
 format: node_modules
 	-@eslint --fix --ext .ts,.tsx . >/dev/null || true
-	@prettier --write ./**/*.{json,md,scss,yaml,yml,js,jsx,ts,tsx} --ignore-path .gitignore
+	@prettier --write ./**/*.{json,md,js,ts,tsx} --ignore-path .gitignore
 	@$(MKDIRP) node_modules/.make && $(TOUCH) -m node_modules/.make/format
 node_modules/.make/format: $(shell $(GIT) ls-files | $(GREP) "\/[^.]+\.(j|t)sx?$$")
 	@$(MAKE) -s format
@@ -93,6 +93,7 @@ expo:
 	$(RM) -rf node_modules/.tmp/action
 	$(MKDIRP) node_modules/.tmp/action
 	$(TOUCH) -m node_modules/.tmp/action/expo
+	-@$(RM) -rf .expo* $(NOFAIL)
 	@rnstl --pattern **/*.story.tsx
 	@expo start -c
 	$(RM) node_modules/.tmp/action/expo

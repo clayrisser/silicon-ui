@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
+import { useTheme } from 'emotion-theming';
 import {
   Animated,
   GestureResponderEvent,
@@ -13,6 +14,7 @@ import {
   border,
   color,
   compose,
+  flexbox,
   layout,
   position,
   shadow,
@@ -21,6 +23,7 @@ import {
 } from 'styled-system';
 import useColor from '../hooks/useColor';
 import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
+import { Theme } from '../themes';
 
 const StyledView: StyledComponent<
   StyledBoxProps,
@@ -31,6 +34,7 @@ const StyledView: StyledComponent<
     background,
     border,
     color,
+    flexbox,
     layout,
     position,
     shadow,
@@ -39,43 +43,100 @@ const StyledView: StyledComponent<
   )
 );
 
+export type Position = [number, number];
+
 const Box: FC<BoxProps> = (props: BoxProps) => {
-  let [pressed, setPressed] = useState(false);
+  const boxRef = useRef(null);
   const color = useColor(props);
+  const theme: Theme = useTheme();
+  let [pressed, setPressed] = useState(false);
+  let [initialPosition, setInitialPosition] = useState<Position>([0, 0]);
   const {
     customBoxProps,
     nativeBoxProps,
+    nativeTouchableOpacityProps,
     styledBoxProps,
     touchableOpacityProps
   } = splitProps({
     ...props,
-    color
+    color,
+    ...(props.backgroundColor !== 'undefined'
+      ? {
+          backgroundColor:
+            theme.colors[props.backgroundColor as string] ||
+            props.backgroundColor
+        }
+      : {})
   });
 
-  const panResponder = props.onDrag
+  async function exitedBox(
+    e: GestureResponderEvent,
+    gestureState: PanResponderGestureState
+  ) {
+    const { locationX, locationY } = e.nativeEvent;
+    const { dx, dy } = gestureState;
+    const [initialX, initialY] = initialPosition;
+    const [x, y] = [
+      ...(Math.abs(dx) > initialX && dx < 0 ? [-locationX] : [locationX]),
+      ...(Math.abs(dy) > initialY && dy < 0 ? [-locationY] : [locationY])
+    ];
+    const [width, height] = await new Promise<Position>((resolve) => {
+      // @ts-ignore
+      boxRef?.current?.measure(
+        (_width: number, _height: number, fx: number, fy: number) => {
+          resolve([fx, fy]);
+        }
+      );
+    });
+    return x < 0 || y < 0 || x > width || y > height;
+  }
+
+  const panResponder = nativeBoxProps.onDrag
     ? useRef(
         PanResponder.create({
+          onMoveShouldSetPanResponder: () => {
+            return pressed;
+          },
           onStartShouldSetPanResponder: () => true,
-          onPanResponderMove: (
+          onPanResponderMove: async (
             e: GestureResponderEvent,
             gestureState: PanResponderGestureState
           ) => {
-            if (customBoxProps.onDrag) customBoxProps.onDrag(e, gestureState);
+            if (!pressed) return;
+            e.persist();
+            if (
+              customBoxProps.releasePressOnExit &&
+              (await exitedBox(e, gestureState))
+            ) {
+              pressed = false;
+              setPressed(false);
+              if (props.onPressOut) props.onPressOut(e, gestureState, boxRef);
+              if (props.onPress) props.onPress(e, gestureState, boxRef);
+            } else if (nativeBoxProps.onDrag) {
+              nativeBoxProps.onDrag(e, gestureState, boxRef);
+            }
           },
           onPanResponderGrant: (
             e: GestureResponderEvent,
             gestureState: PanResponderGestureState
           ) => {
+            const { locationX, locationY } = e.nativeEvent;
+            initialPosition = [locationX, locationY];
+            setInitialPosition([locationX, locationY]);
             pressed = true;
             setPressed(true);
-            if (props.onPressIn) props.onPressIn(e, gestureState);
+            if (props.onPressIn) props.onPressIn(e, gestureState, boxRef);
           },
           onPanResponderRelease: (
             e: GestureResponderEvent,
             gestureState: PanResponderGestureState
           ) => {
-            if (props.onPressOut) props.onPressOut(e, gestureState);
-            if (pressed && props.onPress) props.onPress(e, gestureState);
+            initialPosition = [0, 0];
+            setInitialPosition([0, 0]);
+            if (pressed) {
+              if (props.onPressOut) props.onPressOut(e, gestureState, boxRef);
+              if (props.onPress) props.onPress(e, gestureState, boxRef);
+            }
             pressed = false;
             setPressed(false);
           }
@@ -91,13 +152,21 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
       customBoxProps.children
     );
 
+  function isTouchable() {
+    return (
+      Object.keys(touchableOpacityProps).length ||
+      Object.keys(nativeTouchableOpacityProps).length
+    );
+  }
+
   function renderTouchable() {
-    if (props.onDrag) {
+    if (nativeBoxProps.onDrag) {
       return (
         <>
           <Animated.View
             {...panHandlers}
             style={{
+              backgroundColor: styledBoxProps.backgroundColor,
               height: styledBoxProps.height as any,
               position: 'absolute',
               width: styledBoxProps.width as any
@@ -113,6 +182,7 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
     return (
       <TouchableOpacity
         {...touchableOpacityProps}
+        {...nativeTouchableOpacityProps}
         style={{
           height: '100%',
           width: '100%'
@@ -124,8 +194,8 @@ const Box: FC<BoxProps> = (props: BoxProps) => {
   }
 
   return (
-    <StyledView {...styledBoxProps} {...nativeBoxProps}>
-      {Object.keys(touchableOpacityProps).length ? renderTouchable() : children}
+    <StyledView ref={boxRef} {...styledBoxProps} {...nativeBoxProps}>
+      {isTouchable() ? renderTouchable() : children}
     </StyledView>
   );
 };
@@ -134,10 +204,12 @@ Box.defaultProps = {
   // fontFamily: 'body',
   // fontWeight: 'body',
   autoContrast: false,
-  backgroundColor: 'background',
+  backgroundColor: 'transparent',
   children: <></>,
   fontSize: 'body',
-  lineHeight: 'body'
+  height: '100%',
+  lineHeight: 'body',
+  width: '100%'
 };
 
 export default Box;
