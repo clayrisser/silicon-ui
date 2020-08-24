@@ -35,7 +35,6 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
 
   const {
     customCheckBoxProps,
-    nativeCheckBoxProps,
     nativeItemProps,
     styledCheckBoxProps
   } = splitProps({
