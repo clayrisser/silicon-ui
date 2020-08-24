@@ -1,49 +1,13 @@
 import React, { FC, useState, useRef, useCallback } from 'react';
-import styled, { StyledComponent } from '@emotion/styled';
 import reduceCssCalc from 'reduce-css-calc';
 import { GestureResponderEvent, Platform, NativeMethods } from 'react-native';
-import {
-  background,
-  border,
-  color,
-  compose,
-  flexbox,
-  layout,
-  position,
-  shadow,
-  space,
-  typography
-} from 'styled-system';
 import Box from '../Box';
 import useColor from '../hooks/useColor';
-import {
-  TableCellProps,
-  splitProps,
-  DetailedHTMLTdProps
-} from './tableCellProps';
+import { TableCellProps, splitProps } from './tableCellProps';
 
 export type Position = [number, number];
 
 const width = 100;
-
-const HTMLTd: StyledComponent<
-  DetailedHTMLTdProps,
-  TableCellProps,
-  object
-> = styled.td(
-  compose(
-    background,
-    border,
-    color,
-    compose,
-    flexbox,
-    layout,
-    position,
-    shadow,
-    space,
-    typography
-  )
-);
 
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   const color = useColor(props);
@@ -147,12 +111,11 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   }
 
   return (
-    <HTMLTd
+    <Box
       {...customTableCellProps}
       {...styledTableCellProps}
       backgroundColor="red"
       width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
-      // @ts-ignore
       ref={tableCellRef}
     >
       <Box
@@ -188,7 +151,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
           }}
         />
       </Box>
-    </HTMLTd>
+    </Box>
   );
 };
 
