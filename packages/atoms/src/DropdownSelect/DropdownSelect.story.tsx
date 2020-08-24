@@ -27,11 +27,7 @@ storiesOf('Dropdown', module)
     <Wrapper>
       <DropdownSelect
         onPress={action('onPress')}
-<<<<<<< Updated upstream
         backgroundColor={color('backgroundColor', 'primary')}
-=======
-        backgroundColor={text('backgroundColor', 'inverseText')}
->>>>>>> Stashed changes
         borderRadius={number('border-radius', 0)}
         borderColor={color('border-color', '')}
         borderWidth={number('border-width', 2)}

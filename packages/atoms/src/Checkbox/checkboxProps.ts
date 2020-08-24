@@ -64,8 +64,6 @@ export const nativeCheckBoxPropsKeys = new Set([
   'rounded',
   'success',
   'underline',
-  'checked',
-  'disabled',
   'onValueChange',
   'value'
 ]);
