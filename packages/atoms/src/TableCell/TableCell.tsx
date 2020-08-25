@@ -16,8 +16,9 @@ import {
 } from 'styled-system';
 import Box from '../Box';
 import useColor from '../hooks/useColor';
-import useColumnId from '../hooks/useColId';
 import useRowCol from '../hooks/useRowCol';
+import useSetCol from '../hooks/useSetCol';
+import useTableCol from '../hooks/useTableCol';
 import {
   TableCellProps,
   splitProps,
@@ -26,7 +27,7 @@ import {
 
 export type Position = [number, number];
 
-const width = 20;
+const grabWidth = 20;
 
 const HTMLTd: StyledComponent<
   DetailedHTMLTdProps,
@@ -48,9 +49,10 @@ const HTMLTd: StyledComponent<
 );
 
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
-  const [rowCol, setRowCol] = useRowCol();
+  const [rowCol] = useRowCol();
+  const [tableCol] = useTableCol();
+  const setCol = useSetCol();
   const color = useColor(props);
-  const columnId = useColumnId();
   const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
   let [initialWidth, setInitialWidth] = useState(0);
   let [initialX, setInitialX] = useState(0);
@@ -106,7 +108,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     const x = pageX - initialX;
     relativeX = modifiedX - x;
     setRelativeX(relativeX);
-    setRowCol({
+    setCol({
       widthFactor: cssCalc(normalizeWidth(props.width?.toString()), relativeX)
     });
   }
@@ -139,8 +141,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   }
 
   function cssCalc(left: string, right: number): string | number {
-    if (width.toString().indexOf('%') > -1 && Platform.OS !== 'web') {
-      if (right === 0) return width;
+    if (left.toString().indexOf('%') > -1 && Platform.OS !== 'web') {
+      if (right === 0) return left;
       return initialWidth - right;
     }
     const reducedWidth = reduceCssCalc(`calc(${left}-${right}px)`);
@@ -153,12 +155,17 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     return reducedWidth;
   }
 
+  const width =
+    tableCol?.widthFactor ||
+    rowCol?.widthFactor ||
+    cssCalc(normalizeWidth(props.width?.toString()), relativeX);
+
   return (
     <HTMLTd
       {...customTableCellProps}
       {...styledTableCellProps}
       borderWidth={1}
-      width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
+      width={width}
       // @ts-ignore
       ref={tableCellRef}
     >
@@ -171,11 +178,11 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
         maxWidth={props.maxWidth}
         minWidth={props.minWidth}
         position="absolute"
-        width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
+        width={width}
       >
         <Box
           height="100%"
-          width={width / 2}
+          width={grabWidth / 2}
           style={
             {
               // @ts-ignore
@@ -188,14 +195,14 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
           onPull={handleRightDrag}
           onPressIn={handleRightPressIn}
           onPressOut={handleRightPressOut}
-          width={width / 2}
+          width={grabWidth / 2}
           style={{
             // @ts-ignore
             cursor: 'ew-resize'
           }}
         />
       </Box>
-      {columnId} {rowCol?.widthFactor} {customTableCellProps.children}
+      {customTableCellProps.children}
     </HTMLTd>
   );
 };

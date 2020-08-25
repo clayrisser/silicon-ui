@@ -20,13 +20,24 @@ storiesOf('Table', module)
       <Table>
         <TableRow width={400}>
           <TableCell width={400} height={300} backgroundColor="lightblue">
-            hi
+            One
           </TableCell>
           <TableCell width={400} height={300} backgroundColor="lightblue">
-            hi
+            Two
           </TableCell>
           <TableCell width={400} height={300} backgroundColor="lightblue">
-            hi
+            Three
+          </TableCell>
+        </TableRow>
+        <TableRow width={400}>
+          <TableCell width={400} height={300} backgroundColor="lightblue">
+            Four
+          </TableCell>
+          <TableCell width={400} height={300} backgroundColor="lightblue">
+            Five
+          </TableCell>
+          <TableCell width={400} height={300} backgroundColor="lightblue">
+            Six
           </TableCell>
         </TableRow>
       </Table>
