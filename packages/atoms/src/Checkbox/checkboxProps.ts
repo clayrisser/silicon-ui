@@ -28,22 +28,20 @@ export interface StyledCheckBoxProps
 
 export interface NativeCheckBoxProps extends NativeBase.CheckBox {}
 
-export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {}
-
 export interface CustomCheckBoxProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   theme?: Theme;
   type?: string;
   children?: ReactNode | string;
   checked?: boolean;
-  disabled?: boolean;
 }
 
 export interface CheckBoxProps
   extends CustomCheckBoxProps,
     NativeCheckBoxProps,
-    NativeItemProps,
-    StyledCheckBoxProps {}
+    StyledCheckBoxProps {
+  disabled?: boolean;
+}
 
 export const customCheckBoxPropsKeys = new Set([
   'autoContrast',
@@ -61,12 +59,9 @@ export const nativeCheckBoxPropsKeys = new Set([
   'onValueChange'
 ]);
 
-export const nativeItemPropKeys = new Set<string>([]);
-
 export interface SplitProps {
   customCheckBoxProps: CustomCheckBoxProps;
   nativeCheckBoxProps: NativeCheckBoxProps;
-  nativeItemProps: NativeItemProps;
   styledCheckBoxProps: StyledCheckBoxProps;
 }
 
@@ -74,14 +69,11 @@ export function splitProps(props: CheckBoxProps): SplitProps {
   const styledCheckBoxProps: { [key: string]: any } = {};
   const customCheckBoxProps: { [key: string]: any } = {};
   const nativeCheckBoxProps: { [key: string]: any } = {};
-  const nativeItemProps: { [key: string]: any } = {};
   Object.entries({ ...props }).forEach(([key, prop]: [string, any]) => {
     if (customCheckBoxPropsKeys.has(key)) {
       customCheckBoxProps[key] = prop;
     } else if (nativeCheckBoxPropsKeys.has(key)) {
       nativeCheckBoxProps[key] = prop;
-    } else if (nativeItemPropKeys.has(key)) {
-      nativeItemProps[key] = prop;
     } else {
       styledCheckBoxProps[key] = prop;
     }
@@ -89,7 +81,6 @@ export function splitProps(props: CheckBoxProps): SplitProps {
   return {
     customCheckBoxProps,
     nativeCheckBoxProps,
-    nativeItemProps,
     styledCheckBoxProps
   };
 }

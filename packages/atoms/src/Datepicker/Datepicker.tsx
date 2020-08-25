@@ -55,7 +55,7 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
 
   function handleChange(e: any) {
     if (props.onPress) {
-      props.onPress(e);
+      props.onPress();
       setDate(e.target.value);
     }
   }

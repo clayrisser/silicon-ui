@@ -29,12 +29,6 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
     }
   }, [width]);
 
-  // useEffect(() => {
-  //   const widthValues: any = resizableWidth.widths;
-  //   if (widthValues !== undefined && position !== undefined)
-  //     setWidth(widthValues[position]);
-  // }, [resizableWidth]);
-
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -66,36 +60,6 @@ const ResizableCell: FC<ResizableCellProps> = (props: ResizableCellProps) => {
     })
   ).current;
 
-  // const panResponderLeft = useRef(
-  //   PanResponder.create({
-  //     onStartShouldSetPanResponder: () => true,
-  //     onPanResponderGrant: async (evt) => {
-  //       originalColWidth = evt.nativeEvent.pageX;
-  //       const par: any = (await parentRef.current) || null;
-  //       if (par !== null) {
-  //         await par.measure(
-  //           (
-  //             _width: number,
-  //             _height: number,
-  //             fx: number,
-  //             _fy: number,
-  //             _px: number,
-  //             _py: number
-  //           ) => {
-  //             colWidth = fx;
-  //           }
-  //         );
-  //       }
-  //     },
-  //     onPanResponderMove: async (evt) => {
-  //       const diff = await (evt.nativeEvent.pageX - originalColWidth);
-  //       await setWidth(colWidth + diff);
-  //     },
-  //     onPanResponderRelease: () => {
-  //       pan.flattenOffset();
-  //     }
-  //   })
-  // ).current;
   return (
     <View
       style={{

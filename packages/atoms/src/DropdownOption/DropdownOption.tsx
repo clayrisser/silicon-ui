@@ -58,7 +58,6 @@ const DropdownOption: FC<DropdownOptionProps> = (
 };
 
 DropdownOption.defaultProps = {
-  activeOpacity: 1,
   backgroundColor: 'inverseText',
   children: <></>,
   value: '',
@@ -68,8 +67,4 @@ DropdownOption.defaultProps = {
   lineHeight: 'body'
 };
 
-export default styled(DropdownOption)`
-  :active {
-    opacity: ${({ activeOpacity }: DropdownOptionProps) => activeOpacity};
-  }
-`;
+export default styled(DropdownOption)``;
