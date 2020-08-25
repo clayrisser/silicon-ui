@@ -16,10 +16,8 @@ import {
 } from 'styled-system';
 import Box from '../Box';
 import useColor from '../hooks/useColor';
-import useColumn from '../hooks/useColumn';
-import useRow from '../hooks/useRow';
-import { Col } from '../types';
-import { Row } from '../contexts/Row';
+import useColumnId from '../hooks/useColId';
+import useRowCol from '../hooks/useRowCol';
 import {
   TableCellProps,
   splitProps,
@@ -50,9 +48,9 @@ const HTMLTd: StyledComponent<
 );
 
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
+  const [rowCol, setRowCol] = useRowCol();
   const color = useColor(props);
-  const column = useColumn();
-  const [row, setRow] = useRow();
+  const columnId = useColumnId();
   const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
   let [initialWidth, setInitialWidth] = useState(0);
   let [initialX, setInitialX] = useState(0);
@@ -108,23 +106,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     const x = pageX - initialX;
     relativeX = modifiedX - x;
     setRelativeX(relativeX);
-    setRow((row: Row | null) => {
-      const newRow: Row = { ...row, cols: [...(row?.cols || [])] };
-      if (typeof column?.id !== 'undefined') {
-        if (!(newRow.cols.length > column.id)) {
-          newRow.cols = Array.from(new Array<Col>(column.id + 1)).map(
-            (_value: any, i: number) => {
-              if (newRow.cols[i]) return newRow.cols[i];
-              return { widthFactor: 0 };
-            }
-          );
-        }
-        newRow.cols[column.id].widthFactor = cssCalc(
-          normalizeWidth(props.width?.toString()),
-          relativeX
-        );
-      }
-      return newRow;
+    setRowCol({
+      widthFactor: cssCalc(normalizeWidth(props.width?.toString()), relativeX)
     });
   }
 
@@ -178,8 +161,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
       // @ts-ignore
       ref={tableCellRef}
     >
-      {column?.id} {row?.cols?.[column?.id || 0]?.widthFactor}{' '}
-      {customTableCellProps.children}
+      {columnId} {rowCol?.widthFactor} {customTableCellProps.children}
       <Box
         display="flex"
         flex={1}
