@@ -36,8 +36,7 @@ export interface CustomCheckBoxProps {
   type?: string;
   children?: ReactNode | string;
   checked?: boolean;
-  autoFocus?: boolean;
-  indeterminate?: boolean;
+  disabled?: boolean;
 }
 
 export interface CheckBoxProps
@@ -51,23 +50,15 @@ export const customCheckBoxPropsKeys = new Set([
   'theme',
   'disabled',
   'checked',
-  'onChange'
+  'onChange',
+  'value'
 ]);
 
 export const nativeCheckBoxPropsKeys = new Set([
-  'error',
-  'type',
-  'last',
   'onPress',
   'onPressIn',
   'onPressOut',
-  'rounded',
-  'success',
-  'underline',
-  'checked',
-  'disabled',
-  'onValueChange',
-  'value'
+  'onValueChange'
 ]);
 
 export const nativeItemPropKeys = new Set<string>([]);

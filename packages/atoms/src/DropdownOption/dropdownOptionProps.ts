@@ -27,11 +27,7 @@ export interface StyledDropdownOptionProps
     SpaceProps,
     TypographyProps {}
 
-export interface NativeDropdownOptionProps extends ViewProps {
-  value?: string;
-  label?: string;
-  disabled?: boolean;
-}
+export interface NativeDropdownOptionProps extends ViewProps {}
 
 export interface CustomDropdownOptionProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
@@ -39,20 +35,22 @@ export interface CustomDropdownOptionProps {
   theme?: Theme;
   value?: string;
   label?: string;
+  disabled?: boolean;
 }
 
 export interface DropdownOptionProps
   extends CustomDropdownOptionProps,
     NativeDropdownOptionProps,
-    StyledDropdownOptionProps,
-    TouchableOpacityProps {}
+    StyledDropdownOptionProps {}
+// TouchableOpacityProps {}
 
 export const customDropdownOptionPropsKeys = new Set([
   'autoContrast',
   'children',
   'theme',
   'value',
-  'label'
+  'label',
+  'disabled'
 ]);
 
 export const touchableOpacityPropsKeys = new Set([
@@ -60,7 +58,6 @@ export const touchableOpacityPropsKeys = new Set([
   'delayLongPress',
   'delayPressIn',
   'delayPressOut',
-  'disabled',
   'hitSlop',
   'onBlur',
   'onFocus',
@@ -70,14 +67,7 @@ export const touchableOpacityPropsKeys = new Set([
   'testID'
 ]);
 
-export const nativeDropdownOptionPropsKeys = new Set<string>([
-  'onValueChange',
-  'value',
-  'label'
-  // 'onPress',
-  // 'onPressIn',
-  // 'onPressOut'
-]);
+export const nativeDropdownOptionPropsKeys = new Set<string>(['onValueChange']);
 
 export interface SplitProps {
   customDropdownOptionProps: CustomDropdownOptionProps;

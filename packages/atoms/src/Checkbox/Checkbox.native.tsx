@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import {
   Item as NativeBaseItem,
   CheckBox as NativeBaseCheckbox
@@ -31,11 +31,10 @@ const StyledNativeBaseCheckbox = createStyled<CheckBoxProps>(
 const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   const item = useItem();
   const color = useColor(props);
-  //  const [checked, setChecked] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(false);
 
   const {
     customCheckBoxProps,
-    nativeCheckBoxProps,
     nativeItemProps,
     styledCheckBoxProps
   } = splitProps({
@@ -43,18 +42,24 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
     color
   });
 
-  // function handlePress() {
-  //   if (props.onPress) props.onPress();
-  //   setChecked(!checked);
-  // }
+  useEffect(() => {
+    if (customCheckBoxProps.checked !== undefined)
+      setChecked(customCheckBoxProps.checked);
+  }, [customCheckBoxProps.checked]);
+
+  function handleChange(e: any) {
+    if (props.onPress) {
+      props.onPress(e);
+      setChecked(!checked);
+    }
+  }
 
   const styledNativeBaseCheckbox = (
     <StyledNativeBaseCheckbox
       {...customCheckBoxProps}
-      {...nativeCheckBoxProps}
       {...styledCheckBoxProps}
-      // onPress={() => handlePress()}
-      // checked={checked}
+      onPress={handleChange}
+      checked={checked}
     />
   );
   if (item.hasItemParent) return styledNativeBaseCheckbox;
@@ -66,7 +71,8 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
 };
 
 CheckBox.defaultProps = {
-  marginTop: 100
+  marginTop: 100,
+  checked: false
 };
 
 export default CheckBox;

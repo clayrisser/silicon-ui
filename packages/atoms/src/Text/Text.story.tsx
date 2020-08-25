@@ -17,21 +17,21 @@ storiesOf('Text', module)
     <Wrapper>
       <Text
         color={color('color', '')}
-        fontWeight={text('font-weight', 'bold')}
+        fontWeight={text('fontWeight', 'bold')}
         padding={number('padding', 1)}
         margin={number('margin', 1)}
-        fontSize={number('font-size', 2)}
-        textAlign={text('text-align', 'center')}
+        fontSize={number('fontSize', 2)}
+        textAlign={text('textAlign', 'center')}
         opacity={number('opacity', 1)}
-        letterSpacing={number('letter-spacing', 0)}
-        paddingTop={number('padding-top', 2)}
-        paddingLeft={number('padding-left', 1)}
-        paddingBottom={number('padding-bottom', 1)}
-        paddingRight={number('padding-right', 2)}
-        marginBottom={number('margin-bottom', 0)}
-        marginTop={number('margin-top', 0)}
-        marginLeft={number('margin-left', 0)}
-        marginRight={number('margin-right', 0)}
+        letterSpacing={number('letterSpacing', 0)}
+        paddingTop={number('paddingTop', 2)}
+        paddingLeft={number('paddingLeft', 1)}
+        paddingBottom={number('paddingBottom', 1)}
+        paddingRight={number('paddingRight', 2)}
+        marginBottom={number('marginBottom', 0)}
+        marginTop={number('marginTop', 0)}
+        marginLeft={number('marginLeft', 0)}
+        marginRight={number('marginRight', 0)}
         // fontFamily={text('font-family', 'Arial, Helvetica, sans-serif')}
       >
         {text('children', 'Hello, world!')}

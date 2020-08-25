@@ -15,28 +15,7 @@ import {
 import { createStyled } from '../styled';
 
 import useColor from '../hooks/useColor';
-import {
-  DropdownOptionProps,
-  // StyledDropdownOptionProps,
-  splitProps
-} from './dropdownOptionProps';
-
-// const StyledView: StyledComponent<
-//   StyledDropdownOptionProps,
-//   StyledDropdownOptionProps,
-//   any
-// > = styled.View(
-//   compose(
-//     background,
-//     border,
-//     color,
-//     layout,
-//     position,
-//     shadow,
-//     space,
-//     typography
-//   )
-// );
+import { DropdownOptionProps, splitProps } from './dropdownOptionProps';
 
 const StyledNativePicker = createStyled<DropdownOptionProps>(NativePicker, [
   background,
@@ -64,6 +43,7 @@ const NativeBasePicker: FC<DropdownOptionProps> = (
       <NativePicker.Item
         value={customDropdownOptionProps.children}
         label={customDropdownOptionProps.children}
+        // disabled={customDropdownOptionProps.disabled}
       />
     ) : (
       customDropdownOptionProps.children
@@ -80,14 +60,7 @@ const NativeBasePicker: FC<DropdownOptionProps> = (
 };
 
 NativeBasePicker.defaultProps = {
-  // fontFamily: 'body',
-  // fontWeight: 'body',
-  // activeOpacity: 1,
-  // autoContrast: false,
-  // backgroundColor: 'background',
   children: <></>
-  // fontSize: 0,
-  // lineHeight: 'body'
 };
 
 export default NativeBasePicker;

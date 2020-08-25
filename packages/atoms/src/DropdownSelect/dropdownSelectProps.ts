@@ -70,16 +70,11 @@ export const touchableOpacityPropsKeys = new Set([
   'onLayout',
   'onLongPress',
   'pressRetentionOffset',
+  'onValueChange',
   'testID'
 ]);
 
-export const nativeDropdownSelectPropsKeys = new Set<string>([
-  'onValueChange',
-  'disabled',
-  'onPress'
-  // 'onPressIn',
-  // 'onPressOut'
-]);
+export const nativeDropdownSelectPropsKeys = new Set<string>(['selectedValue']);
 
 export interface SplitProps {
   customDropdownSelectProps: CustomDropdownSelectProps;
