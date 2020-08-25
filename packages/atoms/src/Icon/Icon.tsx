@@ -1,62 +1,21 @@
 import React, { FC } from 'react';
-import styled, { StyledComponent } from '@emotion/styled';
-import {
-  color,
-  compose,
-  layout,
-  position,
-  shadow,
-  space,
-  typography
-} from 'styled-system';
-import {
-  DetailedHTMLDivProps,
-  StyledIconProps,
-  IconProps,
-  splitProps
-} from './IconProps';
+import Icon from 'react-fontawesome';
+import Box from '../Box/Box';
 
-const HTMLDiv: StyledComponent<
-  DetailedHTMLDivProps,
-  StyledIconProps,
-  object
-> = styled.div(compose(color, layout, position, shadow, space, typography));
-
-const Icon: FC<IconProps> = (props: IconProps) => {
-  const {
-    customIconProps,
-    styledIconProps,
-    styledViewProps,
-    touchableOpacityProps
-  } = splitProps(props);
-
-  function handleClick(e: any) {
-    if (props.onPress) props.onPress(e);
-  }
-
-  function handleMouseDown(e: any) {
-    if (props.onPressIn) props.onPressIn(e);
-  }
-
-  function handleMouseUp(e: any) {
-    if (props.onPressOut) props.onPressOut(e);
-  }
-
+const HtmlIcon = () => {
   return (
-    <HTMLDiv
-      {...customIconProps}
-      {...touchableOpacityProps}
-      {...(styledIconProps as any)}
-      {...(styledViewProps as any)}
-      onClick={handleClick}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-    />
+    <Box>
+      <link
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet"
+      />
+      <Icon
+        className="super-crazy-colors"
+        name="car"
+        size="2x"
+        style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+      />
+    </Box>
   );
 };
-
-Icon.defaultProps = {
-  name: 'rocket'
-};
-
-export default Icon;
+export default HtmlIcon;
