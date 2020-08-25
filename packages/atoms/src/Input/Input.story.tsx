@@ -71,7 +71,7 @@ storiesOf('Input', module)
         required={boolean('required', false)}
         padding={text('padding', '0')}
         margin={text('margin', '0')}
-        label={text('inpsutLabel', 'input')}
+        label={text('inputLabel', 'input')}
         id={text('inputId', '')}
         width={text('width', '50%')}
         placeholder={text('placeholder', 'user name')}

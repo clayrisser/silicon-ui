@@ -41,7 +41,6 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   const {
     customCheckBoxProps,
     styledCheckBoxProps,
-    nativeItemProps,
     nativeCheckBoxProps
   } = splitProps({
     ...props,
@@ -62,7 +61,6 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   return (
     <HTMLCheckBox
       {...styledCheckBoxProps}
-      {...nativeItemProps}
       {...nativeCheckBoxProps}
       {...(customCheckBoxProps as any)}
       checked={checked}

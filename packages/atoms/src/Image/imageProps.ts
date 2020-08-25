@@ -23,7 +23,7 @@ export type DetailedHTMLImageProps = DetailedHTMLProps<
 export interface CustomImageProps {
   children?: ReactNode;
   theme?: Theme;
-  source?: string;
+  // source?: string;
   alt?: string;
 }
 
@@ -56,7 +56,9 @@ export interface ImageProps
   extends CustomImageProps,
     NativeImageProps,
     StyledImageProps,
-    TouchableOpacityProps {}
+    TouchableOpacityProps {
+  source: any;
+}
 
 export const customImagePropsKeys = new Set<string>([
   'children',
@@ -92,7 +94,7 @@ export const touchableOpacityPropsKeys = new Set([
   'testID'
 ]);
 
-// export const antiForwardImagePropsKeys = new Set(['borderColor']);
+export const antiForwardImagePropsKeys = new Set(['borderColor']);
 
 interface SplitProps {
   customImageProps: CustomImageProps;

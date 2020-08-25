@@ -33,11 +33,7 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   const color = useColor(props);
   const [checked, setChecked] = useState<boolean>(false);
 
-  const {
-    customCheckBoxProps,
-    nativeItemProps,
-    styledCheckBoxProps
-  } = splitProps({
+  const { customCheckBoxProps, styledCheckBoxProps } = splitProps({
     ...props,
     color
   });
@@ -63,11 +59,7 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
     />
   );
   if (item.hasItemParent) return styledNativeBaseCheckbox;
-  return (
-    <NativeBaseItem {...nativeItemProps}>
-      {styledNativeBaseCheckbox}
-    </NativeBaseItem>
-  );
+  return <NativeBaseItem>{styledNativeBaseCheckbox}</NativeBaseItem>;
 };
 
 CheckBox.defaultProps = {
