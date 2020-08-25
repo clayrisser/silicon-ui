@@ -26,14 +26,15 @@ export interface StyledViewProps
     ShadowProps,
     SpaceProps {}
 
-export interface StyledTextProps extends TypographyProps, TextColorProps {}
+export interface StyledTextProps extends TypographyProps, TextColorProps {
+  textAlign?: any;
+}
 
 export interface NativeTextProps extends ReactNativeTextProps {}
 
 export interface CustomTextProps {
   children?: string;
   theme?: Theme;
-  textAlign?: string;
   textTransform?: string;
 }
 

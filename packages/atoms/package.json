@@ -50,6 +50,7 @@
     "emotion-theming": "^10.0.27",
     "native-base": "^2.13.13",
     "react": "~16.13.1",
+    "react-fontawesome": "^1.7.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-table-component": "^1.2.1",
     "react-native-vector-icons": "^7.0.0",

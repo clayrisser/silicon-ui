@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import Box from '../Box';
+import { View } from 'native-base';
 import ResizableCell from '../ResizableColumn/ResizableCell';
 import ResizableWidthContext, {
   ResizableWidth
@@ -16,7 +16,7 @@ const ResizableTableRow: FC = () => {
 
   return (
     <ResizableWidthContext.Provider value={[resizableWidth, setResizableWidth]}>
-      <Box style={{ display: 'flex', flexDirection: 'row' }}>
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
         <ResizableCell position={0} resizable>
           Head1
         </ResizableCell>
@@ -26,22 +26,22 @@ const ResizableTableRow: FC = () => {
         <ResizableCell position={2} resizable>
           Head3
         </ResizableCell>
-      </Box>
-      <Box style={{ display: 'flex', flexDirection: 'row' }}>
+      </View>
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
         <ResizableCell position={0}>Head1</ResizableCell>
         <ResizableCell position={1}>Head2</ResizableCell>
         <ResizableCell position={2}>Head3</ResizableCell>
-      </Box>
-      <Box style={{ display: 'flex', flexDirection: 'row' }}>
+      </View>
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
         <ResizableCell position={0}>Head1</ResizableCell>
         <ResizableCell position={1}>Head2</ResizableCell>
         <ResizableCell position={2}>Head3</ResizableCell>
-      </Box>
-      <Box style={{ display: 'flex', flexDirection: 'row' }}>
+      </View>
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
         <ResizableCell position={0}>Head1</ResizableCell>
         <ResizableCell position={1}>Head2</ResizableCell>
         <ResizableCell position={2}>Head3</ResizableCell>
-      </Box>
+      </View>
     </ResizableWidthContext.Provider>
   );
 };
