@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -11,6 +11,7 @@ import {
   space,
   typography
 } from 'styled-system';
+import TableContext, { TableMeta } from '../contexts/Table';
 import useColor from '../hooks/useColor';
 import { TableProps, DetailedHTMLTableProps, splitProps } from './tableProps';
 
@@ -32,18 +33,32 @@ const HTMLTable: StyledComponent<
 );
 
 const Table: FC<TableProps> = (props: TableProps) => {
+  const [table, setTable] = useState<TableMeta | null>(null);
   const color = useColor(props);
   const { customTableProps, styledTableProps, nativeItemProps } = splitProps({
     ...props,
     color
   });
+
+  function renderRows() {
+    let { children } = customTableProps;
+    if (!Array.isArray(children)) children = [children];
+    return ((children as unknown) as ReactNode[]).map(
+      (tableRow: ReactNode) => tableRow
+    );
+  }
+
   return (
     <HTMLTable
       {...styledTableProps}
       {...nativeItemProps}
       {...(customTableProps as any)}
       style={{ borderCollapse: 'collapse' }}
-    />
+    >
+      <TableContext.Provider value={[table, setTable]}>
+        {renderRows()}
+      </TableContext.Provider>
+    </HTMLTable>
   );
 };
 
@@ -52,8 +67,7 @@ Table.defaultProps = {
   autoContrast: false,
   fontSize: 2,
   fontWeight: 'body',
-  lineHeight: 'body',
-  width: '100%'
+  lineHeight: 'body'
 };
 
 export default Table;

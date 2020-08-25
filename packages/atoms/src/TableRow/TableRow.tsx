@@ -53,7 +53,10 @@ const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
   }
 
   return (
-    <HTMLTableRow {...((styledTableRowProps as unknown) as any)}>
+    <HTMLTableRow
+      {...((styledTableRowProps as unknown) as any)}
+      verticalAlign="top"
+    >
       <RowContext.Provider value={[row, setRow]}>
         {renderCells()}
       </RowContext.Provider>

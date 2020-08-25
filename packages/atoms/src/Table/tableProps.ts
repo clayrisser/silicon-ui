@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, TableHTMLAttributes } from 'react';
+import { DetailedHTMLProps, TableHTMLAttributes, ReactNode } from 'react';
 import { Table } from 'react-native-table-component';
 // import { NativeBase } from 'native-base';
 import {
@@ -34,8 +34,9 @@ export interface NativeItemProps extends Omit<Table, 'style'> {}
 
 export interface CustomTableProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
-  theme?: Theme;
+  children?: ReactNode;
   style?: any;
+  theme?: Theme;
 }
 
 export interface TableProps
@@ -44,7 +45,12 @@ export interface TableProps
     NativeItemProps,
     StyledTableProps {}
 
-export const customTablePropsKeys = new Set(['autoContrast', 'theme', 'style']);
+export const customTablePropsKeys = new Set([
+  'autoContrast',
+  'children',
+  'style',
+  'theme'
+]);
 
 export const nativeTablePropsKeys = new Set<string>(['borderStyle', 'style']);
 

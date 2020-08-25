@@ -157,11 +157,11 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     <HTMLTd
       {...customTableCellProps}
       {...styledTableCellProps}
+      borderWidth={1}
       width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
       // @ts-ignore
       ref={tableCellRef}
     >
-      {columnId} {rowCol?.widthFactor} {customTableCellProps.children}
       <Box
         display="flex"
         flex={1}
@@ -176,10 +176,12 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
         <Box
           height="100%"
           width={width / 2}
-          style={{
-            // @ts-ignore
-            cursor: 'ew-resize'
-          }}
+          style={
+            {
+              // @ts-ignore
+              // cursor: 'ew-resize'
+            }
+          }
         />
         <Box
           height="100%"
@@ -193,6 +195,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
           }}
         />
       </Box>
+      {columnId} {rowCol?.widthFactor} {customTableCellProps.children}
     </HTMLTd>
   );
 };

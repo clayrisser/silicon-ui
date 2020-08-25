@@ -1,8 +1,13 @@
-import { createContext } from 'react';
+import { createContext, SetStateAction, Dispatch } from 'react';
 import { Col } from '../types';
 
-export interface TableContextValue {
+export type TableContextValue = [
+  TableMeta | null,
+  Dispatch<SetStateAction<TableMeta | null>>
+];
+
+export interface TableMeta {
   cols: Col[];
 }
 
-export default createContext<TableContextValue | null>(null);
+export default createContext<TableContextValue>([null, () => {}]);
