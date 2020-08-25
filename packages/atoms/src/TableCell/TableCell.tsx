@@ -16,6 +16,10 @@ import {
 } from 'styled-system';
 import Box from '../Box';
 import useColor from '../hooks/useColor';
+import useColumn from '../hooks/useColumn';
+import useRow from '../hooks/useRow';
+import { Col } from '../types';
+import { Row } from '../contexts/Row';
 import {
   TableCellProps,
   splitProps,
@@ -24,7 +28,7 @@ import {
 
 export type Position = [number, number];
 
-const width = 100;
+const width = 20;
 
 const HTMLTd: StyledComponent<
   DetailedHTMLTdProps,
@@ -47,6 +51,8 @@ const HTMLTd: StyledComponent<
 
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   const color = useColor(props);
+  const column = useColumn();
+  const [row, setRow] = useRow();
   const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
   let [initialWidth, setInitialWidth] = useState(0);
   let [initialX, setInitialX] = useState(0);
@@ -102,6 +108,24 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     const x = pageX - initialX;
     relativeX = modifiedX - x;
     setRelativeX(relativeX);
+    setRow((row: Row | null) => {
+      const newRow: Row = { ...row, cols: [...(row?.cols || [])] };
+      if (typeof column?.id !== 'undefined') {
+        if (!(newRow.cols.length > column.id)) {
+          newRow.cols = Array.from(new Array<Col>(column.id + 1)).map(
+            (_value: any, i: number) => {
+              if (newRow.cols[i]) return newRow.cols[i];
+              return { widthFactor: 0 };
+            }
+          );
+        }
+        newRow.cols[column.id].widthFactor = cssCalc(
+          normalizeWidth(props.width?.toString()),
+          relativeX
+        );
+      }
+      return newRow;
+    });
   }
 
   async function handleRightPressIn(
@@ -150,11 +174,12 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     <HTMLTd
       {...customTableCellProps}
       {...styledTableCellProps}
-      backgroundColor="red"
       width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
       // @ts-ignore
       ref={tableCellRef}
     >
+      {column?.id} {row?.cols?.[column?.id || 0]?.widthFactor}{' '}
+      {customTableCellProps.children}
       <Box
         display="flex"
         flex={1}
@@ -167,7 +192,6 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
         width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
       >
         <Box
-          backgroundColor="green"
           height="100%"
           width={width / 2}
           style={{
@@ -176,7 +200,6 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
           }}
         />
         <Box
-          backgroundColor="green"
           height="100%"
           onPull={handleRightDrag}
           onPressIn={handleRightPressIn}
@@ -195,10 +218,10 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
 TableCell.defaultProps = {
   autoContrast: false,
   borderStyle: 'solid',
+  borderWidth: 0,
   fontSize: 2,
   fontWeight: 'body',
-  lineHeight: 'body',
-  width: '100%'
+  lineHeight: 'body'
 };
 
 export default TableCell;

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -11,6 +11,8 @@ import {
   space,
   typography
 } from 'styled-system';
+import ColumnContext from '../contexts/Column';
+import RowContext, { Row } from '../contexts/Row';
 import {
   TableRowProps,
   DetailedHTMLTableRowProps,
@@ -36,8 +38,26 @@ const HTMLTableRow: StyledComponent<
 
 const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
   const { customTableRowProps, styledTableRowProps } = splitProps({ ...props });
+  const [row, setRow] = useState<Row | null>(null);
+
+  function renderCells() {
+    let { children } = customTableRowProps;
+    if (!Array.isArray(children)) children = [children];
+    return ((children as unknown) as ReactNode[]).map(
+      (tableCell: ReactNode, key: number) => (
+        <ColumnContext.Provider value={{ id: key }}>
+          {tableCell}
+        </ColumnContext.Provider>
+      )
+    );
+  }
+
   return (
-    <HTMLTableRow {...styledTableRowProps} {...(customTableRowProps as any)} />
+    <HTMLTableRow {...((styledTableRowProps as unknown) as any)}>
+      <RowContext.Provider value={[row, setRow]}>
+        {renderCells()}
+      </RowContext.Provider>
+    </HTMLTableRow>
   );
 };
 

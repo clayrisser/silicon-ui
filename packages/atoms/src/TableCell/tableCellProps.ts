@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, TdHTMLAttributes } from 'react';
+import { DetailedHTMLProps, TdHTMLAttributes, ReactNode } from 'react';
 import {
   BackgroundProps,
   BorderProps,
@@ -28,8 +28,9 @@ export interface StyledTableCellProps
 
 export interface CustomTableCellProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
-  theme?: Theme;
+  children?: ReactNode;
   style?: any;
+  theme?: Theme;
 }
 
 export interface TableCellProps
@@ -41,7 +42,11 @@ export interface SplitProps {
   styledTableCellProps: StyledTableCellProps;
 }
 
-export const customTableCellPropsKeys = new Set(['autoContrast', 'theme']);
+export const customTableCellPropsKeys = new Set([
+  'autoContrast',
+  'children',
+  'theme'
+]);
 
 export function splitProps(props: TableCellProps): SplitProps {
   const styledTableCellProps: { [key: string]: any } = {};

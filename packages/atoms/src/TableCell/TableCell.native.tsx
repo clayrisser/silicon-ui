@@ -7,7 +7,7 @@ import { TableCellProps, splitProps } from './tableCellProps';
 
 export type Position = [number, number];
 
-const width = 100;
+const width = 20;
 
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   const color = useColor(props);
@@ -114,7 +114,6 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     <Box
       {...customTableCellProps}
       {...styledTableCellProps}
-      backgroundColor="red"
       width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
       ref={tableCellRef}
     >
@@ -130,7 +129,6 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
         width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
       >
         <Box
-          backgroundColor="green"
           height="100%"
           width={width / 2}
           style={{
@@ -139,7 +137,6 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
           }}
         />
         <Box
-          backgroundColor="green"
           height="100%"
           onPull={handleRightDrag}
           onPressIn={handleRightPressIn}
