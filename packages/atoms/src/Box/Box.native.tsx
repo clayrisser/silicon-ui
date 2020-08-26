@@ -97,6 +97,7 @@ const Box = forwardRef<NativeMethods, BoxProps>(
     const panResponder = nativeBoxProps.onPull
       ? useRef(
           PanResponder.create({
+            //@ts-ignore
             onPullShouldSetPanResponder: () => {
               return pressed;
             },
