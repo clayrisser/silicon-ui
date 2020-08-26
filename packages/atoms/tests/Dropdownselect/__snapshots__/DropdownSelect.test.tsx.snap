@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DropdownSelect /> renders correctly 1`] = `
+<select
+  className="css-1uwwf6m"
+  fontFamily="body"
+  fontSize={0}
+  fontWeight="body"
+  onChange={[Function]}
+  required={false}
+  width="100%"
+/>
+`;

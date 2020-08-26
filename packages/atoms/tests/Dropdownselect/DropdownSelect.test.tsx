@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 // import { render, fireEvent } from '@testing-library/react';
-import Data from '../../src/Data';
+import DropdownSelect from '../../src/DropdownSelect';
 
-describe('<Data />', () => {
+describe('<DropdownSelect />', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(<Data />).toJSON();
+    const tree = renderer.create(<DropdownSelect />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

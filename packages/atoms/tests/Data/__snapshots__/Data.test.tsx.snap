@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Data /> renders correctly 1`] = `
+<td
+  className="css-15n1v91"
+  fontSize={2}
+  fontWeight="body"
+/>
+`;
+
 exports[`<DatePicker /> renders correctly 1`] = `
 <td
   className="css-15n1v91"
