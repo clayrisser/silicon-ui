@@ -1,7 +1,7 @@
 {
   "name": "@silicon-ui/atoms",
   "main": "expo/index.js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "atomic building blocks for silicon ui",
   "homepage": "https://github.com/codejamninja/silicon-ui",
   "license": "Apache-2.0",
