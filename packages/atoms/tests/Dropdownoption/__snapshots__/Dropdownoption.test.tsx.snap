@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DatePicker /> renders correctly 1`] = `
-<option
-  className="css-viiq2s"
-  fontFamily="body"
-  fontSize={0}
-  fontWeight="body"
-  value=""
-/>
-`;
-
 exports[`<DropdropOption /> renders correctly 1`] = `
 <option
   className="css-viiq2s"
