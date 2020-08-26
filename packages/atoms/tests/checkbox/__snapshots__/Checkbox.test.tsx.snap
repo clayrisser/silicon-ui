@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkbox /> renders correctly 1`] = `
+<input
+  checked={false}
+  className="css-0"
+  onChange={[Function]}
+  onValueChange={[Function]}
+  type="checkbox"
+  value={false}
+/>
+`;
