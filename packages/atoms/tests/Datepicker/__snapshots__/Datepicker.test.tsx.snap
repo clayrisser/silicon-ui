@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DatePicker /> renders correctly 1`] = `
+<input
+  className="css-1q66lfn"
+  fontFamily="body"
+  fontSize={2}
+  fontWeight="body"
+  onChange={[Function]}
+  onDateChange={[Function]}
+  value=""
+  width="100%"
+/>
+`;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> renders correctly 1`] = `
+<input
+  className="css-1q0m080"
+  fontFamily="body"
+  fontSize={2}
+  fontWeight="body"
+  onChangeText={[Function]}
+  onInput={[Function]}
+  width="100%"
+/>
+`;
