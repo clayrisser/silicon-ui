@@ -54,6 +54,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-table-component": "^1.2.1",
     "react-native-vector-icons": "^7.0.0",
+    "react-test-renderer": "^16.13.1",
     "reduce-css-calc": "^2.1.7",
     "styled-system": "^5.1.5",
     "wcag-contrast": "^3.0.0"
@@ -98,6 +99,7 @@
     "@storybook/react-native": "^5.3.19",
     "@storybook/react-native-server": "^5.3.19",
     "@storybook/source-loader": "^5.3.19",
+    "@testing-library/react": "^10.4.9",
     "@types/color-string": "^1.5.0",
     "@types/jest": "^26.0.7",
     "@types/lodash": "^4.14.158",
@@ -119,6 +121,7 @@
     "eslint-config-airbnb-typescript": "^9.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
     "expo": "~38.0.8",

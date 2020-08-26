@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Box /> renders correctly 1`] = `
+<div
+  className="css-12p9kah"
+  color="red"
+  fontFamily="body"
+  fontSize="body"
+  fontWeight="body"
+  height="100%"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseMove={[Function]}
+  onMouseUp={[Function]}
+  width="100%"
+/>
+`;
