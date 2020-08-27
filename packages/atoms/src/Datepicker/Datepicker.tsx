@@ -41,7 +41,6 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
   const {
     customDatepickerProps,
     styledDatepickerProps,
-    nativeItemProps,
     nativeDatepickerProps
   } = splitProps({
     ...props,
@@ -62,7 +61,6 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
   return (
     <HTMLDatepicker
       {...styledDatepickerProps}
-      {...nativeItemProps}
       {...nativeDatepickerProps}
       {...(customDatepickerProps as any)}
       value={date}

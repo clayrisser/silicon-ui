@@ -1,8 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 // import styled, { StyledComponent } from '@emotion/primitives';
-import {
-  Item as NativeBaseItem,
-  Picker as NativePicker} from 'native-base';
+import { Item as NativeBaseItem, Picker as NativePicker } from 'native-base';
 import {
   background,
   border,
@@ -58,7 +56,6 @@ const NativeBasePicker: FC<DropdownSelectProps> = (
   const {
     customDropdownSelectProps,
     nativeDropdownSelectProps,
-    styledDropdownSelectProps,
     touchableOpacityProps
   } = splitProps({
     ...props,
@@ -76,29 +73,29 @@ const NativeBasePicker: FC<DropdownSelectProps> = (
       setSelectedValue(e);
     }
   }
-  const children =(
+  const children = (
     // customDropdownSelectProps.children instanceof String ? (
-      <StyledNativePicker
-        {...touchableOpacityProps}
-        mode="dropdown"
-        onValueChange={handleChange}
-        selectedValue={selectedValue}
-      >
-        {customDropdownSelectProps.children}
-      </StyledNativePicker>
-  )
-if (item.hasItemParent) return children;
-return <NativeBaseItem>{children}</NativeBaseItem>;
-    // ) : (
-    //   customDropdownSelectProps.children
-      
-    // );
+    <StyledNativePicker
+      {...touchableOpacityProps}
+      mode="dropdown"
+      onValueChange={handleChange}
+      selectedValue={selectedValue}
+    >
+      {customDropdownSelectProps.children}
+    </StyledNativePicker>
+  );
+  if (item.hasItemParent) return children;
+  return <NativeBaseItem>{children}</NativeBaseItem>;
+  // ) : (
+  //   customDropdownSelectProps.children
+
+  // );
 
   // return (
   //   <StyledNativePicker
   //     {...styledDropdownSelectProps}
   //     {...nativeDropdownSelectProps}
-      
+
   //   >
   //     {children}
   //   </StyledNativePicker>

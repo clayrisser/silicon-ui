@@ -34,7 +34,6 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
   const {
     customDatepickerProps,
     nativeDatepickerProps,
-    nativeItemProps,
     styledDatepickerProps
   } = splitProps({
     ...props,
@@ -55,11 +54,7 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
     />
   );
   if (item.hasItemParent) return styledNativeBaseDatepicker;
-  return (
-    <NativeBaseItem {...nativeItemProps}>
-      {styledNativeBaseDatepicker}
-    </NativeBaseItem>
-  );
+  return <NativeBaseItem>{styledNativeBaseDatepicker}</NativeBaseItem>;
 };
 
 Datepicker.defaultProps = {
