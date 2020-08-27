@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC,useState } from 'react';
 import { Item as NativeBaseItem, Input as NativeBaseInput } from 'native-base';
 import {
   background,
@@ -28,6 +28,8 @@ const StyledNativeBaseInput = createStyled<InputProps>(
 const Input: FC<InputProps> = (props: InputProps) => {
   const item = useItem();
   const color = useColor(props);
+  const [input, setInput] = useState<string>('');
+
   const {
     customInputProps,
     nativeInputProps,
@@ -37,12 +39,19 @@ const Input: FC<InputProps> = (props: InputProps) => {
     ...props,
     color
   });
+  function handleInput(e: any) {
+    if (props.onFocus){ props.onFocus(e);
+      setInput(e)
+    }
+  }
   const styledNativeBaseInput = (
     <StyledNativeBaseInput
       // placeholder="hello"
       {...customInputProps}
       {...nativeInputProps}
       {...styledInputProps}
+      value={input}
+      onChangeText={handleInput}
     />
   );
   if (item.hasItemParent) return styledNativeBaseInput;

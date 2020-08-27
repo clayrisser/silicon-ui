@@ -46,7 +46,6 @@ const Input: FC<InputProps> = (props: InputProps) => {
       {...nativeItemProps}
       {...(customInputProps as any)}
       onInput={handleInput}
-      onChangeText={handleInput}
     />
   );
 };
