@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Text /> renders correctly 1`] = `
+<div
+  className="css-1adg1kh"
+  fontFamily="body"
+  fontSize={0}
+  fontWeight="body"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  opacity="body"
+>
+  
+</div>
+`;

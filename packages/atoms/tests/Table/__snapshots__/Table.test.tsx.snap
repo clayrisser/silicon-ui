@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Table /> renders correctly 1`] = `
+<table
+  className="css-1ki3w0z"
+  fontSize={2}
+  fontWeight="body"
+  style={
+    Object {
+      "borderCollapse": "collapse",
+    }
+  }
+/>
+`;
