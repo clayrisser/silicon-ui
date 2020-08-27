@@ -12,20 +12,20 @@ export default function useColor(props: any): string {
   const theme: Theme = useTheme();
   const [color, setColor] = useState(props.color as string);
 
-  useEffect(() => {
-    setColor(
-      autoContrast(
-        typeof props.backgroundColor !== 'undefined'
-          ? theme.colors[props.backgroundColor as string] ||
-              (props.backgroundColor as string)
-          : null,
-        theme.colors.inverseText || theme.colors.text,
-        typeof props.autoContrast === 'undefined'
-          ? theme.autoContrast
-          : props.autoContrast
-      )
-    );
-  }, [props]);
+  // useEffect(() => {
+  //   setColor(
+  //     autoContrast(
+  //       typeof props.backgroundColor !== 'undefined'
+  //         ? theme.colors[props.backgroundColor as string] ||
+  //             (props.backgroundColor as string)
+  //         : null,
+  //       theme.colors?.inverseText || theme.colors?.text,
+  //       typeof props.autoContrast === 'undefined'
+  //         ? theme.autoContrast
+  //         : props.autoContrast
+  //     )
+  //   );
+  // }, [props]);
 
   return color;
 }
