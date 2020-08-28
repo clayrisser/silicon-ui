@@ -79,9 +79,6 @@ Button.defaultProps = {
   fontWeight: 'body',
   lineHeight: 'body',
   width: '100%'
-  // name: 'first',
-  // type: 'next',
-  // className: 'className'
 };
 
 export default styled(Button)`

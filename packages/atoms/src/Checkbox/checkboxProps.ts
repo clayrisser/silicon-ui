@@ -19,7 +19,6 @@ export type DetailedHTMLCheckBoxProps = DetailedHTMLProps<
 export interface StyledCheckBoxProps
   extends BackgroundProps,
     BorderProps,
-    // ColorProps,
     LayoutProps,
     PositionProps,
     ShadowProps,
