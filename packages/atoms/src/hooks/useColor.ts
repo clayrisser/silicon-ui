@@ -1,16 +1,16 @@
 import colorString from 'color-string';
 import { score, hex } from 'wcag-contrast';
-import { useState, useEffect } from 'react';
-import { useTheme } from 'emotion-theming';
+import { useState } from 'react';
+// import { useTheme } from 'emotion-theming';
 import {
   Generator as ColorGenerator,
   Generator
 } from 'contrast-color-generator';
-import { Theme } from '../themes';
+// import { Theme } from '../themes';
 
 export default function useColor(props: any): string {
-  const theme: Theme = useTheme();
-  const [color, setColor] = useState(props.color as string);
+  // const theme: Theme = useTheme();
+  const [color] = useState(props.color as string);
 
   // useEffect(() => {
   //   setColor(
