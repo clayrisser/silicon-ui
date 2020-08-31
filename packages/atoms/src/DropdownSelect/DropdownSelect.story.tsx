@@ -36,7 +36,7 @@ storiesOf('Dropdown', module)
         borderLeftColor={color('borderLeftColor', '')}
         borderLeftWidth={number('borderLeftWidth', 1)}
         borderRadius={number('borderRadius', 0)}
-        borderRightColor={color('bordeRightColor', '')}
+        borderRightColor={color('borderRightColor', '')}
         borderRightWidth={number('borderRightWidth', 1)}
         borderStyle={text('borderStyle', 'solid')}
         borderTopColor={color('borderTopColor', '')}
@@ -47,7 +47,7 @@ storiesOf('Dropdown', module)
         disabled={boolean('disabled', false)}
         fontFamily={text('fontFamily', 'Times New Roman')}
         fontSize={number('fonSize', 2)}
-        fontWeight={text('fontTeight', 'bold')}
+        fontWeight={text('fontWeight', 'bold')}
         label={text('dropdownLabel', 'choose one')}
         lineHeight={text('lineHeight', '')}
         marginBottom={number('marginBottom', 0)}

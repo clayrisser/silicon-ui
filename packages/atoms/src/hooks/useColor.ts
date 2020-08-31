@@ -47,28 +47,28 @@ export function contrast(
 
 export function autoContrast(
   color: string | null,
-  origionalColor: string,
+  originalColor: string,
   level: boolean | 'A' | 'AA' | 'AAA' = false,
   minimumRatio = 10,
   hue?: number,
   brighterFirst?: boolean
 ): string {
-  if (!level || !color) return origionalColor;
-  const scoreResult = score(hex(toHex(color), toHex(origionalColor)));
+  if (!level || !color) return originalColor;
+  const scoreResult = score(hex(toHex(color), toHex(originalColor)));
   if (
     scoreResult !== 'Fail' &&
     scoreResult.length > (level === true ? 2 : level.length)
   ) {
-    return origionalColor;
+    return originalColor;
   }
   try {
     return contrast(color, minimumRatio, hue, brighterFirst);
   } catch (err) {
     if (err.message === 'No color exist which satisfies a requirement.') {
-      if (!minimumRatio) return origionalColor;
+      if (!minimumRatio) return originalColor;
       return autoContrast(
         color,
-        origionalColor,
+        originalColor,
         level,
         minimumRatio - 1,
         hue,
