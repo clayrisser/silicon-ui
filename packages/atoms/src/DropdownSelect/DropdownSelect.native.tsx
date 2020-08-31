@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 // import styled, { StyledComponent } from '@emotion/primitives';
-import { Picker as NativePicker } from 'react-native';
+import { Item as NativeBaseItem, Picker as NativePicker } from 'native-base';
 import {
   background,
   border,
@@ -13,7 +13,7 @@ import {
   //  typography
 } from 'styled-system';
 import { createStyled } from '../styled';
-
+import useItem from '../hooks/useItem';
 import useColor from '../hooks/useColor';
 import {
   DropdownSelectProps,
@@ -50,12 +50,12 @@ const StyledNativePicker = createStyled<DropdownSelectProps>(NativePicker, [
 const NativeBasePicker: FC<DropdownSelectProps> = (
   props: DropdownSelectProps
 ) => {
+  const item = useItem();
   const color = useColor(props);
-  const [selectedValue, setSelectedValue] = useState('Saab');
+  const [selectedValue, setSelectedValue] = useState('');
   const {
     customDropdownSelectProps,
     nativeDropdownSelectProps,
-    styledDropdownSelectProps,
     touchableOpacityProps
   } = splitProps({
     ...props,
@@ -67,33 +67,39 @@ const NativeBasePicker: FC<DropdownSelectProps> = (
       setSelectedValue(nativeDropdownSelectProps.selectedValue);
   }, [nativeDropdownSelectProps.selectedValue]);
 
-  function handleChange(value: any) {
+  function handleChange(e: any) {
     if (props.onPress) {
-      props.onPress(value);
-      setSelectedValue(value);
+      props.onPress(e);
+      setSelectedValue(e);
     }
   }
-  const children =
-    typeof customDropdownSelectProps.children === 'string' ? (
-      <NativePicker
-        {...touchableOpacityProps}
-        onValueChange={handleChange}
-        selectedValue={selectedValue}
-      >
-        {customDropdownSelectProps.children}
-      </NativePicker>
-    ) : (
-      customDropdownSelectProps.children
-    );
-
-  return (
+  const children = (
+    // customDropdownSelectProps.children instanceof String ? (
     <StyledNativePicker
-      {...styledDropdownSelectProps}
-      {...nativeDropdownSelectProps}
+      {...touchableOpacityProps}
+      mode="dropdown"
+      onValueChange={handleChange}
+      selectedValue={selectedValue}
     >
-      {children}
+      {customDropdownSelectProps.children}
     </StyledNativePicker>
   );
+  if (item.hasItemParent) return children;
+  return <NativeBaseItem>{children}</NativeBaseItem>;
+  // ) : (
+  //   customDropdownSelectProps.children
+
+  // );
+
+  // return (
+  //   <StyledNativePicker
+  //     {...styledDropdownSelectProps}
+  //     {...nativeDropdownSelectProps}
+
+  //   >
+  //     {children}
+  //   </StyledNativePicker>
+  // );
 };
 
 NativeBasePicker.defaultProps = {

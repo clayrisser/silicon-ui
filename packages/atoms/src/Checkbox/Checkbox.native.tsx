@@ -4,7 +4,6 @@ import {
   CheckBox as NativeBaseCheckbox
 } from 'native-base';
 import {
-  background,
   border,
   color,
   layout,
@@ -24,7 +23,7 @@ import {
 
 const StyledNativeBaseCheckbox = createStyled<CheckBoxProps>(
   NativeBaseCheckbox,
-  [background, border, color, layout, position, shadow, space, typography],
+  [border, color, layout, position, shadow, space, typography],
   antiForwardCheckBoxPropsKeys
 );
 

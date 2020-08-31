@@ -3,9 +3,9 @@ import renderer from 'react-test-renderer';
 // import { render, fireEvent } from '@testing-library/react';
 import Image from '../../src/Image';
 
-describe('<Image />', () => {
+describe('<Image source />', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(<Image />).toJSON();
+    const tree = renderer.create(<Image source="abc" />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

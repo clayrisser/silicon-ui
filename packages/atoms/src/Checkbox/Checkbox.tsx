@@ -66,7 +66,6 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
       checked={checked}
       value={checked}
       onChange={handleChange}
-      onValueChange={handleChange}
     />
   );
 };

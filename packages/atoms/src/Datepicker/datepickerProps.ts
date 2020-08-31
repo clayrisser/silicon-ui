@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
-import { NativeBase } from 'native-base';
+import { TouchableOpacityProps, ViewProps } from 'react-native';
 import {
   BackgroundProps,
   BorderProps,
@@ -27,66 +27,81 @@ export interface StyledDatepickerProps
     SpaceProps,
     TypographyProps {}
 
-export interface NativeDatepickerProps extends NativeBase.Input {}
-
-export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {}
+export interface NativeDatepickerProps extends ViewProps {
+  onDateChange?: any;
+}
 
 export interface CustomDatepickerProps {
   type?: string;
-  disabled?: boolean;
   theme?: Theme;
   value?: string;
   max?: string;
   min?: string;
   required?: boolean;
+  minimumDate?: number;
+  maximumDate?: number;
 }
 
 export interface DatepickerProps
   extends CustomDatepickerProps,
     NativeDatepickerProps,
-    NativeItemProps,
+    TouchableOpacityProps,
     StyledDatepickerProps {}
 
 export const customDatepickerPropsKeys = new Set([
   'type',
-  'disabled',
   'theme',
   'min',
   'max',
   'value'
 ]);
+export const touchableOpacityPropsKeys = new Set([
+  'activeOpacity',
+  'delayLongPress',
+  'delayPressIn',
+  'delayPressOut',
+  'hitSlop',
+  'onBlur',
+  'onFocus',
+  'onPress',
+  'onLayout',
+  'onLongPress',
+  'pressRetentionOffset'
+]);
 
-export const nativeDatepickerPropsKeys = new Set<string>([]);
-
-export const nativeItemPropKeys = new Set([
-  'bordered',
-  'error',
-  'fixedLabel',
+export const nativeDatepickerPropsKeys = new Set([
   'onPress',
   'onPressIn',
   'onPressOut',
-  'picker'
+  'onDateChange',
+  'defaultDate',
+  'minimumDate',
+  'maximumDate',
+  'modalTransparent',
+  'animationType',
+  'androidMode',
+  'placeHolderText'
 ]);
 
 export interface SplitProps {
   customDatepickerProps: CustomDatepickerProps;
   nativeDatepickerProps: NativeDatepickerProps;
-  nativeItemProps: NativeItemProps;
   styledDatepickerProps: StyledDatepickerProps;
+  touchableOpacityProps: TouchableOpacityProps;
 }
 
 export function splitProps(props: DatepickerProps): SplitProps {
   const styledDatepickerProps: { [key: string]: any } = {};
   const customDatepickerProps: { [key: string]: any } = {};
   const nativeDatepickerProps: { [key: string]: any } = {};
-  const nativeItemProps: { [key: string]: any } = {};
+  const touchableOpacityProps: { [key: string]: any } = {};
   Object.entries({ ...props }).forEach(([key, prop]: [string, any]) => {
     if (customDatepickerPropsKeys.has(key)) {
       customDatepickerProps[key] = prop;
+    } else if (touchableOpacityPropsKeys.has(key)) {
+      touchableOpacityProps[key] = prop;
     } else if (nativeDatepickerPropsKeys.has(key)) {
       nativeDatepickerProps[key] = prop;
-    } else if (nativeItemPropKeys.has(key)) {
-      nativeItemProps[key] = prop;
     } else {
       styledDatepickerProps[key] = prop;
     }
@@ -94,8 +109,8 @@ export function splitProps(props: DatepickerProps): SplitProps {
   return {
     customDatepickerProps,
     nativeDatepickerProps,
-    nativeItemProps,
-    styledDatepickerProps
+    styledDatepickerProps,
+    touchableOpacityProps
   };
 }
 

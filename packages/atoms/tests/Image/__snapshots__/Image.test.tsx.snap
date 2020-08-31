@@ -8,3 +8,13 @@ exports[`<Image /> renders correctly 1`] = `
   onMouseUp={[Function]}
 />
 `;
+
+exports[`<Image source /> renders correctly 1`] = `
+<img
+  className="css-0"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  src="abc"
+/>
+`;

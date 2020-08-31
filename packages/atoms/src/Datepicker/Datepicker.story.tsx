@@ -5,7 +5,8 @@ import {
   text,
   boolean,
   number,
-  color
+  color,
+  date
 } from '@storybook/addon-knobs';
 import Datepicker from './Datepicker';
 import Wrapper from '../../storybook/Wrapper';
@@ -33,6 +34,8 @@ storiesOf('Datepicker', module)
         borderRadius={number('borderRadius', 0)}
         max={text('max', '2021-12-08')}
         min={text('min', '2020-07-18')}
+        maximumDate={date('maximumDate', new Date('Oct 20 2020'))}
+        minimumDate={date('minimumDate', new Date('Jan 15 2020'))}
         value={text('value', '')}
         disabled={boolean('disabled', false)}
         width={text('width', '90%')}
