@@ -1,7 +1,6 @@
 import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 import { NativeBase } from 'native-base';
 import {
-  BackgroundProps,
   BorderProps,
   LayoutProps,
   PositionProps,
@@ -17,8 +16,7 @@ export type DetailedHTMLCheckBoxProps = DetailedHTMLProps<
 >;
 
 export interface StyledCheckBoxProps
-  extends BackgroundProps,
-    BorderProps,
+  extends BorderProps,
     // ColorProps,
     LayoutProps,
     PositionProps,
