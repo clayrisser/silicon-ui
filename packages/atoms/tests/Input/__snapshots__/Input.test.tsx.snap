@@ -6,7 +6,6 @@ exports[`<Input /> renders correctly 1`] = `
   fontFamily="body"
   fontSize={2}
   fontWeight="body"
-  onChangeText={[Function]}
   onInput={[Function]}
   width="100%"
 />

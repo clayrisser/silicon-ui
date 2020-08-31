@@ -7,7 +7,6 @@ exports[`<DatePicker /> renders correctly 1`] = `
   fontSize={2}
   fontWeight="body"
   onChange={[Function]}
-  onDateChange={[Function]}
   value=""
   width="100%"
 />

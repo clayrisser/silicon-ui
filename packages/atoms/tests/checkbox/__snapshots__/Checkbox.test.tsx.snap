@@ -5,7 +5,6 @@ exports[`<Checkbox /> renders correctly 1`] = `
   checked={false}
   className="css-0"
   onChange={[Function]}
-  onValueChange={[Function]}
   type="checkbox"
   value={false}
 />
