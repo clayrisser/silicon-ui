@@ -41,7 +41,6 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
   const {
     customDatepickerProps,
     styledDatepickerProps,
-    nativeItemProps,
     nativeDatepickerProps
   } = splitProps({
     ...props,
@@ -55,19 +54,18 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
 
   function handleChange(e: any) {
     if (props.onPress) {
-      props.onPress();
+      props.onPress(e);
       setDate(e.target.value);
     }
   }
   return (
     <HTMLDatepicker
       {...styledDatepickerProps}
-      {...nativeItemProps}
       {...nativeDatepickerProps}
       {...(customDatepickerProps as any)}
       value={date}
       onChange={handleChange}
-      onDateChange={handleChange}
+      // onDateChange={handleChange}
     />
   );
 };

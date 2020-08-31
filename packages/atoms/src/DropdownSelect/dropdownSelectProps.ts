@@ -29,6 +29,8 @@ export interface StyledDropdownSelectProps
 
 export interface NativeDropdownSelectProps extends ViewProps {
   selectedValue?: string;
+  mode?: string;
+  onValueChange?: any;
 }
 
 export interface CustomDropdownSelectProps {
@@ -74,7 +76,11 @@ export const touchableOpacityPropsKeys = new Set([
   'testID'
 ]);
 
-export const nativeDropdownSelectPropsKeys = new Set<string>(['selectedValue']);
+export const nativeDropdownSelectPropsKeys = new Set([
+  'selectedValue',
+  'onValueChange',
+  'mode'
+]);
 
 export interface SplitProps {
   customDropdownSelectProps: CustomDropdownSelectProps;

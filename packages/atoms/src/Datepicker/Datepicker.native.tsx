@@ -34,25 +34,27 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
   const {
     customDatepickerProps,
     nativeDatepickerProps,
-    nativeItemProps,
     styledDatepickerProps
   } = splitProps({
     ...props,
     color
   });
+  function handleChange(e: any) {
+    if (props.onPress) {
+      props.onPress(e);
+    }
+  }
   const styledNativeBaseDatepicker = (
     <StyledNativeBaseDatepicker
       {...customDatepickerProps}
       {...nativeDatepickerProps}
       {...styledDatepickerProps}
+      onDateChange={handleChange}
+      disabled={false}
     />
   );
   if (item.hasItemParent) return styledNativeBaseDatepicker;
-  return (
-    <NativeBaseItem {...nativeItemProps}>
-      {styledNativeBaseDatepicker}
-    </NativeBaseItem>
-  );
+  return <NativeBaseItem>{styledNativeBaseDatepicker}</NativeBaseItem>;
 };
 
 Datepicker.defaultProps = {
