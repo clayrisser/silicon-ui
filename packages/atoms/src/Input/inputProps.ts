@@ -66,7 +66,7 @@ export const customInputPropsKeys = new Set([
   'onFocus'
 ]);
 
-export const nativeInputPropsKeys = new Set<string>([]);
+export const nativeInputPropsKeys = new Set<string>(['onChangeText']);
 
 export const nativeItemPropKeys = new Set([
   'bordered',

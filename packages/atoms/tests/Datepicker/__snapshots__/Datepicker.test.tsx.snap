@@ -2,11 +2,12 @@
 
 exports[`<DatePicker /> renders correctly 1`] = `
 <input
-  className="css-1q66lfn"
+  className="css-119ltm9"
   fontFamily="body"
-  fontSize={2}
+  fontSize={0}
   fontWeight="body"
   onChange={[Function]}
+  type="date"
   value=""
   width="100%"
 />
