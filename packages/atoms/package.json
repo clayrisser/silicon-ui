@@ -58,7 +58,8 @@
     "reduce-css-calc": "^2.1.7",
     "styled-system": "^5.1.5",
     "wcag-contrast": "^3.0.0",
-    "@testing-library/react-native": "^7.0.2"
+    "@testing-library/react-native": "^7.0.2",
+    "@testing-library/react": "^10.4.9"
   },
   "peerDependencies": {
     "@emotion/primitives": "^10.0.30",
@@ -101,7 +102,6 @@
     "@storybook/react-native-server": "^5.3.19",
     "@storybook/source-loader": "^5.3.19",
     "@testing-library/jest-native": "^3.3.0",
-    "@testing-library/react": "^10.4.9",
     "@types/color-string": "^1.5.0",
     "@types/jest": "^26.0.7",
     "@types/lodash": "^4.14.158",
