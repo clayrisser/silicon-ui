@@ -71,17 +71,18 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
 };
 
 Datepicker.defaultProps = {
-  backgroundColor: 'primary',
-  borderRadius: 2,
+  backgroundColor: 'inverseText',
+  borderRadius: 0,
   borderWidth: 0,
   fontFamily: 'body',
-  fontSize: 2,
+  type: 'date',
+  fontSize: 0,
   fontWeight: 'body',
   lineHeight: 'body',
-  paddingBottom: 2,
-  paddingLeft: 2,
-  paddingRight: 2,
-  paddingTop: 2,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
+  paddingTop: 0,
   width: '100%'
 };
 

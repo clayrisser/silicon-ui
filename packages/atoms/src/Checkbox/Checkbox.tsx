@@ -71,18 +71,6 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
 };
 
 CheckBox.defaultProps = {
-  // backgroundColor: 'primary',
-  // borderRadius: 2,
-  // borderWidth: 0,
-  // fontFamily: 'body',
-  // fontSize: 2,
-  // fontWeight: 'body',
-  // lineHeight: 'body',
-  // paddingBottom: 2,
-  // paddingLeft: 2,
-  // paddingRight: 2,
-  // paddingTop: 2,
-  // width: '100%',
   type: 'checkbox',
   checked: false
 };

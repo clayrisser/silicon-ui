@@ -38,14 +38,14 @@ const Input: FC<InputProps> = (props: InputProps) => {
     color
   });
   function handleInput(e: any) {
-    if (props.onFocus) props.onFocus(e.target.value);
+    if (props.onChangeText) props.onChangeText(e.target.value);
   }
   return (
     <HTMLInput
       {...styledInputProps}
       {...nativeItemProps}
       {...(customInputProps as any)}
-      onInput={handleInput}
+      onChange={handleInput}
       onChangeText={handleInput}
     />
   );
@@ -54,16 +54,16 @@ const Input: FC<InputProps> = (props: InputProps) => {
 Input.defaultProps = {
   autoContrast: false,
   backgroundColor: 'inverseText',
-  borderRadius: 2,
+  borderRadius: 0,
   borderWidth: 0,
   fontFamily: 'body',
-  fontSize: 2,
+  fontSize: 0,
   fontWeight: 'body',
   lineHeight: 'body',
-  paddingBottom: 2,
-  paddingLeft: 2,
-  paddingRight: 2,
-  paddingTop: 2,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
+  paddingTop: 0,
   width: '100%'
 };
 

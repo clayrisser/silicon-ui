@@ -39,7 +39,6 @@ const Input: FC<InputProps> = (props: InputProps) => {
   });
   const styledNativeBaseInput = (
     <StyledNativeBaseInput
-      // placeholder="hello"
       {...customInputProps}
       {...nativeInputProps}
       {...styledInputProps}
