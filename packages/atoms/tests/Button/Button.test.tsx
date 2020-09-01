@@ -49,7 +49,7 @@ describe('<Button />', () => {
   it('handles onClick', () => {
     const handleClick = jest.fn();
     const { container } = render(<Button onClick={handleClick} />);
-    fireEvent.click(container.querySelector('q2-btn')!);
+    fireEvent.click(container.querySelector('HTMLButton')!);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
