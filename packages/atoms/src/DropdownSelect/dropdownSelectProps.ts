@@ -41,7 +41,6 @@ export interface CustomDropdownSelectProps {
   multiple?: boolean;
   name?: string;
   required?: boolean;
-  autofocus?: boolean;
   label?: string;
 }
 

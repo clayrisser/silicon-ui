@@ -25,7 +25,7 @@ storiesOf('Datepicker', module)
   .add('with knobs', () => (
     <Wrapper>
       <Datepicker
-        backgroundColor={color('backgroundColor', '#FFFFFF')}
+        // backgroundColor={color('backgroundColor', '#FFFFFF')}
         type="date"
         onPress={action('onPress')}
         borderWidth={number('borderWidth', 1)}
@@ -38,7 +38,7 @@ storiesOf('Datepicker', module)
         minimumDate={date('minimumDate', new Date('Jan 15 2020'))}
         value={text('value', '')}
         disabled={boolean('disabled', false)}
-        width={text('width', '90%')}
+        // width={text('width', '90%')}
         fontFamily={text('fontFamily', 'Times New Roman')}
         fontWeight={text('fontWeight', 'normal')}
         fontSize={number('fontSize', 2)}

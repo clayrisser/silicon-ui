@@ -2,11 +2,12 @@
 
 exports[`<Input /> renders correctly 1`] = `
 <input
-  className="css-1q0m080"
+  className="css-119ltm9"
   fontFamily="body"
-  fontSize={2}
+  fontSize={0}
   fontWeight="body"
-  onInput={[Function]}
+  onChange={[Function]}
+  onChangeText={[Function]}
   width="100%"
 />
 `;

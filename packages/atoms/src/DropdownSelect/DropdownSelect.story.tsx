@@ -26,7 +26,6 @@ storiesOf('Dropdown', module)
   .add('with knobs', () => (
     <Wrapper>
       <DropdownSelect
-        autofocus={boolean('autofocus', false)}
         backgroundColor={color('backgroundColor', 'reverseText')}
         borderBottomColor={color('borderBottomColor', '')}
         borderBottomLeftRadius={number('borderLeftRadius', 0)}
