@@ -5,11 +5,11 @@ import renderer, { act, create } from 'react-test-renderer';
 // import { Button, Text, TextInput, View } from 'react-native';
 import { render, fireEvent } from '@testing-library/react';
 
-import HTMLButton from '../../src/Button/Button';
+import Button from '../../src/Button/Button';
 
 describe('<Button />', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(<HTMLButton />).toJSON();
+    const tree = renderer.create(<Button />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
@@ -30,7 +30,7 @@ describe('<Button />', () => {
     let component: any;
     act(() => {
       component = create(
-        <HTMLButton
+        <Button
           onClick={onClick}
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}
@@ -38,7 +38,7 @@ describe('<Button />', () => {
       );
     });
     const rootInstance: any = component.root;
-    const button = rootInstance.findAllByType(HTMLButton);
+    const button = rootInstance.findAllByType(Button);
     expect(button.length).toBe(1);
     //  act(() => button[0].props.onClick());
     expect(button[0].props.onClick()).toBe(undefined);
@@ -48,8 +48,8 @@ describe('<Button />', () => {
 
   it('handles onClick', () => {
     const handleClick = jest.fn();
-    const { container } = render(<HTMLButton onClick={handleClick} />);
-    fireEvent.click(container.querySelector('HTMLButton')!);
+    const { container } = render(<Button onClick={handleClick} />);
+    fireEvent.click(container.querySelector('q2-btn')!);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
