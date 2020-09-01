@@ -14,6 +14,25 @@ describe('<Button />', () => {
   });
 });
 
+describe('<Button withProps /> ', () => {
+  it('renders with disabled prop', () => {
+    const borderRadius = 2;
+    const borderWidth = 2;
+    const backgroundColor = 'free';
+
+    const tree = renderer
+      .create(
+        <Button
+          borderRadius={borderRadius}
+          backgroundColor={backgroundColor}
+          borderWidth={borderWidth}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
+
 describe('<Button />', () => {
   it('handles onClick', () => {
     const onClick = jest.fn();
