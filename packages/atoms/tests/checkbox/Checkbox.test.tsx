@@ -16,7 +16,7 @@ describe('<Checkbox />', () => {
 //   it('handles onChange', () => {
 //     // const handleChange = jest.fn();
 //     // const tree = render(<Checkbox onPress={handleChange} />);
-//     // fireEvent.press(tree.querySelector('HTMLcheckbox')!);
+//     // fireEvent.press(tree.querySelector('HTMLCheckbox')!);
 //     // expect(handleChange).toHaveBeenCalledTimes(1);
 
 //     const handleChange = jest.fn();
