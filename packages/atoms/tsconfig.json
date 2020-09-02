@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "emitDecoratorMetadata": true,
@@ -12,11 +13,11 @@
     "moduleResolution": "node",
     "outDir": "node_modules/.tmp/lib",
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "target": "esnext",
-    "skipLibCheck": true
+    "target": "esnext"
   },
   "include": ["expo", "storybook", "src", "tests"]
 }

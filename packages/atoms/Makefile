@@ -11,7 +11,24 @@ PRETTIER := node_modules/.bin/prettier
 TSC := node_modules/.bin/tsc
 COLLECT_COVERAGE_FROM := ["src/**/*.{js,jsx,ts,tsx}"]
 
-BUILD_DEPS := $(patsubst src/%.ts,lib/%.d.ts,$(shell find src -name '*.ts')) \
+TSCONFIG := --allowJs \
+    --allowSyntheticDefaultImports \
+    --declaration \
+    --emitDecoratorMetadata \
+    --esModuleInterop \
+    --experimentalDecorators \
+    --jsx react \
+    --lib dom,esnext \
+    --module commonjs \
+    --moduleResolution node \
+    --outDir node_modules/.tmp/lib \
+    --resolveJsonModule \
+    --skipLibCheck \
+    --sourceMap \
+    --strict \
+    --target esnext
+
+BUILD_DEPS := $(patsubst src/%.ts,lib/%.d.ts,$(shell find src -name '*.ts' -not -name '*.d.ts')) \
 	$(patsubst src/%.tsx,lib/%.d.ts,$(shell find src -name '*.tsx'))
 BUILD_TARGET := $(BUILD_DEPS) $(DONE)/build
 
@@ -80,7 +97,7 @@ _lint:
 	-@rm -rf $(DONE)/_lint $(NOFAIL)
 $(DONE)/lint:
 # -@$(LOCKFILE_LINT) --type npm --path package-lock.json --validate-https
-	-@$(TSC) --allowJs --noEmit $(shell $(call get_deps,lint))
+	-@$(TSC) $(TSCONFIG) --noEmit $(shell $(call get_deps,lint))
 	-@$(ESLINT) -f json -o node_modules/.tmp/eslintReport.json $(shell $(call get_deps,lint)) $(NOFAIL)
 	-@$(ESLINT) $(shell $(call get_deps,lint))
 	@$(call reset_deps,lint)
@@ -108,20 +125,28 @@ $(DONE)/_test/%: %
 	@$(call add_dep,test,$<)
 	@$(call add_cache,$@)
 
-.PHONY: build +build ~build
+.PHONY: build +build _build ~build
 build: ~build
 ~build: ~test $(BUILD_TARGET)
 +build: _build $(BUILD_TARGET)
 _build:
 	-@rm -rf lib $(NOFAIL)
 $(DONE)/build:
-	@$(BABEL) $(shell $(call get_deps,build)) -d lib --extensions '.ts,.tsx' --source-maps
-	@$(TSC) --outDir lib -d --emitDeclarationOnly $(shell $(call get_deps,build))
+	-@rm -r node_modules/.tmp/lib $(NOFAIL)
+	@$(BABEL) $(shell $(call get_deps,build)) -d .tmp/lib --relative --extensions '.ts,.tsx' --source-maps
+	-@$(TSC) $(TSCONFIG) --emitDeclarationOnly -d $(shell $(call get_deps,build))
+	@([ ! -z "$(shell find -path "*/.tmp/lib" -not -path "./node_modules/*")" ] && \
+		$(MAKE) $(shell find -path "*/.tmp/lib" -not -path "./node_modules/*")) || true
+	@cp -r node_modules/.tmp/lib/src/. lib $(NOFAIL)
 	@$(call reset_deps,build)
 	@$(call done,build)
 lib/%.d.ts: src/%.ts*
 	-@rm $(DONE)/build $(NOFAIL)
 	@$(call add_dep,build,$<)
+%/.tmp/lib: always
+	@mkdir -p lib/$(shell echo $@ | sed 's/^src\///g' | sed 's/\.tmp\/lib$$//g')
+	@cp -r $@/. lib/$(shell echo $@ | sed 's/^src\///g' | sed 's/\.tmp\/lib$$//g')
+	-@rm -rf .tmp/lib $(shell echo $@ | sed 's/\/lib$$//g') $(NOFAIL)
 
 .PHONY: coverage
 coverage: ~lint
@@ -189,6 +214,9 @@ purge: clean
 
 .PHONY: report
 report: spellcheck lint test
+	@
+
+always:
 	@
 
 %:
