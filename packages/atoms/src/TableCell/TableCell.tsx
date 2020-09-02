@@ -85,7 +85,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     if (width && width.toString().indexOf('%') > -1) {
       if (Platform.OS === 'web') {
         return width.toString();
-      } if (initialWidth) {
+      }
+      if (initialWidth) {
         return `${initialWidth.toString()}px`;
       }
     }
