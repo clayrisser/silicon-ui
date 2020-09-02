@@ -14,7 +14,7 @@ exports[`<Input /> renders correctly 1`] = `
 
 exports[`<Input /> renders correctly 2`] = `
 <input
-  className="css-1bqbig8"
+  className="css-1pkgsu0"
   color="black"
   fontFamily="body"
   fontSize={16}

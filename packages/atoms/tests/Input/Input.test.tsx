@@ -28,6 +28,7 @@ describe('<Input />', () => {
     const autoContrast = true;
     const fontWeight = 2;
     const borderWidth = 1;
+    const paddingTop = 6;
     const tree = renderer
       .create(
         <Input
@@ -45,6 +46,7 @@ describe('<Input />', () => {
           backgroundColor={backgroundColor}
           autoContrast={autoContrast}
           lineHeight={lineHeight}
+          paddingTop={paddingTop}
         />
       )
       .toJSON();

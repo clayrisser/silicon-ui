@@ -17,14 +17,14 @@ exports[`<Button /> renders correctly 1`] = `
 
 exports[`<Button withProps />  renders with disabled prop 1`] = `
 <button
-  className="css-1irszeu"
-  fontFamily="body"
-  fontSize={0}
-  fontWeight="body"
+  className="css-1nh6o6b"
+  fontFamily=""
+  fontSize=""
+  fontWeight=""
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseUp={[Function]}
-  width="100%"
+  width={3}
 >
   
 </button>

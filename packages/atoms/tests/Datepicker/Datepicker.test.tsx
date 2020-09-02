@@ -11,6 +11,52 @@ describe('<DatePicker />', () => {
     expect(tree).toMatchSnapshot();
   });
 });
+
+describe('<DatePicker with props/>', () => {
+  const value = '';
+  const disabled = false;
+  const maxDate = 2020 - 12 - 12;
+  const minDate = 2020 - 10 - 12;
+  const backgroundColor = 'inverseText';
+  const borderRadius = 0;
+  const borderWidth = 0;
+  const fontFamily = 'body';
+  const type = 'date';
+  const fontSize = 0;
+  const fontWeight = 'body';
+  const lineHeight = 'body';
+  const paddingBottom = 0;
+  const paddingLeft = 0;
+  const paddingRight = 0;
+  const paddingTop = 0;
+  const width = '100%';
+  it('renders with  all props correctly', () => {
+    const tree = renderer
+      .create(
+        <DatePicker
+          value={value}
+          disabled={disabled}
+          maximumDate={maxDate}
+          minimumDate={minDate}
+          backgroundColor={backgroundColor}
+          borderRadius={borderRadius}
+          borderWidth={borderWidth}
+          fontFamily={fontFamily}
+          type={type}
+          fontSize={fontSize}
+          fontWeight={fontWeight}
+          lineHeight={lineHeight}
+          paddingBottom={paddingBottom}
+          paddingLeft={paddingLeft}
+          paddingRight={paddingRight}
+          padding={paddingTop}
+          width={width}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
 // describe('<Datepicker />', () => {
 //   it('renders correctly', () => {
 //     // it('handles onClick', () => {

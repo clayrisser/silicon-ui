@@ -6,6 +6,7 @@ import renderer, { act, create } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
 
 import Button from '../../src/Button/Button';
+import { fontWeight, fontFamily } from 'styled-system';
 
 describe('<Button />', () => {
   it('renders correctly', () => {
@@ -19,6 +20,10 @@ describe('<Button withProps /> ', () => {
     const borderRadius = 2;
     const borderWidth = 2;
     const backgroundColor = 'free';
+    const fontSize = '';
+    const fontWeight = '';
+    const fontFamily = '';
+    const width = 3;
 
     const tree = renderer
       .create(
@@ -26,6 +31,10 @@ describe('<Button withProps /> ', () => {
           borderRadius={borderRadius}
           backgroundColor={backgroundColor}
           borderWidth={borderWidth}
+          fontSize={fontSize}
+          fontWeight={fontWeight}
+          fontFamily={fontFamily}
+          width={width}
         />
       )
       .toJSON();
