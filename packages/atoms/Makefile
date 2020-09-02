@@ -113,7 +113,7 @@ build: ~build
 ~build: ~test $(BUILD_TARGET)
 +build: _build $(BUILD_TARGET)
 _build:
-	-@rm -rf $(DONE)/_build $(NOFAIL)
+	-@rm -rf lib $(NOFAIL)
 $(DONE)/build:
 	@$(BABEL) $(shell $(call get_deps,build)) -d lib --extensions '.ts,.tsx' --source-maps
 	@$(TSC) --outDir lib -d --emitDeclarationOnly $(shell $(call get_deps,build))
