@@ -12,6 +12,28 @@ describe('<Checkbox />', () => {
   });
 });
 
+describe('<Checkbox withProps /> ', () => {
+  it('renders with all props correctly', () => {
+    const label = 'Option';
+    const value = 'Option';
+    const type = 'default';
+    const disabled = false;
+    const checked = false;
+    const tree = renderer
+      .create(
+        <Checkbox
+          label={label}
+          value={value}
+          type={type}
+          disabled={disabled}
+          checked={checked}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
+
 // describe('<Checkbox onChange />', () => {
 //   it('handles onChange', () => {
 //     // const handleChange = jest.fn();

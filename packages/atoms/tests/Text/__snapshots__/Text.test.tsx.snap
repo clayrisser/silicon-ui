@@ -14,3 +14,18 @@ exports[`<Text /> renders correctly 1`] = `
   
 </div>
 `;
+
+exports[`<Text withProps /> renders with all props 1`] = `
+<div
+  className="css-1joexik"
+  fontFamily=""
+  fontSize="20px"
+  fontWeight=""
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  opacity=""
+>
+  Text
+</div>
+`;
