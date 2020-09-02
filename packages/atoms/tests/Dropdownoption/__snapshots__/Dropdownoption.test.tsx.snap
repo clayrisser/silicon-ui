@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DropdropOption /> renders correctly 1`] = `
+exports[`<DropdownOption /> renders correctly 1`] = `
 <option
   className="css-viiq2s"
   fontFamily="body"

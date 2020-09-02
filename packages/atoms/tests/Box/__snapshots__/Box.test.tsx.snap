@@ -2,7 +2,7 @@
 
 exports[`<Box /> renders correctly 1`] = `
 <div
-  className="css-12p9kah"
+  className="css-pgcax9"
   color="red"
   fontFamily="body"
   fontSize="body"
@@ -15,6 +15,5 @@ exports[`<Box /> renders correctly 1`] = `
   onMouseLeave={[Function]}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
-  width="100%"
 />
 `;
