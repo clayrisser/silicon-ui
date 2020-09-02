@@ -12,7 +12,6 @@ describe('<Image source />', () => {
 describe('<Image  withProps/>', () => {
   it('renders  with all  props correctly', () => {
     const imageSrc = '';
-
     const tree = renderer.create(<Image source={imageSrc} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
