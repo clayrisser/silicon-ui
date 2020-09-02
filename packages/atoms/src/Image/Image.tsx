@@ -63,6 +63,8 @@ const Image: FC<ImageProps> = (props: ImageProps) => {
   );
 };
 
-Image.defaultProps = {};
+Image.defaultProps = {
+  source: ''
+};
 
 export default Image;

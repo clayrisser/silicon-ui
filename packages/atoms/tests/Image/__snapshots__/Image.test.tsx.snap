@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Image  withProps/> renders  with all  props correctly 1`] = `
+<img
+  className="css-0"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  src=""
+/>
+`;
+
 exports[`<Image source /> renders correctly 1`] = `
 <img
   className="css-0"
