@@ -48,6 +48,7 @@
     "color-string": "^1.5.3",
     "contrast-color-generator": "^0.1.1",
     "emotion-theming": "^10.0.27",
+    "font-awesome": "^4.7.0",
     "native-base": "^2.13.13",
     "react": "~16.13.1",
     "react-fontawesome": "^1.7.1",
