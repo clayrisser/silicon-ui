@@ -1,12 +1,12 @@
 {
-  "name": "@silicon-ui/atoms",
-  "main": "lib/index.js",
+  "name": "@silicon-ui/table",
+  "main": "expo/index.js",
   "version": "0.0.8",
   "description": "atomic building blocks for silicon ui",
   "homepage": "https://github.com/codejamninja/silicon-ui",
   "license": "Apache-2.0",
   "keywords": [
-    "atoms"
+    "table"
   ],
   "bugs": {
     "url": "https://github.com/codejamninja/silicon-ui/issues",
@@ -43,6 +43,7 @@
   "dependencies": {
     "@emotion/primitives-core": "^10.0.27",
     "@react-hook/merged-ref": "^1.3.0",
+    "@silicon-ui/atoms": "workspace:*",
     "@theme-ui/presets": "^0.3.0",
     "color-contrast-calc": "^0.4.1",
     "color-string": "^1.5.3",

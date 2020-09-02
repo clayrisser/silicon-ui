@@ -27,7 +27,7 @@ TSCONFIG := --allowJs \
     --sourceMap \
     --strict \
     --target esnext \
-    src/**/*.d.ts
+    src/*/**.d.ts
 
 BUILD_DEPS := $(patsubst src/%.ts,lib/%.d.ts,$(shell find src -name '*.ts' -not -name '*.d.ts')) \
 	$(patsubst src/%.tsx,lib/%.d.ts,$(shell find src -name '*.tsx'))
@@ -135,7 +135,7 @@ _build:
 $(DONE)/build:
 	-@rm -r node_modules/.tmp/lib $(NOFAIL)
 	@$(BABEL) $(shell $(call get_deps,build)) -d .tmp/lib --relative --extensions '.ts,.tsx' --source-maps
-	@$(TSC) $(TSCONFIG) --emitDeclarationOnly -d $(shell $(call get_deps,build))
+	-@$(TSC) $(TSCONFIG) --emitDeclarationOnly -d $(shell $(call get_deps,build))
 	@([ ! -z "$(shell find -path "*/.tmp/lib" -not -path "./node_modules/*")" ] && \
 		$(MAKE) $(shell find -path "*/.tmp/lib" -not -path "./node_modules/*")) || true
 	@cp -r node_modules/.tmp/lib/src/. lib $(NOFAIL)
