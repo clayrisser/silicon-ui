@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+// import { render, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import Box from '../../src/Box/Box';
 

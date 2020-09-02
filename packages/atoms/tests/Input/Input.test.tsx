@@ -1,9 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 // import { render, fireEvent } from '@testing-library/react';
+
 import Input from '../../src/Input';
-import { autoContrast } from '../../src/hooks/useColor';
-import { lineHeight, fontWeight, borderWidth } from 'styled-system';
 
 describe('<Input />', () => {
   it('renders correctly', () => {

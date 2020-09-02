@@ -6,7 +6,6 @@ import renderer, { act, create } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
 
 import Button from '../../src/Button/Button';
-import { fontWeight, fontFamily } from 'styled-system';
 
 describe('<Button />', () => {
   it('renders correctly', () => {

@@ -1,4 +1,4 @@
-import React, { FC,useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Item as NativeBaseItem, Input as NativeBaseInput } from 'native-base';
 import {
   background,
@@ -40,8 +40,9 @@ const Input: FC<InputProps> = (props: InputProps) => {
     color
   });
   function handleInput(e: any) {
-    if (props.onFocus){ props.onFocus(e);
-      setInput(e)
+    if (props.onFocus) {
+      props.onFocus(e);
+      setInput(e);
     }
   }
   const styledNativeBaseInput = (
