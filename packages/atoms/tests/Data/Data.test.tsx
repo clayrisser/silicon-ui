@@ -9,3 +9,25 @@ describe('<Data />', () => {
     expect(tree).toMatchSnapshot();
   });
 });
+
+describe('<Data with props />', () => {
+  it('renders correctly with props', () => {
+    const backgroundColor = 'transparent';
+    const autoContrast = false;
+    const fontSize = 2;
+    const fontWeight = 'body';
+    const lineHeight = 'body';
+    const tree = renderer
+      .create(
+        <Data
+          backgroundColor={backgroundColor}
+          autoContrast={autoContrast}
+          fontSize={fontSize}
+          fontWeight={fontWeight}
+          lineHeight={lineHeight}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});

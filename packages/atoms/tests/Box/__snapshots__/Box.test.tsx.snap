@@ -18,7 +18,7 @@ exports[`<Box /> renders correctly 1`] = `
 />
 `;
 
-exports[`<Box /> renders correctly 2`] = `
+exports[`<Box with props /> renders correctly with props 1`] = `
 <div
   className="css-1jnu2ye"
   color="black"

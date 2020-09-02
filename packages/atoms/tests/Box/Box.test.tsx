@@ -10,8 +10,8 @@ describe('<Box />', () => {
   });
 });
 
-describe('<Box />', () => {
-  it('renders correctly', () => {
+describe('<Box with props />', () => {
+  it('renders correctly with props', () => {
     const fontSize = 16;
     const bg = 'white';
     const color = 'black';

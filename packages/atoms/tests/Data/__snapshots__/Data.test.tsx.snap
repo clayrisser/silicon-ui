@@ -7,3 +7,11 @@ exports[`<Data /> renders correctly 1`] = `
   fontWeight="body"
 />
 `;
+
+exports[`<Data with props /> renders correctly with props 1`] = `
+<td
+  className="css-15n1v91"
+  fontSize={2}
+  fontWeight="body"
+/>
+`;
