@@ -151,8 +151,7 @@ Box.defaultProps = {
   fontSize: 'body',
   fontWeight: 'body',
   height: '100%',
-  lineHeight: 'body',
-  width: '100%'
+  lineHeight: 'body'
 };
 
 export default styled(Box)`

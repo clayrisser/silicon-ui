@@ -72,8 +72,7 @@ declare module '@emotion/primitives' {
       Props extends object,
       InnerProps extends object,
       Theme extends object
-    >
-      extends ComponentClass<StyledStatelessProps<Props & InnerProps, Theme>>,
+    > extends ComponentClass<StyledStatelessProps<Props & InnerProps, Theme>>,
         ClassInterpolation,
         StyledComponentMethods<Props, InnerProps, Theme> {}
 
@@ -81,8 +80,7 @@ declare module '@emotion/primitives' {
       Props extends object,
       InnerProps extends object,
       Theme extends object
-    >
-      extends ComponentClass<
+    > extends ComponentClass<
           StyledOtherProps<Props & InnerProps, Theme, Ref<any>>
         >,
         ClassInterpolation,

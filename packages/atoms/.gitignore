@@ -23,6 +23,7 @@
 .nyc_output
 .serverless
 .tern-port
+.tmp/
 .vuepress/dist
 .yarn-integrity
 /lib
