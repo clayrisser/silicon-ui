@@ -55,7 +55,7 @@ const Textarea: FC<TextareaProps> = (props: TextareaProps) => {
       {...styledTextareaProps}
       onChangeText={handleInput}
       rowSpan={5}
-      bordered={true}
+      bordered
     />
   );
   if (item.hasItemParent) return styledNativeBaseTextarea;

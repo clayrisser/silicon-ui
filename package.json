@@ -27,5 +27,8 @@
       "directory": "packages/atoms",
       "changeProcessCWD": true
     }
+  ],
+  "workspaces": [
+    "packages/*"
   ]
 }
