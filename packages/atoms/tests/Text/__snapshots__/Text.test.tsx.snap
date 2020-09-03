@@ -1,31 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Button /> renders correctly 1`] = `
-<button
-  className="css-1k7x4jn"
+exports[`<Text /> renders correctly 1`] = `
+<div
+  className="css-1adg1kh"
   fontFamily="body"
   fontSize={0}
   fontWeight="body"
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseUp={[Function]}
-  width="100%"
+  opacity="body"
 >
   
-</button>
+</div>
 `;
 
-exports[`<Button withProps />  renders with disabled prop 1`] = `
-<button
-  className="css-1nh6o6b"
+exports[`<Text withProps /> renders with all props 1`] = `
+<div
+  className="css-1joexik"
   fontFamily=""
-  fontSize=""
+  fontSize="20px"
   fontWeight=""
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseUp={[Function]}
-  width={3}
+  opacity=""
 >
-  
-</button>
+  Text
+</div>
 `;

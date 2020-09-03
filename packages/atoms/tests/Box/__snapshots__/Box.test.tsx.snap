@@ -17,3 +17,22 @@ exports[`<Box /> renders correctly 1`] = `
   onMouseUp={[Function]}
 />
 `;
+
+exports[`<Box with props /> renders correctly with props 1`] = `
+<div
+  className="css-1jnu2ye"
+  color="black"
+  fontFamily="body"
+  fontSize={16}
+  fontWeight="body"
+  height={90}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseMove={[Function]}
+  onMouseUp={[Function]}
+  width={600}
+/>
+`;

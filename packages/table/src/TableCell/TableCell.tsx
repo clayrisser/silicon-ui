@@ -151,7 +151,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
       return reducedWidth;
     }
     if (reducedWidth.toString().indexOf('px') > -1) {
-      return parseInt(reducedWidth.toString());
+      return parseInt(reducedWidth.toString(), 10);
     }
     return reducedWidth;
   }

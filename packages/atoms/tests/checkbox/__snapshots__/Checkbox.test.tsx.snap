@@ -9,3 +9,14 @@ exports[`<Checkbox /> renders correctly 1`] = `
   value={false}
 />
 `;
+
+exports[`<Checkbox withProps />  renders with all props correctly 1`] = `
+<input
+  checked={false}
+  className="css-0"
+  disabled={false}
+  onChange={[Function]}
+  type="default"
+  value={false}
+/>
+`;

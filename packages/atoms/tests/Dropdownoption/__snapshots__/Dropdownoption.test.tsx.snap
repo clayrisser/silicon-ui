@@ -9,3 +9,15 @@ exports[`<DropdownOption /> renders correctly 1`] = `
   value=""
 />
 `;
+
+exports[`<DropdownOption withProps /> renders  with all props correctly 1`] = `
+<option
+  className="css-1omk0he"
+  disabled={true}
+  display="Option"
+  fontFamily=""
+  fontSize={3}
+  fontWeight={2}
+  value="Option"
+/>
+`;

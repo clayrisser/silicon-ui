@@ -207,8 +207,6 @@ const Box = forwardRef<NativeMethods, BoxProps>(
 );
 
 Box.defaultProps = {
-  // fontFamily: 'body',
-  // fontWeight: 'body',
   autoContrast: false,
   backgroundColor: 'transparent',
   children: <></>,

@@ -1,13 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  color,
-  date
-} from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, number, date } from '@storybook/addon-knobs';
 import Datepicker from './Datepicker';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';

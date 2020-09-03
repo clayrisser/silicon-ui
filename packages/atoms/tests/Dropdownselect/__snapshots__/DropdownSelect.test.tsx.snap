@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<DropdownOption withProps /> renders  with all props correctly 1`] = `
+<select
+  className="css-zjlmac"
+  disabled={true}
+  display="Option"
+  fontFamily=""
+  fontSize={3}
+  fontWeight={2}
+  onChange={[Function]}
+  required={false}
+  value="Option"
+  width="100%"
+/>
+`;
+
 exports[`<DropdownSelect /> renders correctly 1`] = `
 <select
   className="css-1uwwf6m"

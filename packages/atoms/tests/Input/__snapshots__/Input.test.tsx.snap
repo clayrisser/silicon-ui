@@ -11,3 +11,17 @@ exports[`<Input /> renders correctly 1`] = `
   width="100%"
 />
 `;
+
+exports[`<Input /> renders correctly 2`] = `
+<input
+  className="css-azsq89"
+  color="black"
+  fontFamily="body"
+  fontSize={16}
+  fontWeight={2}
+  height={90}
+  onChange={[Function]}
+  onChangeText={[Function]}
+  width={600}
+/>
+`;

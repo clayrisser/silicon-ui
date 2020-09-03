@@ -12,3 +12,17 @@ exports[`<DatePicker /> renders correctly 1`] = `
   width="100%"
 />
 `;
+
+exports[`<DatePicker with props/> renders with  all props correctly 1`] = `
+<input
+  className="css-fm6y0w"
+  disabled={false}
+  fontFamily="body"
+  fontSize={0}
+  fontWeight="body"
+  onChange={[Function]}
+  type="date"
+  value=""
+  width="100%"
+/>
+`;
