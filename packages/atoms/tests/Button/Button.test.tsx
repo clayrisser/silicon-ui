@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer, { act, create } from 'react-test-renderer';
 
-import { render, fireEvent } from '@testing-library/react-native';
+// import { render, fireEvent } from '@testing-library/react-native';
 // import { Button, Text, TextInput, View } from 'react-native';
 // import { render, fireEvent } from '@testing-library/react';
 

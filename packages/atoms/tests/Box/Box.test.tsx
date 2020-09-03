@@ -1,8 +1,6 @@
 import React from 'react';
 // import { render, fireEvent } from '@testing-library/react';
-import renderer from 'react-test-renderer';
-import { act } from '@testing-library/react-native';
-import { create } from 'react-test-renderer';
+import renderer, { act, create } from 'react-test-renderer';
 import Box from '../../src/Box/Box';
 
 describe('<Box />', () => {

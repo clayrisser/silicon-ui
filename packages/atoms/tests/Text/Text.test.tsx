@@ -1,8 +1,6 @@
 import React from 'react';
 // import { render, fireEvent } from '@testing-library/react';
-import renderer from 'react-test-renderer';
-import { act } from 'react-test-renderer';
-import { create } from 'react-test-renderer';
+import renderer, { act, create } from 'react-test-renderer';
 import Text from '../../src/Text';
 
 describe('<Text />', () => {
