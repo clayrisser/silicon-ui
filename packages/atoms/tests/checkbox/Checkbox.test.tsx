@@ -2,7 +2,7 @@ import React from 'react';
 // import { render, fireEvent } from '@testing-library/react';
 // import { render, fireEvent } from '@testing-library/react-native';
 
-import renderer from 'react-test-renderer';
+import renderer, { act, create } from 'react-test-renderer';
 import Checkbox from '../../src/Checkbox';
 
 describe('<Checkbox />', () => {
@@ -21,6 +21,21 @@ describe('<Checkbox withProps /> ', () => {
       .create(<Checkbox type={type} disabled={disabled} checked={checked} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
+  });
+});
+
+describe('<Checkbox with events />', () => {
+  it('renders with Event correctly', () => {
+    const onPress = jest.fn();
+
+    let component: any;
+    act(() => {
+      component = create(<Checkbox onPress={onPress} />);
+    });
+    const rootInstance: any = component.root;
+    const checkbox = rootInstance.findAllByType(Checkbox);
+    expect(checkbox.length).toBe(1);
+    expect(checkbox[0].props.onPress()).toBe(undefined);
   });
 });
 
