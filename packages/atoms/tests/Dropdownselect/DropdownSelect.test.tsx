@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import renderer, { act, create } from 'react-test-renderer';
 // import { render, fireEvent } from '@testing-library/react';
 import DropdownSelect from '../../src/DropdownSelect';
 
@@ -32,5 +32,21 @@ describe('<DropdownOption withProps />', () => {
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
+  });
+});
+
+describe('<Dropdownselect/>', () => {
+  it('renders with events', () => {
+    const onChange = jest.fn();
+
+    let component: any;
+    act(() => {
+      component = create(<DropdownSelect onChange={onChange} />);
+    });
+
+    const rootInstance: any = component.root;
+    const dropdown = rootInstance.findAllByType(DropdownSelect);
+    expect(dropdown.length).toBe(1);
+    expect(dropdown[0].props.onChange()).toBe(undefined);
   });
 });
