@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -11,8 +11,17 @@ import {
   space,
   typography
 } from 'styled-system';
+import {
+  RadioButtonProps,
+  DetailedHTMLRadioButtonProps,
+  splitProps
+} from './RadioButtonProps';
 
-const HTMLRadioButton = styled.input(
+const HTMLRadioButton: StyledComponent<
+  DetailedHTMLRadioButtonProps,
+  RadioButtonProps,
+  object
+> = styled.input(
   compose(
     background,
     border,
@@ -24,8 +33,31 @@ const HTMLRadioButton = styled.input(
     typography
   )
 );
-const RadioButton = () => {
-  return <HTMLRadioButton type="radio" />;
+const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const {
+    customRadioButtonProps,
+    styledRadioButtonProps,
+    nativeRadioButtonProps
+  } = splitProps({
+    ...props
+  });
+
+  useEffect(() => {
+    if (customRadioButtonProps.checked !== undefined)
+      setChecked(customRadioButtonProps.checked);
+  }, [customRadioButtonProps.checked]);
+
+  return (
+    <HTMLRadioButton
+      {...styledRadioButtonProps}
+      {...nativeRadioButtonProps}
+      {...(customRadioButtonProps as any)}
+      type="radio"
+      checked={checked}
+    />
+  );
 };
 
 RadioButton.defaultProps = {

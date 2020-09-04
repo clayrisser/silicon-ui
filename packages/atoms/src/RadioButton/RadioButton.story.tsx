@@ -1,6 +1,6 @@
 import React from 'react';
 // import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import RadioButton from './RadioButton';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -12,10 +12,10 @@ storiesOf('RadioButton', module)
   .addDecorator(withThemesProvider(themes))
   .addParameters({
     // docs: { page: docs },
-    // jest: ['Checkbox.spec.tsx']
+    // jest: ['RadioButton.spec.tsx']
   })
   .add('with knobs', () => (
     <Wrapper>
-      <RadioButton type="radio" />
+      <RadioButton type="radio" checked={boolean('checked', false)} />
     </Wrapper>
   ));
