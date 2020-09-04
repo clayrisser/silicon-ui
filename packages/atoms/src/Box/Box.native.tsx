@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, Ref, useRef } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
 import useMergedRef from '@react-hook/merged-ref';
-import { useTheme } from 'emotion-theming';
+import { useThemeUI } from 'theme-ui';
 import {
   Animated,
   GestureResponderEvent,
@@ -25,7 +25,6 @@ import {
 } from 'styled-system';
 import useColor from '../hooks/useColor';
 import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
-import { Theme } from '../themes';
 
 const StyledView: StyledComponent<
   StyledBoxProps,
@@ -52,7 +51,7 @@ const Box = forwardRef<NativeMethods, BoxProps>(
     const boxRef = useRef<NativeMethods>(null);
     const mergedRef = useMergedRef<any>(forwardedRef, boxRef);
     const color = useColor(props);
-    const theme: Theme = useTheme();
+    const { theme } = useThemeUI();
     let [pressed, setPressed] = useState(false);
     let [initialPosition, setInitialPosition] = useState<Position>([0, 0]);
     const {
@@ -67,8 +66,8 @@ const Box = forwardRef<NativeMethods, BoxProps>(
       ...(props.backgroundColor !== 'undefined'
         ? {
             backgroundColor:
-              theme.colors[props.backgroundColor as string] ||
-              props.backgroundColor
+              theme.colors?.[props.backgroundColor as string] ||
+              (props.backgroundColor as any)
           }
         : {})
     });

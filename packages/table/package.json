@@ -48,7 +48,6 @@
     "color-contrast-calc": "^0.4.1",
     "color-string": "^1.5.3",
     "contrast-color-generator": "^0.1.1",
-    "emotion-theming": "^10.0.27",
     "font-awesome": "^4.7.0",
     "native-base": "^2.13.13",
     "react": "~16.13.1",
@@ -59,6 +58,7 @@
     "react-test-renderer": "^16.13.1",
     "reduce-css-calc": "^2.1.7",
     "styled-system": "^5.1.5",
+    "theme-ui": "^0.3.1",
     "wcag-contrast": "^3.0.0"
   },
   "peerDependencies": {
@@ -112,6 +112,7 @@
     "@types/react-test-renderer": "^16.9.3",
     "@types/styled-components": "^5.1.1",
     "@types/styled-system": "^5.1.9",
+    "@types/theme-ui": "^0.3.6",
     "@types/wcag-contrast": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",

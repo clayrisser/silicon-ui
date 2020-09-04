@@ -8,6 +8,7 @@ export type RowContextValue = [
 
 export interface Row {
   cols: Col[];
+  resizable: boolean;
 }
 
 export default createContext<RowContextValue>([null, () => {}]);

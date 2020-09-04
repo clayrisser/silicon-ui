@@ -1,14 +1,13 @@
-// import { useTheme } from 'emotion-theming';
-// import { Theme } from '../themes';
+// import { useThemeUI } from 'theme-ui';
 
 export interface Props {
   [key: string]: any;
 }
 
 export default function useThemeProps<T>(props: T): T {
-  //  const theme: Theme = useTheme();
+  // const { theme } = useThemeUI();
   return Object.entries(props).reduce(
-    (props: Props, [key, value]: [string, any]) => {
+    (props: Props, [_key, _value]: [string, any]) => {
       return props;
     },
     {}

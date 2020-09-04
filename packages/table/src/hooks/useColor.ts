@@ -1,27 +1,26 @@
 import colorString from 'color-string';
 import { score, hex } from 'wcag-contrast';
 import { useState, useEffect } from 'react';
-import { useTheme } from 'emotion-theming';
+import { useThemeUI } from 'theme-ui';
 import {
   Generator as ColorGenerator,
   Generator
 } from 'contrast-color-generator';
-import { Theme } from '../themes';
 
 export default function useColor(props: any): string {
-  const theme: Theme = useTheme();
+  const { theme } = useThemeUI();
   const [color, setColor] = useState(props.color as string);
 
   useEffect(() => {
     setColor(
       autoContrast(
         typeof props.backgroundColor !== 'undefined'
-          ? theme.colors[props.backgroundColor as string] ||
-              (props.backgroundColor as string)
+          ? theme.colors?.[props.backgroundColor as string] ||
+              (props.backgroundColor as any)
           : null,
-        theme.colors.inverseText || theme.colors.text,
+        (theme.colors?.inverseText || theme.colors?.text) as string,
         typeof props.autoContrast === 'undefined'
-          ? theme.autoContrast
+          ? ((theme as unknown) as any).autoContrast
           : props.autoContrast
       )
     );

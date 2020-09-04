@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
 import { Button as NativeBaseButton } from 'native-base';
 import { TextProps } from 'react-native';
-import { useTheme } from 'emotion-theming';
+import { useThemeUI } from 'theme-ui';
 import {
   LayoutProps,
   background,
@@ -16,7 +16,6 @@ import {
   typography
 } from 'styled-system';
 import useColor from '../hooks/useColor';
-import { Theme } from '../themes';
 import { createStyled } from '../styled';
 import {
   ButtonProps,
@@ -39,7 +38,7 @@ const StyledNativeBaseButton = createStyled<ButtonProps>(
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const color = useColor(props);
-  const theme: Theme = useTheme();
+  const { theme } = useThemeUI();
   const {
     styledButtonProps,
     customButtonProps,
@@ -51,8 +50,8 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     ...(props.backgroundColor !== 'undefined'
       ? {
           backgroundColor:
-            theme.colors[props.backgroundColor as string] ||
-            props.backgroundColor
+            theme.colors?.[props.backgroundColor as string] ||
+            (props.backgroundColor as any)
         }
       : {})
   });

@@ -34,12 +34,12 @@ export interface NativeItemProps extends Omit<Row, 'style'> {}
 
 export interface CustomTableRowProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
-  theme?: Theme;
   children?: ReactNode;
-  data?: any;
+  resizable?: boolean;
   style?: object;
   textStyle?: object;
   thStyles?: object;
+  theme?: Theme;
 }
 
 export interface TableRowProps
@@ -50,9 +50,9 @@ export interface TableRowProps
 
 export const customTableRowPropsKeys = new Set([
   'autoContrast',
-  'theme',
   'children',
-  'data'
+  'resizable',
+  'theme'
 ]);
 
 export const nativeTableRowPropsKeys = new Set<string>([

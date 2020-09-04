@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from 'theme-ui';
 import { withThemesProvider as webWithThemesProvider } from 'storybook-addon-emotion-theme';
 import platform, { WEB } from '../src/platform';
 import { Theme } from '../src/themes';
