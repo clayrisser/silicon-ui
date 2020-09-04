@@ -1,5 +1,5 @@
 import React from 'react';
-// import { action } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import RadioButton from './RadioButton';
 import Wrapper from '../../storybook/Wrapper';
@@ -16,6 +16,10 @@ storiesOf('RadioButton', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <RadioButton type="radio" checked={boolean('checked', false)} />
+      <RadioButton
+        type="radio"
+        checked={boolean('checked', false)}
+        onPress={action('onPress')}
+      />
     </Wrapper>
   ));

@@ -35,7 +35,6 @@ const HTMLRadioButton: StyledComponent<
 );
 const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
   const [checked, setChecked] = useState<boolean>(false);
-
   const {
     customRadioButtonProps,
     styledRadioButtonProps,
@@ -49,13 +48,21 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
       setChecked(customRadioButtonProps.checked);
   }, [customRadioButtonProps.checked]);
 
+  function handleChange(e: any) {
+    if (props.onPress) {
+      props.onPress(e);
+      setChecked(!checked);
+    }
+  }
+
   return (
     <HTMLRadioButton
       {...styledRadioButtonProps}
       {...nativeRadioButtonProps}
       {...(customRadioButtonProps as any)}
-      type="radio"
       checked={checked}
+      value={checked}
+      onChange={handleChange}
     />
   );
 };
