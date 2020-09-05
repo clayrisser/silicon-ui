@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { styled } from 'native-theme-ui';
 import {
   ImageBackground,
   ImageBackgroundProps,
@@ -22,12 +23,11 @@ import {
   antiForwardImagePropsKeys,
   splitProps
 } from './imageProps';
-import { createStyled } from '../styled';
 
-const StyledImageBackground = createStyled<
-  StyledImageProps,
-  ImageBackgroundProps
->(ImageBackground, { forwardPropsBlacklist: antiForwardImagePropsKeys })(
+const StyledImageBackground = styled<StyledImageProps, ImageBackgroundProps>(
+  ImageBackground,
+  { forwardPropsBlacklist: antiForwardImagePropsKeys }
+)(
   compose(
     background,
     border,

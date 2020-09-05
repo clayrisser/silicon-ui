@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Button as NativeBaseButton } from 'native-base';
-import { Text } from 'dripsy';
 import { TextProps } from 'react-native';
+import { styled, Text as DripsyText } from 'native-theme-ui';
 import {
   LayoutProps,
   background,
@@ -14,7 +14,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import { createStyled } from '../styled';
 import {
   ButtonProps,
   StyledButtonProps,
@@ -23,17 +22,14 @@ import {
   splitProps
 } from './buttonProps';
 
-const StyledText = createStyled<StyledTextProps, TextProps & LayoutProps>(
-  Text,
-  { dripsy: true }
+const StyledText = styled<StyledTextProps, TextProps & LayoutProps>(
+  DripsyText,
+  { isThemed: true }
 )(compose(color, typography, layout));
 
-const StyledNativeBaseButton = createStyled<StyledButtonProps>(
-  NativeBaseButton,
-  {
-    forwardPropsBlacklist: antiForwardButtonPropsKeys
-  }
-)(compose(background, border, layout, position, shadow, space));
+const StyledNativeBaseButton = styled<StyledButtonProps>(NativeBaseButton, {
+  forwardPropsBlacklist: antiForwardButtonPropsKeys
+})(compose(background, border, layout, position, shadow, space));
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const {

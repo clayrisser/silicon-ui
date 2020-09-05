@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { styled } from 'native-theme-ui';
 import {
   Item as NativeBaseItem,
   NativeBase,
@@ -16,7 +17,6 @@ import {
   typography
 } from 'styled-system';
 import useItem from '../hooks/useItem';
-import { createStyled } from '../styled';
 import {
   StyledTextareaProps,
   TextareaProps,
@@ -24,7 +24,7 @@ import {
   splitProps
 } from './textareaProps';
 
-const StyledNativeBaseTextarea = createStyled<
+const StyledNativeBaseTextarea = styled<
   StyledTextareaProps,
   NativeBase.Textarea
 >(NativeBaseTextarea, { forwardPropsBlacklist: antiForwardTextareaPropsKeys })(

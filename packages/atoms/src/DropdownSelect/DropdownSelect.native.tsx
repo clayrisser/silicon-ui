@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
+import { styled } from 'native-theme-ui';
 import {
   Item as NativeBaseItem,
   NativeBase,
@@ -14,17 +15,15 @@ import {
   space
 } from 'styled-system';
 import useItem from '../hooks/useItem';
-import { createStyled } from '../styled';
 import {
   DropdownSelectProps,
   StyledDropdownSelectProps,
   splitProps
 } from './dropdownSelectProps';
 
-const StyledNativePicker = createStyled<
-  StyledDropdownSelectProps,
-  NativeBase.Picker
->(NativePicker)(compose(background, border, layout, position, shadow, space));
+const StyledNativePicker = styled<StyledDropdownSelectProps, NativeBase.Picker>(
+  NativePicker
+)(compose(background, border, layout, position, shadow, space));
 
 const NativeBasePicker: FC<DropdownSelectProps> = (
   props: DropdownSelectProps

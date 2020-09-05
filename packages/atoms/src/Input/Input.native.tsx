@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { styled } from 'native-theme-ui';
 import {
   Input as NativeBaseInput,
   Item as NativeBaseItem,
@@ -16,7 +17,6 @@ import {
   typography
 } from 'styled-system';
 import useItem from '../hooks/useItem';
-import { createStyled } from '../styled';
 import {
   InputProps,
   StyledInputProps,
@@ -24,7 +24,7 @@ import {
   splitProps
 } from './inputProps';
 
-const StyledNativeBaseInput = createStyled<StyledInputProps, NativeBase.Input>(
+const StyledNativeBaseInput = styled<StyledInputProps, NativeBase.Input>(
   NativeBaseInput,
   {
     forwardPropsBlacklist: antiForwardInputPropsKeys

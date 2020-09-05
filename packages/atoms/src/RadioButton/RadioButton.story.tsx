@@ -4,12 +4,11 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 import RadioButton from './RadioButton';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
-import themes from '../themes';
-import withThemesProvider from '../../storybook/withThemesProvider';
+import withThemeProvider from '../../storybook/withThemeProvider';
 
 storiesOf('RadioButton', module)
   .addDecorator(withKnobs)
-  .addDecorator(withThemesProvider(themes))
+  .addDecorator(withThemeProvider)
   .addParameters({
     // docs: { page: docs },
     // jest: ['RadioButton.spec.tsx']

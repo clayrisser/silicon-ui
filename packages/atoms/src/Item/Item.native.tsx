@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { NativeBase, Item as NativeBaseItem } from 'native-base';
+import { styled } from 'native-theme-ui';
 import {
   background,
   border,
@@ -10,7 +11,6 @@ import {
   space
 } from 'styled-system';
 import ItemContext from '../contexts/Item';
-import { createStyled } from '../styled';
 import {
   StyledItemProps,
   ItemProps,
@@ -18,7 +18,7 @@ import {
   splitProps
 } from './itemProps';
 
-const StyledNativeBaseItem = createStyled<StyledItemProps, NativeBase.Item>(
+const StyledNativeBaseItem = styled<StyledItemProps, NativeBase.Item>(
   NativeBaseItem,
   {
     forwardPropsBlacklist: antiForwardItemPropsKeys

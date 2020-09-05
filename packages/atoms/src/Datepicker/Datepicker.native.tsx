@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { styled } from 'native-theme-ui';
 import {
   DatePicker as NativeBaseDatepicker,
   Item as NativeBaseItem,
@@ -16,7 +17,6 @@ import {
   typography
 } from 'styled-system';
 import useItem from '../hooks/useItem';
-import { createStyled } from '../styled';
 import {
   DatepickerProps,
   StyledDatepickerProps,
@@ -24,7 +24,7 @@ import {
   splitProps
 } from './datepickerProps';
 
-const StyledNativeBaseDatepicker = createStyled<
+const StyledNativeBaseDatepicker = styled<
   StyledDatepickerProps,
   NativeBase.DatePicker
 >(NativeBaseDatepicker, { forwardPropsBlacklist: antiForwardInputPropsKeys })(

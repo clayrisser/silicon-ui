@@ -1,6 +1,6 @@
 import React, { useState, forwardRef, Ref, useRef } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
-import { View } from 'dripsy';
+import { styled, View as DripsyView } from 'native-theme-ui';
 import {
   Animated,
   GestureResponderEvent,
@@ -24,10 +24,9 @@ import {
   typography
 } from 'styled-system';
 import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
-import { createStyled } from '../styled';
 
-const StyledView = createStyled<StyledBoxProps, ViewProps>(View, {
-  dripsy: true
+const StyledView = styled<StyledBoxProps, ViewProps>(DripsyView, {
+  isThemed: true
 })(
   compose(
     background,

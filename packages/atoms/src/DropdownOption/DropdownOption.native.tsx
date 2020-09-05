@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { PickerProps, Picker as NativePicker } from 'react-native';
+import { styled } from 'native-theme-ui';
 import {
   background,
   border,
@@ -9,14 +10,13 @@ import {
   shadow,
   space
 } from 'styled-system';
-import { createStyled } from '../styled';
 import {
   StyledDropdownOptionProps,
   DropdownOptionProps,
   splitProps
 } from './dropdownOptionProps';
 
-const StyledNativePicker = createStyled<StyledDropdownOptionProps, PickerProps>(
+const StyledNativePicker = styled<StyledDropdownOptionProps, PickerProps>(
   NativePicker
 )(compose(background, border, layout, position, shadow, space));
 

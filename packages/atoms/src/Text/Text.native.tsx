@@ -1,7 +1,14 @@
 import React, { FC } from 'react';
-import styled, { StyledComponent } from '@emotion/primitives';
-import { TouchableOpacity, ViewProps } from 'react-native';
-import { View } from 'dripsy';
+import {
+  TouchableOpacity,
+  ViewProps,
+  TextProps as NativeTextProps
+} from 'react-native';
+import {
+  styled,
+  Text as DripsyText,
+  View as DripsyView
+} from 'native-theme-ui';
 import {
   color,
   compose,
@@ -17,17 +24,14 @@ import {
   TextProps,
   splitProps
 } from './textProps';
-import { createStyled } from '../styled';
 
-const StyledView = createStyled<StyledViewProps, ViewProps>(View, {
-  dripsy: true
+const StyledView = styled<StyledViewProps, ViewProps>(DripsyView, {
+  isThemed: true
 })(compose(color, layout, position, shadow, space, typography));
 
-const StyledText: StyledComponent<
-  StyledTextProps,
-  StyledTextProps,
-  any
-> = styled.Text(compose(color, typography, layout));
+const StyledText = styled<StyledTextProps, NativeTextProps>(DripsyText, {
+  isThemed: true
+})(compose(color, typography, layout));
 
 const Text: FC<TextProps> = (props: TextProps) => {
   const {
@@ -56,10 +60,6 @@ const Text: FC<TextProps> = (props: TextProps) => {
 };
 
 Text.defaultProps = {
-  // TODO: lookup fontinfo
-  // fontFamily: 'body',
-  // fontWeight: 'body',
-  // lineHeight: 'body',
   children: '',
   fontSize: 0
 };

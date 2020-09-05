@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import { NativeBase, Form as NativeBaseForm } from 'native-base';
 import { layout, position, space, compose } from 'styled-system';
+import { styled } from 'native-theme-ui';
 import {
   FormProps,
   StyledFormProps,
   antiForwardFormPropsKeys,
   splitProps
 } from './formProps';
-import { createStyled } from '../styled';
 
-const StyledNativeBaseForm = createStyled<StyledFormProps, NativeBase.Form>(
+const StyledNativeBaseForm = styled<StyledFormProps, NativeBase.Form>(
   NativeBaseForm,
   { forwardPropsBlacklist: antiForwardFormPropsKeys }
 )(compose(layout, position, space));

@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
+import { styled } from 'native-theme-ui';
 import {
   CheckBox as NativeBaseCheckbox,
   Item as NativeBaseItem,
@@ -15,7 +16,6 @@ import {
   typography
 } from 'styled-system';
 import useItem from '../hooks/useItem';
-import { createStyled } from '../styled';
 import {
   StyledCheckBoxProps,
   CheckBoxProps,
@@ -23,7 +23,7 @@ import {
   splitProps
 } from './checkboxProps';
 
-const StyledNativeBaseCheckbox = createStyled<
+const StyledNativeBaseCheckbox = styled<
   StyledCheckBoxProps,
   NativeBase.CheckBox
 >(NativeBaseCheckbox, { forwardPropsBlacklist: antiForwardCheckBoxPropsKeys })(

@@ -1,5 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
+import { styled } from 'native-theme-ui';
 import {
+  NativeBase,
   Item as NativeBaseItem,
   Radio as NativeBaseRadioButton
 } from 'native-base';
@@ -7,35 +9,32 @@ import {
   border,
   color,
   layout,
+  compose,
   position,
   shadow,
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import useItem from '../hooks/useItem';
-import { createStyled } from '../styled';
 import {
+  StyledRadioButtonProps,
   RadioButtonProps,
   antiForwardRadioButtonPropsKeys,
   splitProps
 } from './RadioButtonProps';
 
-const StyledNativeBaseRadioButton = createStyled<RadioButtonProps>(
-  NativeBaseRadioButton,
-  [border, color, layout, position, shadow, space, typography],
-  antiForwardRadioButtonPropsKeys
-);
+const StyledNativeBaseRadioButton = styled<
+  StyledRadioButtonProps,
+  NativeBase.Radio
+>(NativeBaseRadioButton, {
+  forwardPropsBlacklist: antiForwardRadioButtonPropsKeys
+})(compose(border, color, layout, position, shadow, space, typography));
 
 const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
   const item = useItem();
-  const color = useColor(props);
   const [checked, setChecked] = useState<boolean>(false);
 
-  const { customRadioButtonProps, styledRadioButtonProps } = splitProps({
-    ...props,
-    color
-  });
+  const { customRadioButtonProps, styledRadioButtonProps } = splitProps(props);
   useEffect(() => {
     if (customRadioButtonProps.checked !== undefined)
       setChecked(customRadioButtonProps.checked);
