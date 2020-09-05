@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled, { StyledComponent } from '@emotion/primitives';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ViewProps } from 'react-native';
+import { View } from 'dripsy';
 import {
   color,
   compose,
@@ -16,12 +17,11 @@ import {
   TextProps,
   splitProps
 } from './textProps';
+import { createStyled } from '../styled';
 
-const StyledView: StyledComponent<
-  StyledViewProps,
-  StyledViewProps,
-  any
-> = styled.View(compose(position, shadow, space));
+const StyledView = createStyled<StyledViewProps, ViewProps>(View, {
+  dripsy: true
+})(compose(color, layout, position, shadow, space, typography));
 
 const StyledText: StyledComponent<
   StyledTextProps,

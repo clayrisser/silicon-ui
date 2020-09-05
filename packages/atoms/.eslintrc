@@ -66,16 +66,33 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
+        "peerDependencies": true,
         "devDependencies": [
+          "**/*.spec.js",
+          "**/*.spec.jsx",
+          "**/*.spec.ts",
+          "**/*.spec.tsx",
+          "**/*.stories.js",
+          "**/*.stories.jsx",
+          "**/*.stories.ts",
+          "**/*.stories.tsx",
           "**/*.story.js",
           "**/*.story.jsx",
           "**/*.story.ts",
           "**/*.story.tsx",
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "**/*.test.ts",
+          "**/*.test.tsx",
           "src/@types/**/*",
           "storybook/*.js",
           "storybook/*.jsx",
           "storybook/*.ts",
-          "storybook/*.tsx"
+          "storybook/*.tsx",
+          "tests/*.js",
+          "tests/*.jsx",
+          "tests/*.ts",
+          "tests/*.tsx"
         ]
       }
     ]

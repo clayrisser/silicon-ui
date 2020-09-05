@@ -156,7 +156,7 @@ const Box = forwardRef<NativeMethods, BoxProps>(
             <Animated.View
               {...panHandlers}
               style={{
-                backgroundColor: styledBoxProps.backgroundColor,
+                backgroundColor: styledBoxProps.backgroundColor as any,
                 height: styledBoxProps.height as any,
                 position: 'absolute',
                 width: styledBoxProps.width as any

@@ -4,7 +4,15 @@ const pkgDir = require('pkg-dir');
 const rootPath = pkgDir.sync(process.cwd()) || process.cwd();
 
 module.exports = {
+  stories: ['../src/**/*.@(story|stories).@(md|@(j|t)s)?(x)'],
   addons: [
+    '@storybook/addon-a11y/register',
+    '@storybook/addon-actions/register',
+    '@storybook/addon-docs',
+    '@storybook/addon-jest/register',
+    '@storybook/addon-knobs/register',
+    '@storybook/addon-viewport/register',
+    'storybook-addon-designs/register',
     {
       name: '@storybook/addon-storysource',
       options: {
@@ -24,7 +32,7 @@ module.exports = {
     if (!config.module.rules) config.module.rules = [];
     if (!config.resolve.extensions) config.resolve.extensions = [];
     config.module.rules.push({
-      test: /\.(j|t)sx?$/,
+      test: /\.[jt]sx?$/,
       include: [
         path.resolve(rootPath, 'src'),
         path.resolve(rootPath, 'storybook'),
@@ -68,7 +76,15 @@ module.exports = {
       enforce: 'pre'
     });
     config.resolve.extensions.push('.jsx', '.ts', '.tsx');
-    config.resolve.alias['react-native'] = 'react-native-web';
+    config.resolve.alias.react = path.resolve(rootPath, 'node_modules/react');
+    config.resolve.alias['react-native'] = path.resolve(
+      rootPath,
+      'react-native-web'
+    );
+    config.resolve.alias['react-dom'] = path.resolve(
+      rootPath,
+      'node_modules/react-dom'
+    );
     config.resolve.alias[
       'react-native/Libraries/Renderer/shims/ReactNativePropRegistry'
     ] = 'react-native-web/dist/modules/ReactNativePropRegistry';

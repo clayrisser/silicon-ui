@@ -16,7 +16,7 @@ import withThemeProvider from '../../storybook/withThemeProvider';
 
 storiesOf('Textarea', module)
   .addDecorator(withKnobs)
-  .addDecorator(withThemeProvider as any)
+  .addDecorator(withThemeProvider)
   .addParameters({
     // docs: { page: docs },
     // jest: ['Input.spec.tsx']

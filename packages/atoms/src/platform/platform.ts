@@ -1,3 +1,3 @@
-import { WEB } from './platforms';
+import { Platform } from '.';
 
-export default WEB;
+export default Platform.Web;

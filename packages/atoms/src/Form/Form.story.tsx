@@ -3,13 +3,12 @@ import { withKnobs } from '@storybook/addon-knobs';
 import Form from './Form';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
-import themes from '../themes';
-import withThemesProvider from '../../storybook/withThemesProvider';
+import withThemeProvider from '../../storybook/withThemeProvider';
 // import docs from './Form.docs.mdx';
 
 storiesOf('Form', module)
   .addDecorator(withKnobs)
-  .addDecorator(withThemesProvider(themes))
+  .addDecorator(withThemeProvider)
   .addParameters({
     // docs: { page: docs },
     // jest: ['Form.test.tsx']

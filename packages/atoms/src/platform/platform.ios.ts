@@ -1,3 +1,3 @@
-import { IOS } from './platforms';
+import { Platform } from '.';
 
-export default IOS;
+export default Platform.Ios;

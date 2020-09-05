@@ -12,13 +12,13 @@ import {
 import ItemContext from '../contexts/Item';
 import { createStyled } from '../styled';
 import {
-  NativeItemProps,
+  StyledItemProps,
   ItemProps,
   antiForwardItemPropsKeys,
   splitProps
 } from './itemProps';
 
-const StyledNativeBaseItem = createStyled<NativeItemProps, NativeBase.Item>(
+const StyledNativeBaseItem = createStyled<StyledItemProps, NativeBase.Item>(
   NativeBaseItem,
   {
     forwardPropsBlacklist: antiForwardItemPropsKeys

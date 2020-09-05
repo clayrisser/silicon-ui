@@ -17,14 +17,14 @@ import {
 import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
+  StyledCheckBoxProps,
   CheckBoxProps,
-  NativeCheckBoxProps,
   antiForwardCheckBoxPropsKeys,
   splitProps
 } from './checkboxProps';
 
 const StyledNativeBaseCheckbox = createStyled<
-  NativeCheckBoxProps,
+  StyledCheckBoxProps,
   NativeBase.CheckBox
 >(NativeBaseCheckbox, { forwardPropsBlacklist: antiForwardCheckBoxPropsKeys })(
   compose(border, color, layout, position, shadow, space, typography)

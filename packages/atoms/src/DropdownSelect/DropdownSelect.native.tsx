@@ -17,12 +17,12 @@ import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
   DropdownSelectProps,
-  NativeDropdownSelectProps,
+  StyledDropdownSelectProps,
   splitProps
 } from './dropdownSelectProps';
 
 const StyledNativePicker = createStyled<
-  NativeDropdownSelectProps,
+  StyledDropdownSelectProps,
   NativeBase.Picker
 >(NativePicker)(compose(background, border, layout, position, shadow, space));
 

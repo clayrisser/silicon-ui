@@ -13,12 +13,11 @@ import DropdownSelect from './DropdownSelect';
 import DropdownOption from '../DropdownOption/DropdownOption';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
-import themes from '../themes';
-import withThemesProvider from '../../storybook/withThemesProvider';
+import withThemeProvider from '../../storybook/withThemeProvider';
 
 storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
-  .addDecorator(withThemesProvider(themes))
+  .addDecorator(withThemeProvider)
   .addParameters({
     // docs: { page: docs },
     // jest: ['Button.test.tsx']

@@ -3,12 +3,11 @@ import { withKnobs, text, number, color } from '@storybook/addon-knobs';
 import Text from './Text';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
-import themes from '../themes';
-import withThemesProvider from '../../storybook/withThemesProvider';
+import withThemeProvider from '../../storybook/withThemeProvider';
 
 storiesOf('Text', module)
   .addDecorator(withKnobs)
-  .addDecorator(withThemesProvider(themes))
+  .addDecorator(withThemeProvider)
   .addParameters({
     // docs: { page: docs },
     // jest: ['Button.test.tsx']

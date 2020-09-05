@@ -18,14 +18,14 @@ import {
 } from 'styled-system';
 import {
   ImageProps,
-  NativeImageProps,
+  StyledImageProps,
   antiForwardImagePropsKeys,
   splitProps
 } from './imageProps';
 import { createStyled } from '../styled';
 
 const StyledImageBackground = createStyled<
-  NativeImageProps,
+  StyledImageProps,
   ImageBackgroundProps
 >(ImageBackground, { forwardPropsBlacklist: antiForwardImagePropsKeys })(
   compose(

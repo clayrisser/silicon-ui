@@ -11,12 +11,12 @@ import {
 } from 'styled-system';
 import { createStyled } from '../styled';
 import {
-  NativeDropdownOptionProps,
+  StyledDropdownOptionProps,
   DropdownOptionProps,
   splitProps
 } from './dropdownOptionProps';
 
-const StyledNativePicker = createStyled<NativeDropdownOptionProps, PickerProps>(
+const StyledNativePicker = createStyled<StyledDropdownOptionProps, PickerProps>(
   NativePicker
 )(compose(background, border, layout, position, shadow, space));
 

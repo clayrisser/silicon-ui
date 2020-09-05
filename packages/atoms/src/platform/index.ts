@@ -1,5 +1,9 @@
 import platform from './platform';
 
-export * from './platforms';
+export enum Platform {
+  Android,
+  Ios,
+  Web
+}
 
-export default platform as string;
+export default platform as Platform;

@@ -17,6 +17,7 @@ import {
 import { createStyled } from '../styled';
 import {
   ButtonProps,
+  StyledButtonProps,
   StyledTextProps,
   antiForwardButtonPropsKeys,
   splitProps
@@ -27,9 +28,12 @@ const StyledText = createStyled<StyledTextProps, TextProps & LayoutProps>(
   { dripsy: true }
 )(compose(color, typography, layout));
 
-const StyledNativeBaseButton = createStyled<ButtonProps>(NativeBaseButton, {
-  forwardPropsBlacklist: antiForwardButtonPropsKeys
-})(compose(background, border, layout, position, shadow, space));
+const StyledNativeBaseButton = createStyled<StyledButtonProps>(
+  NativeBaseButton,
+  {
+    forwardPropsBlacklist: antiForwardButtonPropsKeys
+  }
+)(compose(background, border, layout, position, shadow, space));
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const {

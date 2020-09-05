@@ -11,17 +11,9 @@ import {
   space,
   typography
 } from 'styled-system';
-import {
-  TextareaProps,
-  DetailedHTMLTextareaProps,
-  splitProps
-} from './textareaProps';
+import { TextareaProps, splitProps } from './textareaProps';
 
-const HTMLTextarea: StyledComponent<
-  DetailedHTMLTextareaProps,
-  TextareaProps,
-  object
-> = styled.textarea(
+const HTMLTextarea: StyledComponent<any, TextareaProps, any> = styled.textarea(
   compose(
     background,
     border,
@@ -40,16 +32,12 @@ const Textarea: FC<TextareaProps> = (props: TextareaProps) => {
     styledTextareaProps,
     nativeItemProps
   } = splitProps(props);
-  function handleInput(e: any) {
-    if (props.onFocus) props.onFocus(e.target.value);
-  }
+
   return (
     <HTMLTextarea
       {...styledTextareaProps}
       {...nativeItemProps}
       {...(customTextareaProps as any)}
-      onChange={handleInput}
-      // onChangeText={handleInput}
     />
   );
 };

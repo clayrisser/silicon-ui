@@ -8,6 +8,8 @@ JEST := node_modules/.bin/jest
 LOCKFILE_LINT := node_modules/.bin/lockfile-lint
 MAJESTIC := node_modules/.bin/majestic
 PRETTIER := node_modules/.bin/prettier
+RNSTL := node_modules/.bin/rnstl
+STORYBOOK := node node_modules/@storybook/react/bin
 TSC := node_modules/.bin/tsc
 COLLECT_COVERAGE_FROM := ["src/**/*.{js,jsx,ts,tsx}"]
 
@@ -115,7 +117,7 @@ test: _test ~test
 _test:
 	-@rm -rf $(DONE)/_test $(NOFAIL)
 $(DONE)/test:
-	@$(JEST) --json --outputFile=node_modules/.tmp/jestTestResults.json --coverage \
+	-@$(JEST) --json --outputFile=node_modules/.tmp/jestTestResults.json --coverage \
 		--coverageDirectory=node_modules/.tmp/coverage --testResultsProcessor=jest-sonar-reporter \
 		--collectCoverageFrom='$(COLLECT_COVERAGE_FROM)' $(shell $(DEPSLIST) --reverse $$($(call get_deps,test)) | \
 		grep -E $(TEST_REGEXP))
@@ -176,7 +178,7 @@ web: ~test
 +web:
 	@rm -rf node_modules/.tmp/action && mkdir -p node_modules/.tmp/action
 	@touch node_modules/.tmp/action/web
-	@node ./node_modules/@storybook/react/bin --ci -c storybook -p 3000 -s public
+	@$(STORYBOOK) --ci -c storybook -p 3000 -s public
 
 .PHONY: expo +expo
 expo: ~test
@@ -185,7 +187,7 @@ expo: ~test
 	@rm -rf node_modules/.tmp/action && mkdir -p node_modules/.tmp/action
 	@touch node_modules/.tmp/action/expo
 	-@rm -rf .expo* $(NOFAIL)
-	@rnstl --pattern **/*.story.tsx
+	@$(RNSTL) --pattern **/*.story.tsx
 	@expo start -c
 
 .PHONY: clean

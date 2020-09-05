@@ -3,13 +3,13 @@ import { NativeBase, Form as NativeBaseForm } from 'native-base';
 import { layout, position, space, compose } from 'styled-system';
 import {
   FormProps,
-  NativeFormProps,
+  StyledFormProps,
   antiForwardFormPropsKeys,
   splitProps
 } from './formProps';
 import { createStyled } from '../styled';
 
-const StyledNativeBaseForm = createStyled<NativeFormProps, NativeBase.Form>(
+const StyledNativeBaseForm = createStyled<StyledFormProps, NativeBase.Form>(
   NativeBaseForm,
   { forwardPropsBlacklist: antiForwardFormPropsKeys }
 )(compose(layout, position, space));

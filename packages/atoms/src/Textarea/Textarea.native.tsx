@@ -18,14 +18,14 @@ import {
 import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
-  NativeTextareaProps,
+  StyledTextareaProps,
   TextareaProps,
   antiForwardTextareaPropsKeys,
   splitProps
 } from './textareaProps';
 
 const StyledNativeBaseTextarea = createStyled<
-  NativeTextareaProps,
+  StyledTextareaProps,
   NativeBase.Textarea
 >(NativeBaseTextarea, { forwardPropsBlacklist: antiForwardTextareaPropsKeys })(
   compose(

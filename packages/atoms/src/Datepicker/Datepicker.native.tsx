@@ -19,13 +19,13 @@ import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
   DatepickerProps,
-  NativeDatepickerProps,
+  StyledDatepickerProps,
   antiForwardInputPropsKeys,
   splitProps
 } from './datepickerProps';
 
 const StyledNativeBaseDatepicker = createStyled<
-  NativeDatepickerProps,
+  StyledDatepickerProps,
   NativeBase.DatePicker
 >(NativeBaseDatepicker, { forwardPropsBlacklist: antiForwardInputPropsKeys })(
   compose(

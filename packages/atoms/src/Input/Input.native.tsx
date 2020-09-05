@@ -19,12 +19,12 @@ import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
   InputProps,
-  NativeInputProps,
+  StyledInputProps,
   antiForwardInputPropsKeys,
   splitProps
 } from './inputProps';
 
-const StyledNativeBaseInput = createStyled<NativeInputProps, NativeBase.Input>(
+const StyledNativeBaseInput = createStyled<StyledInputProps, NativeBase.Input>(
   NativeBaseInput,
   {
     forwardPropsBlacklist: antiForwardInputPropsKeys
