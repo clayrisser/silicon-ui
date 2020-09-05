@@ -1,59 +1,60 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Item as NativeBaseItem,
+  NativeBase,
   Textarea as NativeBaseTextarea
 } from 'native-base';
 import {
   background,
   border,
   color,
+  compose,
   layout,
   position,
   shadow,
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
+  NativeTextareaProps,
   TextareaProps,
   antiForwardTextareaPropsKeys,
   splitProps
 } from './textareaProps';
 
-const StyledNativeBaseTextarea = createStyled<TextareaProps>(
-  NativeBaseTextarea,
-  [background, border, color, layout, position, shadow, space, typography],
-  antiForwardTextareaPropsKeys
+const StyledNativeBaseTextarea = createStyled<
+  NativeTextareaProps,
+  NativeBase.Textarea
+>(NativeBaseTextarea, { forwardPropsBlacklist: antiForwardTextareaPropsKeys })(
+  compose(
+    background,
+    border,
+    color,
+    layout,
+    position,
+    shadow,
+    space,
+    typography
+  )
 );
 
 const Textarea: FC<TextareaProps> = (props: TextareaProps) => {
   const item = useItem();
-  const color = useColor(props);
-  const [input, setInput] = useState<string>('');
 
   const {
     customTextareaProps,
     nativeTextareaProps,
     nativeItemProps,
     styledTextareaProps
-  } = splitProps({
-    ...props,
-    color
-  });
-  function handleInput(e: any) {
-    if (props.onFocus) {
-      props.onFocus(e);
-      setInput(e);
-    }
-  }
+  } = splitProps(props);
+
   const styledNativeBaseTextarea = (
     <StyledNativeBaseTextarea
-      {...customTextareaProps}
+      {...(customTextareaProps as any)}
       {...nativeTextareaProps}
       {...styledTextareaProps}
-      onChangeText={handleInput}
       rowSpan={5}
       bordered
     />
@@ -67,9 +68,6 @@ const Textarea: FC<TextareaProps> = (props: TextareaProps) => {
 };
 
 Textarea.defaultProps = {
-  // fontFamily: 'body',
-  // fontWeight: 'body',
-  // lineHeight: 'body',
   autoContrast: false,
   backgroundColor: '#FFFFFF00',
   fontSize: 0

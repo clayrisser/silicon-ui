@@ -11,7 +11,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import {
   DatepickerProps,
   DetailedHTMLDatepickerProps,
@@ -37,15 +36,11 @@ const HTMLDatepicker: StyledComponent<
 
 const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
   const [date, setDate] = useState<string>('');
-  const color = useColor(props);
   const {
     customDatepickerProps,
     styledDatepickerProps,
     nativeDatepickerProps
-  } = splitProps({
-    ...props,
-    color
-  });
+  } = splitProps(props);
 
   useEffect(() => {
     if (customDatepickerProps.value !== undefined)

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "silicon-ui-atoms-example",
-    "slug": "silicon-ui-atoms-example",
+    "name": "atoms",
+    "slug": "atoms",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./expo/assets/icon.png",
@@ -18,7 +18,7 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./expo/assets/favicon.png"
     }
   }
 }

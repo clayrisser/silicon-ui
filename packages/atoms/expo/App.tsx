@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import Storybook from '../storybook';
+import Storybook from './Storybook';
 
 export default function App() {
   return (

@@ -1,15 +1,14 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, number, select, color } from '@storybook/addon-knobs';
+import { withThemeProvider } from 'storybook-addon-theme-ui';
 import Box from './Box';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
-import themes from '../themes';
-import withThemesProvider from '../../storybook/withThemesProvider';
 
 storiesOf('Box', module)
   .addDecorator(withKnobs)
-  .addDecorator(withThemesProvider(themes))
+  .addDecorator(withThemeProvider)
   .addParameters({
     // docs: { page: docs },
     // jest: ['Button.test.tsx']

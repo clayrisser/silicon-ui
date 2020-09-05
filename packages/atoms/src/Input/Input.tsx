@@ -11,7 +11,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import { InputProps, DetailedHTMLInputProps, splitProps } from './inputProps';
 
 const HTMLInput: StyledComponent<
@@ -32,11 +31,9 @@ const HTMLInput: StyledComponent<
 );
 
 const Input: FC<InputProps> = (props: InputProps) => {
-  const color = useColor(props);
-  const { customInputProps, styledInputProps, nativeItemProps } = splitProps({
-    ...props,
-    color
-  });
+  const { customInputProps, styledInputProps, nativeItemProps } = splitProps(
+    props
+  );
   function handleInput(e: any) {
     if (props.onChangeText) props.onChangeText(e.target.value);
   }

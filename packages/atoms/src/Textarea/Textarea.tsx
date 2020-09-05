@@ -11,7 +11,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import {
   TextareaProps,
   DetailedHTMLTextareaProps,
@@ -36,15 +35,11 @@ const HTMLTextarea: StyledComponent<
 );
 
 const Textarea: FC<TextareaProps> = (props: TextareaProps) => {
-  const color = useColor(props);
   const {
     customTextareaProps,
     styledTextareaProps,
     nativeItemProps
-  } = splitProps({
-    ...props,
-    color
-  });
+  } = splitProps(props);
   function handleInput(e: any) {
     if (props.onFocus) props.onFocus(e.target.value);
   }

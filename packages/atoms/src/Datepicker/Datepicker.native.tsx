@@ -1,44 +1,52 @@
 import React, { FC } from 'react';
 import {
+  DatePicker as NativeBaseDatepicker,
   Item as NativeBaseItem,
-  DatePicker as NativeBaseDatepicker
+  NativeBase
 } from 'native-base';
 import {
   background,
   border,
   color,
+  compose,
   layout,
   position,
   shadow,
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
   DatepickerProps,
+  NativeDatepickerProps,
   antiForwardInputPropsKeys,
   splitProps
 } from './datepickerProps';
 
-const StyledNativeBaseDatepicker = createStyled<DatepickerProps>(
-  NativeBaseDatepicker,
-  [background, border, color, layout, position, shadow, space, typography],
-  antiForwardInputPropsKeys
+const StyledNativeBaseDatepicker = createStyled<
+  NativeDatepickerProps,
+  NativeBase.DatePicker
+>(NativeBaseDatepicker, { forwardPropsBlacklist: antiForwardInputPropsKeys })(
+  compose(
+    background,
+    border,
+    color,
+    layout,
+    position,
+    shadow,
+    space,
+    typography
+  )
 );
 
 const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
   const item = useItem();
-  const color = useColor(props);
   const {
     customDatepickerProps,
     nativeDatepickerProps,
     styledDatepickerProps
-  } = splitProps({
-    ...props,
-    color
-  });
+  } = splitProps(props);
   function handleChange(e: any) {
     if (props.onPress) {
       props.onPress(e);
@@ -46,7 +54,7 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
   }
   const styledNativeBaseDatepicker = (
     <StyledNativeBaseDatepicker
-      {...customDatepickerProps}
+      {...(customDatepickerProps as any)}
       {...nativeDatepickerProps}
       {...styledDatepickerProps}
       onDateChange={handleChange}
@@ -58,10 +66,6 @@ const Datepicker: FC<DatepickerProps> = (props: DatepickerProps) => {
 };
 
 Datepicker.defaultProps = {
-  // fontFamily: 'body',
-  // fontWeight: 'body',
-  // lineHeight: 'body',
-  // autoContrast: false,
   backgroundColor: 'green',
   fontSize: 6
 };

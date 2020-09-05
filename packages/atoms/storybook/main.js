@@ -54,7 +54,7 @@ module.exports = {
     });
     config.module.rules.push({
       test: /\.ttf$/,
-      loader: 'url-loader', // or directly file-loader
+      loader: 'url-loader',
       include: path.resolve(rootPath, 'node_modules/react-native-vector-icons')
     });
     config.module.rules.push({

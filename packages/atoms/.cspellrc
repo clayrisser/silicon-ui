@@ -12,6 +12,7 @@
     "deps",
     "depslist",
     "docgen",
+    "dripsy",
     "dropdrop",
     "eslintcache",
     "esnext",
@@ -32,6 +33,7 @@
     "overrided",
     "patsubst",
     "pettersson",
+    "pgcax",
     "pids",
     "plusplus",
     "pnpm",
@@ -47,7 +49,6 @@
     "vuepress",
     "wcag",
     "wscript",
-    "xargs",
-    "pgcax"
+    "xargs"
   ]
 }

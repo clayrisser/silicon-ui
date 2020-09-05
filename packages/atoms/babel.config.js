@@ -3,7 +3,6 @@ const path = require('path');
 
 module.exports = (api) => {
   api.cache(true);
-  let result = {};
   if (fs.existsSync(path.resolve(__dirname, 'node_modules/.tmp/action/expo'))) {
     return {
       presets: ['babel-preset-expo']
@@ -29,7 +28,8 @@ module.exports = (api) => {
     plugins: [
       ['@babel/plugin-proposal-decorators', { legacy: true }],
       ['@babel/plugin-proposal-class-properties', { loose: true }],
-      '@babel/plugin-proposal-optional-chaining'
+      '@babel/plugin-proposal-optional-chaining',
+      '@babel/plugin-transform-runtime'
     ]
   };
 };

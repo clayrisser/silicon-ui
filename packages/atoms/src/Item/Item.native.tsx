@@ -1,22 +1,29 @@
 import React, { FC } from 'react';
-import { Item as NativeBaseItem } from 'native-base';
+import { NativeBase, Item as NativeBaseItem } from 'native-base';
 import {
   background,
   border,
+  compose,
   layout,
   position,
   shadow,
   space
 } from 'styled-system';
 import ItemContext from '../contexts/Item';
-import { ItemProps, antiForwardItemPropsKeys, splitProps } from './itemProps';
 import { createStyled } from '../styled';
+import {
+  NativeItemProps,
+  ItemProps,
+  antiForwardItemPropsKeys,
+  splitProps
+} from './itemProps';
 
-const StyledNativeBaseItem = createStyled<ItemProps>(
+const StyledNativeBaseItem = createStyled<NativeItemProps, NativeBase.Item>(
   NativeBaseItem,
-  [background, border, layout, position, shadow, space],
-  antiForwardItemPropsKeys
-);
+  {
+    forwardPropsBlacklist: antiForwardItemPropsKeys
+  }
+)(compose(background, border, layout, position, shadow, space));
 
 const Item: FC<ItemProps> = (props: ItemProps) => {
   const { styledItemProps, customItemProps, nativeItemProps } = splitProps(

@@ -171,16 +171,20 @@ test-watch: ~lint
 start: web
 
 .PHONY: web +web
-web: ~format
+web: ~test
 	@$(MAKE) -s +web
 +web:
+	@rm -rf node_modules/.tmp/action && mkdir -p node_modules/.tmp/action
+	@touch node_modules/.tmp/action/web
 	@node ./node_modules/@storybook/react/bin --ci -c storybook -p 3000 -s public
 
 .PHONY: expo +expo
-expo: ~format
+expo: ~test
 	@$(MAKE) -s +expo
 +expo:
-	-@$(RM) -rf .expo* $(NOFAIL)
+	@rm -rf node_modules/.tmp/action && mkdir -p node_modules/.tmp/action
+	@touch node_modules/.tmp/action/expo
+	-@rm -rf .expo* $(NOFAIL)
 	@rnstl --pattern **/*.story.tsx
 	@expo start -c
 

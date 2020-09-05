@@ -1,8 +1,8 @@
 import { getStorybookUI, configure } from '@storybook/react-native';
-import './rn-addons';
+import '../storybook/rnAddons';
 // @ts-ignore
 // eslint-disable-next-line import/no-unresolved,import/extensions
-import { loadStories } from './storyLoader';
+import { loadStories } from '../storybook/storyLoader';
 
 configure(() => {
   loadStories();

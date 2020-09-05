@@ -19,7 +19,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import { BoxProps, splitProps } from './boxProps';
 
 export type DetailedHTMLDivProps = DetailedHTMLProps<
@@ -46,13 +45,11 @@ const HTMLDiv: StyledComponent<
 );
 
 const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
-  const color = useColor(props);
   let [entered, setEntered] = useState(true);
   let [pressed, setPressed] = useState(false);
-  const { styledBoxProps, customBoxProps, touchableOpacityProps } = splitProps({
-    ...props,
-    color
-  });
+  const { styledBoxProps, customBoxProps, touchableOpacityProps } = splitProps(
+    props
+  );
 
   useEffect(() => {
     if (!props.onPressOut && !props.onPull) return () => {};

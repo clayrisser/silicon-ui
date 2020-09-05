@@ -7,17 +7,16 @@ import {
   number,
   color
 } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import Textarea from './Textarea';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
-import themes from '../themes';
-import withThemesProvider from '../../storybook/withThemesProvider';
+import withThemeProvider from '../../storybook/withThemeProvider';
 // import docs from './Input.docs.mdx';
+// import { action } from '@storybook/addon-actions';
 
 storiesOf('Textarea', module)
   .addDecorator(withKnobs)
-  .addDecorator(withThemesProvider(themes))
+  .addDecorator(withThemeProvider as any)
   .addParameters({
     // docs: { page: docs },
     // jest: ['Input.spec.tsx']
@@ -25,12 +24,10 @@ storiesOf('Textarea', module)
   .add('with knobs', () => (
     <Wrapper>
       <Textarea
-        onFocus={action('onFocus')}
         disabled={boolean('disabled', false)}
         placeholder={text('placeholder', 'Textarea')}
         rows={text('rows', '5')}
         cols={text('cols', '50')}
-        maxLength={number('maxLength', 30)}
         backgroundColor={text('background-color', 'inverseText')}
         borderRadius={number('borderRadius', 0)}
         borderColor={color('borderColor', 'rgb(156, 152, 152)')}

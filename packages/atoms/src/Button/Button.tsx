@@ -11,7 +11,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import {
   ButtonProps,
   DetailedHTMLButtonProps,
@@ -36,11 +35,9 @@ const HTMLButton: StyledComponent<
 );
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const color = useColor(props);
-  const { customButtonProps, styledButtonProps, styledTextProps } = splitProps({
-    ...props,
-    color
-  });
+  const { customButtonProps, styledButtonProps, styledTextProps } = splitProps(
+    props
+  );
 
   function handleClick(_e: any) {
     if (props.onPress) props.onPress();

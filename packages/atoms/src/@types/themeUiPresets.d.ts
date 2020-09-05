@@ -13,3 +13,7 @@ declare module '@theme-ui/presets' {
   export const tailwind: any;
   export const tosh: any;
 }
+
+declare module '@theme-ui/preset-base' {
+  export = any;
+}

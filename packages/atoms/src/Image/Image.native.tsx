@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import {
   ImageBackground,
+  ImageBackgroundProps,
   Text as NativeText,
   TouchableOpacity
 } from 'react-native';
@@ -8,6 +9,7 @@ import {
   background,
   border,
   color,
+  compose,
   layout,
   position,
   shadow,
@@ -16,15 +18,26 @@ import {
 } from 'styled-system';
 import {
   ImageProps,
+  NativeImageProps,
   antiForwardImagePropsKeys,
   splitProps
 } from './imageProps';
 import { createStyled } from '../styled';
 
-const StyledImageBackground = createStyled<ImageProps>(
-  ImageBackground,
-  [background, border, color, layout, position, shadow, space, typography],
-  antiForwardImagePropsKeys
+const StyledImageBackground = createStyled<
+  NativeImageProps,
+  ImageBackgroundProps
+>(ImageBackground, { forwardPropsBlacklist: antiForwardImagePropsKeys })(
+  compose(
+    background,
+    border,
+    color,
+    layout,
+    position,
+    shadow,
+    space,
+    typography
+  )
 );
 
 const Image: FC<ImageProps> = (props: ImageProps) => {
@@ -44,7 +57,7 @@ const Image: FC<ImageProps> = (props: ImageProps) => {
     <StyledImageBackground
       {...nativeImageProps}
       {...styledImageProps}
-      {...customImageProps}
+      {...(customImageProps as any)}
     >
       {children}
     </StyledImageBackground>

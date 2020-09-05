@@ -11,7 +11,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import {
   CheckBoxProps,
   DetailedHTMLCheckBoxProps,
@@ -37,15 +36,11 @@ const HTMLCheckBox: StyledComponent<
 
 const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
   const [checked, setChecked] = useState<boolean>(false);
-  const color = useColor(props);
   const {
     customCheckBoxProps,
     styledCheckBoxProps,
     nativeCheckBoxProps
-  } = splitProps({
-    ...props,
-    color
-  });
+  } = splitProps(props);
 
   useEffect(() => {
     if (customCheckBoxProps.checked !== undefined)

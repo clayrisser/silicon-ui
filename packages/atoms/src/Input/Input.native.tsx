@@ -1,44 +1,56 @@
 import React, { FC, useState } from 'react';
-import { Item as NativeBaseItem, Input as NativeBaseInput } from 'native-base';
+import {
+  Input as NativeBaseInput,
+  Item as NativeBaseItem,
+  NativeBase
+} from 'native-base';
 import {
   background,
   border,
   color,
+  compose,
   layout,
   position,
   shadow,
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import useItem from '../hooks/useItem';
 import { createStyled } from '../styled';
 import {
   InputProps,
+  NativeInputProps,
   antiForwardInputPropsKeys,
   splitProps
 } from './inputProps';
 
-const StyledNativeBaseInput = createStyled<InputProps>(
+const StyledNativeBaseInput = createStyled<NativeInputProps, NativeBase.Input>(
   NativeBaseInput,
-  [background, border, color, layout, position, shadow, space, typography],
-  antiForwardInputPropsKeys
+  {
+    forwardPropsBlacklist: antiForwardInputPropsKeys
+  }
+)(
+  compose(
+    background,
+    border,
+    color,
+    layout,
+    position,
+    shadow,
+    space,
+    typography
+  )
 );
 
 const Input: FC<InputProps> = (props: InputProps) => {
   const item = useItem();
-  const color = useColor(props);
   const [input, setInput] = useState<string>('');
-
   const {
     customInputProps,
     nativeInputProps,
     nativeItemProps,
     styledInputProps
-  } = splitProps({
-    ...props,
-    color
-  });
+  } = splitProps(props);
   function handleInput(e: any) {
     if (props.onFocus) {
       props.onFocus(e);
@@ -63,9 +75,6 @@ const Input: FC<InputProps> = (props: InputProps) => {
 };
 
 Input.defaultProps = {
-  // fontFamily: 'body',
-  // fontWeight: 'body',
-  // lineHeight: 'body',
   autoContrast: false,
   backgroundColor: '#FFFFFF00',
   fontSize: 0

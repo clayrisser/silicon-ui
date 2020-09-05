@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import styled, { StyledComponent } from '@emotion/primitives';
 import { Button as NativeBaseButton } from 'native-base';
+import { Text } from 'dripsy';
 import { TextProps } from 'react-native';
-import { useThemeUI } from 'theme-ui';
 import {
   LayoutProps,
   background,
@@ -15,7 +14,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import { createStyled } from '../styled';
 import {
   ButtonProps,
@@ -24,37 +22,22 @@ import {
   splitProps
 } from './buttonProps';
 
-const StyledText: StyledComponent<
-  StyledTextProps,
-  TextProps & LayoutProps,
-  any
-> = styled.Text(compose(color, typography, layout));
+const StyledText = createStyled<StyledTextProps, TextProps & LayoutProps>(
+  Text,
+  { dripsy: true }
+)(compose(color, typography, layout));
 
-const StyledNativeBaseButton = createStyled<ButtonProps>(
-  NativeBaseButton,
-  [background, border, layout, position, shadow, space],
-  antiForwardButtonPropsKeys
-);
+const StyledNativeBaseButton = createStyled<ButtonProps>(NativeBaseButton, {
+  forwardPropsBlacklist: antiForwardButtonPropsKeys
+})(compose(background, border, layout, position, shadow, space));
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const color = useColor(props);
-  const { theme } = useThemeUI();
   const {
     styledButtonProps,
     customButtonProps,
     styledTextProps,
     nativeButtonProps
-  } = splitProps({
-    ...props,
-    color,
-    ...(props.backgroundColor !== 'undefined'
-      ? {
-          backgroundColor:
-            theme.colors?.[props.backgroundColor as string] ||
-            (props.backgroundColor as any)
-        }
-      : {})
-  });
+  } = splitProps(props);
   const children =
     typeof customButtonProps.children === 'string' ? (
       <StyledText {...styledTextProps} width="100%">

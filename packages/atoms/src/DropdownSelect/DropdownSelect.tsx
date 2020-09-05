@@ -11,7 +11,6 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import {
   DropdownSelectProps,
   DetailedHTMLDropdownSelectProps,
@@ -38,16 +37,12 @@ const HTMLSelect: StyledComponent<
 const DropdownSelect: FC<DropdownSelectProps> = (
   props: DropdownSelectProps
 ) => {
-  const color = useColor(props);
   const {
     styledDropdownSelectProps,
     customDropdownSelectProps,
     nativeDropdownSelectProps,
     touchableOpacityProps
-  } = splitProps({
-    ...props,
-    color
-  });
+  } = splitProps(props);
   function handleChange(e: any) {
     if (props.onPress) props.onPress(e);
   }

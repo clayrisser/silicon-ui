@@ -1,7 +1,6 @@
 import React, { useState, forwardRef, Ref, useRef } from 'react';
-import styled, { StyledComponent } from '@emotion/primitives';
 import useMergedRef from '@react-hook/merged-ref';
-import { useThemeUI } from 'theme-ui';
+import { View } from 'dripsy';
 import {
   Animated,
   GestureResponderEvent,
@@ -9,7 +8,8 @@ import {
   PanResponder,
   PanResponderGestureState,
   Text as NativeText,
-  TouchableOpacity
+  TouchableOpacity,
+  ViewProps
 } from 'react-native';
 import {
   background,
@@ -23,14 +23,12 @@ import {
   space,
   typography
 } from 'styled-system';
-import useColor from '../hooks/useColor';
 import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
+import { createStyled } from '../styled';
 
-const StyledView: StyledComponent<
-  StyledBoxProps,
-  StyledBoxProps,
-  any
-> = styled.View(
+const StyledView = createStyled<StyledBoxProps, ViewProps>(View, {
+  dripsy: true
+})(
   compose(
     background,
     border,
@@ -50,8 +48,6 @@ const Box = forwardRef<NativeMethods, BoxProps>(
   (props: BoxProps, forwardedRef: Ref<NativeMethods>) => {
     const boxRef = useRef<NativeMethods>(null);
     const mergedRef = useMergedRef<any>(forwardedRef, boxRef);
-    const color = useColor(props);
-    const { theme } = useThemeUI();
     let [pressed, setPressed] = useState(false);
     let [initialPosition, setInitialPosition] = useState<Position>([0, 0]);
     const {
@@ -60,17 +56,7 @@ const Box = forwardRef<NativeMethods, BoxProps>(
       nativeTouchableOpacityProps,
       styledBoxProps,
       touchableOpacityProps
-    } = splitProps({
-      ...props,
-      color,
-      ...(props.backgroundColor !== 'undefined'
-        ? {
-            backgroundColor:
-              theme.colors?.[props.backgroundColor as string] ||
-              (props.backgroundColor as any)
-          }
-        : {})
-    });
+    } = splitProps(props);
 
     async function exitedBox(
       e: GestureResponderEvent,
