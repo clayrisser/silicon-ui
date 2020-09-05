@@ -44,23 +44,23 @@ describe('<Button withProps /> ', () => {
 describe('<Button />', () => {
   it('handles onPress', () => {
     const onPress = jest.fn();
-    // const onMouseDown = jest.fn();
-    // const onMouseUp = jest.fn();
-    // const { container } = render(<Button onPress={handleClick} />);
-    // fireEvent.click(container.querySelector('HTMLButton')!);
-    // expect(handleClick).toHaveBeenCalledTimes(1);
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    // const { container } = render(<Button onPress={onPress} />);
+    // fireEvent.press(container.querySelector('HTMLButton')!);
+    // expect(onPress).toHaveBeenCalledTimes(1);
     // const handleClick = jest.fn();
-    // const { getByText } = render(<Button onPress={handleClick} />);
+    // const { getByText } = render(<Button onPress={onPress} />);
     // const button = getByText('click me');
     // fireEvent.press(button);
-    // expect(handleClick).toBe(undefined);
+    // expect(onPress).toBe(undefined);
     let component: any;
     act(() => {
       component = create(
         <Button
           onPress={onPress}
-          // onMouseDown={onMouseDown}
-          // onMouseUp={onMouseUp}
+          onPressIn={onMouseDown}
+          onPressOut={onMouseUp}
         />
       );
     });
@@ -69,8 +69,8 @@ describe('<Button />', () => {
     expect(button.length).toBe(1);
     //  act(() => button[0].props.onPress());
     expect(button[0].props.onPress()).toBe(undefined);
-    // expect(button[0].props.onMouseDown()).toBe(undefined);
-    // expect(button[0].props.onMouseUp()).toBe(undefined);
+    expect(button[0].props.onPressIn()).toBe(undefined);
+    expect(button[0].props.onPressOut()).toBe(undefined);
   });
 
   // it('handles onPress', () => {
