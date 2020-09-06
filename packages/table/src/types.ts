@@ -1,3 +1,3 @@
 export interface Col {
-  widthFactor: number | string;
+  width: number | string;
 }

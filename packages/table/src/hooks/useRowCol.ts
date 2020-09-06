@@ -11,13 +11,16 @@ export default function useRowCol(): [Col | null, (col: Col) => any] {
 
   function setRowCol(col: Col) {
     setRow((row: Row | null) => {
-      const newRow: Row = { ...row, cols: [...(row?.cols || [])] };
+      const newRow: Row = {
+        ...row,
+        cols: [...(row?.cols || [])]
+      };
       if (typeof columnId !== 'undefined') {
         if (!(newRow.cols.length > columnId)) {
           newRow.cols = Array.from(new Array<Col>(columnId + 1)).map(
             (_value: any, i: number) => {
               if (newRow.cols[i]) return newRow.cols[i];
-              return { widthFactor: 0 };
+              return { width: 0 };
             }
           );
         }

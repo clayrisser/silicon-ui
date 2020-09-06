@@ -2,7 +2,7 @@ import React, { FC, useState, useRef, useCallback } from 'react';
 import reduceCssCalc from 'reduce-css-calc';
 import styled, { StyledComponent } from '@emotion/styled';
 import { Box } from '@silicon-ui/atoms';
-import { GestureResponderEvent, Platform, NativeMethods } from 'react-native';
+import { GestureResponderEvent, NativeMethods } from 'react-native';
 import {
   background,
   border,
@@ -52,39 +52,14 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   const [tableCol] = useTableCol();
   const setCol = useSetCol();
   const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
-  let [initialWidth, setInitialWidth] = useState(0);
   let [initialX, setInitialX] = useState(0);
   let [modifiedX, setModifiedX] = useState(0);
   let [relativeX, setRelativeX] = useState(0);
   const { customTableCellProps, styledTableCellProps } = splitProps(props);
 
-  const getWidth = useCallback(async () => {
-    const [width] = await new Promise<Position>((resolve) => {
-      if (Platform.OS !== 'web') {
-        const nativeNode: NativeMethods = tableCellRef.current as NativeMethods;
-        nativeNode.measure(
-          (_width: number, _height: number, fx: number, fy: number) => {
-            resolve([fx, fy]);
-          }
-        );
-      } else {
-        const webNode = tableCellRef.current as HTMLDivElement;
-        resolve([webNode.offsetWidth, webNode.offsetHeight]);
-      }
-    });
-    return width;
-  }, [tableCellRef.current]);
-
   const normalizeWidth = useCallback((width?: number | string) => {
     if (!width) return '0px';
-    if (width && width.toString().indexOf('%') > -1) {
-      if (Platform.OS === 'web') {
-        return width.toString();
-      }
-      if (initialWidth) {
-        return `${initialWidth.toString()}px`;
-      }
-    }
+    if (width && width.toString().indexOf('%') > -1) return width.toString();
     if (
       width.toString().indexOf('%') > -1 ||
       width.toString().indexOf('px') > -1
@@ -97,7 +72,6 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   async function handleRightDrag(
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
-    if (Platform.OS !== 'web') e.persist();
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
@@ -105,7 +79,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     relativeX = modifiedX - x;
     setRelativeX(relativeX);
     setCol({
-      widthFactor: cssCalc(normalizeWidth(props.width?.toString()), relativeX)
+      width: cssCalc(normalizeWidth(props.width?.toString()), relativeX)
     });
   }
 
@@ -113,12 +87,6 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
     e.persist();
-    if (!initialWidth && Platform.OS !== 'web') {
-      initialWidth = await getWidth();
-      if (initialWidth) {
-        setInitialWidth(initialWidth);
-      }
-    }
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
@@ -127,9 +95,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   }
 
   function handleRightPressOut(
-    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
+    _e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
-    if (Platform.OS !== 'web') e.persist();
     modifiedX = relativeX;
     setModifiedX(modifiedX);
     initialX = 0;
@@ -137,10 +104,6 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   }
 
   function cssCalc(left: string, right: number): string | number {
-    if (left.toString().indexOf('%') > -1 && Platform.OS !== 'web') {
-      if (right === 0) return left;
-      return initialWidth - right;
-    }
     const reducedWidth = reduceCssCalc(`calc(${left}-${right}px)`);
     if (reducedWidth.toString().indexOf('%') > -1) {
       return reducedWidth;
@@ -152,8 +115,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   }
 
   const width =
-    tableCol?.widthFactor ||
-    rowCol?.widthFactor ||
+    tableCol?.width ||
+    rowCol?.width ||
     cssCalc(normalizeWidth(props.width?.toString()), relativeX);
 
   return (
@@ -188,6 +151,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
         />
         <Box
           height="100%"
+          backgroundColor="blue"
           onPull={handleRightDrag}
           onPressIn={handleRightPressIn}
           onPressOut={handleRightPressOut}

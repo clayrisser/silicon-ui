@@ -17,7 +17,7 @@ export default function useTableCol(): [Col | null, (col: Col) => any] {
           newTable.cols = Array.from(new Array<Col>(columnId + 1)).map(
             (_value: any, i: number) => {
               if (newTable.cols[i]) return newTable.cols[i];
-              return { widthFactor: 0 };
+              return { width: 0 };
             }
           );
         }

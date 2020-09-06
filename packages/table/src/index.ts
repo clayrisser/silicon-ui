@@ -1,14 +1,12 @@
 import Table, { TableProps } from './Table';
-import TableData from './TableData';
-import TableHead, { ThProps } from './TableHead';
+import TableCell, { TableCellProps } from './TableCell';
 import TableRow, { TableRowProps } from './TableRow';
 
 export {
   Table,
+  TableCell,
+  TableCellProps,
   TableProps,
-  TableData,
   TableRow,
-  TableRowProps,
-  TableHead,
-  ThProps
+  TableRowProps
 };

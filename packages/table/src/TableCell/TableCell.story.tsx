@@ -14,40 +14,7 @@ storiesOf('TableCell', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <TableCell
-        borderColor={text('borderColor', 'primary')}
-        height={400}
-        width="100%"
-        minWidth={200}
-        borderStyle={select(
-          'borderStyle',
-          {
-            dashed: 'dashed',
-            dotted: 'dotted',
-            double: 'double',
-            groove: 'groove',
-            hidden: 'hidden',
-            inset: 'inset',
-            none: 'none',
-            outset: 'outset',
-            ridge: 'ridge',
-            solid: 'solid'
-          },
-          'solid'
-        )}
-        borderWidth={number('borderWidth', 0)}
-        autoContrast={select<'A' | 'AA' | 'AAA'>(
-          'autoContrast',
-          {
-            false: '' as 'A',
-            A: 'A',
-            AA: 'AA',
-            AAA: 'AAA'
-          },
-          // @ts-ignore
-          false
-        )}
-      >
+      <TableCell height={400} backgroundColor="red" width={400} minWidth={200}>
         {text('children', 'data')}
       </TableCell>
     </Wrapper>

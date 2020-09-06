@@ -14,7 +14,7 @@ export const Wrapper: FC<WrapperProps> = (props: WrapperProps) => {
   if (document?.body) {
     document.body.style.backgroundColor = theme.colors?.background;
   }
-  return <Box height="100%">{props.children}</Box>;
+  return <>{props.children}</>;
 };
 
 export default Wrapper;

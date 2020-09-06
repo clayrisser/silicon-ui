@@ -1,7 +1,7 @@
 {
   "name": "@silicon-ui/table",
-  "main": "expo/index.js",
-  "version": "0.0.11",
+  "main": "lib/index.js",
+  "version": "0.0.13",
   "description": "atomic building blocks for silicon ui",
   "homepage": "https://github.com/codejamninja/silicon-ui",
   "license": "Apache-2.0",

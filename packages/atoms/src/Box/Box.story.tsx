@@ -1,22 +1,24 @@
 import React, { FC } from 'react';
 import { action } from '@storybook/addon-actions';
 import { invert } from '@theme-ui/color';
-import { useThemeUI, css } from 'theme-ui';
+import { useThemeUI } from 'theme-ui';
 import { withKnobs, text, number, color } from '@storybook/addon-knobs';
 import Box from './Box';
 import Wrapper from '../../storybook/Wrapper';
 import docs from './docs';
 import storiesOf from '../../storybook/storiesOf';
+import useThemeLookup from '../hooks/useThemeLookup';
 import withThemeProvider from '../../storybook/withThemeProvider';
 
 export const BoxStory: FC = () => {
+  const themeLookup = useThemeLookup();
   const { theme } = useThemeUI();
   const backgroundColor = 'primary';
   let textColor = theme.colors?.text || ('text' as string);
   try {
-    textColor = invert(
-      (css({ backgroundColor })(theme) as any).backgroundColor
-    )(theme);
+    textColor = invert(themeLookup<string>('backgroundColor', backgroundColor))(
+      theme
+    );
   } catch (err) {}
   return (
     <Wrapper>

@@ -1,12 +1,9 @@
-import React, { useState, forwardRef, Ref, useRef } from 'react';
+import React, { forwardRef, Ref, useRef, useEffect } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
 import { styled, View as DripsyView } from 'native-theme-ui';
 import {
   Animated,
-  GestureResponderEvent,
   NativeMethods,
-  PanResponder,
-  PanResponderGestureState,
   Text as NativeText,
   TouchableOpacity,
   ViewProps
@@ -23,6 +20,8 @@ import {
   space,
   typography
 } from 'styled-system';
+import useOnPull from './useOnPull';
+import useThemeLookup from '../hooks/useThemeLookup';
 import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
 
 export const StyledView = styled<StyledBoxProps, ViewProps>(DripsyView, {
@@ -46,93 +45,35 @@ export type Position = [number, number];
 const Box = forwardRef<NativeMethods, BoxProps>(
   (props: BoxProps, forwardedRef: Ref<NativeMethods>) => {
     const boxRef = useRef<NativeMethods>(null);
+    const themeLookup = useThemeLookup();
+    const { panHandlers } = useOnPull({
+      boxRef,
+      onPress: props.onPress,
+      onPressIn: props.onPressIn,
+      onPressOut: props.onPressOut,
+      onPull: props.onPull,
+      releasePressOnExit: props.releasePressOnExit
+    });
     const mergedRef = useMergedRef<any>(forwardedRef, boxRef);
-    let [pressed, setPressed] = useState(false);
-    let [initialPosition, setInitialPosition] = useState<Position>([0, 0]);
     const {
       customBoxProps,
       nativeBoxProps,
       nativeTouchableOpacityProps,
       styledBoxProps,
       touchableOpacityProps
-    } = splitProps(props);
+    } = splitProps({
+      ...props,
+      backgroundColor: themeLookup<string>(
+        'backgroundColor',
+        props.backgroundColor
+      )
+    });
 
-    async function exitedBox(
-      e: GestureResponderEvent,
-      gestureState: PanResponderGestureState
-    ) {
-      const { locationX, locationY } = e.nativeEvent;
-      const { dx, dy } = gestureState;
-      const [initialX, initialY] = initialPosition;
-      const [x, y] = [
-        ...(Math.abs(dx) > initialX && dx < 0 ? [-locationX] : [locationX]),
-        ...(Math.abs(dy) > initialY && dy < 0 ? [-locationY] : [locationY])
-      ];
-      const [width, height] = await new Promise<Position>((resolve) => {
-        boxRef?.current?.measure(
-          (_width: number, _height: number, fx: number, fy: number) => {
-            resolve([fx, fy]);
-          }
-        );
-      });
-      return x < 0 || y < 0 || x > width || y > height;
-    }
-
-    const panResponder = nativeBoxProps.onPull
-      ? useRef(
-          PanResponder.create({
-            // onPullShouldSetPanResponder: () => {
-            //   return pressed;
-            // },
-            onStartShouldSetPanResponder: () => {
-              return pressed;
-            },
-            onPanResponderMove: async (
-              e: GestureResponderEvent,
-              gestureState: PanResponderGestureState
-            ) => {
-              if (!pressed) return;
-              e.persist();
-              if (
-                customBoxProps.releasePressOnExit &&
-                (await exitedBox(e, gestureState))
-              ) {
-                pressed = false;
-                setPressed(false);
-                if (props.onPressOut) props.onPressOut(e, gestureState);
-                if (props.onPress) props.onPress(e, gestureState);
-              } else if (nativeBoxProps.onPull) {
-                nativeBoxProps.onPull(e, gestureState);
-              }
-            },
-            onPanResponderGrant: (
-              e: GestureResponderEvent,
-              gestureState: PanResponderGestureState
-            ) => {
-              const { locationX, locationY } = e.nativeEvent;
-              initialPosition = [locationX, locationY];
-              setInitialPosition([locationX, locationY]);
-              pressed = true;
-              setPressed(true);
-              if (props.onPressIn) props.onPressIn(e, gestureState);
-            },
-            onPanResponderRelease: (
-              e: GestureResponderEvent,
-              gestureState: PanResponderGestureState
-            ) => {
-              initialPosition = [0, 0];
-              setInitialPosition([0, 0]);
-              if (pressed) {
-                if (props.onPressOut) props.onPressOut(e, gestureState);
-                if (props.onPress) props.onPress(e, gestureState);
-              }
-              pressed = false;
-              setPressed(false);
-            }
-          })
-        )
-      : { current: { panHandlers: {} } };
-    const { panHandlers } = panResponder.current;
+    useEffect(() => {
+      if (props.onPull && !props.backgroundColor) {
+        console.warn('backgroundColor prop required for onPull to work');
+      }
+    }, []);
 
     const children =
       typeof customBoxProps.children === 'string' ? (
