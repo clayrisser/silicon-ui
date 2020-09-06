@@ -5,6 +5,7 @@ import { useThemeUI, css } from 'theme-ui';
 import { withKnobs, text, number, color } from '@storybook/addon-knobs';
 import Box from './Box';
 import Wrapper from '../../storybook/Wrapper';
+import docs from './docs';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
 
@@ -68,7 +69,7 @@ storiesOf('Box', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
-    // docs: { page: docs },
+    docs: { page: docs }
     // jest: ['Button.test.tsx']
   })
   .add('with knobs', () => <BoxStory />);

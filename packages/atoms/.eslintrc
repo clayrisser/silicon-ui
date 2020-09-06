@@ -22,6 +22,7 @@
     "import/prefer-default-export": "off",
     "max-classes-per-file": "off",
     "no-await-in-loop": "off",
+    "no-empty": ["warn", { "allowEmptyCatch": true }],
     "no-empty-function": "off",
     "no-extra-boolean-cast": "off",
     "no-param-reassign": "off",
