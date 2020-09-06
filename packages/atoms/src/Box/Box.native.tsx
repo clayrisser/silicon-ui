@@ -25,7 +25,7 @@ import {
 } from 'styled-system';
 import { BoxProps, StyledBoxProps, splitProps } from './boxProps';
 
-const StyledView = styled<StyledBoxProps, ViewProps>(DripsyView, {
+export const StyledView = styled<StyledBoxProps, ViewProps>(DripsyView, {
   isThemed: true
 })(
   compose(
