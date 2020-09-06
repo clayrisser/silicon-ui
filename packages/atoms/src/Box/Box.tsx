@@ -140,19 +140,15 @@ function bakeEvent(e: any): React.MouseEvent<HTMLDivElement, MouseEvent> {
 }
 
 Box.defaultProps = {
-  activeOpacity: 1,
-  backgroundColor: 'transparent',
-  children: <></>,
-  color: 'red',
+  color: 'text',
   fontFamily: 'body',
-  fontSize: 'body',
-  fontWeight: 'body',
-  height: '100%',
-  lineHeight: 'body'
+  fontSize: 1,
+  fontWeight: 'body'
 };
 
 export default styled(Box)`
   :active {
-    opacity: ${({ activeOpacity }: BoxProps) => activeOpacity};
+    opacity: ${({ activeOpacity }: BoxProps) =>
+      typeof activeOpacity === 'undefined' ? 1 : activeOpacity};
   }
 `;

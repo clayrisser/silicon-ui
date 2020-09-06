@@ -191,13 +191,10 @@ const Box = forwardRef<NativeMethods, BoxProps>(
 );
 
 Box.defaultProps = {
-  autoContrast: false,
-  backgroundColor: 'transparent',
-  children: <></>,
-  fontSize: 'body',
-  height: '100%',
-  lineHeight: 'body',
-  width: '100%'
+  color: 'text',
+  fontFamily: 'body',
+  fontSize: 1,
+  fontWeight: 'body'
 };
 
 export default Box;

@@ -45,7 +45,7 @@
     "core-js": "^3.6.5",
     "native-theme-ui": "^0.4.7",
     "styled-system": "^5.1.5",
-    "theme-ui": "^0.3.1"
+    "theme-ui": "0.4.0-rc.5"
   },
   "peerDependencies": {
     "expo": "~38.0.8",
@@ -81,7 +81,8 @@
     "@storybook/react-native": "^5.3.21",
     "@testing-library/react": "^11.0.2",
     "@testing-library/react-native": "^7.0.2",
-    "@theme-ui/presets": "^0.3.0",
+    "@theme-ui/color": "0.4.0-rc.5",
+    "@theme-ui/presets": "0.4.0-rc.5",
     "@types/jest": "^26.0.13",
     "@types/pkg-dir": "^2.0.1",
     "@types/react": "^16.9.49",

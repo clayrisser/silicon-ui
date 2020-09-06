@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { action } from '@storybook/addon-actions';
+import { invert } from '@theme-ui/color';
+import { useThemeUI, css } from 'theme-ui';
 import { withKnobs, text, number, select, color } from '@storybook/addon-knobs';
 import Box from './Box';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
 
-storiesOf('Box', module)
-  .addDecorator(withKnobs)
-  .addDecorator(withThemeProvider)
-  .addParameters({
-    // docs: { page: docs },
-    // jest: ['Button.test.tsx']
-  })
-  .add('with knobs', () => (
+export const BoxStory: FC = () => {
+  const { theme } = useThemeUI();
+  const backgroundColor = 'primary';
+  let textColor = theme.colors?.text || ('text' as string);
+  try {
+    textColor = invert(
+      (css({ backgroundColor })(theme) as any).backgroundColor
+    )(theme);
+  } catch (err) {}
+  return (
     <Wrapper>
       <Box
-        backgroundColor={color('backgroundColor', 'primary')}
+        backgroundColor={color('backgroundColor', backgroundColor)}
         borderBottomColor={color('border-bottom-color', '')}
         borderBottomLeftRadius={number('border-left-radius', 0)}
         borderBottomRightRadius={number('border-right-radius', 0)}
@@ -33,6 +37,7 @@ storiesOf('Box', module)
         borderTopRightRadius={number('borderTop-RightRadius', 0)}
         borderTopWidth={number('border-top-width', 0)}
         borderWidth={number('border-width', 0)}
+        color={color('color', textColor)}
         height={number('height', 200)}
         marginBottom={number('margin-bottom', 0)}
         marginLeft={number('margin-left', 2)}
@@ -40,10 +45,10 @@ storiesOf('Box', module)
         marginTop={number('margin-top', 2)}
         maxHeight={number('max-height', 400)}
         minHeight={number('min-height', 100)}
-        onPull={action('onPull')}
         onPress={action('onPress')}
         onPressIn={action('onPressIn')}
         onPressOut={action('onPressOut')}
+        onPull={action('onPull')}
         opacity={number('opacity', 1)}
         padding={number('padding', 2)}
         paddingBottom={number('padding-bottom', 0)}
@@ -66,4 +71,14 @@ storiesOf('Box', module)
         {text('children', 'data')}
       </Box>
     </Wrapper>
-  ));
+  );
+};
+
+storiesOf('Box', module)
+  .addDecorator(withKnobs)
+  .addDecorator(withThemeProvider)
+  .addParameters({
+    // docs: { page: docs },
+    // jest: ['Button.test.tsx']
+  })
+  .add('with knobs', () => <BoxStory />);
