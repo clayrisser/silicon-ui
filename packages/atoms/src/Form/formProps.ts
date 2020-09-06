@@ -1,7 +1,7 @@
 import { LayoutProps, PositionProps, SpaceProps } from 'styled-system';
 import { NativeBase } from 'native-base';
 import { ReactNode, DetailedHTMLProps, FormHTMLAttributes } from 'react';
-import { Theme } from '../themes';
+import { Theme } from 'theme-ui';
 
 export type DetailedHTMLFormProps = DetailedHTMLProps<
   FormHTMLAttributes<HTMLFormElement>,

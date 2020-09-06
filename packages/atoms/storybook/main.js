@@ -79,7 +79,7 @@ module.exports = {
     config.resolve.alias.react = path.resolve(rootPath, 'node_modules/react');
     config.resolve.alias['react-native'] = path.resolve(
       rootPath,
-      'react-native-web'
+      'node_modules/react-native-web'
     );
     config.resolve.alias['react-dom'] = path.resolve(
       rootPath,

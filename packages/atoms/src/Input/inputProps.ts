@@ -1,5 +1,6 @@
 import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 import { NativeBase } from 'native-base';
+import { Theme } from 'theme-ui';
 import {
   BackgroundProps,
   BorderProps,
@@ -10,7 +11,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLInputProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,

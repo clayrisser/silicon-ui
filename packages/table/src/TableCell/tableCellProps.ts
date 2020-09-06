@@ -1,4 +1,5 @@
 import { DetailedHTMLProps, TdHTMLAttributes, ReactNode } from 'react';
+import { Theme } from 'theme-ui';
 import {
   BackgroundProps,
   BorderProps,
@@ -9,7 +10,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLTdProps = DetailedHTMLProps<
   TdHTMLAttributes<HTMLTableDataCellElement>,

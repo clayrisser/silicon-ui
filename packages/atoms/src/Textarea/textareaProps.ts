@@ -1,6 +1,7 @@
 import { DetailedHTMLProps, TextareaHTMLAttributes, ReactNode } from 'react';
-import { ViewProps } from 'react-native';
 import { NativeBase } from 'native-base';
+import { Theme } from 'theme-ui';
+import { ViewProps } from 'react-native';
 import {
   BackgroundProps,
   BorderProps,
@@ -11,7 +12,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLTextareaProps = DetailedHTMLProps<
   TextareaHTMLAttributes<HTMLInputElement>,

@@ -1,31 +1,42 @@
 import React, { FC, useState, ReactNode } from 'react';
-import { Row as NativeTableRow } from 'react-native-table-component';
+import {
+  Row as NativeRow,
+  RowProps as NativeRowProps
+} from 'react-native-table-component';
+import { styled } from 'native-theme-ui';
 import {
   background,
   border,
   color,
+  compose,
   layout,
   position,
   shadow,
   space,
   typography
 } from 'styled-system';
-// import useColor from '../hooks/useColor';
-// import useItem from '../hooks/useItem';
 import ColumnContext from '../contexts/Column';
 import RowContext, { Row } from '../contexts/Row';
-import { createStyled } from '../styled';
 import {
+  StyledTableRowProps,
   TableRowProps,
   antiForwardTableRowPropsKeys,
   splitProps
 } from './tableRowProps';
 
-const StyledTableRow = createStyled<TableRowProps>(
-  // @ts-ignore
-  NativeTableRow,
-  [background, border, color, layout, position, shadow, space, typography],
-  antiForwardTableRowPropsKeys
+const StyledTableRow = styled<StyledTableRowProps, NativeRowProps>(NativeRow, {
+  forwardPropsBlacklist: antiForwardTableRowPropsKeys
+})(
+  compose(
+    background,
+    border,
+    color,
+    layout,
+    position,
+    shadow,
+    space,
+    typography
+  )
 );
 
 const TableRow: FC<TableRowProps> = (props: TableRowProps) => {

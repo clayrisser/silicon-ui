@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, TableHTMLAttributes, ReactNode } from 'react';
-import { Table } from 'react-native-table-component';
-// import { NativeBase } from 'native-base';
+import { TableProps as NativeTableComponentProps } from 'react-native-table-component';
+import { Theme } from 'theme-ui';
 import {
   BackgroundProps,
   BorderProps,
@@ -11,7 +11,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLTableProps = DetailedHTMLProps<
   TableHTMLAttributes<HTMLTableElement>,
@@ -28,9 +27,9 @@ export interface StyledTableProps
     SpaceProps,
     TypographyProps {}
 
-export interface NativeTableProps extends Table {}
+export interface NativeTableProps extends NativeTableComponentProps {}
 
-export interface NativeItemProps extends Omit<Table, 'style'> {}
+export interface NativeItemProps {}
 
 export interface CustomTableProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';

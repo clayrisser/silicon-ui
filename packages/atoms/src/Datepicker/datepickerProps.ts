@@ -1,4 +1,5 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { Theme } from 'theme-ui';
 import { TouchableOpacityProps, ViewProps } from 'react-native';
 import {
   BackgroundProps,
@@ -10,7 +11,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLDatepickerProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,

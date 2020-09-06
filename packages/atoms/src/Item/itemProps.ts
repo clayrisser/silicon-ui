@@ -1,5 +1,6 @@
 import { NativeBase } from 'native-base';
 import { ReactNode, DetailedHTMLProps, HTMLAttributes } from 'react';
+import { Theme } from 'theme-ui';
 import {
   BackgroundColorProps,
   BackgroundProps,
@@ -10,7 +11,6 @@ import {
   ShadowProps,
   SpaceProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLDivProps = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,

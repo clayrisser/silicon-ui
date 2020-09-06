@@ -2,7 +2,6 @@ import React, { FC, useState, useRef, useCallback } from 'react';
 import reduceCssCalc from 'reduce-css-calc';
 import { Box } from '@silicon-ui/atoms';
 import { GestureResponderEvent, Platform, NativeMethods } from 'react-native';
-import useColor from '../hooks/useColor';
 import { TableCellProps, splitProps } from './tableCellProps';
 
 export type Position = [number, number];
@@ -10,16 +9,12 @@ export type Position = [number, number];
 const width = 20;
 
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
-  const color = useColor(props);
   const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
   let [initialWidth, setInitialWidth] = useState(0);
   let [initialX, setInitialX] = useState(0);
   let [modifiedX, setModifiedX] = useState(0);
   let [relativeX, setRelativeX] = useState(0);
-  const { customTableCellProps, styledTableCellProps } = splitProps({
-    ...props,
-    color
-  });
+  const { customTableCellProps, styledTableCellProps } = splitProps(props);
 
   const getWidth = useCallback(async () => {
     const [width] = await new Promise<Position>((resolve) => {
@@ -113,7 +108,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
 
   return (
     <Box
-      {...customTableCellProps}
+      {...(customTableCellProps as any)}
       {...styledTableCellProps}
       width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
       ref={tableCellRef}

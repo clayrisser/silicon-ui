@@ -1,4 +1,5 @@
 import { ReactNode, SelectHTMLAttributes, DetailedHTMLProps } from 'react';
+import { Theme } from 'theme-ui';
 import { TouchableOpacityProps, ViewProps } from 'react-native';
 import {
   BackgroundProps,
@@ -10,7 +11,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLDropdownSelectProps = DetailedHTMLProps<
   SelectHTMLAttributes<HTMLSelectElement>,

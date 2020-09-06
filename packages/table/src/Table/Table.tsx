@@ -12,7 +12,6 @@ import {
   typography
 } from 'styled-system';
 import TableContext, { TableMeta } from '../contexts/Table';
-import useColor from '../hooks/useColor';
 import { TableProps, DetailedHTMLTableProps, splitProps } from './tableProps';
 
 const HTMLTable: StyledComponent<
@@ -34,11 +33,9 @@ const HTMLTable: StyledComponent<
 
 const Table: FC<TableProps> = (props: TableProps) => {
   const [table, setTable] = useState<TableMeta | null>(null);
-  const color = useColor(props);
-  const { customTableProps, styledTableProps, nativeItemProps } = splitProps({
-    ...props,
-    color
-  });
+  const { customTableProps, styledTableProps, nativeItemProps } = splitProps(
+    props
+  );
 
   function renderRows() {
     let { children } = customTableProps;

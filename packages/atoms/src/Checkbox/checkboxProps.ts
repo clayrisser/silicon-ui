@@ -1,5 +1,6 @@
 import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 import { NativeBase } from 'native-base';
+import { Theme } from 'theme-ui';
 import {
   BorderProps,
   LayoutProps,
@@ -8,7 +9,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLCheckBoxProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,

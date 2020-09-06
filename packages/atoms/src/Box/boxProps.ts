@@ -1,4 +1,5 @@
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import { Theme } from 'theme-ui';
 import {
   GestureResponderEvent,
   PanResponderGestureState,
@@ -16,7 +17,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLDivProps = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,

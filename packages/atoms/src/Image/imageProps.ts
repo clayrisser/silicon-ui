@@ -1,4 +1,5 @@
 import { ReactNode, DetailedHTMLProps, ImgHTMLAttributes } from 'react';
+import { Theme } from 'theme-ui';
 import {
   ImageBackgroundProps as ReactNativeImageProps,
   TouchableOpacityProps as ReactNativeTouchableOpacityProps
@@ -13,7 +14,6 @@ import {
   SpaceProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLImageProps = DetailedHTMLProps<
   ImgHTMLAttributes<HTMLImageElement>,

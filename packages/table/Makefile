@@ -8,6 +8,8 @@ JEST := node_modules/.bin/jest
 LOCKFILE_LINT := node_modules/.bin/lockfile-lint
 MAJESTIC := node_modules/.bin/majestic
 PRETTIER := node_modules/.bin/prettier
+RNSTL := node_modules/.bin/rnstl
+STORYBOOK := node node_modules/@storybook/react/bin
 TSC := node_modules/.bin/tsc
 COLLECT_COVERAGE_FROM := ["src/**/*.{js,jsx,ts,tsx}"]
 
@@ -27,7 +29,7 @@ TSCONFIG := --allowJs \
     --sourceMap \
     --strict \
     --target esnext \
-    src/*/**.d.ts
+    src/**/*.d.ts
 
 BUILD_DEPS := $(patsubst src/%.ts,lib/%.d.ts,$(shell find src -name '*.ts' -not -name '*.d.ts')) \
 	$(patsubst src/%.tsx,lib/%.d.ts,$(shell find src -name '*.tsx'))
@@ -115,7 +117,7 @@ test: _test ~test
 _test:
 	-@rm -rf $(DONE)/_test $(NOFAIL)
 $(DONE)/test:
-	@$(JEST) --json --outputFile=node_modules/.tmp/jestTestResults.json --coverage \
+	-@$(JEST) --json --outputFile=node_modules/.tmp/jestTestResults.json --coverage \
 		--coverageDirectory=node_modules/.tmp/coverage --testResultsProcessor=jest-sonar-reporter \
 		--collectCoverageFrom='$(COLLECT_COVERAGE_FROM)' $(shell $(DEPSLIST) --reverse $$($(call get_deps,test)) | \
 		grep -E $(TEST_REGEXP))
@@ -135,7 +137,7 @@ _build:
 $(DONE)/build:
 	-@rm -r node_modules/.tmp/lib $(NOFAIL)
 	@$(BABEL) $(shell $(call get_deps,build)) -d .tmp/lib --relative --extensions '.ts,.tsx' --source-maps
-	-@$(TSC) $(TSCONFIG) --emitDeclarationOnly -d $(shell $(call get_deps,build))
+	@$(TSC) $(TSCONFIG) --emitDeclarationOnly -d $(shell $(call get_deps,build))
 	@([ ! -z "$(shell find -path "*/.tmp/lib" -not -path "./node_modules/*")" ] && \
 		$(MAKE) $(shell find -path "*/.tmp/lib" -not -path "./node_modules/*")) || true
 	@cp -r node_modules/.tmp/lib/src/. lib $(NOFAIL)
@@ -171,17 +173,21 @@ test-watch: ~lint
 start: web
 
 .PHONY: web +web
-web: ~format
+web: ~test
 	@$(MAKE) -s +web
 +web:
-	@node ./node_modules/@storybook/react/bin --ci -c storybook -p 3000 -s public
+	@rm -rf node_modules/.tmp/action && mkdir -p node_modules/.tmp/action
+	@touch node_modules/.tmp/action/web
+	@$(STORYBOOK) --ci -c storybook -p 3000 -s public
 
 .PHONY: expo +expo
-expo: ~format
+expo: ~test
 	@$(MAKE) -s +expo
 +expo:
-	-@$(RM) -rf .expo* $(NOFAIL)
-	@rnstl --pattern **/*.story.tsx
+	@rm -rf node_modules/.tmp/action && mkdir -p node_modules/.tmp/action
+	@touch node_modules/.tmp/action/expo
+	-@rm -rf .expo* $(NOFAIL)
+	@$(RNSTL) --pattern **/*.story.tsx
 	@expo start -c
 
 .PHONY: clean

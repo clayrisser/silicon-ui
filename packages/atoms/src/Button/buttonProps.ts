@@ -1,4 +1,5 @@
 import { DetailedHTMLProps, ButtonHTMLAttributes, ReactNode } from 'react';
+import { Theme } from 'theme-ui';
 import {
   BackgroundColorProps,
   BackgroundProps,
@@ -12,7 +13,6 @@ import {
   TypographyProps
 } from 'styled-system';
 import { NativeBase } from 'native-base';
-import { Theme } from '../themes';
 
 export type DetailedHTMLButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,

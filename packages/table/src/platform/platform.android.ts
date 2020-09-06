@@ -1,3 +1,3 @@
-import { ANDROID } from './platforms';
+import { Platform } from '.';
 
-export default ANDROID;
+export default Platform.Android;

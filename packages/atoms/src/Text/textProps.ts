@@ -1,4 +1,5 @@
 import { HTMLAttributes, DetailedHTMLProps } from 'react';
+import { Theme } from 'theme-ui';
 import {
   TouchableOpacityProps,
   TextProps as ReactNativeTextProps
@@ -12,7 +13,6 @@ import {
   TextColorProps,
   TypographyProps
 } from 'styled-system';
-import { Theme } from '../themes';
 
 export type DetailedHTMLDivProps = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
