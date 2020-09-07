@@ -3,9 +3,10 @@ import useRow from './useRow';
 import { Col } from '../types';
 import { Row } from '../contexts/Row';
 
-export default function useRowCol(): [Col | null, (col: Col) => any] {
+export default function useRowCol(offset = 0): [Col | null, (col: Col) => any] {
   const [row, setRow] = useRow();
-  const columnId = useColId();
+  let columnId = useColId();
+  if (typeof columnId !== 'undefined') columnId = columnId + offset;
   const rowCol =
     typeof columnId !== 'undefined' ? row?.cols[columnId] || null : null;
 
@@ -20,7 +21,7 @@ export default function useRowCol(): [Col | null, (col: Col) => any] {
           newRow.cols = Array.from(new Array<Col>(columnId + 1)).map(
             (_value: any, i: number) => {
               if (newRow.cols[i]) return newRow.cols[i];
-              return { width: 0 };
+              return { width: 0, id: columnId || 0 };
             }
           );
         }

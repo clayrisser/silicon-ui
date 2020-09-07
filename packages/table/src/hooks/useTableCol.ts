@@ -3,9 +3,12 @@ import useTable from './useTable';
 import { Col } from '../types';
 import { TableMeta } from '../contexts/Table';
 
-export default function useTableCol(): [Col | null, (col: Col) => any] {
+export default function useTableCol(
+  offset = 0
+): [Col | null, (col: Col) => any] {
   const [table, setTable] = useTable();
-  const columnId = useColId();
+  let columnId = useColId();
+  if (typeof columnId !== 'undefined') columnId = columnId + offset;
   const tableCol =
     typeof columnId !== 'undefined' ? table?.cols[columnId] || null : null;
 
@@ -17,7 +20,7 @@ export default function useTableCol(): [Col | null, (col: Col) => any] {
           newTable.cols = Array.from(new Array<Col>(columnId + 1)).map(
             (_value: any, i: number) => {
               if (newTable.cols[i]) return newTable.cols[i];
-              return { width: 0 };
+              return { width: 0, id: columnId || 0 };
             }
           );
         }
