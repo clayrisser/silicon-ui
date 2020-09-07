@@ -20,7 +20,7 @@ storiesOf('RadioButton', module)
         checked={boolean('checked', false)}
         onPress={action('onPress')}
         disabled={boolean('disabled', false)}
-        name={text('name', ' name' )}
+        name={text('name', ' name')}
         label={text('label', 'icecream')}
       />
     </Wrapper>
