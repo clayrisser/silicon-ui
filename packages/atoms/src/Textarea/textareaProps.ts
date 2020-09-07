@@ -29,12 +29,12 @@ export interface StyledTextareaProps
     TypographyProps {}
 
 // export interface NativeTextareaProps extends NativeBase.Textarea {}
-export interface NativeTextareaProps extends ViewProps {
-  rowSpan?: number;
-  bordered?: boolean;
-  underline?: boolean;
-  onChangeText?: any;
-}
+// export interface NativeTextareaProps extends ViewProps {
+//   rowSpan?: number;
+//   bordered?: boolean;
+//   underline?: boolean;
+//   onChangeText?: any;
+// }
 
 export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {
   secureTextEntry?: boolean;
