@@ -1,27 +1,26 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
-import RadioButton from './RadioButton';
+import { withKnobs, text, boolean, number, date } from '@storybook/addon-knobs';
+import ProgressBar from './ProgressBar';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
+// import docs from './Input.docs.mdx';
 
-storiesOf('RadioButton', module)
+storiesOf('ProgressBar', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
     // docs: { page: docs },
-    // jest: ['RadioButton.spec.tsx']
+    // jest: ['Input.spec.tsx']
   })
   .add('with knobs', () => (
     <Wrapper>
-      <RadioButton
-        type="radio"
-        checked={boolean('checked', false)}
-        onPress={action('onPress')}
-        disabled={boolean('disabled', false)}
-        name={text('name', ' name')}
-        label={text('label', 'icecream')}
+      <ProgressBar
+        value={text('value', '40')}
+        max={text('max', '100')}
+        id={text('id', 'tracker')}
+        progress={number('progress', 30)}
       />
     </Wrapper>
   ));

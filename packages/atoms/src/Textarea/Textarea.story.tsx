@@ -7,12 +7,12 @@ import {
   number,
   color
 } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Textarea from './Textarea';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
 // import docs from './Input.docs.mdx';
-import { action } from '@storybook/addon-actions';
 
 storiesOf('Textarea', module)
   .addDecorator(withKnobs)

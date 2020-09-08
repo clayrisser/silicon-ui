@@ -2,12 +2,11 @@
 
 exports[`<Box /> renders correctly 1`] = `
 <div
-  className="css-pgcax9"
-  color="red"
+  className="css-gw9lkm"
+  color="text"
   fontFamily="body"
-  fontSize="body"
+  fontSize={1}
   fontWeight="body"
-  height="100%"
   onBlur={[Function]}
   onClick={[Function]}
   onMouseDown={[Function]}
@@ -20,7 +19,7 @@ exports[`<Box /> renders correctly 1`] = `
 
 exports[`<Box with props /> renders correctly with props 1`] = `
 <div
-  className="css-1jnu2ye"
+  className="css-1k6zb8a"
   color="black"
   fontFamily="body"
   fontSize={16}
