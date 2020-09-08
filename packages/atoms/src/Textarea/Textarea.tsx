@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -27,17 +27,28 @@ const HTMLTextarea: StyledComponent<any, TextareaProps, any> = styled.textarea(
 );
 
 const Textarea: FC<TextareaProps> = (props: TextareaProps) => {
+  const [input, setInput] = useState<string>('');
+
   const {
     customTextareaProps,
     styledTextareaProps,
     nativeItemProps
   } = splitProps(props);
 
+  function handleInput(e: any) {
+    if (props.onPress) {
+      props.onPress(e.target.value);
+      setInput(e.target.value);
+    }
+  }
+
   return (
     <HTMLTextarea
       {...styledTextareaProps}
       {...nativeItemProps}
       {...(customTextareaProps as any)}
+      value={input}
+      onChange={handleInput}
     />
   );
 };

@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, TextareaHTMLAttributes, ReactNode } from 'react';
 import { NativeBase } from 'native-base';
 import { Theme } from 'theme-ui';
-import { ViewProps } from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
 import {
   BackgroundProps,
   BorderProps,
@@ -28,13 +28,7 @@ export interface StyledTextareaProps
     SpaceProps,
     TypographyProps {}
 
-// export interface NativeTextareaProps extends NativeBase.Textarea {}
-export interface NativeTextareaProps extends ViewProps {
-  rowSpan?: number;
-  bordered?: boolean;
-  underline?: boolean;
-  onChangeText?: any;
-}
+export interface NativeTextareaProps extends NativeBase.Textarea {}
 
 export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {
   secureTextEntry?: boolean;
@@ -48,23 +42,17 @@ export interface CustomTextareaProps {
   minLength?: string;
   value?: string;
   children?: ReactNode;
-  // required?: boolean;
+  onPress?: any;
   placeholder?: string;
   rows?: string;
   cols?: string;
-  onChange?: any;
-}
-
-export interface NativeTextareaProps {
-  rowSpan?: number;
-  bordered?: boolean;
-  underline?: boolean;
 }
 
 export interface TextareaProps
   extends CustomTextareaProps,
     NativeTextareaProps,
     NativeItemProps,
+    TouchableOpacityProps,
     StyledTextareaProps {}
 
 export const customTextareaPropsKeys = new Set([
@@ -74,16 +62,27 @@ export const customTextareaPropsKeys = new Set([
   'placeholder',
   'secureTextEntry',
   'keyboardType',
-  'onFocus',
   'onChange',
   'minLength'
 ]);
 
+export const touchableOpacityPropsKeys = new Set([
+  'activeOpacity',
+  'delayLongPress',
+  'delayPressIn',
+  'delayPressOut',
+  'hitSlop',
+  'onBlur',
+  'onFocus',
+  'onPress',
+  'onLayout',
+  'onLongPress',
+  'pressRetentionOffset'
+]);
 export const nativeTextareaPropsKeys = new Set([
   'onChangeText',
   'rowSpan',
   'bordered',
-  'placeholder',
   'underline'
 ]);
 
@@ -96,6 +95,7 @@ export const nativeItemPropKeys = new Set([
   'inlineLabel',
   'last',
   'onPress',
+  'onFocus',
   'picker',
   'placeholder',
   'placeholderLabel',
@@ -112,6 +112,7 @@ export interface SplitProps {
   nativeTextareaProps: NativeTextareaProps;
   nativeItemProps: NativeItemProps;
   styledTextareaProps: StyledTextareaProps;
+  touchableOpacityProps: TouchableOpacityProps;
 }
 
 export function splitProps(props: TextareaProps): SplitProps {
@@ -119,11 +120,15 @@ export function splitProps(props: TextareaProps): SplitProps {
   const customTextareaProps: { [key: string]: any } = {};
   const nativeTextareaProps: { [key: string]: any } = {};
   const nativeItemProps: { [key: string]: any } = {};
+  const touchableOpacityProps: { [key: string]: any } = {};
+
   Object.entries({ ...props }).forEach(([key, prop]: [string, any]) => {
     if (customTextareaPropsKeys.has(key)) {
       customTextareaProps[key] = prop;
     } else if (nativeTextareaPropsKeys.has(key)) {
       nativeTextareaProps[key] = prop;
+    } else if (touchableOpacityPropsKeys.has(key)) {
+      touchableOpacityProps[key] = prop;
     } else if (nativeItemPropKeys.has(key)) {
       nativeItemProps[key] = prop;
     } else {
@@ -134,7 +139,8 @@ export function splitProps(props: TextareaProps): SplitProps {
     customTextareaProps,
     nativeTextareaProps,
     nativeItemProps,
-    styledTextareaProps
+    styledTextareaProps,
+    touchableOpacityProps
   };
 }
 

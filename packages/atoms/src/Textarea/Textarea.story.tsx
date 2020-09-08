@@ -12,7 +12,7 @@ import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
 // import docs from './Input.docs.mdx';
-// import { action } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 
 storiesOf('Textarea', module)
   .addDecorator(withKnobs)
@@ -24,10 +24,14 @@ storiesOf('Textarea', module)
   .add('with knobs', () => (
     <Wrapper>
       <Textarea
+        onPress={action('onPress')}
         disabled={boolean('disabled', false)}
-        placeholder={text('placeholder', 'Textarea')}
+        placeholder={text('placeholder', 'Type here')}
         rows={text('rows', '5')}
         cols={text('cols', '50')}
+        rowSpan={number('rowSpan', 5)}
+        bordered={boolean('bordered', true)}
+        underline={boolean('bordered', false)}
         backgroundColor={text('background-color', 'inverseText')}
         borderRadius={number('borderRadius', 0)}
         borderColor={color('borderColor', 'rgb(156, 152, 152)')}
