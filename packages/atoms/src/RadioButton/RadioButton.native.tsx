@@ -40,15 +40,23 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
       setChecked(customRadioButtonProps.checked);
   }, [customRadioButtonProps.checked]);
 
+  function handleChange(e: any) {
+    if (props.onPress) {
+      props.onPress(e);
+      setChecked(!checked);
+    }
+  }
+
   const styledNativeBaseRadioButton = (
     <StyledNativeBaseRadioButton
       {...customRadioButtonProps}
       {...styledRadioButtonProps}
+      onPress={handleChange}
       checked={checked}
     />
   );
   if (item.hasItemParent) return styledNativeBaseRadioButton;
-  return <NativeBaseItem>{StyledNativeBaseRadioButton}</NativeBaseItem>;
+  return <NativeBaseItem>{styledNativeBaseRadioButton}</NativeBaseItem>;
 };
 
 RadioButton.defaultProps = {
