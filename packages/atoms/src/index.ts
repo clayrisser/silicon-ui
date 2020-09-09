@@ -12,6 +12,7 @@ import RadioButton from './RadioButton';
 import Text from './Text';
 import Textarea from './Textarea';
 import ProgressBar from './ProgressBar';
+import Icon from './Icon';
 import ThemeProvider from './ThemeProvider';
 
 export {
@@ -29,6 +30,7 @@ export {
   Text,
   Textarea,
   ProgressBar,
+  Icon,
   ThemeProvider
 };
 
@@ -46,4 +48,5 @@ export * from './RadioButton';
 export * from './Text';
 export * from './Textarea';
 export * from './ProgressBar';
+export * from './Icon';
 export * from './ThemeProvider';
