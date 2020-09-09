@@ -35,7 +35,6 @@ export interface CustomIconProps {
   ios?: string;
   android?: string;
   active?: boolean;
-  color?: string;
   class?: string;
   type?: string;
 }

@@ -28,9 +28,17 @@ export interface StyledTextareaProps
     SpaceProps,
     TypographyProps {}
 
-export interface NativeTextareaProps extends NativeBase.Textarea {}
+export interface NativeTextareaProps
+  extends Omit<
+    NativeBase.Textarea,
+    'onBlur' | 'onFocus' | 'style' | 'disabled'
+  > {}
 
-export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {
+export interface NativeItemProps
+  extends Omit<
+    NativeBase.Item,
+    'style' | 'bordered' | 'underline' | 'onPress' | 'disabled'
+  > {
   secureTextEntry?: boolean;
   placeholder?: string;
 }
@@ -38,11 +46,9 @@ export interface NativeItemProps extends Omit<NativeBase.Item, 'style'> {
 export interface CustomTextareaProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   theme?: Theme;
-  disabled?: boolean;
   minLength?: string;
   value?: string;
   children?: ReactNode;
-  onPress?: any;
   placeholder?: string;
   rows?: string;
   cols?: string;
@@ -137,11 +143,11 @@ export function splitProps(props: TextareaProps): SplitProps {
   });
   return {
     customTextareaProps,
-    nativeTextareaProps,
     nativeItemProps,
+    nativeTextareaProps,
     styledTextareaProps,
     touchableOpacityProps
-  };
+  } as SplitProps;
 }
 
 export const antiForwardTextareaPropsKeys = new Set<string>([]);
