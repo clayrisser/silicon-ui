@@ -65,8 +65,9 @@ storiesOf('Table', module)
                 borderLeftWidth={1}
                 width="20%"
                 height={200}
+                style={{ whiteSpace: 'normal' }}
               >
-                Two
+                Two three four five
               </Cell>
               <Cell
                 borderTopWidth={1}
