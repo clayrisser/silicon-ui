@@ -36,7 +36,6 @@ const HTMLTd: StyledComponent<
     border,
     color,
     compose,
-    flexbox,
     layout,
     position,
     shadow,
@@ -51,10 +50,14 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   const setCol = useSetCol();
   const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
   const themeLookup = useThemeLookup();
+  // eslint-ignore-next-line prefer-const
   let [pulling, setPulling] = useState(false);
+  // eslint-ignore-next-line prefer-const
   let [rightInitialX, setRightInitialX] = useState(0);
-  let [rightModifiedX, setRightModifiedX] = useState(0);
+  // eslint-ignore-next-line prefer-const
   let [rightRelativeX, setRightRelativeX] = useState(0);
+  // eslint-ignore-next-line prefer-const
+  let [initialWidth, setInitialWidth] = useState<number | undefined>();
   const { customTableCellProps, styledTableCellProps } = splitProps(props);
 
   const normalizeWidth = useCallback((width?: number | string) => {
@@ -88,11 +91,10 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
-    const x = pageX - rightInitialX;
-    rightRelativeX = rightModifiedX - x;
+    const rightRelativeX = -(pageX - rightInitialX);
     setRightRelativeX(rightRelativeX);
     setCol({
-      width: cssCalc(normalizeWidth(props.width?.toString()), rightRelativeX)
+      width: cssCalc(normalizeWidth(initialWidth?.toString()), rightRelativeX)
     });
   }
 
@@ -101,6 +103,10 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   ) {
     pulling = true;
     setPulling(pulling);
+    if (typeof initialWidth === 'undefined') {
+      initialWidth = width as number;
+      setInitialWidth(initialWidth);
+    }
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
@@ -111,12 +117,12 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   function handleRightPressOut(
     _e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
-    pulling = false;
-    setPulling(pulling);
-    rightModifiedX = rightRelativeX;
-    setRightModifiedX(rightModifiedX);
+    initialWidth = undefined;
+    setInitialWidth(initialWidth);
     rightInitialX = 0;
     setRightInitialX(rightInitialX);
+    pulling = false;
+    setPulling(pulling);
   }
 
   function cssCalc(left?: string, right?: number): string | number | undefined {
@@ -132,7 +138,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   }
 
   function renderGrab() {
-    if (!resizable) return;
+    if (!resizable) return null;
     return (
       <Box
         height="100%"
@@ -142,7 +148,10 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
         position="relative"
         right={
           -(props.grabWidth! / 2) -
-          parseInt(themeLookup<string>('borderWidth', props.borderWidth) || '0')
+          parseInt(
+            themeLookup<string>('borderWidth', props.borderWidth) || '0',
+            10
+          )
         }
         width={props.grabWidth!}
         style={{
