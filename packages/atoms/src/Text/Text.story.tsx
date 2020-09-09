@@ -15,18 +15,17 @@ storiesOf('Text', module)
   .add('with knobs', () => (
     <Wrapper>
       <Text
-        color={color('color', '')}
-        fontWeight={text('fontWeight', 'bold')}
-        padding={number('padding', 1)}
+        color={color('color', 'red')}
+        // padding={number('padding', 1)}
         margin={number('margin', 1)}
         fontSize={number('fontSize', 2)}
         textAlign={text('textAlign', 'center')}
         opacity={number('opacity', 1)}
         letterSpacing={number('letterSpacing', 0)}
-        paddingTop={number('paddingTop', 2)}
+        paddingTop={number('paddingTop', 1)}
         paddingLeft={number('paddingLeft', 1)}
         paddingBottom={number('paddingBottom', 1)}
-        paddingRight={number('paddingRight', 2)}
+        // paddingRight={number('paddingRight', 2)}
         marginBottom={number('marginBottom', 0)}
         marginTop={number('marginTop', 0)}
         marginLeft={number('marginLeft', 0)}

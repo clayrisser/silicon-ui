@@ -24,7 +24,9 @@ export interface StyledRadioButtonProps
     SpaceProps,
     TypographyProps {}
 
-export interface NativeRadioButtonProps extends NativeBase.Radio {}
+export interface NativeRadioButtonProps extends NativeBase.Radio {
+  selected?: boolean;
+}
 
 export interface CustomRadioButtonProps {
   autoContrast?: boolean | 'A' | 'AA' | 'AAA';
@@ -33,7 +35,6 @@ export interface CustomRadioButtonProps {
   children?: ReactNode | string;
   checked?: boolean;
   name?: string;
-  label?: string;
 }
 
 export interface RadioButtonProps
@@ -53,10 +54,10 @@ export const customRadioButtonPropsKeys = new Set([
 ]);
 
 export const nativeRadioButtonPropsKeys = new Set([
+  'selected',
   'onPress',
   'onPressIn',
-  'onPressOut',
-  'onValueChange'
+  'onPressOut'
 ]);
 
 export interface SplitProps {

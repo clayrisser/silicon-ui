@@ -16,12 +16,11 @@ storiesOf('RadioButton', module)
   .add('with knobs', () => (
     <Wrapper>
       <RadioButton
-        type="radio"
-        checked={boolean('checked', false)}
+        // type="radio"
+        selected={boolean('checked', false)}
         onPress={action('onPress')}
-        disabled={boolean('disabled', false)}
-        name={text('name', ' name')}
-        label={text('label', 'icecream')}
+        // disabled={boolean('disabled', false)}
+        // name={text('name', ' name')}
       />
     </Wrapper>
   ));

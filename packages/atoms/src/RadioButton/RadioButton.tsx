@@ -11,6 +11,7 @@ import {
   space,
   typography
 } from 'styled-system';
+import { check } from 'prettier';
 import {
   RadioButtonProps,
   DetailedHTMLRadioButtonProps,
@@ -60,8 +61,9 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
       {...styledRadioButtonProps}
       {...nativeRadioButtonProps}
       {...(customRadioButtonProps as any)}
-      checked={checked}
+      checked={nativeRadioButtonProps.selected}
       value={checked}
+      selected={nativeRadioButtonProps.selected}
       onChange={handleChange}
     />
   );

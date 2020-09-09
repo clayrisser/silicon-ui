@@ -15,12 +15,15 @@ import {
   space,
   typography
 } from 'styled-system';
+import { TouchableOpacity } from 'react-native';
 import useItem from '../hooks/useItem';
 import {
   StyledRadioButtonProps,
   RadioButtonProps,
   antiForwardRadioButtonPropsKeys,
-  splitProps
+  splitProps,
+  NativeRadioButtonProps,
+  nativeRadioButtonPropsKeys
 } from './RadioButtonProps';
 
 const StyledNativeBaseRadioButton = styled<
@@ -34,7 +37,11 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
   const item = useItem();
   const [checked, setChecked] = useState<boolean>(false);
 
-  const { customRadioButtonProps, styledRadioButtonProps } = splitProps(props);
+  const {
+    customRadioButtonProps,
+    styledRadioButtonProps,
+    nativeRadioButtonProps
+  } = splitProps(props);
   useEffect(() => {
     if (customRadioButtonProps.checked !== undefined)
       setChecked(customRadioButtonProps.checked);
@@ -49,14 +56,15 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
 
   const styledNativeBaseRadioButton = (
     <StyledNativeBaseRadioButton
+      {...nativeRadioButtonProps}
       {...customRadioButtonProps}
       {...styledRadioButtonProps}
-      onPress={handleChange}
-      checked={checked}
+      selected={checked}
+      // onPress={handleChange}
     />
   );
   if (item.hasItemParent) return styledNativeBaseRadioButton;
-  return <NativeBaseItem>{styledNativeBaseRadioButton}</NativeBaseItem>;
+  return <TouchableOpacity>{styledNativeBaseRadioButton}</TouchableOpacity>;
 };
 
 RadioButton.defaultProps = {
