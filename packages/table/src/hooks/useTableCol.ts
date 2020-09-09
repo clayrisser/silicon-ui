@@ -8,7 +8,7 @@ export default function useTableCol(
 ): [Col | null, (col: Col) => any] {
   const [table, setTable] = useTable();
   let columnId = useColId();
-  if (typeof columnId !== 'undefined') columnId = columnId + offset;
+  if (typeof columnId !== 'undefined') columnId += offset;
   const tableCol =
     typeof columnId !== 'undefined' ? table?.cols[columnId] || null : null;
 

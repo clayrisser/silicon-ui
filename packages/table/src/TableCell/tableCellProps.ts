@@ -27,8 +27,9 @@ export interface StyledTableCellProps
     TypographyProps {}
 
 export interface CustomTableCellProps {
-  autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
+  grabWidth?: number;
+  resizable?: boolean;
   style?: any;
   theme?: Theme;
 }
@@ -43,8 +44,9 @@ export interface SplitProps {
 }
 
 export const customTableCellPropsKeys = new Set([
-  'autoContrast',
   'children',
+  'grabWidth',
+  'resizable',
   'theme'
 ]);
 

@@ -32,12 +32,8 @@ export interface NativeTableRowProps extends NativeTableComponentRowProps {}
 export interface NativeItemProps {}
 
 export interface CustomTableRowProps {
-  autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
   resizable?: boolean;
-  style?: object;
-  textStyle?: object;
-  thStyles?: object;
   theme?: Theme;
 }
 
@@ -48,7 +44,6 @@ export interface TableRowProps
     StyledTableRowProps {}
 
 export const customTableRowPropsKeys = new Set([
-  'autoContrast',
   'children',
   'resizable',
   'theme'

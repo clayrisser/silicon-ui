@@ -16,26 +16,26 @@ storiesOf('Table', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <Table>
-        <TableRow width={400}>
-          <TableCell width={400} height={300} backgroundColor="lightblue">
+      <Table width="100%">
+        <TableRow width="100%" resizable>
+          <TableCell width="50%" height={300} backgroundColor="lightblue">
             One
           </TableCell>
-          <TableCell width={400} height={300} backgroundColor="lightblue">
+          <TableCell width="30%" height={300} backgroundColor="lightblue">
             Two
           </TableCell>
-          <TableCell width={400} height={300} backgroundColor="lightblue">
+          <TableCell height={300} backgroundColor="lightblue">
             Three
           </TableCell>
         </TableRow>
-        <TableRow width={400}>
-          <TableCell width={400} height={300} backgroundColor="lightblue">
+        <TableRow width="100%" resizable>
+          <TableCell width="50%" height={300} backgroundColor="lightblue">
             Four
           </TableCell>
-          <TableCell width={400} height={300} backgroundColor="lightblue">
+          <TableCell width="30%" height={300} backgroundColor="lightblue">
             Five
           </TableCell>
-          <TableCell width={400} height={300} backgroundColor="lightblue">
+          <TableCell height={300} backgroundColor="lightblue">
             Six
           </TableCell>
         </TableRow>

@@ -50,7 +50,7 @@ const Table: FC<TableProps> = (props: TableProps) => {
       {...styledTableProps}
       {...nativeItemProps}
       {...(customTableProps as any)}
-      style={{ borderCollapse: 'collapse' }}
+      style={{ borderCollapse: 'collapse', tableLayout: 'fixed' }}
     >
       <TableContext.Provider value={[table, setTable]}>
         {renderRows()}

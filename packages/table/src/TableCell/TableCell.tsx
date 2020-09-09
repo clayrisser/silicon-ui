@@ -8,7 +8,6 @@ import {
   border,
   color,
   compose,
-  flexbox,
   layout,
   position,
   shadow,
@@ -16,7 +15,9 @@ import {
   typography
 } from 'styled-system';
 import useColWidth from '../hooks/useColWidth';
+import useResizable from '../hooks/useResizable';
 import useSetCol from '../hooks/useSetCol';
+import useThemeLookup from '../hooks/useThemeLookup';
 import {
   TableCellProps,
   splitProps,
@@ -24,8 +25,6 @@ import {
 } from './tableCellProps';
 
 export type Position = [number, number];
-
-const grabWidth = 20;
 
 const HTMLTd: StyledComponent<
   DetailedHTMLTdProps,
@@ -48,19 +47,18 @@ const HTMLTd: StyledComponent<
 
 const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   const colWidth = useColWidth();
-  const prevColWidth = useColWidth(-1);
+  const resizable = useResizable() || props.resizable;
   const setCol = useSetCol();
-  const setPrevCol = useSetCol(-1);
   const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
-  let [leftInitialX, setLeftInitialX] = useState(0);
-  let [leftModifiedX, setLeftModifiedX] = useState(0);
-  let [leftRelativeX, setLeftRelativeX] = useState(0);
+  const themeLookup = useThemeLookup();
+  let [pulling, setPulling] = useState(false);
   let [rightInitialX, setRightInitialX] = useState(0);
   let [rightModifiedX, setRightModifiedX] = useState(0);
   let [rightRelativeX, setRightRelativeX] = useState(0);
   const { customTableCellProps, styledTableCellProps } = splitProps(props);
 
   const normalizeWidth = useCallback((width?: number | string) => {
+    if (typeof width === 'undefined') return undefined;
     if (!width) return '0px';
     if (
       width &&
@@ -72,43 +70,17 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     return `${width.toString()}px`;
   }, []);
 
-  const width =
-    colWidth ||
-    cssCalc(normalizeWidth(props.width?.toString()), rightRelativeX);
-
-  async function handleLeftDrag(
-    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) {
-    const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
-    const gestureEvent = e as GestureResponderEvent;
-    const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
-    const x = pageX - leftInitialX;
-    leftRelativeX = leftModifiedX - x;
-    setLeftRelativeX(leftRelativeX);
-    setPrevCol({
-      width: cssCalc(normalizeWidth(prevColWidth), leftRelativeX)
-    });
-  }
-
-  async function handleLeftPressIn(
-    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) {
-    e.persist();
-    const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
-    const gestureEvent = e as GestureResponderEvent;
-    const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
-    leftInitialX = pageX;
-    setLeftInitialX(pageX);
-  }
-
-  function handleLeftPressOut(
-    _e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) {
-    leftModifiedX = leftRelativeX;
-    setLeftModifiedX(leftModifiedX);
-    leftInitialX = 0;
-    setLeftInitialX(leftInitialX);
-  }
+  const width = resizable
+    ? colWidth ||
+      cssCalc(
+        normalizeWidth(
+          typeof props.width === 'undefined'
+            ? undefined
+            : props.width?.toString()
+        ),
+        rightRelativeX
+      )
+    : props.width;
 
   async function handleRightDrag(
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -127,7 +99,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   async function handleRightPressIn(
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
-    e.persist();
+    pulling = true;
+    setPulling(pulling);
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
@@ -138,13 +111,16 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   function handleRightPressOut(
     _e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
+    pulling = false;
+    setPulling(pulling);
     rightModifiedX = rightRelativeX;
     setRightModifiedX(rightModifiedX);
     rightInitialX = 0;
     setRightInitialX(rightInitialX);
   }
 
-  function cssCalc(left: string, right: number): string | number {
+  function cssCalc(left?: string, right?: number): string | number | undefined {
+    if (typeof left === 'undefined') return undefined;
     const reducedWidth = reduceCssCalc(`calc(${left}-${right}px)`);
     if (reducedWidth.toString().indexOf('%') > -1) {
       return reducedWidth;
@@ -155,65 +131,55 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
     return reducedWidth;
   }
 
+  function renderGrab() {
+    if (!resizable) return;
+    return (
+      <Box
+        height="100%"
+        onPressIn={handleRightPressIn}
+        onPressOut={handleRightPressOut}
+        onPull={handleRightDrag}
+        position="relative"
+        right={
+          -(props.grabWidth! / 2) -
+          parseInt(themeLookup<string>('borderWidth', props.borderWidth) || '0')
+        }
+        width={props.grabWidth!}
+        style={{
+          // @ts-ignore
+          cursor: 'col-resize',
+          float: 'right'
+        }}
+      />
+    );
+  }
+
   return (
     <HTMLTd
       {...customTableCellProps}
       {...styledTableCellProps}
-      width={width}
+      style={{
+        ...(resizable
+          ? { whitespace: 'nowrap', ...(pulling ? { userSelect: 'none' } : {}) }
+          : {})
+      }}
+      width={width as number}
       // @ts-ignore
       ref={tableCellRef}
     >
-      <Box
-        display="flex"
-        flex={1}
-        flexDirection="row"
-        height={styledTableCellProps.height}
-        justifyContent="space-between"
-        maxWidth={props.maxWidth}
-        minWidth={props.minWidth}
-        position="absolute"
-        width={width}
-      >
-        <Box
-          backgroundColor="red"
-          height="100%"
-          onPressIn={handleLeftPressIn}
-          onPressOut={handleLeftPressOut}
-          onPull={handleLeftDrag}
-          width={grabWidth / 2}
-          style={{
-            // @ts-ignore
-            cursor: 'ew-resize'
-          }}
-        />
-        <Box
-          height="100%"
-          backgroundColor="pink"
-          onPull={handleRightDrag}
-          onPressIn={handleRightPressIn}
-          onPressOut={handleRightPressOut}
-          width={grabWidth / 2}
-          style={{
-            // @ts-ignore
-            cursor: 'ew-resize'
-          }}
-        />
-      </Box>
-      colWidth: {colWidth}
-      width: {width}
-      prevWidth: {prevColWidth}
+      {renderGrab()}
       {customTableCellProps.children}
     </HTMLTd>
   );
 };
 
 TableCell.defaultProps = {
-  autoContrast: false,
   borderStyle: 'solid',
-  borderWidth: 0,
   fontFamily: 'body',
   fontSize: 1,
-  fontWeight: 'body'
+  borderWidth: '1px',
+  fontWeight: 'body',
+  grabWidth: 20
 };
 
 export default TableCell;

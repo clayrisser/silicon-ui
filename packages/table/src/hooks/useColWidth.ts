@@ -1,5 +1,5 @@
-import useRowCol from '../hooks/useRowCol';
-import useTableCol from '../hooks/useTableCol';
+import useRowCol from './useRowCol';
+import useTableCol from './useTableCol';
 
 export default function useColWidth(offset = 0) {
   const [rowCol] = useRowCol(offset);

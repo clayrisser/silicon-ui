@@ -38,7 +38,10 @@ const HTMLTableRow: StyledComponent<
 
 const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
   const { customTableRowProps, styledTableRowProps } = splitProps({ ...props });
-  const [row, setRow] = useState<Row | null>(null);
+  const [row, setRow] = useState<Row | null>({
+    resizable: props.resizable,
+    cols: []
+  });
 
   function renderCells() {
     let { children } = customTableRowProps;
@@ -54,8 +57,12 @@ const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
 
   return (
     <HTMLTableRow
+      display="flex"
+      flexDirection="col"
+      overflow="hidden"
       {...((styledTableRowProps as unknown) as any)}
       verticalAlign="top"
+      style={{ whiteSpace: 'nowrap' }}
     >
       <RowContext.Provider value={[row, setRow]}>
         {renderCells()}
@@ -64,6 +71,8 @@ const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
   );
 };
 
-TableRow.defaultProps = {};
+TableRow.defaultProps = {
+  borderWidth: 0
+};
 
 export default TableRow;

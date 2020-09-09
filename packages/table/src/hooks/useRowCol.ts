@@ -6,7 +6,7 @@ import { Row } from '../contexts/Row';
 export default function useRowCol(offset = 0): [Col | null, (col: Col) => any] {
   const [row, setRow] = useRow();
   let columnId = useColId();
-  if (typeof columnId !== 'undefined') columnId = columnId + offset;
+  if (typeof columnId !== 'undefined') columnId += offset;
   const rowCol =
     typeof columnId !== 'undefined' ? row?.cols[columnId] || null : null;
 
