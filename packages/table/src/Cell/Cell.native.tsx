@@ -2,23 +2,27 @@ import React, { FC, useState, useRef, useCallback } from 'react';
 import reduceCssCalc from 'reduce-css-calc';
 import { Box } from '@silicon-ui/atoms';
 import { GestureResponderEvent, NativeMethods } from 'react-native';
-import { TableCellProps, splitProps } from './tableCellProps';
+import { CellProps, splitProps } from './cellProps';
 
 export type Position = [number, number];
 
 const width = 20;
 
-const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
-  const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
+const Cell: FC<CellProps> = (props: CellProps) => {
+  const cellRef = useRef<NativeMethods | HTMLDivElement>(null);
+  // eslint-ignore-next-line prefer-const
   let [initialWidth, setInitialWidth] = useState(0);
+  // eslint-ignore-next-line prefer-const
   let [initialX, setInitialX] = useState(0);
+  // eslint-ignore-next-line prefer-const
   let [modifiedX, setModifiedX] = useState(0);
+  // eslint-ignore-next-line prefer-const
   let [relativeX, setRelativeX] = useState(0);
-  const { customTableCellProps, styledTableCellProps } = splitProps(props);
+  const { customCellProps, styledCellProps } = splitProps(props);
 
   const getWidth = useCallback(async () => {
     const [width] = await new Promise<Position>((resolve) => {
-      const nativeNode: NativeMethods = tableCellRef.current as NativeMethods;
+      const nativeNode: NativeMethods = cellRef.current as NativeMethods;
       nativeNode.measure(
         (_width: number, _height: number, fx: number, fy: number) => {
           resolve([fx, fy]);
@@ -26,7 +30,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
       );
     });
     return width;
-  }, [tableCellRef.current]);
+  }, [cellRef.current]);
 
   const normalizeWidth = useCallback((width?: number | string) => {
     if (!width) return '0px';
@@ -100,16 +104,16 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
 
   return (
     <Box
-      {...(customTableCellProps as any)}
-      {...styledTableCellProps}
+      {...(customCellProps as any)}
+      {...styledCellProps}
       width={cssCalc(normalizeWidth(props.width?.toString()), relativeX)}
-      ref={tableCellRef}
+      ref={cellRef}
     >
       <Box
         display="flex"
         flex={1}
         flexDirection="row"
-        height={styledTableCellProps.height}
+        height={styledCellProps.height}
         justifyContent="space-between"
         maxWidth={props.maxWidth}
         minWidth={props.minWidth}
@@ -141,8 +145,7 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
   );
 };
 
-TableCell.defaultProps = {
-  autoContrast: false,
+Cell.defaultProps = {
   borderStyle: 'solid',
   fontSize: 2,
   fontWeight: 'body',
@@ -150,4 +153,4 @@ TableCell.defaultProps = {
   width: '100%'
 };
 
-export default TableCell;
+export default Cell;

@@ -1,9 +1,9 @@
 import React, { FC, useState, ReactNode } from 'react';
+import { styled } from 'native-theme-ui';
 import {
   Row as NativeRow,
   RowProps as NativeRowProps
 } from 'react-native-table-component';
-import { styled } from 'native-theme-ui';
 import {
   background,
   border,
@@ -16,16 +16,16 @@ import {
   typography
 } from 'styled-system';
 import ColumnContext from '../contexts/Column';
-import RowContext, { Row } from '../contexts/Row';
+import RowContext, { RowMeta } from '../contexts/Row';
 import {
-  StyledTableRowProps,
-  TableRowProps,
-  antiForwardTableRowPropsKeys,
+  StyledRowProps,
+  RowProps,
+  antiForwardRowPropsKeys,
   splitProps
-} from './tableRowProps';
+} from './rowProps';
 
-const StyledTableRow = styled<StyledTableRowProps, NativeRowProps>(NativeRow, {
-  forwardPropsBlacklist: antiForwardTableRowPropsKeys
+const StyledRow = styled<StyledRowProps, NativeRowProps>(NativeRow, {
+  forwardPropsBlacklist: antiForwardRowPropsKeys
 })(
   compose(
     background,
@@ -39,19 +39,15 @@ const StyledTableRow = styled<StyledTableRowProps, NativeRowProps>(NativeRow, {
   )
 );
 
-const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
-  const [row, setRow] = useState<Row | null>(null);
+const Row: FC<RowProps> = (props: RowProps) => {
+  const [row, setRow] = useState<RowMeta | null>(null);
 
-  const {
-    customTableRowProps,
-    nativeTableRowProps,
-    styledTableRowProps
-  } = splitProps({
+  const { customRowProps, nativeRowProps, styledRowProps } = splitProps({
     ...props
   });
 
   function renderCells() {
-    let { children } = customTableRowProps;
+    let { children } = customRowProps;
     if (!Array.isArray(children)) children = [children];
     return ((children as unknown) as ReactNode[]).map(
       (tableCell: ReactNode, key: number) => (
@@ -63,18 +59,14 @@ const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
   }
 
   return (
-    <StyledTableRow
-      {...styledTableRowProps}
-      {...nativeTableRowProps}
-      {...customTableRowProps}
-    >
+    <StyledRow {...styledRowProps} {...nativeRowProps} {...customRowProps}>
       <RowContext.Provider value={[row, setRow]}>
         {renderCells()}
       </RowContext.Provider>
-    </StyledTableRow>
+    </StyledRow>
   );
 };
 
-TableRow.defaultProps = {};
+Row.defaultProps = {};
 
-export default TableRow;
+export default Row;

@@ -11,6 +11,7 @@
     "datepicker",
     "deps",
     "depslist",
+    "desaturate",
     "docgen",
     "dropdrop",
     "eslintcache",
@@ -18,6 +19,7 @@
     "flexbox",
     "fontawesome",
     "fontinfo",
+    "grayscale",
     "ifeq",
     "jang",
     "jspm",
@@ -32,6 +34,7 @@
     "overrided",
     "patsubst",
     "pettersson",
+    "pgcax",
     "pids",
     "plusplus",
     "pnpm",
@@ -47,7 +50,6 @@
     "vuepress",
     "wcag",
     "wscript",
-    "xargs",
-    "pgcax"
+    "xargs"
   ]
 }

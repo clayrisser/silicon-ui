@@ -1,8 +1,8 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
+import Cell from '../Cell';
+import Row from '../Row';
 import Table from './Table';
-import TableCell from '../TableCell';
-import TableRow from '../TableRow';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
@@ -17,28 +17,28 @@ storiesOf('Table', module)
   .add('with knobs', () => (
     <Wrapper>
       <Table width="100%">
-        <TableRow width="100%" resizable>
-          <TableCell width="50%" height={300} backgroundColor="lightblue">
+        <Row width="100%" resizable>
+          <Cell width="50%" height={300} backgroundColor="lightblue">
             One
-          </TableCell>
-          <TableCell width="30%" height={300} backgroundColor="lightblue">
+          </Cell>
+          <Cell width="30%" height={300} backgroundColor="lightblue">
             Two
-          </TableCell>
-          <TableCell height={300} backgroundColor="lightblue">
+          </Cell>
+          <Cell height={300} backgroundColor="lightblue">
             Three
-          </TableCell>
-        </TableRow>
-        <TableRow width="100%" resizable>
-          <TableCell width="50%" height={300} backgroundColor="lightblue">
+          </Cell>
+        </Row>
+        <Row width="100%" resizable>
+          <Cell width="50%" height={300} backgroundColor="lightblue">
             Four
-          </TableCell>
-          <TableCell width="30%" height={300} backgroundColor="lightblue">
+          </Cell>
+          <Cell width="30%" height={300} backgroundColor="lightblue">
             Five
-          </TableCell>
-          <TableCell height={300} backgroundColor="lightblue">
+          </Cell>
+          <Cell height={300} backgroundColor="lightblue">
             Six
-          </TableCell>
-        </TableRow>
+          </Cell>
+        </Row>
       </Table>
     </Wrapper>
   ));

@@ -16,7 +16,7 @@ export type DetailedHTMLTdProps = DetailedHTMLProps<
   HTMLTableDataCellElement
 >;
 
-export interface StyledTableCellProps
+export interface StyledCellProps
   extends BackgroundProps,
     BorderProps,
     ColorProps,
@@ -26,7 +26,7 @@ export interface StyledTableCellProps
     SpaceProps,
     TypographyProps {}
 
-export interface CustomTableCellProps {
+export interface CustomCellProps {
   children?: ReactNode;
   grabWidth?: number;
   resizable?: boolean;
@@ -34,35 +34,33 @@ export interface CustomTableCellProps {
   theme?: Theme;
 }
 
-export interface TableCellProps
-  extends CustomTableCellProps,
-    StyledTableCellProps {}
+export interface CellProps extends CustomCellProps, StyledCellProps {}
 
 export interface SplitProps {
-  customTableCellProps: CustomTableCellProps;
-  styledTableCellProps: StyledTableCellProps;
+  customCellProps: CustomCellProps;
+  styledCellProps: StyledCellProps;
 }
 
-export const customTableCellPropsKeys = new Set([
+export const customCellPropsKeys = new Set([
   'children',
   'grabWidth',
   'resizable',
   'theme'
 ]);
 
-export function splitProps(props: TableCellProps): SplitProps {
-  const styledTableCellProps: { [key: string]: any } = {};
-  const customTableCellProps: { [key: string]: any } = {};
+export function splitProps(props: CellProps): SplitProps {
+  const styledCellProps: { [key: string]: any } = {};
+  const customCellProps: { [key: string]: any } = {};
   Object.entries({ ...props }).forEach(([key, prop]: [string, any]) => {
-    if (customTableCellPropsKeys.has(key)) {
-      customTableCellProps[key] = prop;
+    if (customCellPropsKeys.has(key)) {
+      customCellProps[key] = prop;
     } else {
-      styledTableCellProps[key] = prop;
+      styledCellProps[key] = prop;
     }
   });
   return {
-    customTableCellProps,
-    styledTableCellProps
+    customCellProps,
+    styledCellProps
   };
 }
 

@@ -1,12 +1,5 @@
+import Cell, { CellProps } from './Cell';
+import Row, { RowProps } from './Row';
 import Table, { TableProps } from './Table';
-import TableCell, { TableCellProps } from './TableCell';
-import TableRow, { TableRowProps } from './TableRow';
 
-export {
-  Table,
-  TableCell,
-  TableCellProps,
-  TableProps,
-  TableRow,
-  TableRowProps
-};
+export { Table, Cell, CellProps, TableProps, Row, RowProps };

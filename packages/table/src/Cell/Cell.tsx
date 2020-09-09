@@ -18,17 +18,13 @@ import useColWidth from '../hooks/useColWidth';
 import useResizable from '../hooks/useResizable';
 import useSetCol from '../hooks/useSetCol';
 import useThemeLookup from '../hooks/useThemeLookup';
-import {
-  TableCellProps,
-  splitProps,
-  DetailedHTMLTdProps
-} from './tableCellProps';
+import { CellProps, splitProps, DetailedHTMLTdProps } from './cellProps';
 
 export type Position = [number, number];
 
 const HTMLTd: StyledComponent<
   DetailedHTMLTdProps,
-  TableCellProps,
+  CellProps,
   object
 > = styled.td(
   compose(
@@ -44,21 +40,21 @@ const HTMLTd: StyledComponent<
   )
 );
 
-const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
+const Cell: FC<CellProps> = (props: CellProps) => {
   const colWidth = useColWidth();
   const resizable = useResizable() || props.resizable;
   const setCol = useSetCol();
-  const tableCellRef = useRef<NativeMethods | HTMLDivElement>(null);
+  const cellRef = useRef<NativeMethods | HTMLDivElement>(null);
   const themeLookup = useThemeLookup();
   // eslint-ignore-next-line prefer-const
   let [pulling, setPulling] = useState(false);
   // eslint-ignore-next-line prefer-const
   let [rightInitialX, setRightInitialX] = useState(0);
   // eslint-ignore-next-line prefer-const
-  let [rightRelativeX, setRightRelativeX] = useState(0);
+  const [rightRelativeX, setRightRelativeX] = useState(0);
   // eslint-ignore-next-line prefer-const
   let [initialWidth, setInitialWidth] = useState<number | undefined>();
-  const { customTableCellProps, styledTableCellProps } = splitProps(props);
+  const { customCellProps, styledCellProps } = splitProps(props);
 
   const normalizeWidth = useCallback((width?: number | string) => {
     if (typeof width === 'undefined') return undefined;
@@ -165,8 +161,8 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
 
   return (
     <HTMLTd
-      {...customTableCellProps}
-      {...styledTableCellProps}
+      {...customCellProps}
+      {...styledCellProps}
       style={{
         ...(resizable
           ? { whitespace: 'nowrap', ...(pulling ? { userSelect: 'none' } : {}) }
@@ -174,15 +170,15 @@ const TableCell: FC<TableCellProps> = (props: TableCellProps) => {
       }}
       width={width as number}
       // @ts-ignore
-      ref={tableCellRef}
+      ref={cellRef}
     >
       {renderGrab()}
-      {customTableCellProps.children}
+      {customCellProps.children}
     </HTMLTd>
   );
 };
 
-TableCell.defaultProps = {
+Cell.defaultProps = {
   borderStyle: 'solid',
   fontFamily: 'body',
   fontSize: 1,
@@ -191,4 +187,4 @@ TableCell.defaultProps = {
   grabWidth: 20
 };
 
-export default TableCell;
+export default Cell;

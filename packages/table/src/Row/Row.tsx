@@ -12,16 +12,12 @@ import {
   typography
 } from 'styled-system';
 import ColumnContext from '../contexts/Column';
-import RowContext, { Row } from '../contexts/Row';
-import {
-  TableRowProps,
-  DetailedHTMLTableRowProps,
-  splitProps
-} from './tableRowProps';
+import RowContext, { RowMeta } from '../contexts/Row';
+import { RowProps, DetailedHTMLRowProps, splitProps } from './rowProps';
 
-const HTMLTableRow: StyledComponent<
-  DetailedHTMLTableRowProps,
-  TableRowProps,
+const HTMLRow: StyledComponent<
+  DetailedHTMLRowProps,
+  RowProps,
   object
 > = styled.tr(
   compose(
@@ -36,15 +32,15 @@ const HTMLTableRow: StyledComponent<
   )
 );
 
-const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
-  const { customTableRowProps, styledTableRowProps } = splitProps({ ...props });
-  const [row, setRow] = useState<Row | null>({
+const Row: FC<RowProps> = (props: RowProps) => {
+  const { customRowProps, styledRowProps } = splitProps({ ...props });
+  const [row, setRow] = useState<RowMeta | null>({
     resizable: props.resizable,
     cols: []
   });
 
   function renderCells() {
-    let { children } = customTableRowProps;
+    let { children } = customRowProps;
     if (!Array.isArray(children)) children = [children];
     return ((children as unknown) as ReactNode[]).map(
       (tableCell: ReactNode, key: number) => (
@@ -56,23 +52,23 @@ const TableRow: FC<TableRowProps> = (props: TableRowProps) => {
   }
 
   return (
-    <HTMLTableRow
+    <HTMLRow
       display="flex"
       flexDirection="col"
       overflow="hidden"
-      {...((styledTableRowProps as unknown) as any)}
+      {...((styledRowProps as unknown) as any)}
       verticalAlign="top"
       style={{ whiteSpace: 'nowrap' }}
     >
       <RowContext.Provider value={[row, setRow]}>
         {renderCells()}
       </RowContext.Provider>
-    </HTMLTableRow>
+    </HTMLRow>
   );
 };
 
-TableRow.defaultProps = {
+Row.defaultProps = {
   borderWidth: 0
 };
 
-export default TableRow;
+export default Row;

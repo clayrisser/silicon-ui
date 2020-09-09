@@ -1,12 +1,12 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
-import TableCell from '../TableCell';
-import TableRow from './TableRow';
+import Cell from '../Cell';
+import Row from './Row';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
 
-storiesOf('TableRow', module)
+storiesOf('Row', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
@@ -15,16 +15,16 @@ storiesOf('TableRow', module)
   })
   .add('with knobs', () => (
     <Wrapper>
-      <TableRow width={400}>
-        <TableCell width={400} height={300} backgroundColor="lightblue">
+      <Row width={400}>
+        <Cell width={400} height={300} backgroundColor="lightblue">
           hi
-        </TableCell>
-        <TableCell width={400} height={300} backgroundColor="lightblue">
+        </Cell>
+        <Cell width={400} height={300} backgroundColor="lightblue">
           hi
-        </TableCell>
-        <TableCell width={400} height={300} backgroundColor="lightblue">
+        </Cell>
+        <Cell width={400} height={300} backgroundColor="lightblue">
           hi
-        </TableCell>
-      </TableRow>
+        </Cell>
+      </Row>
     </Wrapper>
   ));

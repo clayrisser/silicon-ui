@@ -1,7 +1,7 @@
 import useColId from './useColId';
 import useRow from './useRow';
 import { Col } from '../types';
-import { Row } from '../contexts/Row';
+import { RowMeta } from '../contexts/Row';
 
 export default function useRowCol(offset = 0): [Col | null, (col: Col) => any] {
   const [row, setRow] = useRow();
@@ -11,8 +11,8 @@ export default function useRowCol(offset = 0): [Col | null, (col: Col) => any] {
     typeof columnId !== 'undefined' ? row?.cols[columnId] || null : null;
 
   function setRowCol(col: Col) {
-    setRow((row: Row | null) => {
-      const newRow: Row = {
+    setRow((row: RowMeta | null) => {
+      const newRow: RowMeta = {
         ...row,
         cols: [...(row?.cols || [])]
       };

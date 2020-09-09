@@ -2,11 +2,11 @@ import { createContext, SetStateAction, Dispatch } from 'react';
 import { Col } from '../types';
 
 export type RowContextValue = [
-  Row | null,
-  Dispatch<SetStateAction<Row | null>>
+  RowMeta | null,
+  Dispatch<SetStateAction<RowMeta | null>>
 ];
 
-export interface Row {
+export interface RowMeta {
   cols: Col[];
   resizable?: boolean;
 }
