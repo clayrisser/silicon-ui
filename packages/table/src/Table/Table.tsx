@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { ReactNode, useState, forwardRef, LegacyRef } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -31,8 +31,11 @@ const HTMLTable: StyledComponent<
   )
 );
 
-const Table: FC<TableProps> = (props: TableProps) => {
-  const [table, setTable] = useState<TableMeta | null>(null);
+const Table = forwardRef((props: TableProps, tableRef: LegacyRef<any>) => {
+  const [table, setTable] = useState<TableMeta | null>({
+    resizable: props.resizable,
+    cols: []
+  });
   const { customTableProps, styledTableProps, nativeItemProps } = splitProps(
     props
   );
@@ -51,17 +54,17 @@ const Table: FC<TableProps> = (props: TableProps) => {
       {...nativeItemProps}
       {...(customTableProps as any)}
       style={{ borderCollapse: 'collapse', tableLayout: 'fixed' }}
+      ref={tableRef}
     >
       <TableContext.Provider value={[table, setTable]}>
         {renderRows()}
       </TableContext.Provider>
     </HTMLTable>
   );
-};
+});
 
 Table.defaultProps = {
   backgroundColor: 'transparent',
-  autoContrast: false,
   fontSize: 2,
   fontWeight: 'body',
   lineHeight: 'body'

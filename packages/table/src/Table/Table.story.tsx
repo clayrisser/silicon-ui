@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { Box } from '@silicon-ui/atoms';
 import Cell from '../Cell';
 import Row from '../Row';
 import Table from './Table';
@@ -14,31 +15,101 @@ storiesOf('Table', module)
     // docs: { page: docs },
     // jest: ['TableHead.spec.tsx']
   })
-  .add('with knobs', () => (
-    <Wrapper>
-      <Table width="100%">
-        <Row width="100%" resizable>
-          <Cell width="50%" height={300} backgroundColor="lightblue">
-            One
-          </Cell>
-          <Cell width="30%" height={300} backgroundColor="lightblue">
-            Two
-          </Cell>
-          <Cell height={300} backgroundColor="lightblue">
-            Three
-          </Cell>
-        </Row>
-        <Row width="100%" resizable>
-          <Cell width="50%" height={300} backgroundColor="lightblue">
-            Four
-          </Cell>
-          <Cell width="30%" height={300} backgroundColor="lightblue">
-            Five
-          </Cell>
-          <Cell height={300} backgroundColor="lightblue">
-            Six
-          </Cell>
-        </Row>
-      </Table>
-    </Wrapper>
-  ));
+  .add('chrome debugger', () => {
+    const tableRef = useRef<any>();
+    const [width, setWidth] = useState(0);
+
+    useEffect(() => {
+      setWidth(tableRef.current?.offsetWidth || 0);
+    }, [tableRef]);
+
+    useEffect(() => {
+      function handleResize() {
+        setWidth(tableRef.current?.offsetWidth || 0);
+      }
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return (
+      <Wrapper>
+        <Box>
+          <Table position="absolute" width={width}>
+            <Row width="100%">
+              <Cell
+                width="100%"
+                borderTopWidth={1}
+                borderLeftWidth={1}
+                borderRightWidth={1}
+                height={200}
+              />
+            </Row>
+            <Row width="100%">
+              <Cell width="100%" border={1} height={200} />
+            </Row>
+          </Table>
+          <Table width="100%" resizable ref={tableRef}>
+            <Row width="100%">
+              <Cell
+                backgroundColor="white"
+                borderLeftWidth={1}
+                borderTopWidth={1}
+                height={200}
+                width="20%"
+              >
+                One
+              </Cell>
+              <Cell
+                backgroundColor="white"
+                borderTopWidth={1}
+                borderLeftWidth={1}
+                width="20%"
+                height={200}
+              >
+                Two
+              </Cell>
+              <Cell
+                borderTopWidth={1}
+                borderLeftWidth={1}
+                backgroundColor="white"
+                height={200}
+              >
+                Three
+              </Cell>
+            </Row>
+            <Row width="100%">
+              <Cell
+                backgroundColor="white"
+                borderTopWidth={1}
+                borderLeftWidth={1}
+                borderBottomWidth={1}
+                width="20%"
+                height={200}
+              >
+                Four
+              </Cell>
+              <Cell
+                backgroundColor="white"
+                borderTopWidth={1}
+                borderLeftWidth={1}
+                borderBottomWidth={1}
+                width="20%"
+                height={200}
+              >
+                Five
+              </Cell>
+              <Cell
+                backgroundColor="white"
+                borderTopWidth={1}
+                borderLeftWidth={1}
+                borderBottomWidth={1}
+                height={200}
+              >
+                Six
+              </Cell>
+            </Row>
+          </Table>
+        </Box>
+      </Wrapper>
+    );
+  });

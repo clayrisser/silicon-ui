@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, useCallback } from 'react';
+import React, { FC, useRef, useCallback, useState } from 'react';
 import reduceCssCalc from 'reduce-css-calc';
 import styled, { StyledComponent } from '@emotion/styled';
 import { Box } from '@silicon-ui/atoms';
@@ -145,7 +145,10 @@ const Cell: FC<CellProps> = (props: CellProps) => {
         right={
           -(props.grabWidth! / 2) -
           parseInt(
-            themeLookup<string>('borderWidth', props.borderWidth) || '0',
+            themeLookup<string>(
+              'borderWidth',
+              props.borderRightWidth || props.borderWidth
+            ) || '0',
             10
           )
         }
@@ -161,13 +164,15 @@ const Cell: FC<CellProps> = (props: CellProps) => {
 
   return (
     <HTMLTd
-      {...customCellProps}
-      {...styledCellProps}
+      borderWidth={styledCellProps.borderWidth || 0}
       style={{
+        ...(props.style || {}),
         ...(resizable
           ? { whitespace: 'nowrap', ...(pulling ? { userSelect: 'none' } : {}) }
           : {})
       }}
+      {...customCellProps}
+      {...styledCellProps}
       width={width as number}
       // @ts-ignore
       ref={cellRef}
@@ -182,7 +187,6 @@ Cell.defaultProps = {
   borderStyle: 'solid',
   fontFamily: 'body',
   fontSize: 1,
-  borderWidth: '1px',
   fontWeight: 'body',
   grabWidth: 20
 };

@@ -32,8 +32,8 @@ export interface NativeTableProps extends NativeTableComponentProps {}
 export interface NativeItemProps {}
 
 export interface CustomTableProps {
-  autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
+  resizable?: boolean;
   style?: any;
   theme?: Theme;
 }
@@ -45,8 +45,8 @@ export interface TableProps
     StyledTableProps {}
 
 export const customTablePropsKeys = new Set([
-  'autoContrast',
   'children',
+  'resizable',
   'style',
   'theme'
 ]);

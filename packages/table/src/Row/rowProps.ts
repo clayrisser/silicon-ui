@@ -45,18 +45,9 @@ export interface RowProps
 
 export const customRowPropsKeys = new Set(['children', 'resizable', 'theme']);
 
-export const nativeRowPropsKeys = new Set<string>([
-  'borderStyle',
-  'style',
-  'data'
-]);
+export const nativeRowPropsKeys = new Set<string>(['style', 'data']);
 
-export const nativeItemPropKeys = new Set([
-  'bordered',
-  'disabled',
-  'error',
-  'underline'
-]);
+export const nativeItemPropKeys = new Set(['disabled', 'error', 'underline']);
 
 export interface SplitProps {
   customRowProps: CustomRowProps;

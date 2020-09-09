@@ -53,6 +53,7 @@ const Row: FC<RowProps> = (props: RowProps) => {
 
   return (
     <HTMLRow
+      borderWidth={styledRowProps.borderWidth || 0}
       display="flex"
       flexDirection="col"
       overflow="hidden"
@@ -68,7 +69,7 @@ const Row: FC<RowProps> = (props: RowProps) => {
 };
 
 Row.defaultProps = {
-  borderWidth: 0
+  borderStyle: 'solid'
 };
 
 export default Row;
