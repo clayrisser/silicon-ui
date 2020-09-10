@@ -34,8 +34,6 @@ module.exports = {
     config.module.rules.push({
       test: /\.[jt]sx?$/,
       include: [
-        path.resolve(rootPath, 'src'),
-        path.resolve(rootPath, 'storybook'),
         path.resolve(rootPath, 'node_modules/native-base-shoutem-theme'),
         path.resolve(rootPath, 'node_modules/react-native-drawer'),
         path.resolve(rootPath, 'node_modules/react-native-easy-grid'),
@@ -45,6 +43,8 @@ module.exports = {
         path.resolve(rootPath, 'node_modules/react-native-web'),
         path.resolve(rootPath, 'node_modules/react-navigation'),
         path.resolve(rootPath, 'node_modules/static-container'),
+        path.resolve(rootPath, 'src'),
+        path.resolve(rootPath, 'storybook'),
         path.resolve(
           rootPath,
           'node_modules/react-native-keyboard-aware-scroll-view'
