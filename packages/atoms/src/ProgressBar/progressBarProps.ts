@@ -31,11 +31,7 @@ export interface StyledProgressBarProps
 export interface NativeProgressBarProps
   extends Omit<
     ReactNativeProgressBarAndroidProps,
-    'animating',
-    'color',
-    'indeterminate',
-    'progress',
-    'styleAttr'
+    'animating' | 'color' | 'indeterminate' | 'progress' | 'styleAttr'
   > {}
 
 export interface CustomProgressBarProps {
