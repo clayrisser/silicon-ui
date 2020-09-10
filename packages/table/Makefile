@@ -115,7 +115,7 @@ _build:
 	-@rm -rf lib $(NOFAIL)
 lib:
 	-@rm -r node_modules/.tmp/lib $(NOFAIL)
-	@$(BABEL) src -d lib --extensions '.ts,.tsx' --source-maps inline
+	@$(BABEL) src -d lib --extensions '.ts,.tsx' --source-maps
 	@$(TSC) -d --emitDeclarationOnly
 	@cp -r node_modules/.tmp/lib/src/. lib $(NOFAIL)
 
