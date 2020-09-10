@@ -2,7 +2,7 @@
   "name": "silicon-ui",
   "description": "cross platform react ui framework",
   "private": true,
-  "version": "0.0.12",
+  "version": "0.0.17",
   "files": [
     "packages"
   ],
