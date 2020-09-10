@@ -47,6 +47,7 @@ describe('<Text with events/>', () => {
       component = create(
         <Text
           onPress={onPress}
+          // @ts-ignore
           onMouseUp={onMouseUp}
           onMouseDown={onMouseDown}
         />

@@ -41,6 +41,7 @@ describe('<Dropdownselect/>', () => {
 
     let component: any;
     act(() => {
+      // @ts-ignore
       component = create(<DropdownSelect onChange={onChange} />);
     });
 

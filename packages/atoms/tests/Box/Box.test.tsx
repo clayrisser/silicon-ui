@@ -84,6 +84,7 @@ describe('<Box with events />', () => {
         <Box
           onPress={onPress}
           onBlur={onBlur}
+          // @ts-ignore
           onMouseEnter={onMouseEnter}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
