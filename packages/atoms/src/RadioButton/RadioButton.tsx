@@ -11,7 +11,7 @@ import {
   space,
   typography
 } from 'styled-system';
-import { check } from 'prettier';
+// import { check } from 'prettier';
 import {
   RadioButtonProps,
   DetailedHTMLRadioButtonProps,

@@ -5,13 +5,13 @@ import RadioButton from './RadioButton';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
-import Text from '../Text';
+import docs from './docs';
 
 storiesOf('RadioButton', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
-    // docs: { page: docs },
+    docs: { page: docs }
     // jest: ['RadioButton.spec.tsx']
   })
   .add('with knobs', () => (

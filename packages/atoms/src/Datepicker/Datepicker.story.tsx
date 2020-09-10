@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean, number, date } from '@storybook/addon-knobs';
 import Datepicker from './Datepicker';
+import docs from './docs';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
@@ -11,7 +12,7 @@ storiesOf('Datepicker', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
-    // docs: { page: docs },
+    docs: { page: docs }
     // jest: ['Input.spec.tsx']
   })
   .add('with knobs', () => (

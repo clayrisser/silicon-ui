@@ -4,12 +4,13 @@ import Text from './Text';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
+import docs from './docs';
 
 storiesOf('Text', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
-    // docs: { page: docs },
+    docs: { page: docs }
     // jest: ['Button.test.tsx']
   })
   .add('with knobs', () => (

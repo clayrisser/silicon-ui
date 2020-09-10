@@ -1,3 +1,3 @@
-import docs from '../Button.docs.mdx';
+import docs from '../Readme.mdx';
 
 export default docs;

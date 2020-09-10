@@ -12,13 +12,13 @@ import Textarea from './Textarea';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
-// import docs from './Input.docs.mdx';
+import docs from './docs';
 
 storiesOf('Textarea', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
-    // docs: { page: docs },
+    docs: { page: docs }
     // jest: ['Input.spec.tsx']
   })
   .add('with knobs', () => (

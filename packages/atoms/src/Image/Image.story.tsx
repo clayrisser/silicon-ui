@@ -6,13 +6,13 @@ import Wrapper from '../../storybook/Wrapper';
 import austinJpg from './austin.jpg';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
-// import docs from './Image.docs.mdx';
+import docs from './docs';
 
 storiesOf('Image', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
-    // docs: { page: docs },
+    docs: { page: docs }
     // jest: ['Image.spec.tsx']
   })
   .add('with knobs', () => (

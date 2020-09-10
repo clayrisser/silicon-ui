@@ -10,6 +10,7 @@ import {
 // import { Container, Header, Content, Form, Item, Picker } from 'native-base';
 import { action } from '@storybook/addon-actions';
 import DropdownSelect from './DropdownSelect';
+import docs from './docs';
 import DropdownOption from '../DropdownOption/DropdownOption';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
@@ -19,7 +20,7 @@ storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
   .addDecorator(withThemeProvider)
   .addParameters({
-    // docs: { page: docs },
+    docs: { page: docs }
     // jest: ['Button.test.tsx']
   })
   .add('with knobs', () => (
