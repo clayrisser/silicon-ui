@@ -5,6 +5,7 @@ import RadioButton from './RadioButton';
 import Wrapper from '../../storybook/Wrapper';
 import storiesOf from '../../storybook/storiesOf';
 import withThemeProvider from '../../storybook/withThemeProvider';
+import Text from '../Text';
 
 storiesOf('RadioButton', module)
   .addDecorator(withKnobs)
@@ -16,11 +17,13 @@ storiesOf('RadioButton', module)
   .add('with knobs', () => (
     <Wrapper>
       <RadioButton
-        // type="radio"
-        selected={boolean('checked', false)}
         onPress={action('onPress')}
+        type="radio"
+        name={text('name', 'gender')}
+        value={text('value', 'male')}
+        checked={boolean('checked', false)}
+        // selected={boolean('selected', false)}
         // disabled={boolean('disabled', false)}
-        // name={text('name', ' name')}
       />
     </Wrapper>
   ));

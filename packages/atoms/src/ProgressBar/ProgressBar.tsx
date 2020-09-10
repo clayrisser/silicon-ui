@@ -29,15 +29,13 @@ const ProgressBar: FC<ProgressBarProps> = (props: ProgressBarProps) => {
   const {
     customProgressBarProps,
     styledProgressBarProps,
-    nativeProgressBarProps,
-    nativeItemProps
+    nativeProgressBarProps
   } = splitProps(props);
 
   return (
     <HTMLProgress
       {...styledProgressBarProps}
       {...nativeProgressBarProps}
-      {...nativeItemProps}
       {...(customProgressBarProps as any)}
     />
   );

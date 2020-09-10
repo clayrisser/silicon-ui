@@ -59,7 +59,7 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
       {...nativeRadioButtonProps}
       {...customRadioButtonProps}
       {...styledRadioButtonProps}
-      selected={checked}
+      checked={checked}
       // onPress={handleChange}
     />
   );
@@ -68,7 +68,7 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
 };
 
 RadioButton.defaultProps = {
-  marginTop: 100,
+  marginTop: 30,
   checked: false
 };
 

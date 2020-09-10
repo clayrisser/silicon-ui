@@ -1,63 +1,50 @@
-// import React, { FC } from 'react';
-// import { styled } from 'native-theme-ui';
-// import {
-//   ProgressBar as NativeBaseProgressBar,
-//   Item as NativeBaseItem,
-//   NativeBase
-// } from 'native-base';
-// import {
-//   background,
-//   border,
-//   compose,
-//   layout,
-//   position,
-//   shadow,
-//   space,
-//   typography
-// } from 'styled-system';
-// import useItem from '../hooks/useItem';
-// import {
-//   ProgressBarProps,
-//   StyledProgressBarProps,
-//   antiForwardProgressBarPropsKeys,
-//   splitProps
-// } from './progressBarProps';
+import React, { FC } from 'react';
+import { styled } from 'native-theme-ui';
+import { ProgressBarAndroid } from 'react-native';
+import {
+  background,
+  border,
+  compose,
+  layout,
+  position,
+  shadow,
+  space,
+  typography
+} from 'styled-system';
+import {
+  ProgressBarProps,
+  StyledProgressBarProps,
+  antiForwardProgressBarPropsKeys,
+  splitProps
+} from './progressBarProps';
 
-// const StyledNativeBaseProgressBar = styled<
-//   StyledProgressBarProps,
-//   NativeBase.ProgressBar
-// >(NativeBaseProgressBar, {
-//   forwardPropsBlacklist: antiForwardProgressBarPropsKeys
-// })(compose(background, border, layout, position, shadow, space, typography));
+const StyledNativeBaseProgressBar = styled<StyledProgressBarProps>(
+  ProgressBarAndroid,
+  {
+    forwardPropsBlacklist: antiForwardProgressBarPropsKeys
+  }
+)(compose(background, border, layout, position, shadow, space, typography));
 
-// const ProgressBar: FC<ProgressBarProps> = (props: ProgressBarProps) => {
-//   const item = useItem();
-//   const {
-//     customProgressBarProps,
-//     nativeProgressBarProps,
-//     styledProgressBarProps,
-//     nativeItemProps
-//   } = splitProps(props);
+const ProgressBar: FC<ProgressBarProps> = (props: ProgressBarProps) => {
+  const {
+    customProgressBarProps,
+    nativeProgressBarProps,
+    styledProgressBarProps
+  } = splitProps(props);
 
-//   const styledNativeBaseProgressBar = (
-//     <StyledNativeBaseProgressBar
-//       {...(customProgressBarProps as any)}
-//       {...nativeProgressBarProps}
-//       {...styledProgressBarProps}
-//       progress={30}
-//     />
-//   );
+  const styledNativeBaseProgressBar = (
+    <StyledNativeBaseProgressBar
+      {...(customProgressBarProps as any)}
+      {...nativeProgressBarProps}
+      {...styledProgressBarProps}
+    />
+  );
+  return styledNativeBaseProgressBar;
+};
 
-//   if (item.hasItemParent) return styledNativeBaseProgressBar;
-//   return (
-//     <NativeBaseItem {...nativeItemProps}>
-//       {styledNativeBaseProgressBar}
-//     </NativeBaseItem>
-//   );
-// };
+ProgressBar.defaultProps = {
+  marginTop: 30
+  //   progress: 30
+};
 
-// ProgressBar.defaultProps = {
-//   progress: 30
-// };
-
-// export default ProgressBar;
+export default ProgressBar;

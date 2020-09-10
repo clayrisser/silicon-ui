@@ -35,6 +35,7 @@ export interface CustomRadioButtonProps {
   children?: ReactNode | string;
   checked?: boolean;
   name?: string;
+  value?: string;
 }
 
 export interface RadioButtonProps

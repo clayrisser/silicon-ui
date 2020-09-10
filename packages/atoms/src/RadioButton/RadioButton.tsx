@@ -51,7 +51,7 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
 
   function handleChange(e: any) {
     if (props.onPress) {
-      props.onPress(e);
+      props.onPress(e.target.value);
       setChecked(!checked);
     }
   }
@@ -61,9 +61,9 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
       {...styledRadioButtonProps}
       {...nativeRadioButtonProps}
       {...(customRadioButtonProps as any)}
-      checked={nativeRadioButtonProps.selected}
-      value={checked}
-      selected={nativeRadioButtonProps.selected}
+      checked={checked}
+      // value={checked}
+      // selected={nativeRadioButtonProps.selected}
       onChange={handleChange}
     />
   );
