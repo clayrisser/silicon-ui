@@ -41,18 +41,15 @@ const CheckBox: FC<CheckBoxProps> = (props: CheckBoxProps) => {
       setChecked(customCheckBoxProps.checked);
   }, [customCheckBoxProps.checked]);
 
-  function handleChange(e: any) {
-    if (props.onPress) {
-      props.onPress(e);
-      setChecked(!checked);
-    }
+  function handleChange() {
+    setChecked(!checked);
   }
 
   const styledNativeBaseCheckbox = (
     <StyledNativeBaseCheckbox
       {...customCheckBoxProps}
       {...styledCheckBoxProps}
-      // onPress={handleChange}
+      onPress={handleChange}
       checked={checked}
     />
   );

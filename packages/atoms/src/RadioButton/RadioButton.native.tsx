@@ -43,15 +43,12 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
     nativeRadioButtonProps
   } = splitProps(props);
   useEffect(() => {
-    if (customRadioButtonProps.checked !== undefined)
-      setChecked(customRadioButtonProps.checked);
-  }, [customRadioButtonProps.checked]);
+    if (nativeRadioButtonProps.selected !== undefined)
+      setChecked(nativeRadioButtonProps.selected);
+  }, [nativeRadioButtonProps.selected]);
 
-  function handleChange(e: any) {
-    if (props.onPress) {
-      props.onPress(e);
-      setChecked(!checked);
-    }
+  function handleChange() {
+    setChecked(!checked);
   }
 
   const styledNativeBaseRadioButton = (
@@ -59,8 +56,8 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
       {...nativeRadioButtonProps}
       {...customRadioButtonProps}
       {...styledRadioButtonProps}
-      checked={checked}
-      // onPress={handleChange}
+      onPress={handleChange}
+      selected={checked}
     />
   );
   if (item.hasItemParent) return styledNativeBaseRadioButton;
@@ -69,7 +66,7 @@ const RadioButton: FC<RadioButtonProps> = (props: RadioButtonProps) => {
 
 RadioButton.defaultProps = {
   marginTop: 30,
-  checked: false
+  selected: false
 };
 
 export default RadioButton;

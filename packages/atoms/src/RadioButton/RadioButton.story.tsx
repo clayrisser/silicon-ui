@@ -22,7 +22,7 @@ storiesOf('RadioButton', module)
         name={text('name', 'gender')}
         value={text('value', 'male')}
         checked={boolean('checked', false)}
-        // selected={boolean('selected', false)}
+        selected={boolean('selected', false)}
         // disabled={boolean('disabled', false)}
       />
     </Wrapper>

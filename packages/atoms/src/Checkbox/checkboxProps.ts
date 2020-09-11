@@ -54,7 +54,8 @@ export const nativeCheckBoxPropsKeys = new Set([
   'onPress',
   'onPressIn',
   'onPressOut',
-  'onValueChange'
+  'onValueChange',
+  'checked'
 ]);
 
 export interface SplitProps {

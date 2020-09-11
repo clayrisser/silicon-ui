@@ -42,10 +42,11 @@ const NativeBasePicker: FC<DropdownSelectProps> = (
   }, [nativeDropdownSelectProps.selectedValue]);
 
   function handleChange(e: any) {
-    if (props.onPress) {
-      props.onPress(e);
-      setSelectedValue(e);
-    }
+    // if (props.onPress) {
+    //   props.onPress(e);
+    //   setSelectedValue(e);
+    // }
+    setSelectedValue(e);
   }
   const children = (
     <StyledNativePicker
