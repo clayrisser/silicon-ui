@@ -48,6 +48,11 @@ const Link: FC<LinkProps> = (props: LinkProps) => {
   );
 };
 
-Link.defaultProps = {};
+Link.defaultProps = {
+  paddingLeft: 0,
+  paddingTop: 0,
+  fontSize: 2,
+  color: ''
+};
 
 export default Link;
