@@ -13,6 +13,7 @@ import Text from './Text';
 import Textarea from './Textarea';
 import ProgressBar from './ProgressBar';
 import Icon from './Icon';
+import Link from './Link';
 import ThemeProvider from './ThemeProvider';
 
 export {
@@ -31,6 +32,7 @@ export {
   Textarea,
   ProgressBar,
   Icon,
+  Link,
   ThemeProvider
 };
 
@@ -49,4 +51,5 @@ export * from './Text';
 export * from './Textarea';
 export * from './ProgressBar';
 export * from './Icon';
+export * from './Link';
 export * from './ThemeProvider';
