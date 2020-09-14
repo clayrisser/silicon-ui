@@ -15,7 +15,7 @@ import {
 // import { NativeBase } from 'native-base';
 import { Linking as ReactNativeLink } from 'react-native';
 
-export type DetailedHTMLProps = DetailedHTMLProps<
+export type DetailedHTMLLinkProps = DetailedHTMLProps<
   AnchorHTMLAttributes<HTMLAnchorElement>,
   HTMLAnchorElement
 >;

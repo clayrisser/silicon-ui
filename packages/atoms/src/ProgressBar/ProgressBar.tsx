@@ -3,7 +3,6 @@ import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
   border,
-  color,
   compose,
   layout,
   position,

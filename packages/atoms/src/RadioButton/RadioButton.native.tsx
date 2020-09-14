@@ -21,9 +21,9 @@ import {
   StyledRadioButtonProps,
   RadioButtonProps,
   antiForwardRadioButtonPropsKeys,
-  splitProps,
-  NativeRadioButtonProps,
-  nativeRadioButtonPropsKeys
+  splitProps
+  // NativeRadioButtonProps,
+  // nativeRadioButtonPropsKeys
 } from './RadioButtonProps';
 
 const StyledNativeBaseRadioButton = styled<

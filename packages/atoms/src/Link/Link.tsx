@@ -11,10 +11,10 @@ import {
   space,
   typography
 } from 'styled-system';
-import { LinkProps, DetailedHTMLProps, splitProps } from './linkProps';
+import { LinkProps, DetailedHTMLLinkProps, splitProps } from './linkProps';
 
 const HTMLAnchor: StyledComponent<
-  DetailedHTMLProps,
+  DetailedHTMLLinkProps,
   LinkProps,
   object
 > = styled.a(

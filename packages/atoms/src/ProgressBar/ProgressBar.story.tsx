@@ -5,7 +5,6 @@ import {
   text,
   boolean,
   number,
-  select,
   color
 } from '@storybook/addon-knobs';
 import ProgressBar from './ProgressBar';
