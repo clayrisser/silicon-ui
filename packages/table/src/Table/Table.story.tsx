@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { Box } from '@silicon-ui/atoms';
+import { Box } from '@silicon-ui/atoms/lib';
 import Cell from '../Cell';
 import Row from '../Row';
 import Table from './Table';

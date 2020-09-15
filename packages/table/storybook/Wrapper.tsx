@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { Box } from '@silicon-ui/atoms';
+import { Box } from '@silicon-ui/atoms/lib';
 import { useThemeUI } from 'theme-ui';
 
 // @ts-ignore

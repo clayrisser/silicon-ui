@@ -15,8 +15,8 @@ export default function useOnPull({
   onPull,
   releasePressOnExit
 }: UseOnPullOptions): { panHandlers: GestureResponderHandlers | undefined } {
-  let [initialPosition, setInitialPosition] = useState<Position>([0, 0]);
-  let [pressed, setPressed] = useState(false);
+  const [initialPosition, setInitialPosition] = useState<Position>([0, 0]);
+  const [pressed, setPressed] = useState(false);
 
   async function exitedBox(
     e: GestureResponderEvent,
@@ -51,7 +51,7 @@ export default function useOnPull({
             if (!pressed) return;
             e.persist();
             if (releasePressOnExit && (await exitedBox(e, gestureState))) {
-              pressed = false;
+              // pressed = false;
               setPressed(false);
               if (onPressOut) onPressOut(e, gestureState);
               if (onPress) onPress(e, gestureState);
@@ -64,9 +64,9 @@ export default function useOnPull({
             gestureState: PanResponderGestureState
           ) => {
             const { locationX, locationY } = e.nativeEvent;
-            initialPosition = [locationX, locationY];
+            // initialPosition = [locationX, locationY];
             setInitialPosition([locationX, locationY]);
-            pressed = true;
+            // pressed = true;
             setPressed(true);
             if (onPressIn) onPressIn(e, gestureState);
           },
@@ -74,13 +74,13 @@ export default function useOnPull({
             e: GestureResponderEvent,
             gestureState: PanResponderGestureState
           ) => {
-            initialPosition = [0, 0];
+            // initialPosition = [0, 0];
             setInitialPosition([0, 0]);
             if (pressed) {
               if (onPressOut) onPressOut(e, gestureState);
               if (onPress) onPress(e, gestureState);
             }
-            pressed = false;
+            // pressed = false;
             setPressed(false);
           }
         })

@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { styled } from 'native-theme-ui';
 import {
   NativeBase,
-  Item as NativeBaseItem,
+  // Item as NativeBaseItem,
   Radio as NativeBaseRadioButton
 } from 'native-base';
 import {

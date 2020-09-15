@@ -1,7 +1,7 @@
 import React, { FC, useRef, useCallback, useState } from 'react';
 import reduceCssCalc from 'reduce-css-calc';
 import styled, { StyledComponent } from '@emotion/styled';
-import { Box } from '@silicon-ui/atoms';
+import { Box } from '@silicon-ui/atoms/lib';
 import { GestureResponderEvent, NativeMethods } from 'react-native';
 import {
   background,

@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { useThemeUI } from 'theme-ui';
-import Box from '../src/Box';
+// import Box from '../src/Box';
 
 // @ts-ignore
 const document: any = window?.document || {};

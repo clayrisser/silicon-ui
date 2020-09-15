@@ -1,6 +1,6 @@
 import React, { FC, useState, useRef, useCallback } from 'react';
 import reduceCssCalc from 'reduce-css-calc';
-import { Box } from '@silicon-ui/atoms';
+import { Box } from '@silicon-ui/atoms/lib';
 import { GestureResponderEvent, NativeMethods } from 'react-native';
 import { CellProps, splitProps } from './cellProps';
 

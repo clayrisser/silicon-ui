@@ -45,8 +45,8 @@ const HTMLDiv: StyledComponent<
 );
 
 const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
-  let [entered, setEntered] = useState(true);
-  let [pressed, setPressed] = useState(false);
+  const [entered, setEntered] = useState(true);
+  const [pressed, setPressed] = useState(false);
   const { styledBoxProps, customBoxProps, touchableOpacityProps } = splitProps(
     props
   );
@@ -57,7 +57,7 @@ const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
       if (!entered && pressed && props.onPressOut) {
         props.onPressOut(bakeEvent(e));
       }
-      pressed = false;
+      // pressed = false;
       setPressed(false);
     }
     function handleMouseMove(e: Event) {
@@ -74,18 +74,18 @@ const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
   }, [entered, pressed]);
 
   function handleMouseEnter() {
-    entered = true;
-    setEntered(entered);
+    // entered = true;
+    setEntered(true);
   }
 
   function handleMouseLeave(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (props.releasePressOnExit) {
       if (pressed && props.onPressOut) props.onPressOut(e);
-      pressed = false;
+      // pressed = false;
       setPressed(false);
     }
-    entered = false;
-    setEntered(entered);
+    // entered = false;
+    setEntered(false);
   }
 
   function handleClick(e: any) {
@@ -98,12 +98,12 @@ const Box = forwardRef((props: BoxProps, boxRef: LegacyRef<any>) => {
 
   function handleMouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (props.onPressOut) props.onPressOut(e);
-    pressed = false;
+    // pressed = false;
     setPressed(false);
   }
 
   function handleMouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    pressed = true;
+    // pressed = true;
     setPressed(true);
     if (props.onPressIn) props.onPressIn(e);
   }
