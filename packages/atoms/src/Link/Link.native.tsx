@@ -35,8 +35,8 @@ const Link: FC<LinkProps> = (props: LinkProps) => {
   const {
     styledLinkProps,
     customLinkProps,
-    styledTextProps,
-    nativeLinkProps
+    styledTextProps
+    // nativeLinkProps
   } = splitProps(props);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const Link: FC<LinkProps> = (props: LinkProps) => {
   return (
     <StyledNativeBaseLink
       {...styledLinkProps}
-      {...nativeLinkProps}
+      // {...nativeLinkProps}
       onPress={handlePress}
     >
       {children}

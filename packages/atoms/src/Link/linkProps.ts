@@ -13,7 +13,7 @@ import {
   TypographyProps
 } from 'styled-system';
 // import { NativeBase } from 'native-base';
-import { Linking as ReactNativeLink } from 'react-native';
+// import { Linking as ReactNativeLink } from 'react-native';
 
 export type DetailedHTMLLinkProps = DetailedHTMLProps<
   AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -31,7 +31,7 @@ export interface StyledLinkProps
     SpaceProps {}
 
 // export interface NativeLinkProps extends Omit<NativeBase.Link, 'color'> {}
-export interface NativeLinkProps extends Omit<ReactNativeLink, 'style'> {}
+// export interface NativeLinkProps extends Omit<ReactNativeLink, 'style'> {}
 
 export interface StyledTextProps extends TypographyProps, TextColorProps {}
 
@@ -45,8 +45,9 @@ export interface CustomLinkProps {
 export interface LinkProps
   extends StyledLinkProps,
     CustomLinkProps,
-    StyledTextProps,
-    NativeLinkProps {}
+    StyledTextProps {
+  // NativeLinkProps
+}
 
 export const antiForwardLinkPropsKeys = new Set<string>([]);
 
@@ -64,28 +65,32 @@ export const styledTextPropsKeys = new Set([
 ]);
 
 export const nativeLinkPropsKeys = new Set([
-  'androidRippleColor',
-  'badge',
-  'dark',
-  'first',
-  'full',
-  'hasText',
-  'large',
-  'last',
-  'light',
-  'onPress',
-  'onPressIn',
-  'onPressOut',
-  'rounded',
-  'small',
-  'textStyle',
-  'bordered',
-  'url'
+  // 'androidRippleColor',
+  // 'badge',
+  // 'dark',
+  // 'first',
+  // 'full',
+  // 'hasText',
+  // 'large',
+  // 'last',
+  // 'light',
+  // 'onPress',
+  // 'onPressIn',
+  // 'onPressOut',
+  // 'rounded',
+  // 'small',
+  // 'textStyle',
+  // 'bordered',
+  // 'url',
+  'addEventListener',
+  'removeEventListener',
+  'openURL',
+  'canOpenURL'
 ]);
 
 interface SplitProps {
   customLinkProps: CustomLinkProps;
-  nativeLinkProps: NativeLinkProps;
+  // nativeLinkProps: NativeLinkProps;
   styledLinkProps: StyledLinkProps;
   styledTextProps: StyledTextProps;
 }
@@ -108,7 +113,7 @@ export function splitProps(props: LinkProps): SplitProps {
   });
   return {
     customLinkProps,
-    nativeLinkProps,
+    // nativeLinkProps,
     styledLinkProps,
     styledTextProps
   };
