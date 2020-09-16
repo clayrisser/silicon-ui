@@ -49,6 +49,18 @@
     "vuepress",
     "wcag",
     "wscript",
-    "xargs"
+    "xargs",
+    "lcov",
+    "lerna",
+    "desaturate",
+    "grayscale",
+    "Ionicons",
+    "Entypo",
+    "Octicons",
+    "Zocial",
+    "Dropdownselect",
+    "zjlmac",
+    "azsq",
+    "joexik"
   ]
 }
