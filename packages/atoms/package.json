@@ -1,7 +1,7 @@
 {
   "name": "@silicon-ui/atoms",
   "version": "0.0.18",
-  "main": "expo/index.js",
+  "main": "lib/index.js",
   "description": "atomic building blocks for silicon ui",
   "homepage": "https://github.com/codejamninja/silicon-ui",
   "license": "Apache-2.0",
@@ -43,6 +43,7 @@
     "@babel/runtime": "^7.11.2",
     "@react-hook/merged-ref": "^1.3.0",
     "core-js": "^3.6.5",
+    "react-native-webview": "^10.9.0",
     "styled-system": "^5.1.5",
     "theme-ui": "0.4.0-rc.5"
   },
