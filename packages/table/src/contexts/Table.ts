@@ -8,6 +8,7 @@ export type TableContextValue = [
 
 export interface TableMeta {
   cols: Col[];
+  pulling?: boolean;
   resizable?: boolean;
 }
 

@@ -17,6 +17,7 @@ import {
 import useColWidth from '../hooks/useColWidth';
 import useResizable from '../hooks/useResizable';
 import useSetCol from '../hooks/useSetCol';
+import usePulling from '../hooks/usePulling';
 import useThemeLookup from '../hooks/useThemeLookup';
 import { CellProps, splitProps, DetailedHTMLTdProps } from './cellProps';
 
@@ -46,8 +47,7 @@ const Cell: FC<CellProps> = (props: CellProps) => {
   const setCol = useSetCol();
   const cellRef = useRef<NativeMethods | HTMLDivElement>(null);
   const themeLookup = useThemeLookup();
-  // eslint-ignore-next-line prefer-const
-  let [pulling, setPulling] = useState(false);
+  let [pulling, setPulling] = usePulling();
   // eslint-ignore-next-line prefer-const
   let [rightInitialX, setRightInitialX] = useState(0);
   // eslint-ignore-next-line prefer-const

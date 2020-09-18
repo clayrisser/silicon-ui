@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Box } from '@silicon-ui/atoms/lib';
 import Cell from '../Cell';
@@ -17,37 +17,10 @@ storiesOf('Table', module)
   })
   .add('chrome debugger', () => {
     const tableRef = useRef<any>();
-    const [width, setWidth] = useState(0);
-
-    useEffect(() => {
-      setWidth(tableRef.current?.offsetWidth || 0);
-    }, [tableRef]);
-
-    useEffect(() => {
-      function handleResize() {
-        setWidth(tableRef.current?.offsetWidth || 0);
-      }
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     return (
       <Wrapper>
         <Box>
-          <Table position="absolute" width={width}>
-            <Row width="100%">
-              <Cell
-                width="100%"
-                borderTopWidth={1}
-                borderLeftWidth={1}
-                borderRightWidth={1}
-                height={200}
-              />
-            </Row>
-            <Row width="100%">
-              <Cell width="100%" border={1} height={200} />
-            </Row>
-          </Table>
           <Table width="100%" resizable ref={tableRef}>
             <Row width="100%">
               <Cell

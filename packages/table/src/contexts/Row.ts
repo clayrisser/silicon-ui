@@ -8,6 +8,7 @@ export type RowContextValue = [
 
 export interface RowMeta {
   cols: Col[];
+  pulling?: boolean;
   resizable?: boolean;
 }
 

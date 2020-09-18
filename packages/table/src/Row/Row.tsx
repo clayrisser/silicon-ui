@@ -13,6 +13,7 @@ import {
 } from 'styled-system';
 import ColumnContext from '../contexts/Column';
 import RowContext, { RowMeta } from '../contexts/Row';
+import usePulling from '../hooks/usePulling';
 import { RowProps, DetailedHTMLRowProps, splitProps } from './rowProps';
 
 const HTMLRow: StyledComponent<
@@ -33,6 +34,7 @@ const HTMLRow: StyledComponent<
 );
 
 const Row: FC<RowProps> = (props: RowProps) => {
+  const [pulling] = usePulling();
   const { customRowProps, styledRowProps } = splitProps({ ...props });
   const [row, setRow] = useState<RowMeta | null>({
     resizable: props.resizable,
@@ -59,7 +61,10 @@ const Row: FC<RowProps> = (props: RowProps) => {
       overflow="hidden"
       {...((styledRowProps as unknown) as any)}
       verticalAlign="top"
-      style={{ whiteSpace: 'nowrap' }}
+      style={{
+        whiteSpace: 'nowrap',
+        ...(pulling ? { userSelect: 'none' } : {})
+      }}
     >
       <RowContext.Provider value={[row, setRow]}>
         {renderCells()}

@@ -53,7 +53,10 @@ const Table = forwardRef((props: TableProps, tableRef: LegacyRef<any>) => {
       {...styledTableProps}
       {...nativeItemProps}
       {...(customTableProps as any)}
-      style={{ borderCollapse: 'collapse', tableLayout: 'fixed' }}
+      style={{
+        borderCollapse: 'collapse',
+        tableLayout: 'fixed'
+      }}
       ref={tableRef}
     >
       <TableContext.Provider value={[table, setTable]}>
