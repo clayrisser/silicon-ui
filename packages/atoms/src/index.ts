@@ -15,6 +15,7 @@ import ProgressBar from './ProgressBar';
 import Icon from './Icon';
 import Link from './Link';
 import Loader from './Loader';
+import Iframe from './Iframe';
 import ThemeProvider from './ThemeProvider';
 
 export {
@@ -35,6 +36,7 @@ export {
   Icon,
   Link,
   Loader,
+  Iframe,
   ThemeProvider
 };
 
@@ -55,4 +57,5 @@ export * from './ProgressBar';
 export * from './Icon';
 export * from './Link';
 export * from './Loader';
+export * from './Iframe';
 export * from './ThemeProvider';

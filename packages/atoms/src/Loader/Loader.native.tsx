@@ -33,7 +33,7 @@ const Loader: FC<LoaderProps> = (props: LoaderProps) => {
       {...styledLoaderProps}
       {...nativeLoaderProps}
       {...customLoaderProps}
-    ></StyledNativeBaseLoader>
+    />
   );
 };
 

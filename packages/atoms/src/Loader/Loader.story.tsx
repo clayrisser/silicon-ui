@@ -8,7 +8,7 @@ import withThemeProvider from '../../storybook/withThemeProvider';
 
 export const LoaderStoryWithKnobs: FC = () => (
   <Wrapper>
-    <Loader color={color('color', 'blue')}></Loader>
+    <Loader color={color('color', 'blue')} />
   </Wrapper>
 );
 
