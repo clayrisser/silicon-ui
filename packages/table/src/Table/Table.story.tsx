@@ -26,6 +26,7 @@ storiesOf('Table', module)
               <Cell
                 backgroundColor="white"
                 borderLeftWidth={1}
+                debug
                 borderTopWidth={1}
                 height={200}
                 width="20%"
@@ -35,6 +36,7 @@ storiesOf('Table', module)
               <Cell
                 backgroundColor="white"
                 borderTopWidth={1}
+                debug
                 borderLeftWidth={1}
                 width="20%"
                 height={200}
@@ -45,6 +47,7 @@ storiesOf('Table', module)
               <Cell
                 backgroundColor="white"
                 borderLeftWidth={1}
+                debug
                 borderRightWidth={1}
                 borderTopWidth={1}
                 height={200}
@@ -57,6 +60,7 @@ storiesOf('Table', module)
               <Cell
                 backgroundColor="white"
                 borderTopWidth={1}
+                debug
                 borderLeftWidth={1}
                 borderBottomWidth={1}
                 width="20%"
@@ -69,6 +73,7 @@ storiesOf('Table', module)
                 borderTopWidth={1}
                 borderLeftWidth={1}
                 borderBottomWidth={1}
+                debug
                 width="20%"
                 height={200}
               >
@@ -79,6 +84,7 @@ storiesOf('Table', module)
                 borderBottomWidth={1}
                 borderLeftWidth={1}
                 borderRightWidth={1}
+                debug
                 borderTopWidth={1}
                 height={200}
               >

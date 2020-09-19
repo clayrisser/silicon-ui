@@ -50,21 +50,46 @@ const Cell: FC<CellProps> = (props: CellProps) => {
   const setCol = useSetCol();
   const themeLookup = useThemeLookup();
   const { customCellProps, styledCellProps } = splitProps(props);
-  let [firstPull, setFirstPull] = useState(true);
-  let [initWidth, setInitWidth] = useState<number | undefined>();
+  let [staticWidth, setStaticWidth] = useState<number | undefined>();
+  let [width, setWidth] = useState<string | number | undefined>(
+    props.width as string | number | undefined
+  );
   let [pulling, setPulling] = usePulling();
   // eslint-ignore-next-line prefer-const
   let [rightInitialX, setRightInitialX] = useState(0);
   // eslint-ignore-next-line prefer-const
-  const [rightRelativeX, setRightRelativeX] = useState(0);
+  let [rightRelativeX, setRightRelativeX] = useState(0);
   // eslint-ignore-next-line prefer-const
   let [initialWidth, setInitialWidth] = useState<number | undefined>();
 
   useEffect(() => {
+    if (resizable) {
+      width = (colWidth ||
+        (staticWidth
+          ? cssCalc(normalizeWidth(staticWidth), rightRelativeX)
+          : props.width)) as number | string;
+    }
+    setWidth(width);
+  }, [colWidth, props.width, staticWidth, rightRelativeX]);
+
+  useEffect(() => {
     (async () => {
-      if (pulling && !isLastCol && !initWidth) {
-        initWidth = (await getMeasuredWidth()) - 3;
-        setInitWidth(initWidth);
+      if (pulling) {
+        initialWidth = await getMeasuredWidth();
+        setInitialWidth(initialWidth);
+        if (
+          !isLastCol &&
+          typeof initialWidth !== 'undefined' &&
+          typeof staticWidth === 'undefined'
+        ) {
+          staticWidth = initialWidth - 3;
+          setStaticWidth(staticWidth);
+        }
+      } else {
+        rightInitialX = 0;
+        setRightInitialX(rightInitialX);
+        initialWidth = undefined;
+        setInitialWidth(initialWidth);
       }
     })();
   }, [pulling]);
@@ -87,59 +112,20 @@ const Cell: FC<CellProps> = (props: CellProps) => {
     return `${width.toString()}px`;
   }, []);
 
-  const width = resizable
-    ? colWidth ||
-      (initWidth
-        ? cssCalc(normalizeWidth(initWidth), rightRelativeX)
-        : props.width)
-    : props.width;
+  function getRelativeX(
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    initialX: number
+  ): number {
+    return -(getX(e) - initialX);
+  }
 
-  async function handleRightDrag(
+  function getX(
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) {
-    if (!pulling) return;
+  ): number {
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
-    const rightRelativeX = -(pageX - rightInitialX);
-    setRightRelativeX(rightRelativeX);
-    setCol({
-      width: cssCalc(normalizeWidth(initialWidth?.toString()), rightRelativeX)
-    });
-  }
-
-  async function handleRightPressIn(
-    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) {
-    if (!resizable) return;
-    const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
-    const gestureEvent = e as GestureResponderEvent;
-    const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
-    rightInitialX = pageX;
-    setRightInitialX(pageX);
-    if (!firstPull) {
-      initWidth = await getMeasuredWidth();
-      setInitWidth(initWidth);
-    }
-    firstPull = false;
-    setFirstPull(firstPull);
-    pulling = true;
-    setPulling(pulling);
-    if (typeof initialWidth === 'undefined') {
-      initialWidth = initWidth as number;
-      setInitialWidth(initialWidth);
-    }
-  }
-
-  function handleRightPressOut(
-    _e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) {
-    initialWidth = undefined;
-    setInitialWidth(initialWidth);
-    rightInitialX = 0;
-    setRightInitialX(rightInitialX);
-    pulling = false;
-    setPulling(pulling);
+    return pageX;
   }
 
   function cssCalc(left?: string, right?: number): string | number | undefined {
@@ -152,6 +138,34 @@ const Cell: FC<CellProps> = (props: CellProps) => {
       return parseInt(reducedWidth.toString(), 10);
     }
     return reducedWidth;
+  }
+
+  async function handleRightDrag(
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) {
+    if (!pulling) return;
+    rightRelativeX = getRelativeX(e, rightInitialX);
+    setRightRelativeX(rightRelativeX);
+    setCol({
+      width: cssCalc(normalizeWidth(initialWidth?.toString()), rightRelativeX)
+    });
+  }
+
+  async function handleRightPressIn(
+    e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) {
+    if (!resizable) return;
+    rightInitialX = getX(e);
+    setRightInitialX(rightInitialX);
+    pulling = true;
+    setPulling(pulling);
+  }
+
+  function handleRightPressOut(
+    _e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) {
+    pulling = false;
+    setPulling(pulling);
   }
 
   function renderGrab() {
@@ -183,6 +197,22 @@ const Cell: FC<CellProps> = (props: CellProps) => {
     );
   }
 
+  function renderDebug() {
+    if (!customCellProps.debug) return <></>;
+    return (
+      <>
+        <div>width: {width}</div>
+        <div>initial width: {initialWidth}</div>
+        <div>initial x: {rightInitialX}</div>
+        <div>last col: {isLastCol.toString()}</div>
+        <div>pulling: {pulling}</div>
+        <div>relative x: {rightRelativeX}</div>
+        <div>resizable: {resizable?.toString()}</div>
+        <div>static width: {staticWidth}</div>
+      </>
+    );
+  }
+
   return (
     <HTMLTd
       borderWidth={styledCellProps.borderWidth || 0}
@@ -194,12 +224,12 @@ const Cell: FC<CellProps> = (props: CellProps) => {
       }}
       {...customCellProps}
       {...styledCellProps}
-      width={width as number}
+      width={width}
       // @ts-ignore
       ref={cellRef}
     >
-      {isLastCol.toString()}
       {renderGrab()}
+      {renderDebug()}
       {customCellProps.children}
     </HTMLTd>
   );

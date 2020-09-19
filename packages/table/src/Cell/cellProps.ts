@@ -28,6 +28,7 @@ export interface StyledCellProps
 
 export interface CustomCellProps {
   children?: ReactNode;
+  debug?: boolean;
   grabWidth?: number;
   resizable?: boolean;
   style?: any;
@@ -43,6 +44,7 @@ export interface SplitProps {
 
 export const customCellPropsKeys = new Set([
   'children',
+  'debug',
   'grabWidth',
   'resizable',
   'theme'
