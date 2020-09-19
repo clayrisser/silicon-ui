@@ -1,4 +1,11 @@
-import React, { ReactNode, useState, forwardRef, LegacyRef } from 'react';
+import React, {
+  LegacyRef,
+  ReactNode,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useState
+} from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 import {
   background,
@@ -40,6 +47,20 @@ const Table = forwardRef((props: TableProps, tableRef: LegacyRef<any>) => {
   const { customTableProps, styledTableProps, nativeItemProps } = splitProps(
     props
   );
+
+  useEffect(() => {
+    (async () => {
+      const width = await getMeasuredWidth();
+      setTable((table) => {
+        return { cols: [], ...table, width };
+      });
+    })();
+  }, []);
+
+  const getMeasuredWidth = useCallback(async () => {
+    // @ts-ignore
+    return tableRef.current.offsetWidth;
+  }, [tableRef]);
 
   function renderRows() {
     let { children } = customTableProps;

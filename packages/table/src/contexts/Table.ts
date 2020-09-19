@@ -11,6 +11,7 @@ export interface TableMeta {
   cols: Col[];
   pulling?: boolean;
   resizable?: boolean;
+  width?: number;
 }
 
 export default createContext<TableContextValue>([null, () => {}]);

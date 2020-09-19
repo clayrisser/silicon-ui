@@ -20,7 +20,7 @@ storiesOf('Table', module)
 
     return (
       <Wrapper>
-        <Box>
+        <Box maxWidth="100%" overflowX="hidden" overflowY="visible">
           <Table width="100%" resizable ref={tableRef}>
             <Row width="100%">
               <Cell
@@ -29,7 +29,7 @@ storiesOf('Table', module)
                 debug
                 borderTopWidth={1}
                 height={200}
-                width="20%"
+                width="30%"
               >
                 One
               </Cell>
@@ -38,7 +38,7 @@ storiesOf('Table', module)
                 borderTopWidth={1}
                 debug
                 borderLeftWidth={1}
-                width="20%"
+                width="30%"
                 height={200}
                 style={{ whiteSpace: 'normal' }}
               >
@@ -51,7 +51,6 @@ storiesOf('Table', module)
                 borderRightWidth={1}
                 borderTopWidth={1}
                 height={200}
-                width="100%"
               >
                 Three
               </Cell>
@@ -63,7 +62,7 @@ storiesOf('Table', module)
                 debug
                 borderLeftWidth={1}
                 borderBottomWidth={1}
-                width="20%"
+                width="30%"
                 height={200}
               >
                 Four
@@ -74,7 +73,7 @@ storiesOf('Table', module)
                 borderLeftWidth={1}
                 borderBottomWidth={1}
                 debug
-                width="20%"
+                width="30%"
                 height={200}
               >
                 Five

@@ -11,6 +11,7 @@ export interface RowMeta {
   cols: Col[];
   pulling?: boolean;
   resizable?: boolean;
+  width?: number;
 }
 
 export default createContext<RowContextValue>([null, () => {}]);
