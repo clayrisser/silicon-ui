@@ -118,8 +118,8 @@ lib:
 	@$(BABEL) src -d lib --extensions '.ts,.tsx' --source-maps
 	@$(TSC) -d --emitDeclarationOnly
 	@cp -r node_modules/.tmp/lib/src/. lib $(NOFAIL)
-	@rm -rf ../table/node_modules/@silicon-ui/atoms/lib && \
-		cp -r lib ../table/node_modules/@silicon-ui/atoms/lib
+#	-@rm -rf ../table/node_modules/@silicon-ui/atoms/lib && \
+		cp -r lib ../table/node_modules/@silicon-ui/atoms/lib $(NOFAIL)
 
 .PHONY: coverage
 coverage: ~lint
