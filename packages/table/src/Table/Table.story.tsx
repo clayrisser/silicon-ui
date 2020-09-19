@@ -43,9 +43,10 @@ storiesOf('Table', module)
                 Two three four five
               </Cell>
               <Cell
-                borderTopWidth={1}
-                borderLeftWidth={1}
                 backgroundColor="white"
+                borderLeftWidth={1}
+                borderRightWidth={1}
+                borderTopWidth={1}
                 height={200}
                 width="100%"
               >
@@ -75,9 +76,10 @@ storiesOf('Table', module)
               </Cell>
               <Cell
                 backgroundColor="white"
-                borderTopWidth={1}
-                borderLeftWidth={1}
                 borderBottomWidth={1}
+                borderLeftWidth={1}
+                borderRightWidth={1}
+                borderTopWidth={1}
                 height={200}
               >
                 Six
