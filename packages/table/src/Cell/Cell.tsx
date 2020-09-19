@@ -49,6 +49,9 @@ const Cell: FC<CellProps> = (props: CellProps) => {
   const resizable = !isLastCol && (useResizable() || props.resizable);
   const setCol = useSetCol();
   const themeLookup = useThemeLookup();
+  const { customCellProps, styledCellProps } = splitProps(props);
+  let [firstPull, setFirstPull] = useState(true);
+  let [initWidth, setInitWidth] = useState<number | undefined>();
   let [pulling, setPulling] = usePulling();
   // eslint-ignore-next-line prefer-const
   let [rightInitialX, setRightInitialX] = useState(0);
@@ -56,22 +59,20 @@ const Cell: FC<CellProps> = (props: CellProps) => {
   const [rightRelativeX, setRightRelativeX] = useState(0);
   // eslint-ignore-next-line prefer-const
   let [initialWidth, setInitialWidth] = useState<number | undefined>();
-  let [initWidth, setInitWidth] = useState<number | undefined>();
-  const { customCellProps, styledCellProps } = splitProps(props);
+
+  useEffect(() => {
+    (async () => {
+      if (pulling && !isLastCol && !initWidth) {
+        initWidth = (await getMeasuredWidth()) - 3;
+        setInitWidth(initWidth);
+      }
+    })();
+  }, [pulling]);
 
   const getMeasuredWidth = useCallback(async () => {
     // @ts-ignore
     return cellRef.current.offsetWidth;
   }, [cellRef.current]);
-
-  useEffect(() => {
-    (async () => {
-      if (resizable) {
-        initWidth = await getMeasuredWidth();
-        setInitWidth(initWidth);
-      }
-    })();
-  }, []);
 
   const normalizeWidth = useCallback((width?: number | string) => {
     if (typeof width === 'undefined') return undefined;
@@ -88,20 +89,15 @@ const Cell: FC<CellProps> = (props: CellProps) => {
 
   const width = resizable
     ? colWidth ||
-      cssCalc(
-        normalizeWidth(
-          initWidth ||
-            (typeof props.width === 'undefined'
-              ? undefined
-              : props.width?.toString())
-        ),
-        rightRelativeX
-      )
+      (initWidth
+        ? cssCalc(normalizeWidth(initWidth), rightRelativeX)
+        : props.width)
     : props.width;
 
   async function handleRightDrag(
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
+    if (!pulling) return;
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
@@ -115,17 +111,24 @@ const Cell: FC<CellProps> = (props: CellProps) => {
   async function handleRightPressIn(
     e: GestureResponderEvent | React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
-    pulling = true;
-    setPulling(pulling);
-    if (typeof initialWidth === 'undefined') {
-      initialWidth = width as number;
-      setInitialWidth(initialWidth);
-    }
+    if (!resizable) return;
     const mouseEvent = e as React.MouseEvent<HTMLDivElement, MouseEvent>;
     const gestureEvent = e as GestureResponderEvent;
     const pageX = mouseEvent.pageX || gestureEvent.nativeEvent?.pageX || 0;
     rightInitialX = pageX;
     setRightInitialX(pageX);
+    if (!firstPull) {
+      initWidth = await getMeasuredWidth();
+      setInitWidth(initWidth);
+    }
+    firstPull = false;
+    setFirstPull(firstPull);
+    pulling = true;
+    setPulling(pulling);
+    if (typeof initialWidth === 'undefined') {
+      initialWidth = initWidth as number;
+      setInitialWidth(initialWidth);
+    }
   }
 
   function handleRightPressOut(

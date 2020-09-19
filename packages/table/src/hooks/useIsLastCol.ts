@@ -1,6 +1,6 @@
-import useColId from '../hooks/useColId';
-import useRow from '../hooks/useRow';
-import useTable from '../hooks/useTable';
+import useColId from './useColId';
+import useRow from './useRow';
+import useTable from './useTable';
 
 export default function useIsLastCol(): boolean {
   const [table] = useTable();
