@@ -37,8 +37,9 @@ const Row: FC<RowProps> = (props: RowProps) => {
   const [pulling] = usePulling();
   const { customRowProps, styledRowProps } = splitProps({ ...props });
   const [row, setRow] = useState<RowMeta | null>({
-    resizable: props.resizable,
-    cols: []
+    colCount: (customRowProps?.children as any[])?.length || 0,
+    cols: [],
+    resizable: props.resizable
   });
 
   function renderCells() {
@@ -56,8 +57,6 @@ const Row: FC<RowProps> = (props: RowProps) => {
   return (
     <HTMLRow
       borderWidth={styledRowProps.borderWidth || 0}
-      display="flex"
-      flexDirection="col"
       overflow="hidden"
       {...((styledRowProps as unknown) as any)}
       verticalAlign="top"

@@ -1,4 +1,4 @@
-import React, { FC, useRef, useCallback, useState } from 'react';
+import React, { FC, useRef, useCallback, useState, useEffect } from 'react';
 import reduceCssCalc from 'reduce-css-calc';
 import styled, { StyledComponent } from '@emotion/styled';
 import { Box } from '@silicon-ui/atoms/lib';
@@ -15,9 +15,10 @@ import {
   typography
 } from 'styled-system';
 import useColWidth from '../hooks/useColWidth';
+import useIsLastCol from '../hooks/useIsLastCol';
+import usePulling from '../hooks/usePulling';
 import useResizable from '../hooks/useResizable';
 import useSetCol from '../hooks/useSetCol';
-import usePulling from '../hooks/usePulling';
 import useThemeLookup from '../hooks/useThemeLookup';
 import { CellProps, splitProps, DetailedHTMLTdProps } from './cellProps';
 
@@ -42,10 +43,11 @@ const HTMLTd: StyledComponent<
 );
 
 const Cell: FC<CellProps> = (props: CellProps) => {
-  const colWidth = useColWidth();
-  const resizable = useResizable() || props.resizable;
-  const setCol = useSetCol();
   const cellRef = useRef<NativeMethods | HTMLDivElement>(null);
+  const colWidth = useColWidth();
+  const isLastCol = useIsLastCol();
+  const resizable = !isLastCol && (useResizable() || props.resizable);
+  const setCol = useSetCol();
   const themeLookup = useThemeLookup();
   let [pulling, setPulling] = usePulling();
   // eslint-ignore-next-line prefer-const
@@ -54,7 +56,22 @@ const Cell: FC<CellProps> = (props: CellProps) => {
   const [rightRelativeX, setRightRelativeX] = useState(0);
   // eslint-ignore-next-line prefer-const
   let [initialWidth, setInitialWidth] = useState<number | undefined>();
+  let [initWidth, setInitWidth] = useState<number | undefined>();
   const { customCellProps, styledCellProps } = splitProps(props);
+
+  const getMeasuredWidth = useCallback(async () => {
+    // @ts-ignore
+    return cellRef.current.offsetWidth;
+  }, [cellRef.current]);
+
+  useEffect(() => {
+    (async () => {
+      if (resizable) {
+        initWidth = await getMeasuredWidth();
+        setInitWidth(initWidth);
+      }
+    })();
+  }, []);
 
   const normalizeWidth = useCallback((width?: number | string) => {
     if (typeof width === 'undefined') return undefined;
@@ -73,9 +90,10 @@ const Cell: FC<CellProps> = (props: CellProps) => {
     ? colWidth ||
       cssCalc(
         normalizeWidth(
-          typeof props.width === 'undefined'
-            ? undefined
-            : props.width?.toString()
+          initWidth ||
+            (typeof props.width === 'undefined'
+              ? undefined
+              : props.width?.toString())
         ),
         rightRelativeX
       )
@@ -177,6 +195,7 @@ const Cell: FC<CellProps> = (props: CellProps) => {
       // @ts-ignore
       ref={cellRef}
     >
+      {isLastCol.toString()}
       {renderGrab()}
       {customCellProps.children}
     </HTMLTd>

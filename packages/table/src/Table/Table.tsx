@@ -33,8 +33,9 @@ const HTMLTable: StyledComponent<
 
 const Table = forwardRef((props: TableProps, tableRef: LegacyRef<any>) => {
   const [table, setTable] = useState<TableMeta | null>({
-    resizable: props.resizable,
-    cols: []
+    colCount: (props?.children as any[])?.length || 0,
+    cols: [],
+    resizable: props.resizable
   });
   const { customTableProps, styledTableProps, nativeItemProps } = splitProps(
     props

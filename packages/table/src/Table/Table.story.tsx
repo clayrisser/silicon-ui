@@ -28,7 +28,7 @@ storiesOf('Table', module)
                 borderLeftWidth={1}
                 borderTopWidth={1}
                 height={200}
-                width="20%"
+                width={200}
               >
                 One
               </Cell>
@@ -36,7 +36,7 @@ storiesOf('Table', module)
                 backgroundColor="white"
                 borderTopWidth={1}
                 borderLeftWidth={1}
-                width="20%"
+                width={200}
                 height={200}
                 style={{ whiteSpace: 'normal' }}
               >
@@ -47,6 +47,7 @@ storiesOf('Table', module)
                 borderLeftWidth={1}
                 backgroundColor="white"
                 height={200}
+                width="100%"
               >
                 Three
               </Cell>
@@ -57,7 +58,7 @@ storiesOf('Table', module)
                 borderTopWidth={1}
                 borderLeftWidth={1}
                 borderBottomWidth={1}
-                width="20%"
+                width={200}
                 height={200}
               >
                 Four
@@ -67,7 +68,7 @@ storiesOf('Table', module)
                 borderTopWidth={1}
                 borderLeftWidth={1}
                 borderBottomWidth={1}
-                width="20%"
+                width={200}
                 height={200}
               >
                 Five
