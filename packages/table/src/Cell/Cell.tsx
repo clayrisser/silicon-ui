@@ -1,12 +1,14 @@
 import reduceCssCalc from 'reduce-css-calc';
 import styled, { StyledComponent } from '@emotion/styled';
+import useMergedRef from '@react-hook/merged-ref';
 import { Box } from '@silicon-ui/atoms/lib';
 import { GestureResponderEvent, NativeMethods } from 'react-native';
 import React, {
-  LegacyRef,
+  Ref,
   forwardRef,
   useCallback,
   useEffect,
+  useRef,
   useState
 } from 'react';
 import {
@@ -49,7 +51,12 @@ const HTMLTd: StyledComponent<
 );
 
 const Cell = forwardRef(
-  (props: CellProps, cellRef: LegacyRef<NativeMethods | HTMLDivElement>) => {
+  (props: CellProps, forwardedRef: Ref<NativeMethods | HTMLDivElement>) => {
+    const cellRef = useRef<any>();
+    const mergedRef = useMergedRef<NativeMethods | HTMLDivElement>(
+      forwardedRef,
+      cellRef
+    );
     const colWidth = useColWidth();
     const isLastCol = useIsLastCol();
     const resizable = !isLastCol && (useResizable() || props.resizable);
@@ -104,7 +111,8 @@ const Cell = forwardRef(
     const getMeasuredWidth = useCallback(async () => {
       // @ts-ignore
       return cellRef.current.offsetWidth;
-    }, [cellRef]);
+      // @ts-ignore
+    }, [cellRef?.current]);
 
     const normalizeWidth = useCallback((width?: number | string) => {
       if (typeof width === 'undefined') return undefined;
@@ -263,10 +271,10 @@ const Cell = forwardRef(
             : {})
         }}
         {...customCellProps}
-        {...styledCellProps}
+        {...(styledCellProps as any)}
         width={width}
         // @ts-ignore
-        ref={cellRef}
+        ref={mergedRef}
       >
         {renderGrab()}
         {renderDebug()}

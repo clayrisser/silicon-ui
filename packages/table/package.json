@@ -1,7 +1,7 @@
 {
   "name": "@silicon-ui/table",
   "main": "lib/index.js",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "atomic building blocks for silicon ui",
   "homepage": "https://github.com/codejamninja/silicon-ui",
   "license": "Apache-2.0",
@@ -43,6 +43,7 @@
   "dependencies": {
     "@babel/runtime": "^7.11.2",
     "@emotion/styled": "^10.0.27",
+    "@react-hook/merged-ref": "^1.3.0",
     "@silicon-ui/atoms": "workspace:*",
     "core-js": "^3.6.5",
     "react-native-table-component": "^1.2.1",

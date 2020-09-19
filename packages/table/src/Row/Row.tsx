@@ -1,5 +1,6 @@
-import React, { ReactNode, useState, LegacyRef, forwardRef } from 'react';
+import React, { ReactNode, useState, Ref, forwardRef, useRef } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
+import useMergedRef from '@react-hook/merged-ref';
 import { NativeMethods } from 'react-native';
 import {
   background,
@@ -35,8 +36,10 @@ const HTMLRow: StyledComponent<
 );
 
 const Row = forwardRef(
-  (props: RowProps, rowRef: LegacyRef<NativeMethods | HTMLDivElement>) => {
+  (props: RowProps, forwardedRef: Ref<NativeMethods | HTMLDivElement>) => {
     const [pulling] = usePulling();
+    const rowRef = useRef<any>();
+    const mergedRef = useMergedRef(forwardedRef, rowRef);
     const { customRowProps, styledRowProps } = splitProps({ ...props });
     const [row, setRow] = useState<RowMeta | null>({
       colCount: (customRowProps?.children as any[])?.length || 0,
@@ -58,7 +61,6 @@ const Row = forwardRef(
 
     return (
       <HTMLRow
-        ref={rowRef}
         borderWidth={styledRowProps.borderWidth || 0}
         overflow="hidden"
         {...((styledRowProps as unknown) as any)}
@@ -67,6 +69,7 @@ const Row = forwardRef(
           ...(pulling ? { userSelect: 'none' } : {}),
           whiteSpace: 'nowrap'
         }}
+        ref={mergedRef}
       >
         <RowContext.Provider value={[row, setRow]}>
           {renderCells()}
