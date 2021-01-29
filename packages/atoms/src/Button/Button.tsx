@@ -7,6 +7,8 @@ const StyledNativeBaseButton = styled<NativeBase.Button>(NativeBaseButton)();
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const { customButtonProps, themedNativeBaseButtonProps } = splitProps(props);
+  console.log('customButtonProps', customButtonProps);
+  console.log('themedNativeBaseButtonProps', themedNativeBaseButtonProps);
   return (
     <StyledNativeBaseButton
       {...themedNativeBaseButtonProps}

@@ -1,3 +1,5 @@
+import { HashMap } from './types';
+
 export interface Props {
   [key: string]: any;
 }
@@ -16,4 +18,30 @@ export function splitTouchableProps<T>(props: Props): [T, Props] {
     }
   });
   return [clonedProps as T, touchableProps];
+}
+
+export function createSplitProps<Props, SplitProps = HashMap<HashMap>>(
+  setsMap: HashMap<Set<string>>,
+  lastSetId: string
+) {
+  return (props: Props): SplitProps => {
+    const propsMap: HashMap<HashMap> = {};
+    Object.keys(setsMap).forEach((setId: string) => (propsMap[setId] = {}));
+    propsMap[lastSetId] = {};
+    const clonedProps = { ...props };
+    const setIds = Object.keys(setsMap);
+    Object.entries(clonedProps).forEach(([key, prop]: [string, any]) => {
+      for (const setId of setIds) {
+        const setProps = propsMap[setId];
+        const setKeys = setsMap[setId];
+        if (setKeys.has(key)) {
+          setProps[key] = prop;
+          return;
+        }
+      }
+      const setProps = propsMap[lastSetId];
+      setProps[key] = prop;
+    });
+    return (propsMap as unknown) as SplitProps;
+  };
 }
