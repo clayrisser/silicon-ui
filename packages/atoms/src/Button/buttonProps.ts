@@ -1,126 +1,34 @@
-import { DetailedHTMLProps, ButtonHTMLAttributes, ReactNode } from 'react';
-import { Theme } from 'theme-ui';
-import {
-  BackgroundColorProps,
-  BackgroundProps,
-  BorderProps,
-  LayoutProps,
-  OpacityProps,
-  PositionProps,
-  ShadowProps,
-  SpaceProps,
-  TextColorProps,
-  TypographyProps
-} from 'styled-system';
 import { NativeBase } from 'native-base';
+import { Theme } from 'theme-ui';
+import { ThemedStyledProps } from 'native-theme-ui';
 
-export type DetailedHTMLButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
-
-export interface StyledButtonProps
-  extends BackgroundProps,
-    BackgroundColorProps,
-    BorderProps,
-    LayoutProps,
-    OpacityProps,
-    PositionProps,
-    ShadowProps,
-    SpaceProps {}
-
-export interface NativeButtonProps extends Omit<NativeBase.Button, 'color'> {}
-
-export interface StyledTextProps extends TypographyProps, TextColorProps {}
+export type ThemedNativeBaseButtonProps = ThemedStyledProps<NativeBase.Button>;
 
 export interface CustomButtonProps {
-  autoContrast?: boolean | 'A' | 'AA' | 'AAA';
-  children?: ReactNode;
   theme?: Theme;
-  disabled?: boolean;
-  value?: string;
-  name?: string;
-  type?: string;
 }
 
-export interface ButtonProps
-  extends StyledButtonProps,
-    CustomButtonProps,
-    StyledTextProps,
-    NativeButtonProps {}
+export type ButtonProps = CustomButtonProps & ThemedNativeBaseButtonProps;
 
-export const antiForwardButtonPropsKeys = new Set(['borderColor']);
-
-export const customButtonPropsKeys = new Set([
-  'autoContrast',
-  'children',
-  'disabled'
-]);
-
-export const styledTextPropsKeys = new Set([
-  'color',
-  'fontFamily',
-  'fontSize',
-  'fontStyle',
-  'fontWeight',
-  'letterSpacing',
-  'lineHeight',
-  'textAlign'
-]);
-
-export const nativeButtonPropsKeys = new Set([
-  'androidRippleColor',
-  'badge',
-  'dark',
-  'first',
-  'full',
-  'hasText',
-  'icon',
-  'iconLeft',
-  'iconRight',
-  'inputButton',
-  'large',
-  'last',
-  'light',
-  'onPress',
-  'onPressIn',
-  'onPressOut',
-  'rounded',
-  'small',
-  'textStyle',
-  'transparent',
-  'vertical',
-  'block',
-  'bordered'
-]);
+export const customButtonPropsKeys = new Set(['theme']);
 
 interface SplitProps {
   customButtonProps: CustomButtonProps;
-  nativeButtonProps: NativeButtonProps;
-  styledButtonProps: StyledButtonProps;
-  styledTextProps: StyledTextProps;
+  themedNativeBaseButtonProps: ThemedNativeBaseButtonProps;
 }
 
 export function splitProps(props: ButtonProps): SplitProps {
   const customButtonProps: { [key: string]: any } = {};
-  const nativeButtonProps: { [key: string]: any } = {};
-  const styledButtonProps: { [key: string]: any } = {};
-  const styledTextProps: { [key: string]: any } = {};
+  const themedNativeBaseButtonProps: { [key: string]: any } = {};
   Object.entries({ ...props }).forEach(([key, prop]: [string, any]) => {
     if (customButtonPropsKeys.has(key)) {
       customButtonProps[key] = prop;
-    } else if (styledTextPropsKeys.has(key)) {
-      styledTextProps[key] = prop;
-    } else if (nativeButtonPropsKeys.has(key)) {
-      nativeButtonProps[key] = prop;
     } else {
-      styledButtonProps[key] = prop;
+      themedNativeBaseButtonProps[key] = prop;
     }
   });
   return {
     customButtonProps,
-    nativeButtonProps,
-    styledButtonProps,
-    styledTextProps
+    themedNativeBaseButtonProps
   };
 }

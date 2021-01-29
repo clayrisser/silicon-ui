@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const pkgDir = require('pkg-dir');
 
@@ -31,23 +32,55 @@ module.exports = {
     if (!config.resolve.alias) config.resolve.alias = {};
     if (!config.module.rules) config.module.rules = [];
     if (!config.resolve.extensions) config.resolve.extensions = [];
+    console.log(
+      pkgDir.sync(
+        fs.realpathSync(require.resolve('@react-native-picker/picker'))
+      ),
+      path.resolve(
+        pkgDir.sync(
+          fs.realpathSync(require.resolve('@react-native-picker/picker'))
+        ),
+        'js'
+      )
+    );
     config.module.rules.push({
       test: /\.[jt]sx?$/,
       include: [
         path.resolve(rootPath, 'src'),
         path.resolve(rootPath, 'storybook'),
-        path.resolve(rootPath, 'node_modules/native-base-shoutem-theme'),
-        path.resolve(rootPath, 'node_modules/react-native-drawer'),
-        path.resolve(rootPath, 'node_modules/react-native-easy-grid'),
-        path.resolve(rootPath, 'node_modules/react-native-safe-area-view'),
-        path.resolve(rootPath, 'node_modules/react-native-tab-view'),
-        path.resolve(rootPath, 'node_modules/react-native-vector-icons'),
-        path.resolve(rootPath, 'node_modules/react-native-web'),
-        path.resolve(rootPath, 'node_modules/react-navigation'),
-        path.resolve(rootPath, 'node_modules/static-container'),
+        pkgDir.sync(
+          fs.realpathSync(require.resolve('native-base-shoutem-theme'))
+        ),
+        pkgDir.sync(fs.realpathSync(require.resolve('react-native-drawer'))),
+        pkgDir.sync(fs.realpathSync(require.resolve('react-native-easy-grid'))),
+        pkgDir.sync(
+          fs.realpathSync(require.resolve('react-native-safe-area-view'))
+        ),
+        pkgDir.sync(fs.realpathSync(require.resolve('react-native-tab-view'))),
+        pkgDir.sync(
+          fs.realpathSync(require.resolve('react-native-vector-icons'))
+        ),
+        pkgDir.sync(fs.realpathSync(require.resolve('react-native-web'))),
+        pkgDir.sync(fs.realpathSync(require.resolve('react-navigation'))),
+        pkgDir.sync(fs.realpathSync(require.resolve('static-container'))),
+        pkgDir.sync(
+          fs.realpathSync(
+            require.resolve('react-native-keyboard-aware-scroll-view')
+          )
+        ),
+        pkgDir.sync(
+          fs.realpathSync(
+            require.resolve('@codler/react-native-keyboard-aware-scroll-view')
+          )
+        ),
+        pkgDir.sync(
+          fs.realpathSync(require.resolve('@react-native-picker/picker'))
+        ),
         path.resolve(
-          rootPath,
-          'node_modules/react-native-keyboard-aware-scroll-view'
+          pkgDir.sync(
+            fs.realpathSync(require.resolve('@react-native-picker/picker'))
+          ),
+          'js'
         )
       ],
       use: [
@@ -63,7 +96,7 @@ module.exports = {
     config.module.rules.push({
       test: /\.ttf$/,
       loader: 'url-loader',
-      include: path.resolve(rootPath, 'node_modules/react-native-vector-icons')
+      include: fs.realpathSync(require.resolve('react-native-vector-icons'))
     });
     config.module.rules.push({
       test: /\.story\.tsx?$/,
@@ -76,18 +109,18 @@ module.exports = {
       enforce: 'pre'
     });
     config.resolve.extensions.push('.jsx', '.ts', '.tsx');
-    config.resolve.alias.react = path.resolve(rootPath, 'node_modules/react');
-    config.resolve.alias['react-native'] = path.resolve(
-      rootPath,
-      'node_modules/react-native-web'
-    );
-    config.resolve.alias['react-dom'] = path.resolve(
-      rootPath,
-      'node_modules/react-dom'
-    );
+    config.resolve.alias.react = fs.realpathSync(require.resolve('react'));
     config.resolve.alias[
-      'react-native/Libraries/Renderer/shims/ReactNativePropRegistry'
-    ] = 'react-native-web/dist/modules/ReactNativePropRegistry';
+      'react-native/Libraries/Components/UnimplementedViews/UnimplementedView'
+    ] = fs.realpathSync(
+      require.resolve('react-native-web/dist/modules/UnimplementedView')
+    );
+    config.resolve.alias['react-native'] = fs.realpathSync(
+      require.resolve('react-native-web')
+    );
+    config.resolve.alias['react-dom'] = fs.realpathSync(
+      require.resolve('react-dom')
+    );
     config.node = {
       child_process: 'empty',
       fs: 'empty',
