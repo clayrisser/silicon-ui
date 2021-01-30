@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { NativeBase, Button as NativeBaseButton } from 'native-base';
 import { styled, Text as NativeText } from 'native-theme-ui';
 import { SxStyleProp } from 'theme-ui';
+import useColor from '../../hooks/useColor';
 import { ButtonProps, splitProps } from './buttonProps';
 
 const StyledNativeBaseButton = styled<NativeBase.Button>(NativeBaseButton)({});
@@ -14,6 +15,7 @@ const defaultSx: SxStyleProp = {
 };
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
+  const color = useColor(props);
   const {
     customButtonProps,
     nativeTextSx,
@@ -26,7 +28,7 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     if (!children) return null;
     if (typeof children === 'string') {
       return (
-        <NativeText sx={{ ...nativeTextSx, width: '100%' }}>
+        <NativeText sx={{ ...nativeTextSx, color, width: '100%' }}>
           {children}
         </NativeText>
       );

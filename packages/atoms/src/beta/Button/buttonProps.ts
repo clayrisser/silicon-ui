@@ -1,6 +1,6 @@
 import { NativeBase } from 'native-base';
 import { ReactNode } from 'react';
-import { Theme, SxStyleProp } from 'theme-ui';
+import { SxStyleProp } from 'theme-ui';
 import { ThemedStyledProps } from 'native-theme-ui';
 import { createSplitProps } from '../../util';
 
@@ -9,8 +9,8 @@ export type ButtonProps = CustomButtonProps &
   NativeTextProps;
 
 export interface CustomButtonProps {
+  autoContrast?: boolean | 'A' | 'AA' | 'AAA';
   children?: ReactNode;
-  theme?: Theme;
 }
 
 export interface NativeTextProps {}
@@ -32,7 +32,10 @@ export interface SplitSx {
 }
 
 export const splitProps = createSplitProps<ButtonProps, SplitProps, SplitSx>(
-  { customButtonProps: ['children', 'theme'], nativeTextProps: [] },
+  {
+    customButtonProps: ['autoContrast', 'children'],
+    nativeTextProps: []
+  },
   'themedNativeBaseButtonProps',
   { nativeTextSx: /^((color)|(text.+))$/ },
   'themedNativeBaseButtonSx'

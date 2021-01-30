@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 import Button from './Button';
 import Wrapper from '../../../storybook/Wrapper';
 import docs from './docs';
@@ -10,6 +10,16 @@ import withThemeProvider from '../../../storybook/withThemeProvider';
 export const ButtonStoryWithKnobs: FC = () => (
   <Wrapper>
     <Button
+      autoContrast={select<'A' | 'AA' | 'AAA'>(
+        'autoContrast',
+        {
+          false: '' as 'A',
+          A: 'A',
+          AA: 'AA',
+          AAA: 'AAA'
+        },
+        'AA'
+      )}
       sx={{ backgroundColor: text('backgroundColor', 'primary') }}
       onFocus={action('onFocus')}
       onPress={action('onPress')}
