@@ -1,18 +1,23 @@
 import colorString from 'color-string';
 import { score, hex } from 'wcag-contrast';
-import { useThemeUI } from 'theme-ui';
+import { useThemeUI, ThemeUICSSObject, ThemeDerivedStyles } from 'theme-ui';
 import {
   Generator as ColorGenerator,
   Generator
 } from 'contrast-color-generator';
 import useThemeLookup from './useThemeLookup';
+import { HashMap } from '../types';
 
-export default function useColor(props: any): string {
+export default function useColor(
+  props: HashMap,
+  sx?: ThemeUICSSObject & ThemeDerivedStyles
+): string {
+  sx = sx || props.sx;
   const { theme } = useThemeUI() as { theme: any };
   const themeLookup = useThemeLookup();
   return autoContrast(
-    themeLookup('backgroundColor', props.sx?.backgroundColor || '#FFFFFF'),
-    themeLookup('color', props.sx?.color || '#000000'),
+    themeLookup('backgroundColor', sx?.backgroundColor || '#FFFFFF'),
+    themeLookup('color', sx?.color || '#000000'),
     typeof props.autoContrast === 'undefined'
       ? theme.autoContrast
       : props.autoContrast

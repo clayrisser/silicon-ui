@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { NativeBase, Button as NativeBaseButton } from 'native-base';
-import { styled, Text as NativeText } from 'native-theme-ui';
+import { styled, Text as ThemedText } from 'native-theme-ui';
 import { SxStyleProp } from 'theme-ui';
 import useColor from '../../hooks/useColor';
 import { ButtonProps, splitProps } from './buttonProps';
@@ -15,29 +15,28 @@ const defaultSx: SxStyleProp = {
 };
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const color = useColor(props);
   const {
     customButtonProps,
     nativeTextSx,
     sx,
-    themedNativeBaseButtonProps
+    styledNativeBaseButtonProps
   } = splitProps(props, defaultSx);
+  const color = useColor(props, sx);
 
   function renderChildren() {
     const { children } = customButtonProps;
-    if (!children) return null;
     if (typeof children === 'string') {
       return (
-        <NativeText sx={{ ...nativeTextSx, color, width: '100%' }}>
+        <ThemedText sx={{ ...nativeTextSx, color, width: '100%' }}>
           {children}
-        </NativeText>
+        </ThemedText>
       );
     }
     return children;
   }
 
   return (
-    <StyledNativeBaseButton {...themedNativeBaseButtonProps} sx={sx}>
+    <StyledNativeBaseButton {...styledNativeBaseButtonProps} sx={sx}>
       {renderChildren()}
     </StyledNativeBaseButton>
   );

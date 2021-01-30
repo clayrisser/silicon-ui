@@ -26,10 +26,10 @@ export function createSplitProps<
   SplitProps = HashMap<HashMap>,
   SplitSx = HashMap<Partial<ThemeUICSSObject & ThemeDerivedStyles>>
 >(
-  propsSetsMap: HashMap<string[] | RegExp>,
-  lastPropsSetId: string,
-  sxsSetsMap: HashMap<string[] | RegExp>,
-  lastSxsSetId: string
+  propsSetsMap: HashMap<string[] | RegExp> = {},
+  lastPropsSetId?: string,
+  sxsSetsMap: HashMap<string[] | RegExp> = {},
+  lastSxsSetId?: string
 ) {
   return (
     props: Props,
@@ -43,8 +43,8 @@ export function createSplitProps<
     Object.keys(sxsSetsMap).forEach(
       (sxsSetId: string) => (sxsMap[sxsSetId] = {})
     );
-    propsMap[lastPropsSetId] = {};
-    sxsMap[lastSxsSetId] = {};
+    if (lastPropsSetId) propsMap[lastPropsSetId] = {};
+    if (lastSxsSetId) sxsMap[lastSxsSetId] = {};
     const clonedProps = { ...props };
     const sx = {
       ...defaultSx,
@@ -65,8 +65,7 @@ export function createSplitProps<
           return;
         }
       }
-      const propsSet = propsMap[lastPropsSetId];
-      propsSet[key] = prop;
+      if (lastPropsSetId && key !== 'sx') propsMap[lastPropsSetId][key] = prop;
     });
     Object.entries(sx).forEach(([key, value]: [string, any]) => {
       for (const sxsSetId of sxsSetsIds) {
@@ -81,8 +80,7 @@ export function createSplitProps<
           return;
         }
       }
-      const sxsSet = sxsMap[lastSxsSetId];
-      sxsSet[key] = value;
+      if (lastSxsSetId) sxsMap[lastSxsSetId][key] = value;
     });
     return {
       ...((propsMap as unknown) as SplitProps),
