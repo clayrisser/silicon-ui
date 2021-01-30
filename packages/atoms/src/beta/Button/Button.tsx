@@ -14,18 +14,19 @@ const defaultSx: SxStyleProp = {
 };
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const { customButtonProps, themedNativeBaseButtonProps, sx } = splitProps(
-    props,
-    defaultSx
-  );
+  const {
+    customButtonProps,
+    nativeTextSx,
+    sx,
+    themedNativeBaseButtonProps
+  } = splitProps(props, defaultSx);
 
   function renderChildren() {
-    const { textAlign, color } = sx;
     const { children } = customButtonProps;
     if (!children) return null;
     if (typeof children === 'string') {
       return (
-        <NativeText sx={{ color, textAlign, width: '100%' }}>
+        <NativeText sx={{ ...nativeTextSx, width: '100%' }}>
           {children}
         </NativeText>
       );
