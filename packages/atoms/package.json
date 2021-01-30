@@ -98,6 +98,7 @@
     "@storybook/react": "^6.1.15",
     "@storybook/react-native": "^5.3.23",
     "@storybook/source-loader": "^6.1.15",
+    "@storybook/theming": "^6.1.15",
     "@testing-library/react": "^11.2.3",
     "@testing-library/react-native": "^7.1.0",
     "@theme-ui/color": "0.3.5",

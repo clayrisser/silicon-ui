@@ -7,7 +7,7 @@ const rootPath = pkgDir.sync(process.cwd()) || process.cwd();
 module.exports = {
   stories: ['../src/**/*.@(story|stories).@(md|@(j|t)s)?(x)'],
   addons: [
-    '@storybook/addon-a11y/register',
+    '@storybook/addon-a11y',
     '@storybook/addon-actions/register',
     '@storybook/addon-docs',
     '@storybook/addon-jest/register',

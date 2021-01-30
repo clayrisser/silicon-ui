@@ -22,7 +22,7 @@ export function splitTouchableProps<T>(props: Props): [T, Props] {
 }
 
 export function createSplitProps<Props, SplitProps = HashMap<HashMap>>(
-  setsMap: HashMap<Set<string>>,
+  setsMap: HashMap<string[]>,
   lastSetId: string
 ) {
   return (
@@ -37,7 +37,7 @@ export function createSplitProps<Props, SplitProps = HashMap<HashMap>>(
     Object.entries(clonedProps).forEach(([key, prop]: [string, any]) => {
       for (const setId of setIds) {
         const setProps = propsMap[setId];
-        const setKeys = setsMap[setId];
+        const setKeys = new Set(setsMap[setId]);
         if (setKeys.has(key)) {
           setProps[key] = prop;
           return;
