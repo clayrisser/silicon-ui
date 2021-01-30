@@ -1,3 +1,4 @@
+import { SxStyleProp, ThemeDerivedStyles, ThemeUICSSObject } from 'theme-ui';
 import { HashMap } from './types';
 
 export interface Props {
@@ -24,7 +25,10 @@ export function createSplitProps<Props, SplitProps = HashMap<HashMap>>(
   setsMap: HashMap<Set<string>>,
   lastSetId: string
 ) {
-  return (props: Props): SplitProps => {
+  return (
+    props: Props,
+    defaultSx: SxStyleProp = {}
+  ): SplitProps & { sx: ThemeUICSSObject & ThemeDerivedStyles } => {
     const propsMap: HashMap<HashMap> = {};
     Object.keys(setsMap).forEach((setId: string) => (propsMap[setId] = {}));
     propsMap[lastSetId] = {};
@@ -42,6 +46,12 @@ export function createSplitProps<Props, SplitProps = HashMap<HashMap>>(
       const setProps = propsMap[lastSetId];
       setProps[key] = prop;
     });
-    return (propsMap as unknown) as SplitProps;
+    return {
+      ...((propsMap as unknown) as SplitProps),
+      sx: {
+        ...defaultSx,
+        ...((props as any).sx || {})
+      }
+    };
   };
 }

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Text } from 'react-native';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import Button from './Button';
@@ -11,12 +10,13 @@ import withThemeProvider from '../../storybook/withThemeProvider';
 export const ButtonStoryWithKnobs: FC = () => (
   <Wrapper>
     <Button
+      sx={{ backgroundColor: text('backgroundColor', 'primary') }}
       onFocus={action('onFocus')}
       onPress={action('onPress')}
       onPressIn={action('onPressIn')}
       onPressOut={action('onPressOut')}
     >
-      <Text>{text('children', 'click me')}</Text>
+      {text('children', 'click me')}
     </Button>
   </Wrapper>
 );

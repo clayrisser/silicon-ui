@@ -32,17 +32,8 @@ module.exports = {
     if (!config.resolve.alias) config.resolve.alias = {};
     if (!config.module.rules) config.module.rules = [];
     if (!config.resolve.extensions) config.resolve.extensions = [];
-    console.log(
-      pkgDir.sync(
-        fs.realpathSync(require.resolve('@react-native-picker/picker'))
-      ),
-      path.resolve(
-        pkgDir.sync(
-          fs.realpathSync(require.resolve('@react-native-picker/picker'))
-        ),
-        'js'
-      )
-    );
+    if (!config.watchOptions) config.watchOptions = {};
+    config.watchOptions.ignored = '**/.*';
     config.module.rules.push({
       test: /\.[jt]sx?$/,
       include: [
